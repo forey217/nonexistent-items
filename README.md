@@ -8,7 +8,7 @@
 
 ## 下载与运行
 
-- **Windows 试玩**：进入[试玩下载页](https://github.com/forey217/nonexistent-items/releases/latest)，下载最新版 `不存在的物品-新手教程-v04.exe`，双击运行。
+- **Windows 试玩**：进入[试玩下载页](https://github.com/forey217/nonexistent-items/releases/latest)，下载最新版 `nonexistent-items-v0.4-windows-x86_64.exe`，双击运行。
 - **查看源码**：直接浏览下方 `game/` 目录。
 - **使用 Godot 编辑**：安装 Godot **4.7.2 标准版**，导入 `game/project.godot`，运行主场景。项目使用 GDScript，无需 .NET。
 
