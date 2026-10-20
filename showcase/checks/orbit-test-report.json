@@ -1,0 +1,112 @@
+{
+	"checks": 17,
+	"failures": 0,
+	"results": [
+		{
+			"details": {},
+			"passed": true,
+			"test": "left_alt_drag_clamps_at_plus_45"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "orbit_does_not_move_player_or_trigger_skill"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "drag_clamps_at_minus_45"
+		},
+		{
+			"details": {
+				"angle": -45.0,
+				"dragging": false,
+				"left_alt": false
+			},
+			"passed": true,
+			"test": "release_keeps_angle_and_ends_drag"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "camera_reset_keeps_puzzle_and_player"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "alt_gesture_cannot_click_skill_ui"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "right_alt_cannot_start_orbit"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "focus_loss_cancels_modifier_and_drag"
+		},
+		{
+			"details": {
+				"max_error_pixels": 0.000172633488546126
+			},
+			"passed": true,
+			"test": "click_projection_roundtrip_at_five_angles"
+		},
+		{
+			"details": {
+				"screen_motion": "(24.45389, -0.000977)"
+			},
+			"passed": true,
+			"test": "screen_right_wasd_at_-45"
+		},
+		{
+			"details": {
+				"screen_motion": "(24.45505, -0.000061)"
+			},
+			"passed": true,
+			"test": "screen_right_wasd_at_45"
+		},
+		{
+			"details": {
+				"alt": false,
+				"dragging": false,
+				"navigating": true,
+				"pending": false,
+				"position": "(380.2868, 442.3616)",
+				"target": "(383.2, 445.1)"
+			},
+			"passed": true,
+			"test": "left_click_rotated_ground_arrives_safely"
+		},
+		{
+			"details": {
+				"pending_push": false,
+				"position": "(383.2001, 445.1)",
+				"rail": 118.3
+			},
+			"passed": true,
+			"test": "right_click_rotated_weight_pushes_to_plate"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "world_switch_keeps_orbit_and_3_second_cd"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "remote_item_click_works_after_opposite_rotation"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "upward_receiver_and_billboard_remain_aligned"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "rotated_portal_click_completes_tutorial"
+		}
+	]
+}

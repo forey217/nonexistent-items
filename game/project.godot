@@ -1,0 +1,28 @@
+config_version=5
+
+[application]
+config/name="不存在的物品 · 观察局校准室"
+config/description="Three-world tutorial puzzle: ice, heavy gravity and inverted gravity."
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/size/window_width_override=1280
+window/size/window_height_override=800
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+gl_compatibility/driver.windows="opengl3_angle"
+textures/default_filters/use_nearest_mipmap_filter=false
+environment/defaults/default_clear_color=Color(0.94,0.92,0.88,1)
+
+[physics]
+common/physics_ticks_per_second=60
+
+[layer_names]
+2d_physics/layer_1="Environment"
+2d_physics/layer_2="Yanyue"

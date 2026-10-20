@@ -1,0 +1,519 @@
+{
+	"checks": 73,
+	"contact_samples": 662,
+	"failures": 0,
+	"results": [
+		{
+			"details": {},
+			"passed": true,
+			"test": "spawn_clear"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "front_back_cutout_views"
+		},
+		{
+			"details": {
+				"first_step": 21.1591987609863,
+				"lift": 3.19999980926514,
+				"opposite_step": -49.1591987609863
+			},
+			"passed": true,
+			"test": "opposite_steps_and_knee_lift_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "opposing_arm_swing_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "shoulder_side_and_occlusion_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "idle_legs_do_not_cross_0"
+		},
+		{
+			"details": {
+				"first_step": 21.1591987609863,
+				"lift": 3.19999980926514,
+				"opposite_step": -49.1591987609863
+			},
+			"passed": true,
+			"test": "opposite_steps_and_knee_lift_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "opposing_arm_swing_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "shoulder_side_and_occlusion_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "idle_legs_do_not_cross_1"
+		},
+		{
+			"details": {
+				"first_step": 49.1591987609863,
+				"lift": 3.19999980926514,
+				"opposite_step": -21.1591987609863
+			},
+			"passed": true,
+			"test": "opposite_steps_and_knee_lift_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "opposing_arm_swing_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "shoulder_side_and_occlusion_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "idle_legs_do_not_cross_2"
+		},
+		{
+			"details": {
+				"first_step": 49.1591987609863,
+				"lift": 3.19999980926514,
+				"opposite_step": -21.1591987609863
+			},
+			"passed": true,
+			"test": "opposite_steps_and_knee_lift_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "opposing_arm_swing_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "shoulder_side_and_occlusion_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "idle_legs_do_not_cross_3"
+		},
+		{
+			"details": {
+				"phases_per_direction": 32,
+				"quads": 4608
+			},
+			"passed": true,
+			"test": "no_folded_mesh_gaps_during_knee_bends"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "back_hands_do_not_swing_through_spine"
+		},
+		{
+			"details": {
+				"speed": 145.0,
+				"steps_per_second": 1.61111111111111
+			},
+			"passed": true,
+			"test": "calm_walking_cadence"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "shared_depth_sort"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "input_binding_walk_left"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "input_binding_walk_right"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "input_binding_walk_up"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "input_binding_walk_down"
+		},
+		{
+			"details": {
+				"animation_frames": [
+					0,
+					1,
+					2
+				],
+				"distance": 24.1665649414063
+			},
+			"passed": true,
+			"test": "manual_move_and_walk_frames"
+		},
+		{
+			"details": {
+				"diagonal": 24.1665306091309,
+				"straight": 24.1665649414063
+			},
+			"passed": true,
+			"test": "diagonal_not_faster"
+		},
+		{
+			"details": {
+				"facing": 0,
+				"phases": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15
+				]
+			},
+			"passed": true,
+			"test": "sustained_full_gait_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "stop_returns_to_idle_0"
+		},
+		{
+			"details": {
+				"facing": 1,
+				"phases": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15
+				]
+			},
+			"passed": true,
+			"test": "sustained_full_gait_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "stop_returns_to_idle_1"
+		},
+		{
+			"details": {
+				"facing": 2,
+				"phases": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15
+				]
+			},
+			"passed": true,
+			"test": "sustained_full_gait_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "stop_returns_to_idle_2"
+		},
+		{
+			"details": {
+				"facing": 3,
+				"phases": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15
+				]
+			},
+			"passed": true,
+			"test": "sustained_full_gait_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "stop_returns_to_idle_3"
+		},
+		{
+			"details": {
+				"fast_distance": 32.0,
+				"slow_distance": 32.0
+			},
+			"passed": true,
+			"test": "gait_tracks_distance_not_clock"
+		},
+		{
+			"details": {
+				"position": [
+					868.144165039063,
+					348.710998535156
+				]
+			},
+			"passed": true,
+			"test": "boundary_collision_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "blocked_wall_halts_steps_0"
+		},
+		{
+			"details": {
+				"position": [
+					868.143798828125,
+					559.289184570313
+				]
+			},
+			"passed": true,
+			"test": "boundary_collision_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "blocked_wall_halts_steps_1"
+		},
+		{
+			"details": {
+				"position": [
+					411.855560302734,
+					559.288879394531
+				]
+			},
+			"passed": true,
+			"test": "boundary_collision_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "blocked_wall_halts_steps_2"
+		},
+		{
+			"details": {
+				"position": [
+					411.855255126953,
+					348.711303710938
+				]
+			},
+			"passed": true,
+			"test": "boundary_collision_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "blocked_wall_halts_steps_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Bookcase_side_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Bookcase_side_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Bookcase_side_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Desk_side_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Desk_side_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Desk_side_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Desk_side_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Chest_side_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Chest_side_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Chest_side_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Chest_side_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Globe_side_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Globe_side_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Globe_side_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "solid_Globe_side_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "desk_blocks_direct_line"
+		},
+		{
+			"details": {
+				"clear": true,
+				"frames": 159,
+				"navigating": false
+			},
+			"passed": true,
+			"test": "mouse_route_around_desk"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "wasd_cancels_old_click_route"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reject_inside_furniture"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reject_outside_room"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "latest_click_replaces_route"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "cancel_stops_immediately"
+		},
+		{
+			"details": {
+				"clear": true,
+				"contact": true,
+				"outside_distance": 13.0937986373901
+			},
+			"passed": true,
+			"test": "high_speed_sweep_no_tunnelling"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "corner_seal_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "corner_seal_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "corner_seal_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "corner_seal_3"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reset_restores_safe_start"
+		}
+	],
+	"sampled_positions": 1282,
+	"skipped_approaches": [
+		"Bookcase side 0: adjacent scenery blocks the starting position"
+	]
+}

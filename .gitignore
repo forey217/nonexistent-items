@@ -1,0 +1,26 @@
+# Publish only the game and its public showcase, not the whole working folder.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/game/
+!/showcase/
+
+# Godot import cache and local/editor files.
+**/.godot/
+**/.DS_Store
+**/Thumbs.db
+**/*.tmp
+**/*.log
+**/*.bak
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/export_credentials.cfg
+**/build/
+
+# Distributable programs go in GitHub Releases, not Git history.
+*.exe
+*.pck
+*.zip
