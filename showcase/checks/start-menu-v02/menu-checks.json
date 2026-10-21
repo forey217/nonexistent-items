@@ -1,0 +1,53 @@
+{
+	"checks": [
+		{
+			"passed": true,
+			"test": "default_boot_opens_menu"
+		},
+		{
+			"passed": true,
+			"test": "keyboard_focus_on_start"
+		},
+		{
+			"passed": true,
+			"test": "world_preview_0"
+		},
+		{
+			"passed": true,
+			"test": "world_preview_1"
+		},
+		{
+			"passed": true,
+			"test": "world_preview_2"
+		},
+		{
+			"passed": true,
+			"test": "number_key_changes_preview"
+		},
+		{
+			"passed": true,
+			"test": "escape_closes_help"
+		},
+		{
+			"passed": true,
+			"test": "start_blocks_repeat_clicks"
+		},
+		{
+			"passed": true,
+			"test": "start_enters_tutorial"
+		},
+		{
+			"passed": true,
+			"test": "return_to_menu"
+		},
+		{
+			"passed": true,
+			"test": "hub_still_available"
+		},
+		{
+			"passed": true,
+			"test": "menu_can_reopen_after_hub"
+		}
+	],
+	"failures": 0
+}
