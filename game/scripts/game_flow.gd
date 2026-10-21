@@ -7,6 +7,8 @@ var returning := false
 var return_effect: CanvasLayer
 var level_menu: CanvasLayer
 var menu_revealing := false
+var return_menu_button: Button
+var title_return_pending := false
 
 func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
@@ -18,6 +20,7 @@ func _ready() -> void:
 	get_tree().auto_accept_quit=false
 	ambience=preload("res://scripts/bureau_audio.gd").new()
 	add_child(ambience)
+	_build_title_navigation()
 	if "--hub" in args or "--hub-check" in args:show_hub(false)
 	elif Array(args).any(func(arg):return arg in ["--tutorial","--tutorial-capture","--skill-capture","--tutorial-self-test","--orbit-self-test","--tutorial-demo","--hud-check","--task-check","--pad-guide-check","--film-check","--polish-check","--archive-check","--interaction-check","--wall-self-test"]):show_tutorial()
 	else:show_menu()
@@ -82,13 +85,47 @@ func quit_game() -> void:
 	get_tree().quit()
 
 func show_menu() -> void:
-	if returning or level_menu!=null or menu_revealing:return
+	if returning or level_menu!=null or menu_revealing:
+		title_return_pending=false
+		return
+	title_return_pending=false
 	clear_scene()
 	current=load("res://scenes/start_menu.tscn").instantiate()
 	current.start_requested.connect(_start_from_menu.call_deferred)
 	current.quit_requested.connect(quit_game)
 	add_child(current)
 	ambience.toggle_button.hide()
+	return_menu_button.hide()
+
+func _build_title_navigation() -> void:
+	var navigation := CanvasLayer.new()
+	navigation.layer = 3
+	add_child(navigation)
+	var ui = preload("res://scripts/tutorial_hud.gd").new()
+	ui.font.font_names = PackedStringArray(["Microsoft YaHei", "Arial"])
+	return_menu_button = ui.button(navigation, "返回主界面  F10", Vector2(1054, 655), Vector2(204, 40))
+	return_menu_button.add_theme_font_size_override("font_size", 16)
+	return_menu_button.tooltip_text = "返回启动画面；重新进入关卡会重置当前关卡。"
+	return_menu_button.pressed.connect(request_title_return)
+	return_menu_button.hide()
+	ui.free()
+
+func _process(_delta: float) -> void:
+	if not is_instance_valid(return_menu_button) or not is_instance_valid(current): return
+	var playable := not current.has_signal("start_requested")
+	var busy := closing or returning or menu_revealing or title_return_pending or level_menu != null
+	if current.has_method("arrival_busy") and current.arrival_busy(): busy = true
+	return_menu_button.visible = playable and not busy
+
+func request_title_return() -> bool:
+	if closing or returning or menu_revealing or title_return_pending or level_menu != null: return false
+	if not is_instance_valid(current) or current.has_signal("start_requested"): return false
+	if current.has_method("arrival_busy") and current.arrival_busy(): return false
+	title_return_pending = true
+	return_menu_button.hide()
+	ambience.play_ui()
+	show_menu.call_deferred()
+	return true
 
 func _start_from_menu() -> void:
 	if closing or menu_revealing:return
@@ -119,11 +156,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 	if event.physical_keycode!=KEY_F10 and event.keycode!=KEY_F10:return
-	if closing or returning or menu_revealing or level_menu!=null:return
-	if current.has_signal("start_requested"):return
-	if current.has_method("arrival_busy") and current.arrival_busy():return
-	get_viewport().set_input_as_handled()
-	show_menu.call_deferred()
+	if request_title_return(): get_viewport().set_input_as_handled()
 
 func clear_scene() -> void:
 	if is_instance_valid(current):
