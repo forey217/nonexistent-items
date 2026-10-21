@@ -5,6 +5,8 @@ const RAIL_LENGTH := 365.15
 const FIRST_STOP := 118.30
 const CEILING := 134.0
 const SLIDE_SPEED := 112.0
+const HEAVY_FALL_ACCELERATION := 800.0
+const HEAVY_MAX_FALL_SPEED := 190.0
 var world: int = World.ICE
 var rail_position := 0.0
 var rail_speed := 0.0
@@ -40,10 +42,11 @@ func push() -> String:
 	if world==World.HEAVY: return "镇纸太重，推不动。试试另一个世界。"
 	if world==World.INVERTED: return "向上的重力正在作用，先让镇纸落回导轨。"
 	if elevation>0.3: return "镇纸还在空中，等它落回导轨再推。"
-	if rail_speed>0.1: return "镇纸正在滑行，会在挡块前停下。"
+	if absf(rail_speed)>0.1: return "镇纸正在沿导轨滑行。"
 	if rail_position>=RAIL_LENGTH-0.2: return "已到导轨末端：观察它上方的接收器。"
 	if not first_latched and rail_position>=FIRST_STOP-0.2:
-		return "挡块未释放，压板显示重量不足。"
+		rail_speed=-SLIDE_SPEED
+		return "已反向推动：镇纸沿导轨滑回起点。"
 	rail_speed = SLIDE_SPEED
 	return "已推动：低摩擦会让镇纸持续滑行。"
 
@@ -53,12 +56,17 @@ func step(delta: float) -> void:
 	while remaining>0.000001:
 		var dt := minf(remaining,1.0/120.0)
 		remaining -= dt
-		if world==World.ICE and elevation<=0.3 and rail_speed>0.0:
-			var stop := RAIL_LENGTH if first_latched else FIRST_STOP
-			rail_position = minf(stop,rail_position+rail_speed*dt)
-			if rail_position>=stop-0.001: rail_speed=0.0
-		var gravity := 160.0 if world==World.INVERTED else (-640.0 if world==World.HEAVY else -160.0)
-		vertical_speed = clampf(vertical_speed+gravity*dt,-150.0,105.0)
+		if world==World.ICE and elevation<=0.3 and absf(rail_speed)>0.0:
+			if rail_speed<0:
+				rail_position=maxf(0.0,rail_position+rail_speed*dt)
+				if rail_position<=0.001:rail_speed=0.0
+			else:
+				var stop := RAIL_LENGTH if first_latched else FIRST_STOP
+				rail_position = minf(stop,rail_position+rail_speed*dt)
+				if rail_position>=stop-0.001: rail_speed=0.0
+		var gravity := 160.0 if world==World.INVERTED else (-HEAVY_FALL_ACCELERATION if world==World.HEAVY else -160.0)
+		var max_fall_speed := HEAVY_MAX_FALL_SPEED if world==World.HEAVY else 150.0
+		vertical_speed = clampf(vertical_speed+gravity*dt,-max_fall_speed,105.0)
 		elevation += vertical_speed*dt
 		if elevation<=0.0:
 			elevation=0.0
@@ -86,15 +94,21 @@ func stage() -> int:
 	return 0
 
 func objective() -> String:
-	return ["把镇纸送到第一块压板", "压力不足：想办法让镇纸变重", "挡块已释放，把镇纸运到末端", "点亮镇纸上方的接收器", "让镇纸落回末端，并压住压板", "归位门已开启，走入门内返回机构"][stage()]
+	return ["激活星位踏板，定位星位", "激活月痕印座，压稳月痕", "激活封界踏板，封闭界缝", "界缝已封，世界关系恢复稳定。可以返回机构。"][goal_stage()]
+
+func goal_stage() -> int:
+	if not first_latched:return 0
+	if not receiver_latched:return 1
+	if not gate_open:return 2
+	return 3
 
 func hint(level: int) -> String:
 	var clues := [
-		["低摩擦世界中，物品受到推动就会滑行。", "镇纸被挡块接住后，会停在第一块压板上。", "靠近镇纸，右键点击它，或按 E 推动。"],
-		["这里需要的是更大的重量。", "切换世界不会重置镇纸位置。", "按 2 切到重力世界，让镇纸压下压板。"],
-		["重力世界里镇纸太重，无法运送。", "挡块已经机械锁定，不会随切换复原。", "按 1 回冰晶世界，再次右键推动镇纸。"],
-		["地面上的镇纸碰不到上方接收器。", "有一个世界的重力方向与这里相反。", "按 3 切到倒悬世界，等镇纸上浮到顶。"],
-		["上方校准已记录，还缺下方足够的压力。", "普通重力能让它落下，但重量还不够。", "按 2 回重力世界，等镇纸落回末端压板。"],
-		["右侧发光的门就是出口。", "保持重力世界，镇纸才能持续压住压板。", "左键点击发光的归位门，衍月会走过去。"]
+		["星位在带五角星的锚座上。", "低摩擦世界中，镇纸被挡块接住后，会停在星位压板上。", "靠近镇纸，右键点击它，或按 E 推动。"],
+		["镇纸到达了星位，但锚座还没稳定。", "这里需要更大的重量；切换世界不会重置镇纸位置。", "按 2 切到重力世界，让镇纸压稳星位。"],
+		["星位已定，下一个目标是高处的月痕。", "月痕印座下方有导轨；重力世界里的镇纸太重，无法运送。", "按 1 回冰晶世界，再次右键推动镇纸到导轨末端。"],
+		["月痕刻在高处的印座上。", "地面的镇纸碰不到它；有一个世界的重力方向相反。", "按 3 切到倒悬世界，等镇纸向上压住月痕印座。"],
+		["月痕已压稳，还需要让界缝封印持续运作。", "界缝与末端压板相连；普通重力下的重量还不够。", "按 2 回重力世界，等镇纸落回末端压板，为封界缝供能。"],
+		["界缝已封，修复后的门可通往机构。", "保持重力世界，镇纸才能持续维持封印。", "左键点击修复后的归位门，衍月会走过去。"]
 	]
 	return clues[stage()][clampi(level-1,0,2)]

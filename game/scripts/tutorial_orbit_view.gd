@@ -6,6 +6,7 @@ const PIXELS:=65.05382387
 const HEIGHT_PIXELS:=56.33826408
 const LIMIT:=45.0
 const DRAG_SPEED:=0.20
+const ACTOR_GROUND_HEIGHT:=0.045
 var room: Node2D
 var angle:=0.0
 var left_alt:=false
@@ -19,11 +20,53 @@ var paper_viewport:=SubViewport.new()
 var paper=preload("res://scripts/yanyue_walk_rig.gd").new()
 var actor:=Sprite3D.new()
 var actor_shadow: MeshInstance3D
+var head_guard=preload("res://scripts/yanyue_head_guard.gd").new()
 var display_fx=preload("res://scripts/world_switch_fx.gd").new()
 var font:=SystemFont.new()
 var clock:=0.0
 var last_world:=-1
 var screen_direction:=Vector2(-1,1)
+var landmarks=preload("res://scripts/anchor_landmarks.gd").new()
+var tag_rects: Array[Rect2]=[]
+var film=preload("res://scripts/world_film_transition.gd").new()
+var feedback=preload("res://scripts/bureau_feedback.gd").new()
+var atmosphere=preload("res://scripts/bureau_atmosphere.gd").new()
+var pointer_position:=Vector2(-10000,-10000)
+var weight_hovered := false
+var hover_strength := 0.0
+var hover_age := 0.0
+var arrival_viewport: SubViewport
+var arrival_sprite: Sprite3D
+var arrival_rift: Node2D
+
+func prepare_arrival_rift(at: Vector2) -> Node2D:
+	if arrival_viewport==null:
+		arrival_viewport=SubViewport.new()
+		arrival_viewport.size=Vector2i(128,192)
+		arrival_viewport.transparent_bg=true
+		add_child(arrival_viewport)
+		arrival_rift=preload("res://scripts/spatial_rift.gd").new()
+		arrival_rift.position=Vector2(64,170)
+		arrival_viewport.add_child(arrival_rift)
+		arrival_sprite=Sprite3D.new()
+		arrival_sprite.texture=arrival_viewport.get_texture()
+		arrival_sprite.pixel_size=1.0/PIXELS
+		arrival_sprite.offset=Vector2(0,74)
+		arrival_sprite.billboard=BaseMaterial3D.BILLBOARD_FIXED_Y
+		arrival_sprite.scale.y=PIXELS/HEIGHT_PIXELS
+		arrival_sprite.shaded=false
+		arrival_sprite.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		arrival_sprite.layers=1<<3
+		world_root.add_child(arrival_sprite)
+	arrival_viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
+	arrival_sprite.position=to_world(at,0.035)
+	arrival_sprite.show()
+	arrival_rift.age=0.0;arrival_rift.queue_redraw()
+	return arrival_rift
+
+func finish_arrival_rift() -> void:
+	if arrival_sprite!=null:arrival_sprite.hide()
+	if arrival_viewport!=null:arrival_viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
 
 func _ready() -> void:
 	font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
@@ -41,12 +84,24 @@ func _ready() -> void:
 	camera.size=800.0/PIXELS
 	camera.current=true
 	for i in range(3):_build_theme(i)
+	landmarks.view=self
+	world_root.add_child(landmarks)
+	_assign_render_layer(landmarks,1<<3)
+	feedback.view=self;world_root.add_child(feedback)
+	atmosphere.view=self;world_root.add_child(atmosphere)
 	output.texture=viewport.get_texture()
 	output.centered=false
 	output.show_behind_parent=true
 	add_child(output)
 	_setup_actor()
+	head_guard.view=self
+	world_root.add_child(head_guard)
+	_assign_render_layer(head_guard,1<<3)
+	room.player.motion_guard=Callable(head_guard,"guard_motion")
 	add_child(display_fx)
+	display_fx.modulate.a=0.55
+	film.view=self
+	add_child(film)
 	set_angle(0)
 	_sync_state(0.0)
 
@@ -60,6 +115,8 @@ func _setup_lighting() -> void:
 	env.environment.ambient_light_energy=0.42
 	world_root.add_child(env)
 	var light:=DirectionalLight3D.new()
+	light.layers=1<<3
+	light.light_cull_mask=31
 	light.rotation_degrees=Vector3(-58,-38,0)
 	light.light_color=Color("fff1d4")
 	light.light_energy=0.72
@@ -68,6 +125,8 @@ func _setup_lighting() -> void:
 	light.shadow_bias=0.035
 	world_root.add_child(light)
 	var fill:=DirectionalLight3D.new()
+	fill.layers=1<<3
+	fill.light_cull_mask=31
 	fill.rotation_degrees=Vector3(-20,140,0)
 	fill.light_color=Color("c7d8ed")
 	fill.light_energy=0.15
@@ -78,6 +137,10 @@ func _group(parent: Node3D,at: Vector3) -> Node3D:
 	parent.add_child(node)
 	node.position=at
 	return node
+
+func _assign_render_layer(node: Node,mask: int) -> void:
+	if node is VisualInstance3D:node.layers=mask
+	for child in node.get_children():_assign_render_layer(child,mask)
 
 func _build_theme(index: int) -> void:
 	var root3:=_group(world_root,Vector3.ZERO)
@@ -115,16 +178,6 @@ func _build_theme(index: int) -> void:
 		var mat:=b.material(Color("c8b58c"))
 		b.box(point+Vector3(0,0.26,0),Vector3(0.63,0.035,0.63),mat)
 		plate_mats.append(mat)
-		var number:=Label3D.new()
-		number.text="01" if plate_mats.size()==1 else "02"
-		number.font=font
-		number.font_size=28
-		number.pixel_size=0.007
-		number.outline_size=0
-		number.modulate=Color("40535b")
-		number.position=point+Vector3(0,0.287,0)
-		number.rotation.x=-PI*0.5
-		root3.add_child(number)
 		for x in [-0.34,0.34]:
 			for z in [-0.34,0.34]:b.cylinder(point+Vector3(x,0.26,z),0.024,0.025,b.brass)
 	var stop:=b.box(to_world(room.first_plate)+Vector3(0.25,0.4,0),Vector3(0.12,0.34,0.65),b.brass)
@@ -153,6 +206,7 @@ func _build_theme(index: int) -> void:
 		b.box((a+c)*0.5,Vector3(absf(c.x-a.x)+0.045,0.035,absf(c.z-a.z)+0.045),b.dark)
 		b.box((a+c)*0.5+Vector3(0,0.025,0),Vector3(absf(c.x-a.x)+0.015,0.015,absf(c.z-a.z)+0.015),cable_color)
 	themes.append({"root":root3,"weight":weight,"bars":bars,"open":open_plane,"stop":stop,"plates":plate_mats,"leds":led_mats,"rail_leds":rail_leds,"sample":sample,"upper":upper_mat,"cable":cable_color})
+	_assign_render_layer(root3,1<<index)
 	root3.visible=index==0
 
 func _setup_actor() -> void:
@@ -168,17 +222,21 @@ func _setup_actor() -> void:
 	actor.texture=paper_viewport.get_texture()
 	actor.pixel_size=0.5/PIXELS
 	actor.offset=Vector2(0,220)
-	actor.billboard=BaseMaterial3D.BILLBOARD_ENABLED
+	# Keep the paper vertically upright: camera tilt must not lean the head into walls.
+	actor.billboard=BaseMaterial3D.BILLBOARD_FIXED_Y
+	actor.scale.y=PIXELS/HEIGHT_PIXELS
 	actor.alpha_cut=SpriteBase3D.ALPHA_CUT_DISCARD
 	actor.alpha_scissor_threshold=0.04
 	actor.texture_filter=BaseMaterial3D.TEXTURE_FILTER_LINEAR
 	actor.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	world_root.add_child(actor)
+	actor.layers=1<<4
 	var b:=Builder.new()
 	b.configure(0,world_root)
 	var shadow_material:=b.material(Color(0.12,0.18,0.23,0.2))
 	shadow_material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA
 	actor_shadow=b.cylinder(Vector3.ZERO,0.23,0.002,shadow_material)
+	actor_shadow.layers=1<<3
 
 func to_world(logic: Vector2,height: float=0.0) -> Vector3:
 	var point:=logic-Vector2(535,222)
@@ -237,7 +295,7 @@ func handle_input(event: InputEvent) -> bool:
 		if not left_alt or not event.button_mask&MOUSE_BUTTON_MASK_LEFT:
 			dragging=false
 			return true
-		set_angle(angle+event.relative.x*DRAG_SPEED)
+		set_angle(angle-event.relative.x*DRAG_SPEED)
 		return true
 	return false
 
@@ -271,34 +329,29 @@ func _process(delta: float) -> void:
 func _sync_state(delta: float) -> void:
 	if themes.is_empty():return
 	var index: int=room.state.world
-	if last_world!=index:
-		for i in range(3):themes[i].root.visible=i==index
-		last_world=index
-	var group: Dictionary=themes[index]
-	group.weight.position=to_world(room.block_ground_position(),0.22+room.state.elevation/HEIGHT_PIXELS)
-	group.stop.visible=not room.state.first_latched
-	group.bars.visible=not room.state.gate_open
-	group.open.visible=room.state.gate_open
-	var flags: Array[bool]=[room.state.first_latched,room.state.receiver_latched,room.state.final_pressed]
+	film.sync()
+	camera.cull_mask=(1<<index)|(1<<3)|(1<<4)
 	for i in range(3):
-		group.leds[i].albedo_color=Color("84caae") if flags[i] else Color("526675")
-		group.leds[i].emission=group.leds[i].albedo_color
-	group.plates[0].albedo_color=Color("8eaf9e") if flags[0] else Color("c8b58c")
-	group.plates[1].albedo_color=Color("8eaf9e") if flags[2] else Color("c8b58c")
-	for i in range(20):
-		var passed: bool=room.state.rail_position/room.State.RAIL_LENGTH>=float(i)/19.0
-		group.rail_leds[i].albedo_color=Color("83c8b1") if passed else Color("536c77")
-		group.rail_leds[i].emission=group.rail_leds[i].albedo_color
-	group.cable.albedo_color=Color("80c2b4") if room.state.gate_open else Color("9f916e")
-	group.upper.albedo_color=Color("83d8b4") if flags[1] else Color("c5b690")
-	group.sample.position.y=move_toward(group.sample.position.y,1.36 if index==2 else 0.72,delta*0.65)
-	actor.position=to_world(room.player.position,0.025)
+		themes[i].root.visible=i==index or (film.active and (i==film.from_world or i==film.to_world))
+		if themes[i].root.visible:_sync_theme(themes[i],i,delta)
+	last_world=index
+	landmarks.sync(room.state,delta)
+	feedback.sync(delta)
+	atmosphere.sync(delta)
+	var over_ui:=get_viewport().gui_get_hovered_control()!=null
+	weight_hovered=hit_weight(pointer_position) and not over_ui and not room.casting and not room.seal_active and not room.interacting and not dragging and not left_alt and not room.finished
+	hover_strength=move_toward(hover_strength,1.0 if weight_hovered else 0.0,delta*9.0)
+	hover_age=hover_age+delta if weight_hovered else 0.0
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND if weight_hovered else Input.CURSOR_ARROW)
+	actor.position=to_world(room.player.position,ACTOR_GROUND_HEIGHT)
+	head_guard.sync_position(room.player.position,room.debug_visible)
 	actor_shadow.position=to_world(room.player.position,0.032)
 	var direction: Vector2=logic_to_screen(room.player.position+room.player._last_direction)-logic_to_screen(room.player.position)
 	if absf(direction.x)>0.05:screen_direction.x=signf(direction.x)
 	if absf(direction.y)>0.05:screen_direction.y=signf(direction.y)
 	var facing: int=(0 if screen_direction.x>=0 else 1) if screen_direction.y>=0 else (2 if screen_direction.x>=0 else 3)
 	paper.cast_amount=room.player._art.cast_amount
+	paper.push_amount=room.player._art.push_amount
 	paper.pose(room.player._walk_time,room.player.walking,facing,direction.normalized(),delta)
 	display_fx.position=logic_to_screen(room.switch_fx.position)
 	display_fx.active=room.switch_fx.active
@@ -306,12 +359,63 @@ func _sync_state(delta: float) -> void:
 	display_fx.color=room.switch_fx.color
 	display_fx.queue_redraw()
 
+func _sync_theme(group: Dictionary,index: int,delta: float) -> void:
+	group.weight.position=to_world(room.block_ground_position(),0.22+room.state.elevation/HEIGHT_PIXELS)
+	group.stop.visible=not room.state.first_latched
+	group.bars.visible=not room.gate_ready
+	group.bars.scale.y=1.0-smoothstep(0.80,1.0,room.seal_age) if room.seal_active else 1.0
+	group.open.visible=room.gate_ready or (room.seal_active and room.seal_age>0.80)
+	var flags: Array[bool]=[room.state.first_latched,room.state.receiver_latched,room.state.final_pressed]
+	for i in range(3):
+		group.leds[i].albedo_color=Color("84caae") if flags[i] else Color("526675")
+		group.leds[i].emission=group.leds[i].albedo_color
+	group.plates[0].albedo_color=Color("8eaf9e") if flags[0] else Color("c8b58c")
+	group.plates[0].albedo_color=group.plates[0].albedo_color.lerp(Color("ffe6a2"),landmarks.strengths[0]*0.85)
+	group.plates[1].albedo_color=Color("8eaf9e") if flags[2] else Color("c8b58c")
+	group.plates[1].albedo_color=group.plates[1].albedo_color.lerp(Color("ffe6a2"),landmarks.strengths[2]*0.85)
+	for i in range(2):
+		group.plates[i].emission_enabled=true
+		group.plates[i].emission=Color("ffe6a2")
+		group.plates[i].emission_energy_multiplier=landmarks.strengths[0 if i==0 else 2]*0.65
+	for i in range(20):
+		var passed: bool=room.state.rail_position/room.State.RAIL_LENGTH>=float(i)/19.0
+		group.rail_leds[i].albedo_color=Color("83c8b1") if passed else Color("536c77")
+		group.rail_leds[i].emission=group.rail_leds[i].albedo_color
+	group.cable.albedo_color=Color("80c2b4") if room.state.gate_open else Color("9f916e")
+	group.upper.albedo_color=Color("83d8b4") if flags[1] else Color("c5b690")
+	group.upper.albedo_color=group.upper.albedo_color.lerp(Color("fff0b5"),landmarks.strengths[1])
+	group.upper.emission=group.upper.albedo_color
+	group.upper.emission_energy_multiplier=0.65+landmarks.strengths[1]*0.7
+	group.sample.position.y=move_toward(group.sample.position.y,1.36 if index==2 else 0.72,delta*0.65)
+
 func _draw() -> void:
 	if themes.is_empty():return
-	# Existing contextual readouts track their machine in the rotating view.
-	badge(logic_to_screen(room.rail_end,3.34)+Vector2(-41,-9),"上部校准"+(" ✓" if room.state.receiver_latched else ""))
-	badge(logic_to_screen(room.portal_position)+Vector2(-43,23),"归位门 · "+("开启" if room.state.gate_open else "待校准"))
-	badge(logic_to_screen(room.props[1].position)+Vector2(-32,24),"%d / 3 已校准"%int(int(room.state.first_latched)+int(room.state.receiver_latched)+int(room.state.final_pressed)))
+	tag_rects.clear()
+	# Outline the physical pressure/contact surface, with a small offset callout.
+	for i in range(3):
+		var amount: float=landmarks.strengths[i]
+		if amount>0.01:
+			var outline := target_outline(i)
+			var pulse := 0.85+0.15*sin(clock*4.0)
+			draw_colored_polygon(outline,Color(1.0,0.85,0.48,0.055*amount))
+			draw_polyline(outline+PackedVector2Array([outline[0]]),Color(1.0,0.82,0.35,amount*pulse),2.5,true)
+			var target := camera.unproject_position(landmarks.anchor_position(i))
+			var text: String=["星位踏板","月痕印座","封界踏板"][i]
+			var tag := map_tag(target,text,amount)
+			var tip: Vector2=outline[0]
+			for point in outline:
+				if point.distance_squared_to(tag.get_center())<tip.distance_squared_to(tag.get_center()):tip=point
+			var direction := (tip-tag.get_center()).normalized()
+			var start := tag.get_center()+direction*minf(tag.size.x*0.5,22.0)
+			draw_line(start,tip,Color(1.0,0.82,0.35,amount),1.4,true)
+			draw_colored_polygon(PackedVector2Array([tip,tip-direction.rotated(0.5)*7,tip-direction.rotated(-0.5)*7]),Color(1.0,0.82,0.35,amount))
+	if landmarks.strengths[0]<0.01:map_tag(camera.unproject_position(landmarks.marker_position(0)),"星位·"+("已定" if room.state.first_latched else "未定"))
+	if landmarks.strengths[1]<0.01:map_tag(camera.unproject_position(landmarks.marker_position(1)),"月痕·"+("已稳" if room.state.receiver_latched else "未稳"))
+	map_tag(logic_to_screen(room.portal_position),"界缝·"+("已封" if room.gate_ready else ("合拢" if room.seal_active else "未封")))
+	if hover_strength>0.01:
+		var outline:=weight_screen_hull()
+		draw_polyline(outline+PackedVector2Array([outline[0]]),Color(1.0,0.89,0.60,hover_strength*0.85),1.35,true)
+		if hover_age<2.8:map_tag(logic_to_screen(room.block_ground_position(),0.55+room.state.elevation/HEIGHT_PIXELS),"右键互动 / E",hover_strength)
 	if room._marker_time>0:
 		draw_set_transform(logic_to_screen(room._marker),0,Vector2(1,0.5))
 		draw_arc(Vector2.ZERO,12,0,TAU,32,Color("69a69f"),2,true)
@@ -325,10 +429,61 @@ func _draw() -> void:
 		var center:=logic_to_screen(room.player.position)
 		draw_arc(center,13,0,TAU,32,Color("e55b35"),1.6,true)
 
-func badge(at: Vector2,text: String) -> void:
+func set_anchor_highlight(index: int) -> void:
+	landmarks.hovered_index=clampi(index,-1,2)
+
+func target_outline(index: int) -> PackedVector2Array:
+	var center: Vector3=landmarks.anchor_position(index)
+	var extent := Vector2(0.48,0.34) if index==1 else Vector2(0.46,0.46)
+	var result := PackedVector2Array()
+	for corner in [Vector2(-1,-1),Vector2(1,-1),Vector2(1,1),Vector2(-1,1)]:
+		result.append(camera.unproject_position(center+Vector3(corner.x*extent.x,0,corner.y*extent.y)))
+	return result
+
+func weight_screen_rect() -> Rect2:
+	var center := to_world(room.block_ground_position(),0.22+room.state.elevation/HEIGHT_PIXELS)
+	var result := Rect2(camera.unproject_position(center),Vector2.ZERO)
+	for x in [-0.31,0.31]:
+		for y in [0.0,0.42]:
+			for z in [-0.31,0.31]:result=result.expand(camera.unproject_position(center+Vector3(x,y,z)))
+	return result
+
+func weight_screen_hull() -> PackedVector2Array:
+	var center:=to_world(room.block_ground_position(),0.22+room.state.elevation/HEIGHT_PIXELS)
+	var points:=PackedVector2Array()
+	for x in [-0.29,0.29]:
+		for y in [0.0,0.41]:
+			for z in [-0.29,0.29]:points.append(camera.unproject_position(center+Vector3(x,y,z)))
+	return Geometry2D.convex_hull(points)
+
+func _exit_tree() -> void:
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+func map_tag(target: Vector2,text: String,highlight: float=0.0) -> Rect2:
+	var dimensions := Vector2(ceilf(font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,10).x)+12,17)
+	var avoid := weight_screen_rect().grow(9)
+	var selected := Rect2(target+Vector2(48,-30),dimensions)
+	for offset in [Vector2(48,-30),Vector2(-48-dimensions.x,-30),Vector2(48,22),Vector2(-48-dimensions.x,22),Vector2(16,-62),Vector2(-16-dimensions.x,42)]:
+		var candidate := Rect2(target+offset,dimensions)
+		var clear := not candidate.intersects(avoid)
+		for occupied in tag_rects:clear=clear and not candidate.intersects(occupied.grow(3))
+		if clear:
+			selected=candidate
+			break
+	tag_rects.append(selected)
+	var box:=StyleBoxFlat.new()
+	box.bg_color=Color("344a55").lerp(Color("615638"),highlight)
+	box.border_color=Color("a99a75").lerp(Color("ffdf8b"),highlight)
+	box.set_border_width_all(1)
+	box.set_corner_radius_all(3)
+	draw_style_box(box,selected)
+	draw_string(font,selected.position+Vector2(6,12),text,HORIZONTAL_ALIGNMENT_LEFT,-1,10,Color("e5e6dc"))
+	return selected
+
+func badge(at: Vector2,text: String,highlight: float=0.0) -> void:
 	var style:=StyleBoxFlat.new()
-	style.bg_color=Color("344a55")
-	style.border_color=Color("a99a75")
+	style.bg_color=Color("344a55").lerp(Color("615638"),highlight)
+	style.border_color=Color("a99a75").lerp(Color("ffdf8b"),highlight)
 	style.set_border_width_all(1)
 	style.set_corner_radius_all(3)
 	draw_style_box(style,Rect2(at,Vector2(88,20)))

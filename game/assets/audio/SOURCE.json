@@ -1,0 +1,100 @@
+[
+  {
+    "file": "music/magic_puzzle.ogg",
+    "title": "Magic Puzzle In-Game 1",
+    "author": "MintoDog",
+    "license": "CC0-1.0",
+    "source": "https://opengameart.org/content/magic-puzzle-in-game-1",
+    "modified": false
+  },
+  {
+    "file": "sfx/ui.ogg",
+    "original": "click_001.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+    "modified": false
+  },
+  {
+    "file": "sfx/fold.ogg",
+    "original": "scroll_001.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "320c6aafb2c7a503eae508dc443b72d7f7c0a317bfd16813157ed400cd04cf16",
+    "modified": false
+  },
+  {
+    "file": "sfx/world_set.ogg",
+    "original": "glass_003.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "9a6f16e3c2eff6fe5d017a4755a28306b14555728831cd00d70308e8f9689566",
+    "modified": false
+  },
+  {
+    "file": "sfx/star.ogg",
+    "original": "confirmation_001.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a",
+    "modified": false
+  },
+  {
+    "file": "sfx/moon.ogg",
+    "original": "confirmation_003.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022",
+    "modified": false
+  },
+  {
+    "file": "sfx/seal_begin.ogg",
+    "original": "switch_001.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "3b74efad87f1e69dbd1d05c5ad952ab90859b5a3d11da6ec5bd79b4f03b42afa",
+    "modified": false
+  },
+  {
+    "file": "sfx/success.ogg",
+    "original": "confirmation_004.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "sha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+    "modified": false
+  },
+  {
+    "file": "sfx/push.ogg",
+    "original": "impactMetal_light_000.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+    "modified": false
+  },
+  {
+    "file": "sfx/stop.ogg",
+    "original": "impactWood_medium_000.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "sha256": "1723a9fd25103ed41af06054814e84e65f4a772bac86ab2dc927da93d9592ff5",
+    "modified": false
+  },
+  {
+    "file": "sfx/land.ogg",
+    "original": "impactMetal_medium_000.ogg",
+    "author": "Kenney",
+    "license": "CC0-1.0",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "sha256": "a96f879fec0864a8938e0c745b6996a6c5679c16a234ce31a01cc995e8401003",
+    "modified": false
+  }
+]

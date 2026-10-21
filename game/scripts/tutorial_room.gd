@@ -6,9 +6,10 @@ const Navigation = preload("res://scripts/bureau_navigation.gd")
 const Prop = preload("res://scripts/calibration_prop.gd")
 const MachineArt = preload("res://scripts/tutorial_machine_art.gd")
 const EXIT_RADIUS := 58.0
-const WORLD_COOLDOWN := 3.0
+const WORLD_COOLDOWN := 1.5
 const CAST_DURATION := 0.55
 const CAST_COMMIT := 0.22
+const WALL_INSET:=0.42
 var state := State.new()
 var player = preload("res://scenes/yanyue.tscn").instantiate()
 var hud = preload("res://scripts/tutorial_hud.gd").new()
@@ -22,6 +23,7 @@ var props: Array[Node2D] = []
 var floor_polygon := PackedVector2Array()
 var rail_polygon := PackedVector2Array()
 var gate_polygon := PackedVector2Array()
+var wall_polygons: Array[PackedVector2Array]=[]
 var gate_collision := CollisionPolygon2D.new()
 var rail_start := Vector2.ZERO
 var rail_end := Vector2.ZERO
@@ -37,6 +39,7 @@ var _gate_open := false
 var _refresh_navigation := 0
 var _hint_level := 0
 var _last_stage := -1
+var _last_goal := -1
 var _last_state := Vector2i(-1,-1)
 var _marker := Vector2.ZERO
 var _marker_time := 0.0
@@ -48,6 +51,28 @@ var cast_age := 0.0
 var pending_world := -1
 var switch_fx=preload("res://scripts/world_switch_fx.gd").new()
 var orbit_view: Node2D
+const SEAL_DURATION := 1.0
+var gate_ready := false
+var seal_active := false
+var seal_completed := false
+var seal_age := 0.0
+const PUSH_DURATION := 0.46
+const PUSH_CONTACT := 0.20
+const INTERACT_RADIUS := 105.0
+var interacting := false
+var push_age := 0.0
+var push_committed := false
+var push_stand := Vector2.ZERO
+var arrival: Node
+
+func arrival_busy() -> bool:
+	return is_instance_valid(arrival) and arrival.busy()
+
+func start_rift_arrival() -> void:
+	arrival=preload("res://scripts/rift_arrival.gd").new()
+	add_child(arrival)
+	arrival.prepare(self)
+	arrival.play()
 
 func iso(u: float,v: float) -> Vector2:
 	return Vector2(535,222)+Vector2(46,23)*u+Vector2(-46,23)*v
@@ -112,13 +137,15 @@ func _ready() -> void:
 	sort_layer.hide()
 	switch_fx.hide()
 	hud.view_reset_requested.connect(orbit_view.reset_view)
+	hud.task_tracker.anchor_hovered.connect(orbit_view.set_anchor_highlight)
 	_rebuild_navigation()
 	hud.refresh(state)
 	hud.update_skill(0.0,false)
-	hud.message("先试着靠近镇纸，再右键推动。H 可逐步查看提示。")
+	hud.message("观察机关的变化，尝试不同世界。需要帮助时按 H，提示会逐级展开。")
 	var args := OS.get_cmdline_user_args()
 	_test_mode="--tutorial-self-test" in args or "--orbit-self-test" in args
-	if "--orbit-self-test" in args:_run_orbit_tests.call_deferred()
+	if "--wall-self-test" in args:_run_wall_tests.call_deferred()
+	elif "--orbit-self-test" in args:_run_orbit_tests.call_deferred()
 	elif _test_mode: _run_tests.call_deferred()
 	elif "--tutorial-capture" in args: _capture.call_deferred()
 	elif "--skill-capture" in args: _capture_cast.call_deferred()
@@ -150,11 +177,15 @@ func _create_walls() -> void:
 		var normal := (b-a).orthogonal().normalized()
 		if normal.dot(center-(a+b)*0.5)>0: normal=-normal
 		_add_solid(PackedVector2Array([a,b,b+normal*24,a+normal*24]),"Boundary%d"%i)
+	# The rendered wall panels/pipes occupy space inside the old floor boundary.
+	wall_polygons=[rect_shape(0,0,12,WALL_INSET),rect_shape(0,0,WALL_INSET,8)]
+	for i in range(wall_polygons.size()):_add_solid(wall_polygons[i],"WallInterior%d"%i)
 
 func obstacle_polygons() -> Array[PackedVector2Array]:
 	var obstacles: Array[PackedVector2Array] = [rail_polygon]
+	obstacles.append_array(wall_polygons)
 	for prop in props: obstacles.append(prop.global_footprint())
-	if not state.gate_open: obstacles.append(gate_polygon)
+	if not gate_ready: obstacles.append(gate_polygon)
 	return obstacles
 
 func _rebuild_navigation() -> void:
@@ -174,6 +205,7 @@ func actor_position_is_clear(at: Vector2) -> bool:
 	return Geometry2D.is_point_in_polygon(at,floor_polygon) and get_world_2d().direct_space_state.intersect_shape(_query(at,12.75),1).is_empty()
 
 func segment_is_clear(from: Vector2,to: Vector2) -> bool:
+	if orbit_view!=null and not orbit_view.head_guard.segment_is_clear(from,to):return false
 	if from.distance_squared_to(to)<0.01: return actor_position_is_clear(to)
 	var query := _query(from,13.2)
 	query.motion=to-from
@@ -187,6 +219,7 @@ func _hit_block(at: Vector2) -> bool:
 	return Rect2(block_ground_position()+Vector2(-29,-state.elevation-30),Vector2(58,49)).has_point(at)
 
 func _input(event: InputEvent) -> void:
+	if orbit_view!=null and (event is InputEventMouseMotion or event is InputEventMouseButton):orbit_view.pointer_position=event.position
 	if orbit_view!=null and orbit_view.handle_input(event):
 		get_viewport().set_input_as_handled()
 
@@ -200,14 +233,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			if orbit_view.hit_weight(event.position): request_push()
 			elif _inspect_screen_instrument(event.position): pass
 			elif orbit_view.hit_portal(event.position):
-				hud.message("门上两盏灯都点亮后，走近归位门即可返回机构。")
+				hud.message("界缝封好后，修复的归位门就能通往机构。")
 			else: hud.message("右键点击带铜色圆印的镇纸；E 可与附近镇纸交互。")
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.physical_keycode:
 			KEY_1: change_world(0)
 			KEY_2: change_world(1)
 			KEY_3: change_world(2)
-			KEY_Q: change_world((state.world+1)%3)
 			KEY_E: request_push()
 			KEY_H: show_hint()
 			KEY_R: reset_tutorial()
@@ -235,23 +267,33 @@ func queue_screen_destination(at: Vector2) -> void:
 	else:queue_destination(orbit_view.screen_to_logic(at))
 
 func queue_destination(at: Vector2) -> void:
-	if casting: return
+	if casting or seal_active or interacting or arrival_busy():return
 	_pending_push=false
 	_click=at
 	if _hit_block(at): _click=_stand_point(block_ground_position())
 	elif at.distance_to(portal_position+Vector2(0,-45))<64:
-		_click=portal_position if state.gate_open else portal_position+Vector2(0,48)
+		_click=portal_position if gate_ready else portal_position+Vector2(0,48)
 	_pending_click=true
 
 func _stand_point(at: Vector2) -> Vector2:
 	var best := Vector2(-100,-100)
 	var distance := INF
+	var candidates: Array[Vector2]=[]
+	# Either side is valid; choose the shortest walk instead of a preferred pose.
+	var screen: Vector2=orbit_view.logic_to_screen(at)
+	for offset in [Vector2(-48,40),Vector2(48,40),Vector2(-48,-40),Vector2(48,-40)]:
+		candidates.append(orbit_view.screen_to_logic(screen+offset))
 	for offset in [Vector2(-20,65),Vector2(20,-65),Vector2(-70,0),Vector2(70,0)]:
-		var candidate: Vector2 = at+offset
+		candidates.append(at+offset)
+	for candidate in candidates:
 		if not navigation.is_safe(candidate): continue
 		var path := navigation.find_path(player.position,candidate)
 		if path.is_empty(): continue
-		var cost: float = player.position.distance_squared_to(candidate)
+		var cost: float=0.0
+		var previous: Vector2=player.position
+		for point in path:
+			cost+=previous.distance_to(point)
+			previous=point
 		if cost<distance:
 			distance=cost
 			best=candidate
@@ -259,16 +301,19 @@ func _stand_point(at: Vector2) -> Vector2:
 
 func request_push() -> void:
 	if finished: return
+	if seal_active or interacting or arrival_busy():return
 	if casting:
 		hud.message("正在折叠世界，手势完成后即可推动镇纸。")
 		return
-	if player.position.distance_to(block_ground_position())<=108:
+	if absf(state.rail_speed)>0.1:
+		hud.message("镇纸正在沿导轨滑行。")
+		return
+	if player.position.distance_to(block_ground_position())<=INTERACT_RADIUS:
 		_pending_push=false
-		hud.message(state.push())
-		if state.rail_speed>0: sound.tone(290,0.08)
+		_begin_push()
 	else:
-		var stand := _stand_point(block_ground_position())
-		var path := navigation.find_path(player.position,stand)
+		push_stand=_stand_point(block_ground_position())
+		var path := navigation.find_path(player.position,push_stand)
 		if path.is_empty():
 			hud.message("请先走到镇纸旁边的通道。")
 			return
@@ -276,12 +321,41 @@ func request_push() -> void:
 		_pending_push=true
 		hud.message("正在靠近镇纸；按 WASD 可以取消这次交互。")
 
+func _begin_push() -> void:
+	if absf(state.rail_speed)>0.1:
+		hud.message("镇纸正在沿导轨滑行。")
+		return
+	player.cancel_navigation()
+	player._last_direction=(block_ground_position()-player.position).normalized()
+	player._update_facing(player._last_direction)
+	interacting=true
+	push_age=0.0
+	push_committed=false
+	player.controls_locked=true
+
+func _clear_push() -> void:
+	interacting=false
+	push_age=0.0
+	push_committed=false
+	player._art.push_amount=0.0
+
+func _tick_push(delta: float) -> void:
+	if not interacting:return
+	push_age+=delta
+	player._art.push_amount=smoothstep(0.0,0.18,push_age)*(1.0-smoothstep(0.26,PUSH_DURATION,push_age))
+	if not push_committed and push_age>=PUSH_CONTACT:
+		push_committed=true
+		hud.message(state.push())
+		if absf(state.rail_speed)>0.1:sound.play_event("push")
+	if push_age>=PUSH_DURATION:_clear_push()
+
 func change_world(index: int) -> bool:
 	if index<0 or index>2 or index==state.world or finished: return false
 	# The arrival zone lies outside the gate collider: never close on an actor.
-	if state.gate_open and player.position.distance_to(portal_position)<EXIT_RADIUS:
+	if gate_ready and player.position.distance_to(portal_position)<EXIT_RADIUS:
 		_finish()
 		return false
+	if seal_active or interacting or arrival_busy():return false
 	if world_cooldown>0.001 or casting:
 		hud.message("世界折叠冷却中，还需 %.1f 秒。"%world_cooldown)
 		return false
@@ -293,15 +367,18 @@ func change_world(index: int) -> bool:
 	_pending_push=false
 	player.cancel_navigation()
 	player.controls_locked=true
+	orbit_view.film.begin(state.world,index)
 	switch_fx.play(player.position,index)
-	sound.tone(740,0.12)
+	sound.play_event("fold")
 	hud.message("施放世界折叠…")
 	hud.update_skill(world_cooldown,casting,pending_world)
 	return true
 
 func _apply_world(index: int) -> void:
+	var was_first: bool=state.first_latched
 	state.switch_world(index)
-	sound.tone([510.0,310.0,670.0][index],0.14)
+	sound.play_event("world_set",[1.08,0.88,1.18][index])
+	if not was_first and state.first_latched:sound.play_event("star")
 	hud.message(["冰晶：摩擦降低，位置和校准记录保留。","重力：向下受力增强，镇纸重量 ×4。","倒悬：重力方向向上，镇纸会浮起。"][index])
 	hud.refresh(state)
 
@@ -322,7 +399,17 @@ func _tick_skill(delta: float) -> void:
 		player._art.cast_amount=0.0
 
 func reset_tutorial() -> void:
+	if is_instance_valid(arrival):arrival.cancel()
 	state.reset()
+	_clear_push()
+	gate_ready=false
+	seal_active=false
+	seal_completed=false
+	seal_age=0.0
+	sound.stop_effects()
+	if orbit_view!=null:orbit_view.feedback.reset_feedback()
+	if orbit_view!=null:orbit_view.atmosphere.reset_effects()
+	if orbit_view!=null:orbit_view.film.cancel()
 	if orbit_view!=null:orbit_view.reset_view()
 	world_cooldown=0
 	casting=false
@@ -334,13 +421,15 @@ func reset_tutorial() -> void:
 	finished=false
 	_hint_level=0
 	_last_stage=-1
+	_last_goal=-1
 	_pending_push=false
 	_pending_click=false
 	player.teleport_for_reset(spawn_point)
-	hud.message("已重置镇纸、机关和人物。先把镇纸送到第一块压板。")
+	hud.message("已重置镇纸、机关和人物。需要帮助时按 H 查看提示。")
 	hud.refresh(state)
 	hud.update_skill(0,false)
-	_gate_open=not state.gate_open
+	hud.update_completion(false,false,0.0)
+	_gate_open=not gate_ready
 
 func cancel_orders() -> void:
 	_pending_click=false
@@ -356,6 +445,7 @@ func _physics_process(delta: float) -> void:
 	_elapsed+=delta
 	if finished: return
 	_tick_skill(delta)
+	_tick_push(delta)
 	if Input.get_vector("walk_left","walk_right","walk_up","walk_down").length_squared()>0.01:
 		_pending_push=false
 		_pending_click=false
@@ -369,34 +459,73 @@ func _physics_process(delta: float) -> void:
 		else:
 			player.cancel_navigation()
 			hud.message("那里不是可走通道；护栏内的导轨不能进入。")
-	if _pending_push and player.position.distance_to(block_ground_position())<=105:
+	if _pending_push and player.position.distance_to(block_ground_position())<=INTERACT_RADIUS:
 		_pending_push=false
 		player.cancel_navigation()
-		hud.message(state.push())
+		_begin_push()
 	var old_receiver: bool = state.receiver_latched
 	var old_first: bool = state.first_latched
+	var old_speed: float=state.rail_speed
+	var old_height: float=state.elevation
 	state.step(delta)
 	weight_art.position=block_ground_position()
 	weight_art.hovered=orbit_view.hit_weight(get_global_mouse_position())
-	if old_first!=state.first_latched or old_receiver!=state.receiver_latched: sound.tone(760,0.2)
-	if _gate_open!=state.gate_open:
-		_gate_open=state.gate_open
+	if absf(old_speed)>0.1 and state.rail_speed==0:sound.play_event("stop")
+	if old_height>0.3 and state.elevation==0:sound.play_event("land")
+	if not old_first and state.first_latched:sound.play_event("star")
+	if not old_receiver and state.receiver_latched:
+		sound.play_event("moon")
+		orbit_view.feedback.trigger_stamp()
+	_tick_completion(delta)
+	player.controls_locked=casting or seal_active or interacting or arrival_busy()
+	if _gate_open!=gate_ready:
+		_gate_open=gate_ready
 		gate_collision.set_deferred("disabled",_gate_open)
 		_refresh_navigation=2
 		player.cancel_navigation()
-		if _gate_open: sound.tone(920,0.28)
 	if _refresh_navigation>0:
 		_refresh_navigation-=1
 		if _refresh_navigation==0: _rebuild_navigation()
 	if _last_stage!=state.stage():
 		_last_stage=state.stage()
 		_hint_level=0
-		if _last_stage>0: hud.message(state.objective())
+	if _last_goal!=state.goal_stage():
+		_last_goal=state.goal_stage()
+		if _last_goal>0:hud.message("三处锚点已响应，等待界缝稳定…" if seal_active else state.objective())
 	hud.refresh(state)
 	hud.update_skill(world_cooldown,casting,pending_world)
-	if state.gate_open and player.position.distance_to(portal_position)<EXIT_RADIUS: _finish()
+	hud.update_completion(seal_active,seal_completed,seal_age)
+	if gate_ready and player.position.distance_to(portal_position)<EXIT_RADIUS: _finish()
 	_marker_time=maxf(0,_marker_time-delta)
 	queue_redraw()
+
+func _tick_completion(delta: float) -> void:
+	if not state.gate_open:
+		gate_ready=false
+		seal_active=false
+		seal_age=0.0
+		return
+	if seal_completed:
+		gate_ready=true
+		seal_age=minf(2.5,seal_age+delta)
+		return
+	if not seal_active:
+		seal_active=true
+		seal_age=0.0
+		_pending_click=false
+		_pending_push=false
+		player.cancel_navigation()
+		sound.play_event("seal_begin")
+	var previous := seal_age
+	seal_age+=delta
+	if previous<0.12 and seal_age>=0.12:sound.play_event("star",1.12)
+	if previous<0.34 and seal_age>=0.34:sound.play_event("moon",1.06)
+	if seal_age>=SEAL_DURATION:
+		seal_active=false
+		seal_completed=true
+		gate_ready=true
+		sound.play_event("success")
+		hud.message("界缝已封，世界关系恢复稳定。可以返回机构。")
 
 func _draw() -> void:
 	if orbit_view!=null:return
@@ -407,6 +536,8 @@ func _draw() -> void:
 
 func _finish() -> void:
 	if finished: return
+	_clear_push()
+	orbit_view.film.cancel()
 	finished=true
 	casting=false
 	player.controls_locked=false
@@ -421,6 +552,9 @@ func _notification(what: int) -> void:
 		if orbit_view!=null:orbit_view.cancel_drag()
 		_pending_click=false
 		_pending_push=false
+		if player!=null:
+			_clear_push()
+			player.controls_locked=casting or seal_active or arrival_busy()
 
 func artifacts_directory() -> String:
 	for arg in OS.get_cmdline_user_args():
@@ -436,6 +570,11 @@ func _run_tests() -> void:
 
 func _run_orbit_tests() -> void:
 	var suite=load("res://tests/orbit_tests.gd").new()
+	add_child(suite)
+	await suite.run(self)
+
+func _run_wall_tests() -> void:
+	var suite=load("res://tests/wall_occlusion_tests.gd").new()
 	add_child(suite)
 	await suite.run(self)
 

@@ -52,6 +52,7 @@ func push_visible() -> void:
 
 func run(target: Node2D) -> void:
 	room=target
+	room.sound.enabled=false
 	DirAccess.make_dir_recursive_absolute(room.artifacts_directory())
 	await frames(4)
 	var view=room.orbit_view
@@ -59,20 +60,20 @@ func run(target: Node2D) -> void:
 	# Actual input dispatch must consume the gesture before GUI/movement handling.
 	alt(true);click(Vector2(650,450),true);drag(1000)
 	await frames(3)
-	record("left_alt_drag_clamps_at_plus_45",view.angle==45 and view.dragging)
+	record("right_drag_rotates_to_minus_45",view.angle==-45 and view.dragging)
 	record("orbit_does_not_move_player_or_trigger_skill",room.player.position==initial and not room._pending_click and not room.player.is_navigating() and room.world_cooldown==0 and room.state.world==0)
-	await snapshot("orbit-plus-45")
-	drag(-2000);await frames(2)
-	record("drag_clamps_at_minus_45",view.angle==-45)
 	await snapshot("orbit-minus-45")
+	drag(-2000);await frames(2)
+	record("left_drag_rotates_to_plus_45",view.angle==45)
+	await snapshot("orbit-plus-45")
 	click(Vector2(600,450),false);alt(false)
 	await frames(1)
-	record("release_keeps_angle_and_ends_drag",not view.dragging and view.angle==-45,{"dragging":view.dragging,"left_alt":view.left_alt,"angle":view.angle})
+	record("release_keeps_angle_and_ends_drag",not view.dragging and view.angle==45,{"dragging":view.dragging,"left_alt":view.left_alt,"angle":view.angle})
 	view.reset_view();await frames(1)
 	record("camera_reset_keeps_puzzle_and_player",view.angle==0 and room.player.position==initial and room.state.rail_position==0)
 	# Alt-left-click over an actual skill button must not activate it.
-	alt(true);click(room.hud.skill_button.get_global_rect().get_center(),true)
-	click(room.hud.skill_button.get_global_rect().get_center(),false);alt(false);await frames(2)
+	alt(true);click(room.hud.worlds[1].get_global_rect().get_center(),true)
+	click(room.hud.worlds[1].get_global_rect().get_center(),false);alt(false);await frames(2)
 	record("alt_gesture_cannot_click_skill_ui",not room.casting and room.world_cooldown==0 and room.state.world==0)
 	alt(true,true);click(Vector2(650,450),true);drag(80);click(Vector2(650,450),false);alt(false,true)
 	record("right_alt_cannot_start_orbit",not view.dragging and view.angle==0)
@@ -108,7 +109,7 @@ func run(target: Node2D) -> void:
 	var first: bool=await until(func():return room.state.rail_position>=room.State.FIRST_STOP-0.01)
 	record("right_click_rotated_weight_pushes_to_plate",first,{"rail":room.state.rail_position,"position":room.player.position,"pending_push":room._pending_push})
 	room.change_world(1);await until(func():return not room.casting)
-	record("world_switch_keeps_orbit_and_3_second_cd",view.angle==32 and room.state.first_latched and room.world_cooldown>2.0)
+	record("world_switch_keeps_orbit_and_1_5_second_cd",view.angle==32 and room.state.first_latched and room.world_cooldown>0.85)
 	await until(func():return room.world_cooldown==0)
 	view.set_angle(-32);room.change_world(0);await until(func():return not room.casting);push_visible()
 	var end: bool=await until(func():return room.state.rail_position>=room.State.RAIL_LENGTH-0.01)
@@ -116,9 +117,9 @@ func run(target: Node2D) -> void:
 	await until(func():return room.world_cooldown==0)
 	room.change_world(2);await until(func():return room.state.receiver_latched)
 	view.set_angle(30);await frames(2);await snapshot("orbit-inverted-calibrated")
-	record("upward_receiver_and_billboard_remain_aligned",room.state.receiver_latched and view.actor.position.distance_to(view.to_world(room.player.position,0.025))<0.01)
+	record("upward_receiver_and_billboard_remain_aligned",room.state.receiver_latched and view.actor.position.distance_to(view.to_world(room.player.position,view.ACTOR_GROUND_HEIGHT))<0.01)
 	await until(func():return room.world_cooldown==0)
-	room.change_world(1);await until(func():return room.state.gate_open);await frames(4)
+	room.change_world(1);await until(func():return room.gate_ready);await frames(4)
 	view.set_angle(-30);await frames(2);await snapshot("orbit-heavy-gate-open")
 	click(view.logic_to_screen(room.portal_position,0.85),true);click(view.logic_to_screen(room.portal_position,0.85),false)
 	var success: bool=await until(func():return room.finished,1200)
@@ -127,4 +128,10 @@ func run(target: Node2D) -> void:
 	var file:=FileAccess.open(room.artifacts_directory().path_join("orbit-test-report.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify(report,"\t"));file.close()
 	print("ORBIT_TEST_REPORT ",JSON.stringify({"checks":checks.size(),"failures":failures}))
+	room.sound.enabled=false
+	for voice in room.sound.voices:
+		voice.stop()
+		voice.stream=null
+	await frames(3)
+	await get_tree().current_scene.shutdown_audio()
 	get_tree().quit(0 if failures==0 else 1)

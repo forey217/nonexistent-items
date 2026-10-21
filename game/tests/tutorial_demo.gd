@@ -45,15 +45,18 @@ func run(flow: Node2D) -> void:
 	if not await until(func():return room.state.receiver_latched):get_tree().quit(1);return
 	await snapshot("06-upper-calibrated")
 	await skill_ready();room.change_world(1)
-	if not await until(func():return room.state.gate_open):get_tree().quit(1);return
+	if not await until(func():return room.gate_ready):get_tree().quit(1);return
 	await frames(4)
 	await snapshot("07-exit-open")
 	room.queue_destination(room.portal_position)
 	if not await until(func():return app.completed_runs==1):get_tree().quit(1);return
+	if not await until(func():return not app.returning):get_tree().quit(1);return
+	if not await until(func():return not app.current.arrival_busy()):get_tree().quit(1);return
 	await frames(5)
 	await snapshot("08-returned-to-bureau")
 	var file:=FileAccess.open(directory.path_join("native-walkthrough.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify({"completed_runs":app.completed_runs,"returned_to_bureau":app.current.get_script().resource_path.ends_with("tutorial_hub.gd")},"\t"))
 	file.close()
 	print("TUTORIAL_NATIVE_WALKTHROUGH_COMPLETE")
+	await get_tree().current_scene.shutdown_audio()
 	get_tree().quit(0)

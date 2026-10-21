@@ -27,7 +27,7 @@ func _draw() -> void:
 		draw_line(Vector2(41,-6),Vector2(41,-140),Color("485863"),3,true)
 		draw_line(Vector2(41,-6),Vector2(41,-6-room.state.elevation),active,2,true)
 		draw_circle(Vector2(41,-6-room.state.elevation),3,light)
-		badge(Vector2(-40,-193),Vector2(86,20),"上部校准"+(" ✓" if room.state.receiver_latched else ""))
+		badge(Vector2(-40,-193),Vector2(86,20),"月痕"+(" ✓" if room.state.receiver_latched else ""))
 	elif kind=="portal":
 		var opened: bool=room.state.gate_open
 		var color:=Color("79d8c6") if opened else Color("8b8ba3")
@@ -48,7 +48,7 @@ func _draw() -> void:
 		for i in range(2):
 			var lit: bool=room.state.receiver_latched if i==0 else room.state.final_pressed
 			draw_circle(Vector2(-14+i*28,-127),4,active if lit else Color("6b737c"))
-		badge(Vector2(-42,22),Vector2(84,20),"归位门 · "+("开启" if opened else "待校准"))
+		badge(Vector2(-42,22),Vector2(84,20),"界缝 · "+("已封" if opened else "未封"))
 	else:
 		var height: float=room.state.elevation
 		draw_set_transform(Vector2.ZERO,0,Vector2(1,0.42))

@@ -1,0 +1,9 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-21",
+  "final_asset": "cosmos_bright_v23.png",
+  "sha256": "f5e208ddd199e0a8ef450b7ee4970b89a2a0a697615031465c89d6a79698c706",
+  "original_asset": "cosmos_v23.png",
+  "prompt_record": "../../docs/星海背景-生成记录-v23.md",
+  "note": "Final image edited brighter at user request. Game-native shaders and geometry add worlds, motion and trails."
+}

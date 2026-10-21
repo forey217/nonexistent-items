@@ -23,6 +23,7 @@ var last_request_succeeded := false
 var _pending_click := false
 var _requested_point := Vector2.ZERO
 var _marker_time := 0.0
+var floor_art: Node2D
 
 func iso(u: float, v: float) -> Vector2:
 	return Vector2(640,220) + Vector2(52,26)*u + Vector2(-52,26)*v
@@ -30,7 +31,7 @@ func iso(u: float, v: float) -> Vector2:
 func _ready() -> void:
 	process_physics_priority = -20
 	_setup_inputs()
-	var floor_art := FloorScript.new()
+	floor_art = FloorScript.new()
 	add_child(floor_art)
 	_create_walls()
 	sort_layer.name = "DepthSortedWorld"

@@ -48,7 +48,7 @@ func contains_visual(at: Vector2) -> bool:
 func inspection_text() -> String:
 	if kind=="cabinet":
 		return ["场律电源：样品向下、摩擦很小；轻推镇纸会一直滑到挡块。","场律电源：向下受力 ×4，镇纸推不动，但能压下校准板。","场律电源：样品正在上浮；同一块镇纸也能上浮触碰接收器。"][room.state.world]
-	return "校准监测：挡块%s · 上部%s · 末端压力%s；后两项同时满足才能开门。"%["已释放" if room.state.first_latched else "未释放","已记录" if room.state.receiver_latched else "未记录","已满足" if room.state.final_pressed else "未满足"]
+	return "锚点监测：星位%s · 月痕%s · 界缝%s。"%["已定" if room.state.first_latched else "未定","已稳" if room.state.receiver_latched else "未稳","已封" if room.state.gate_open else "未封"]
 
 func _draw() -> void:
 	if room==null:return

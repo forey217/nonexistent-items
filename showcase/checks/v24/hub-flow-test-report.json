@@ -1,0 +1,181 @@
+{
+	"checks": 35,
+	"failures": 0,
+	"results": [
+		{
+			"details": {},
+			"passed": true,
+			"test": "normal_entry_is_reception_hub"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "chest_removed_from_art_and_navigation"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "tesla_uses_generated_reference_sprite_behind_desk"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "clicking_globe_opens_one_level_map"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "bright_starfield_continues_animating"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "initial_view_is_one_whole_crystal_without_bottom_copy"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "hover_opens_hairline_fractures"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "fractures_relax_when_pointer_leaves"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "empty_area_near_crystal_cannot_expand_it"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "background_click_does_not_enter_level"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "mute_works_inside_level_map"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "escape_restores_hub_without_restarting_music"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "nearby_E_also_opens_globe_map"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "first_click_splits_crystal_without_entering_level"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "split_click_does_not_skip_level_selection"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "fragments_expand_into_one_level_and_five_unknowns"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "question_mark_fragment_does_not_enter_or_select"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "available_fragment_begins_rotation_into_itself"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "selection_cannot_duplicate_or_cancel_halfway"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "level_swaps_at_white_crystal_peak"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "selection_finishes_on_tutorial_without_extra_menu"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "level_entry_rift_has_real_world_depth"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "hero_emerges_then_controls_restore"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "entry_rift_disables_its_extra_rendering"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "WASD_works_after_rift_arrival"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_first_plate"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_rail_end"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_upper_receiver"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_gate_opens"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "walking_out_starts_existing_archive"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "archive_returns_to_hub_with_new_spatial_rift"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "return_rift_finishes_without_collision"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "hub_keeps_npc_and_chest_stays_removed_after_return"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "music_continues_through_all_scenes"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "globe_reopens_whole_crystal_after_clear"
+		}
+	]
+}

@@ -14,3 +14,6 @@
 *.md text eol=lf
 *.png binary
 *.glb binary
+*.ogg binary
+*.ttf binary
+*.gif binary

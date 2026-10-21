@@ -32,6 +32,7 @@ var _far_shoulder := Vector2.ZERO
 var _near_arm_rest := 0.0
 var _far_arm_rest := 0.0
 var cast_amount := 0.0
+var push_amount := 0.0
 
 func _ready() -> void:
 	_sheet = load("res://assets/yanyue_rig_v02.png")
@@ -108,9 +109,10 @@ func pose(distance: float, is_moving: bool, row: int, direction: Vector2, delta:
 	var ground_y := (0.10 if absf(direction.y)<0.2 else 0.22)*(1.0 if row<2 else -1.0)
 	var axis := Vector2(1.0,ground_y).normalized()
 	var bob := -0.18*(1.0-cos(gait_phase*TAU*2.0))*_locomotion_weight
-	body.position = Vector2(0,-43+bob)
+	var reach:=Vector2(2.7,-0.9)*push_amount
+	body.position = Vector2(0,-43+bob)+reach
 	body.offset = -_body_anchor
-	body.rotation = _lean-0.012*cast_amount
+	body.rotation = _lean-0.012*cast_amount+0.025*push_amount
 	var near_hip := Vector2(-5,-53+bob) if _view==0 else Vector2(7,-53+bob)
 	var far_hip := Vector2(6,-56+bob) if _view==0 else Vector2(-6,-56+bob)
 	var near_rest := Vector2(-7,0) if _view==0 else Vector2(7,0)
@@ -120,10 +122,10 @@ func pose(distance: float, is_moving: bool, row: int, direction: Vector2, delta:
 	near_knee = _leg(near_leg,near_hip,near_foot)
 	far_knee = _leg(far_leg,far_hip,far_foot)
 	var swing := cos(gait_phase*TAU)*ARM_SWING*_locomotion_weight
-	near_arm.position = _near_shoulder+Vector2(0,bob)
-	far_arm.position = _far_shoulder+Vector2(0,bob)
-	near_arm.rotation = _near_arm_rest+swing-0.64*cast_amount
-	far_arm.rotation = _far_arm_rest-swing+0.08*cast_amount
+	near_arm.position = _near_shoulder+Vector2(0,bob)+reach
+	far_arm.position = _far_shoulder+Vector2(0,bob)+reach
+	near_arm.rotation = _near_arm_rest+swing-0.64*cast_amount-(0.92 if _view==0 else 0.80)*push_amount
+	far_arm.rotation = _far_arm_rest-swing+0.08*cast_amount-0.14*push_amount
 	near_joint_cover.queue_redraw()
 	far_joint_cover.queue_redraw()
 	queue_redraw()

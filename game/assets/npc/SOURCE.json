@@ -1,0 +1,9 @@
+{
+  "asset": "tesla_v01.png",
+  "tool": "image_gen built-in",
+  "reference": "User-provided official Nikola Tesla character sheet",
+  "style_reference": "Existing yanyue_rig_v02.png",
+  "prompt_record": "docs/特斯拉NPC-生成记录.md",
+  "sha256": "3f1c6efc00f49ba761699798ff0ddfa874218ed18207bc02eef708edb8dcdd0b",
+  "transparent": true
+}

@@ -20,7 +20,9 @@ var _last_vertical := 1.0
 var _art := WalkRig.new()
 var _last_direction := Vector2(-1,0)
 var controls_locked := false
+var cinematic_motion := Vector2.ZERO
 var input_basis:=Transform2D.IDENTITY
+var motion_guard: Callable
 
 func _ready() -> void:
 	_ensure_input_actions()
@@ -103,6 +105,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			cancel_navigation()
 			navigation_finished.emit()
+	if controls_locked:intended=cinematic_motion
+	if motion_guard.is_valid() and delta>0.0:
+		intended=motion_guard.call(position,intended*delta)/delta
 	velocity = intended
 	var old_position := position
 	move_and_slide()

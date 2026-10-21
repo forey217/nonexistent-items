@@ -1,107 +1,104 @@
-# 不存在的物品 · 衍月的平行世界解谜
+# 世界不按说明书
 
-一个使用 Godot 制作的黑客松游戏原型：让同一块镇纸在不同平行世界中改变物性，用滑行、重量和反向重力完成机关校准。
+衍月的平行世界解谜游戏，使用 **Godot 4.7.2 标准版 / GDScript** 制作。同一块镇纸，在冰晶、重力与倒悬世界中拥有不同物性，玩家需要组合规则完成观察局的第一次校准。
 
-当前版本 **v0.4**，包含可完整通关的新手校准室、观察局大厅，以及可左右旋转的场景视角。剧情漫画和正式关卡尚未接入。
+当前版本 **v0.24**，包含启动界面、接待大厅、星系仪、水晶碎片选关和一张可完整通关的新手校准室。游戏原名为《不存在的物品》，仓库地址沿用原名。
 
-![新手校准室](showcase/overview.png)
+![水晶碎片选关](showcase/v24/fragment-selection.png)
 
 ## 下载与运行
 
-- **Windows 试玩**：进入[试玩下载页](https://github.com/forey217/nonexistent-items/releases/latest)，下载最新版 `nonexistent-items-v0.4-windows-x86_64.exe`，双击运行。
-- **查看源码**：直接浏览下方 `game/` 目录。
-- **使用 Godot 编辑**：安装 Godot **4.7.2 标准版**，导入 `game/project.godot`，运行主场景。项目使用 GDScript，无需 .NET。
+- [下载 Windows 试玩版](https://github.com/forey217/nonexistent-items/releases/download/v0.24.0/world-without-manual-v0.24-windows-x86_64.exe)：双击运行，无需安装Godot。
+- [v0.24发布页、源码与许可文件](https://github.com/forey217/nonexistent-items/releases/tag/v0.24.0)。
+- [水晶分裂与旋转入场动画](https://github.com/forey217/nonexistent-items/releases/download/v0.24.0/crystal-fragment-selection-v0.24.gif)。
+- 编辑工程：克隆仓库，使用Godot **4.7.2标准版**导入 [`game/project.godot`](game/project.godot)，运行主场景。无需.NET。
 
-Windows 版本使用 Compatibility / ANGLE 渲染；当前已在本机 Windows 与 RTX 5060 Laptop 上验证，其他设备尚待试玩。
+Windows导出使用Compatibility / ANGLE渲染，已在Windows与RTX 5060 Laptop上验证；其他设备尚待试玩。
 
-## 玩法
+## 从观察局出发
 
-观察局校准室中，同一块镇纸在三个平行世界里具有不同物性。切换世界保留镇纸的位置和校准记录，玩家需要组合这些物性完成解谜。
+**开始旅程 → 接待大厅 → 点击星系仪 → 水晶分裂选关 → 新手校准室。**
 
-| 世界 | 物理规则 | 镇纸用途 |
+星图最初只有一枚完整水晶，鼠标悬停时细裂缝亮起，点击后向四周分裂为六块关卡碎片。当前只有 **01 / 新手校准室**可进入，其余五块显示问号。
+
+选择01后，其他碎片带拖尾旋转汇入它；镜头跟随选中碎片旋转、放大、亮起，随后衍月从空间裂隙中走进关卡。通关后，校准室缩成档案卡，盖章后沿抛物线归档，再返回接待大厅。
+
+| 接待大厅 | 悬停微裂 |
+| --- | --- |
+| ![大厅](showcase/v24/reception.png) | ![开裂](showcase/v24/crystal-hover.png) |
+
+![新手校准室](showcase/v24/tutorial.png)
+
+## 玩法与操作
+
+| 世界 | 物理规则 | 镇纸特性 |
 | --- | --- | --- |
-| 冰晶 | 低摩擦、持续滑行 | 推动后沿轨道滑到挡块或末端 |
-| 重力 | 向下受力增强，重量 ×4 | 压下校准板，无法徒手推动 |
-| 倒悬 | 重力方向向上 | 上浮并触碰高处接收器 |
+| 冰晶 | 低摩擦 | 推动后持续滑行，碰到挡板才停 |
+| 重力 | 向下受力增强 | 重量×4，可压动机关 |
+| 倒悬 | 重力方向向上 | 向上漂浮，触碰高处机关 |
 
-完成上部校准与末端压力条件后，归位门开启；走入门内即可返回观察局大厅。卡住时可以按 H 逐步查看提示。
-
-<details>
-<summary>展开查看完整教程解法（含剧透）</summary>
-
-冰晶推动至第一压板 → 重力释放挡块 → 冰晶再次推动至末端 → 倒悬上浮完成上部校准 → 重力落下并压住末端压板 → 走入归位门。
-
-</details>
-
-## 操作
+切换世界保留镇纸位置和机关记录。组合物性完成星位、月痕与界缝校准，归位门就会开启。任务只展示阶段目标，具体解法可按H逐步查看。
 
 | 输入 | 功能 |
 | --- | --- |
-| WASD / 方向键 | 移动；旋转后跟随屏幕方向 |
-| 鼠标左键 | 点击地面，自动寻路 |
-| 右键镇纸 / E | 推动；远处右键会先靠近再交互 |
-| Q / 1、2、3 / 左上技能按钮 | 切换世界，共享 3 秒 CD |
-| 左 Alt + 鼠标左键水平拖动 | 绕校准室旋转视角，范围 ±45° |
-| 右上“复位视角” | 回到默认视角，保留解谜进度 |
-| 右键电源柜 / 监测台 | 查看当前规则或校准状态 |
-| H / R / Esc | 逐步提示 / 重置教程 / 取消行走 |
-| F2 | 显示碰撞区域 |
+| WASD / 方向键 | 人物移动 |
+| 鼠标左键 | 点击地面寻路；点击星系仪和关卡水晶 |
+| 右键镇纸 / E | 互动镇纸，轨道两侧均可就近操作 |
+| 1 / 2 / 3 | 切换世界，共享冷却 **1.5秒** |
+| 左Alt + 左键水平拖动 | 旋转校准室视角，范围±45° |
+| H / R | 逐步提示 / 重置校准室 |
+| M / F11 | 静音 / 切换全屏 |
+| F10 | 从正常玩法或大厅返回启动界面 |
+| Esc | 关闭手册、退出未进入的选关界面，或取消行走 |
 
-角色不能跳跃。接待大厅保留原来的固定视角。
+角色不能跳跃。选关和归档等切场景动画不会被重复点击或F10打断。
 
-## 旋转视角
+<details>
+<summary>完整教程解法（含剧透）</summary>
 
-| 左侧视角 | 右侧视角 |
-| --- | --- |
-| ![左侧45度](showcase/orbit-minus-45.png) | ![右侧45度](showcase/orbit-plus-45.png) |
+冰晶推动至第一踏板 → 重力压下踏板并释放挡板 → 冰晶推动至末端 → 倒悬上浮完成月痕压印 → 重力落下压住末端踏板、封合界缝 → 走入归位门。
 
-校准室使用实时正交显示和 2D 人物纸片，碰撞、导航与解谜仍运行在独立的 2D 逻辑层。鼠标位置会随视角换算，界面保持固定。
+</details>
 
 ## 当前完成度
 
-已完成：人物移动与碰撞、点击寻路、三世界规则、新手机关完整流程、世界切换技能与 CD、场景设备反馈、±45° 视角旋转、Windows 导出与返回大厅。
+已完成：启动界面与操作手册、人物行走和互动动作、碰撞与点击寻路、特斯拉NPC、星系仪光效、水晶分裂选关、三世界规则与环境动效、完整新手解谜、世界切换胶片过渡、±45°视角、背景音乐与音效、裂隙出入场，以及盖章归档返回大厅。
 
-待制作：正式关卡、漫画剧情、开始菜单、音效与美术的进一步完善，以及更多设备上的试玩验证。
+待制作：NPC漫画对话、正式关卡和完整主线剧情。本版尚未接入男女角色语音。
 
-## 工程结构
+启动界面保留组员提交的插画设计，并接入当前大厅与选关流程；仓库历史保留该提交。
+
+## 工程与验证
 
 ```text
 game/
-  project.godot             Godot 工程入口
-  main.tscn                主场景
-  scenes/                  人物与关卡场景
-  scripts/                 移动、寻路、机关、UI 与旋转显示
-  assets/                  人物分件、模型、图块与素材许可
-  tests/                   教程、旋转及移动检查
-  tools/                   图块渲染与素材分析脚本
-  docs/                    设计、制作过程和美术来源记录
-showcase/                  实机截图与检查报告
+  project.godot     工程入口
+  scenes/          角色、启动界面与关卡场景
+  scripts/         玩法、人物、UI和场景流程
+  shaders/         星空、水晶和过渡效果
+  assets/          美术、音频、字体及来源许可
+  tests/           玩法、交互和完整流程检查
+  docs/            设计、迭代、AI提示词和素材来源记录
+showcase/          公开实机截图与检查报告
 ```
 
-实现说明：[视角旋转](game/docs/视角旋转-v04.md)、[校准室玩法](game/docs/校准室-v01-设计与验收.md)、[世界切换技能](game/docs/世界折叠技能-v02.md)。
+**v0.24 Windows导出检查：35项选关及完整通关返回、29项启动界面整合，共64项，全部通过。** 已逐帧检查完整水晶、悬停微裂、碎片展开、旋转汇聚与裂隙入场，运行日志无脚本或着色器错误。
 
-## 验证
-
-- 新增旋转检查：17 项，0 失败。
-- 教程检查：58 项，0 失败，包含 1,517 次位置采样。
-- 人物移动回归：73 项记录，0 失败；其中 1 处历史家具位置检查因相邻家具占地重叠而跳过。
-- Windows 导出程序已在原生渲染中完成教程，并成功返回观察局大厅。
-
-报告见 [showcase/checks](showcase/checks)。可在本地执行：
+报告见 [`showcase/checks/v24`](showcase/checks/v24)。在图形环境中执行：
 
 ```text
-Godot --headless --path game --fixed-fps 60 -- --tutorial-self-test --artifacts=<报告目录>
-Godot --headless --path game --fixed-fps 60 -- --orbit-self-test --artifacts=<报告目录>
-Godot --headless --path game --fixed-fps 60 -- --self-test --artifacts=<报告目录>
+Godot --path game --fixed-fps 60 -- --hub-check --artifacts=<报告目录>
+Godot --path game --fixed-fps 60 -- --menu-self-test --artifacts=<报告目录>
 ```
 
-## 美术来源与 AI 辅助制作
+## 素材与AI辅助制作
 
-- 衍月形象参考比赛官方提供的角色设定；人物分件与早期家具图集使用 AI 辅助制作。
-- 墙板、线缆与归位门框来自 **Kenney / Modular Space Kit 1.0**，使用 **CC0** 许可。保留了[原始许可](game/assets/kenney_modular_space/License.txt)和[来源清单](game/assets/kenney_modular_space/SOURCE.json)。
-- 轨道、镇纸、接收器、电源柜与监测台的几何由项目脚本构建；同一构建器用于离线图块和实时旋转显示。
-- 代码实现、迭代与检查通过 Codex 辅助完成，制作记录与图像提示词保存在 `game/docs/`。
+- 衍月和特斯拉参考比赛官方角色设定；人物分件、部分家具、NPC与星海插画使用AI辅助制作，提示词与来源记录保存在 [`game/docs`](game/docs)。
+- 墙板、线缆与门框来自 **Kenney / Modular Space Kit 1.0（CC0）**，附[许可](game/assets/kenney_modular_space/License.txt)及[来源](game/assets/kenney_modular_space/SOURCE.json)。
+- 背景音乐 **Magic Puzzle In-Game 1 / MintoDog** 与Kenney音效采用CC0，详见[音频来源](game/assets/audio/SOURCE.json)和[许可文件](game/assets/audio/licenses)。
+- 站酷小薇体采用 **SIL Open Font License 1.1**，附[字体许可](game/assets/fonts/zcool_xiaowei/OFL.txt)。
+- 轨道、机关、水晶分裂、星系仪光效、拖尾与动画过渡由代码绘制。项目代码实现、迭代和检查通过Codex辅助完成。
 
-第三方许可适用于相应素材，不代表全部角色与美术统一采用 CC0。
+第三方许可仅适用于相应素材，不代表全部角色、美术或代码统一采用CC0。
 
 项目作者：周书屹。

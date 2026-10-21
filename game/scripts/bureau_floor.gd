@@ -3,6 +3,7 @@ extends Node2D
 const ORIGIN := Vector2(640, 220)
 const AXIS_U := Vector2(52, 26)
 const AXIS_V := Vector2(-52, 26)
+var show_rug := true
 
 func iso(u: float, v: float) -> Vector2:
 	return ORIGIN + AXIS_U * u + AXIS_V * v
@@ -30,12 +31,12 @@ func _draw() -> void:
 		for v in range(9):
 			var tile := PackedVector2Array([iso(u,v), iso(u+1,v), iso(u+1,v+1), iso(u,v+1)])
 			var shade := Color("e7dfd0") if (u+v)%2 == 0 else Color("ded5c5")
-			if u >= 3 and u <= 7 and v >= 4 and v <= 7:
+			if show_rug and u >= 3 and u <= 7 and v >= 4 and v <= 7:
 				shade = Color("8195a1") if (u+v)%2 == 0 else Color("7b8e9a")
 			draw_colored_polygon(tile, shade)
 			draw_polyline(tile + PackedVector2Array([tile[0]]), Color(0.37,0.34,0.29,0.20), 1.0, true)
 	var rug := PackedVector2Array([iso(3,4),iso(8,4),iso(8,8),iso(3,8),iso(3,4)])
-	draw_polyline(rug, Color("bea16b"), 2.5, true)
+	if show_rug:draw_polyline(rug, Color("bea16b"), 2.5, true)
 	draw_polyline(floor_shape + PackedVector2Array([floor_shape[0]]), Color("746a5a"), 2.0, true)
 	# Small office wall panels, kept away from the floor navigation area.
 	var left_frame := PackedVector2Array([iso(0,3)-Vector2(0,100),iso(0,4.3)-Vector2(0,100),iso(0,4.3)-Vector2(0,47),iso(0,3)-Vector2(0,47)])
