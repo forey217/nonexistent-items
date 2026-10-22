@@ -1,0 +1,17 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-10-22",
+  "purpose": "Full-frame reception hall furniture sprites",
+  "reference": "游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png",
+  "processing": "Trimmed transparent padding using alpha > 12 bounding box, preserved original alpha. No creative image editing.",
+  "assets": [
+    {
+      "name": "waiting_sofa",
+      "prompt": "Use case: stylized-concept. Transparent-background 2D GAME PROP SPRITE, one isolated refined two-seat waiting-room divan for the astronomical bureau in the reference. Match the reference's semi-realistic painted material quality, dark navy tufted leather cushions, dark walnut frame, restrained engraved champagne-brass trim and short sturdy feet. Compact elegant upholstery with believable thickness and button-tufting, not a toy block. No separate table, no rug, no people, no surrounding room. Exact ORTHOGRAPHIC ISOMETRIC elevated camera about30 degrees: long front edge slopes down-right at26.565 degrees, short side edge slopes up-right, showing top cushions and front/right side. The sofa is a solid rectangular furniture object, complete silhouette fully visible including feet, tight transparent padding. Neutral soft warm lighting, no long cast shadow outside object. True alpha transparency, not checkerboard. Landscape aspect3:2."
+    },
+    {
+      "name": "planter",
+      "prompt": "Use case: stylized-concept. Transparent-background 2D GAME PROP SPRITE, one isolated tall elegant indoor ornamental palm/fern in a substantial ivory ceramic and dark navy planter with refined champagne-brass rim and pedestal foot, appropriate to the premium retro science-fiction astronomical bureau reference. Lush delicately painted green fronds, clear tapered silhouette, richly detailed ceramic and metal material. ORTHOGRAPHIC ISOMETRIC elevated30 degree game camera, top of circular pot visible as ellipse; true consistent scale and soft warm illumination. Entire plant and pot visible, minimal transparent margins. One plant only, no person, no furniture, no floor, no surrounding architecture, no rectangular background or long ground shadow. True alpha background. Portrait aspect2:3."
+    }
+  ]
+}

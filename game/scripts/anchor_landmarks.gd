@@ -8,6 +8,7 @@ var ring_inks: Array[StandardMaterial3D] = []
 var crack: Node3D
 var seal: Node3D
 var hovered_index := -1
+var teaching_index := -1
 var strengths: Array[float] = [0.0,0.0,0.0]
 var builder = preload("res://scripts/calibration_scene_builder.gd").new()
 
@@ -80,7 +81,7 @@ func sync(state: RefCounted,delta: float) -> void:
 	var done: Array[bool]=[state.first_latched,state.receiver_latched,view.room.gate_ready]
 	var base_colors: Array[Color]=[Color("dfc88d"),Color("b7cee4"),Color("ad9acb")]
 	for i in range(3):
-		strengths[i]=move_toward(strengths[i],1.0 if hovered_index==i else 0.0,delta*7.0)
+		strengths[i]=move_toward(strengths[i],1.0 if hovered_index==i or teaching_index==i else 0.0,delta*7.0)
 		var base := Color("8ccba7") if done[i] else base_colors[i]
 		inks[i].albedo_color=base
 		inks[i].emission=inks[i].albedo_color

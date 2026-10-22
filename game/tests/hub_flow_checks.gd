@@ -21,6 +21,7 @@ func record(title: String,passed: bool,details: Dictionary={}) -> void:
 
 func snapshot(name: String) -> void:
 	if DisplayServer.get_name()=="headless":return
+	if "--compact-captures" in OS.get_cmdline_user_args() and (name.begins_with("split-") or name.begins_with("select-") or name.begins_with("entry-") or name.begins_with("return-")):return
 	await RenderingServer.frame_post_draw
 	get_viewport().get_texture().get_image().save_png(directory.path_join(name+".png"))
 
@@ -41,7 +42,7 @@ func move_pointer(at:Vector2) -> void:
 	get_viewport().push_input(event,true)
 
 func open_globe(hub: Node2D) -> void:
-	click(hub.globe.art.to_global(Vector2.ZERO))
+	click(hub.world_to_screen(hub.globe.art.to_global(Vector2.ZERO)))
 	await frames(3)
 
 func run(flow: Node2D) -> void:
@@ -52,10 +53,42 @@ func run(flow: Node2D) -> void:
 	var hub=app.current
 	var music_id: int=app.ambience.music.get_instance_id()
 	record("normal_entry_is_reception_hub",hub.get_script().resource_path.ends_with("tutorial_hub.gd"))
+	var columns_solid: bool=hub.architecture.solid_footprints.size()==2
+	var column_details: Array[Dictionary]=[]
+	for polygon in hub.architecture.solid_footprints:
+		var center:=Vector2.ZERO
+		for point in polygon:center+=point
+		center/=polygon.size()
+		var blocked: bool=not hub.actor_position_is_clear(center)
+		var avoided: bool=not hub.navigation.is_safe(center)
+		var approach: Vector2=center+(hub.iso(4.5,4.5)-center).normalized()*40
+		var swept: bool=not hub.segment_is_clear(approach,center)
+		column_details.append({"center":center,"blocked":blocked,"avoided":avoided,"swept":swept})
+		columns_solid=columns_solid and blocked and avoided and swept
+	record("pavilion_columns_block_actor_and_navigation",columns_solid,{"columns":column_details})
 	record("chest_removed_from_art_and_navigation",hub.props.size()==3 and hub.props.all(func(p):return p.name!="Chest") and hub.navigation.is_safe(hub.iso(6.7,6.1)) and hub.actor_position_is_clear(hub.iso(6.7,6.1)))
 	var desk=hub.props.filter(func(p):return p.name=="Desk")[0]
 	record("tesla_uses_generated_reference_sprite_behind_desk",hub.npc_art.texture.resource_path.ends_with("tesla_v01.png") and hub.npc.position.y<desk.position.y and not hub.navigation.is_safe(hub.npc.position))
 	await snapshot("01-hub-tesla-no-chest")
+	var furnishings_solid: bool=hub.furnishings.size()==5
+	for furnishing in hub.furnishings:
+		furnishings_solid=furnishings_solid and not hub.navigation.is_safe(furnishing.position) and not hub.actor_position_is_clear(furnishing.position)
+	record("waiting_furniture_blocks_both_physics_and_paths",furnishings_solid)
+	var far_left: Vector2=hub.iso(1.5,15.0)
+	record("expanded_hall_path_reaches_negative_world_coordinates",far_left.x<0 and not hub.navigation.find_path(hub.player.position,far_left).is_empty())
+	hub.player.teleport_for_reset(hub.iso(12,10));await frames(90)
+	record("camera_follows_actor_near_screen_edge",hub.hall_camera.position.distance_to(Vector2(640,400))>100 and Rect2(160,160,960,530).has_point(hub.world_to_screen(hub.player.position)))
+	await snapshot("01b-expanded-hall-camera")
+	var destination: Vector2=hub.player.position+Vector2(-65,-20)
+	click(hub.world_to_screen(destination));await frames(3)
+	record("scrolled_camera_ground_click_uses_world_coordinates",hub.last_request_succeeded and hub.marker_position.distance_to(destination)<1)
+	await until(func():return hub.player.position.distance_to(destination)<4,150)
+	record("scrolled_camera_click_reaches_requested_ground",hub.player.position.distance_to(destination)<4)
+	await open_globe(hub)
+	record("scrolled_camera_globe_remains_clickable",app.level_menu!=null)
+	key(KEY_ESCAPE);await frames(3)
+	key(KEY_R);await frames(3)
+	record("reset_restores_spawn_and_camera",hub.player.position.distance_to(hub.spawn_point)<1 and hub.hall_camera.position.distance_to(Vector2(640,400))<1)
 	await open_globe(hub)
 	record("clicking_globe_opens_one_level_map",app.level_menu!=null and app.current==hub and hub.process_mode==Node.PROCESS_MODE_DISABLED and app.level_menu.selection_age<0)
 	var menu=app.level_menu

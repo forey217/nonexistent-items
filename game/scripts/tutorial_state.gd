@@ -43,8 +43,7 @@ func push() -> String:
 	if world==World.INVERTED: return "向上的重力正在作用，先让镇纸落回导轨。"
 	if elevation>0.3: return "镇纸还在空中，等它落回导轨再推。"
 	if absf(rail_speed)>0.1: return "镇纸正在沿导轨滑行。"
-	if rail_position>=RAIL_LENGTH-0.2: return "已到导轨末端：观察它上方的接收器。"
-	if not first_latched and rail_position>=FIRST_STOP-0.2:
+	if rail_position>=RAIL_LENGTH-0.2 or (not first_latched and rail_position>=FIRST_STOP-0.2):
 		rail_speed=-SLIDE_SPEED
 		return "已反向推动：镇纸沿导轨滑回起点。"
 	rail_speed = SLIDE_SPEED

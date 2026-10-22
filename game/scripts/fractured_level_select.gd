@@ -46,7 +46,15 @@ func core_transform() -> Transform2D:
 	return transform.scaled_local(Vector2(0.92,1.16)*(1.0+sin(age*1.4)*0.007))
 
 func core_hit(at:Vector2) -> bool:
-	return Geometry2D.is_point_in_polygon(core_transform().affine_inverse()*at,whole)
+	if shards.is_empty():return false
+	var projected:=PackedVector2Array()
+	var back:=PackedVector2Array()
+	var pose:Transform2D=shards[0].surface_basis
+	for vertex in whole:
+		projected.append(pose*vertex)
+		back.append(pose*vertex+shards[0].thickness)
+	var solid:=Geometry2D.convex_hull(projected+back)
+	return Geometry2D.is_point_in_polygon(core_transform().affine_inverse()*at,solid)
 
 func shard_at(at:Vector2) -> int:
 	for i in range(shards.size()-1,-1,-1):
@@ -123,14 +131,14 @@ func _update_shards(delta:float) -> void:
 			shard.rotation=lerpf(transform.get_rotation(),spread_angle[i],out)
 			shard.scale=transform.get_scale().lerp(Vector2.ONE*spread_scale[i],out)
 			shard.modulate.a=1.0
-			shard.update_look(age,0.0,reveal,1.0 if over==i else 0.0,hover_amount*(1.0-out))
+			shard.update_look(age,0.0,reveal,1.0 if over==i else 0.0,hover_amount*(1.0-out),out)
 		else:
 			var t:=travel_progress(i,selection_age)
 			shard.position=flight_position(i,selection_age)
 			shard.rotation=start_rotations[i]-t*TAU*0.88 if i!=selected else start_rotations[i]+smoothstep(0.9,2.4,selection_age)*1.0
 			shard.scale=Vector2.ONE*spread_scale[i]*(1.0-t*0.80 if i!=selected else 1.0)
 			shard.modulate.a=1.0-smoothstep(0.86,1.0,t) if i!=selected else 1.0
-			shard.update_look(age,smoothstep(0.75,2.37,selection_age) if i==selected else t*0.5,1.0-smoothstep(0.1,0.55,selection_age),0,0)
+			shard.update_look(age,smoothstep(0.75,2.37,selection_age) if i==selected else t*0.5,1.0-smoothstep(0.1,0.55,selection_age),0,0,1.0)
 
 func _process(delta:float) -> void:
 	age+=delta

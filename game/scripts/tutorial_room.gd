@@ -1,6 +1,9 @@
 extends Node2D
 signal completed
 signal hub_requested
+signal dialogue_hint(text: String)
+signal dialogue_reset
+signal dialogue_notice(text: String)
 const State = preload("res://scripts/tutorial_state.gd")
 const Navigation = preload("res://scripts/bureau_navigation.gd")
 const Prop = preload("res://scripts/calibration_prop.gd")
@@ -234,6 +237,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			elif _inspect_screen_instrument(event.position): pass
 			elif orbit_view.hit_portal(event.position):
 				hud.message("界缝封好后，修复的归位门就能通往机构。")
+				if not gate_ready:dialogue_notice.emit("出口还不稳定。先完成当前的校准，我会在这里等你。")
 			else: hud.message("右键点击带铜色圆印的镇纸；E 可与附近镇纸交互。")
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.physical_keycode:
@@ -346,6 +350,8 @@ func _tick_push(delta: float) -> void:
 	if not push_committed and push_age>=PUSH_CONTACT:
 		push_committed=true
 		hud.message(state.push())
+		if state.world==State.World.HEAVY:dialogue_notice.emit("它现在的重量适合压机关。要把它送过去，先试试摩擦更小的世界。")
+		elif state.elevation>0.3:dialogue_notice.emit("先让它落回导轨，接触稳了才能推动。")
 		if absf(state.rail_speed)>0.1:sound.play_event("push")
 	if push_age>=PUSH_DURATION:_clear_push()
 
@@ -430,6 +436,7 @@ func reset_tutorial() -> void:
 	hud.update_skill(0,false)
 	hud.update_completion(false,false,0.0)
 	_gate_open=not gate_ready
+	dialogue_reset.emit()
 
 func cancel_orders() -> void:
 	_pending_click=false
@@ -440,6 +447,7 @@ func cancel_orders() -> void:
 func show_hint() -> void:
 	_hint_level=mini(_hint_level+1,3)
 	hud.message("提示 %d/3：%s"%[_hint_level,state.hint(_hint_level)])
+	dialogue_hint.emit(state.hint(_hint_level))
 
 func _physics_process(delta: float) -> void:
 	_elapsed+=delta

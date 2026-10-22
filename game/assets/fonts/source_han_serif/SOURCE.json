@@ -1,0 +1,11 @@
+{
+  "family": "Source Han Serif CN / 思源宋体",
+  "style": "Regular",
+  "source": "https://github.com/adobe-fonts/source-han-serif/tree/release/SubsetOTF/CN",
+  "download": "https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/SubsetOTF/CN/SourceHanSerifCN-Regular.otf",
+  "license_source": "https://raw.githubusercontent.com/adobe-fonts/source-han-serif/release/LICENSE.txt",
+  "license": "SIL Open Font License 1.1, see OFL.txt",
+  "date": "2026-10-22",
+  "usage": "v0.35 星海书卷 subtitles: 26px regular body, lightly emboldened golden speaker name via runtime FontVariation",
+  "processing": "Original font file unmodified; spacing and speaker emphasis configured at runtime. No font outline images."
+}

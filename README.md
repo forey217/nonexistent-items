@@ -2,36 +2,36 @@
 
 衍月的平行世界解谜游戏，使用 **Godot 4.7.2 标准版 / GDScript** 制作。同一块镇纸，在冰晶、重力与倒悬世界中拥有不同物性，玩家需要组合规则完成观察局的第一次校准。
 
-当前版本 **v0.24**，包含启动界面、接待大厅、星系仪、水晶碎片选关和一张可完整通关的新手校准室。游戏原名为《不存在的物品》，仓库地址沿用原名。
+当前完成版本 **v0.38.1**，包含启动界面、室内接待大厅、星系仪、水晶碎片选关、角色剧情与教学，以及一张可完整通关的新手校准室。游戏原名为《不存在的物品》，仓库地址沿用原名。
 
-源码中的启动界面使用观察局内部档案室、毛笔标题与文字菜单。标题保持固定，字面有横向流光和轻微辉光呼吸；背景保留镜头移动、星系仪绕行流光、窗边光束和台灯呼吸光。“选项”中的动态开关可冻结这些效果。大厅和关卡右下角有“返回主界面”按钮。最新菜单、动画开关、选关和返回共43项检查已在 Windows 原生渲染下通过，见[报告](showcase/checks/start-menu-v07/menu-checks.json)及[说明](game/docs/启动界面-v01.md)。下方 v0.24 下载包仍为原发布版本。
+本次汇总已完成并验证的改动：满构图室内大厅与第一关、特斯拉和衍月的剧情对话、镇纸与平行世界教学展示、Q版说话人头像与宋体字幕，以及星系仪引路转场。进入时先靠近主界面的星系仪，再从仪器中心展开大厅，保留角色从裂隙入场的动作；靠近或点击特斯拉后开始交谈。“选项”中的动态开关可切换为静态淡化。存档选择功能和第二关仍在制作，本次上传不包含这两部分。
 
-![观察局启动界面](showcase/start-menu-v07.png)
+![观察局启动界面](showcase/checks/v38.1/title.png)
 
 ![水晶碎片选关](showcase/v24/fragment-selection.png)
 
 ## 下载与运行
 
-- [下载 Windows 试玩版](https://github.com/forey217/nonexistent-items/releases/download/v0.24.0/world-without-manual-v0.24-windows-x86_64.exe)：双击运行，无需安装Godot。
-- [v0.24发布页、源码与许可文件](https://github.com/forey217/nonexistent-items/releases/tag/v0.24.0)。
-- [水晶分裂与旋转入场动画](https://github.com/forey217/nonexistent-items/releases/download/v0.24.0/crystal-fragment-selection-v0.24.gif)。
+- [下载 Windows 试玩版](https://github.com/forey217/nonexistent-items/releases/download/v0.38.1/world-without-manual-v0.38.1-windows-x86_64.exe)：双击运行，无需安装Godot。
+- [v0.38.1发布页、源码与许可文件](https://github.com/forey217/nonexistent-items/releases/tag/v0.38.1)。
+- [v0.24历史版本与选关动画](https://github.com/forey217/nonexistent-items/releases/tag/v0.24.0)。
 - 编辑工程：克隆仓库，使用Godot **4.7.2标准版**导入 [`game/project.godot`](game/project.godot)，运行主场景。无需.NET。
 
 Windows导出使用Compatibility / ANGLE渲染，已在Windows与RTX 5060 Laptop上验证；其他设备尚待试玩。
 
 ## 从观察局出发
 
-**开始旅程 → 接待大厅 → 点击星系仪 → 水晶分裂选关 → 新手校准室。**
+**进入观察局 → 星系仪转场与角色入场 → 自由探索或与特斯拉交谈 → 点击星系仪 → 水晶分裂选关 → 新手校准室。**
 
 星图最初只有一枚完整水晶，鼠标悬停时细裂缝亮起，点击后向四周分裂为六块关卡碎片。当前只有 **01 / 新手校准室**可进入，其余五块显示问号。
 
 选择01后，其他碎片带拖尾旋转汇入它；镜头跟随选中碎片旋转、放大、亮起，随后衍月从空间裂隙中走进关卡。通关后，校准室缩成档案卡，盖章后沿抛物线归档，再返回接待大厅。
 
-| 接待大厅 | 悬停微裂 |
+| 接待大厅 | 剧情对话 |
 | --- | --- |
-| ![大厅](showcase/v24/reception.png) | ![开裂](showcase/v24/crystal-hover.png) |
+| ![大厅](showcase/checks/v38.1/hub.png) | ![对话](showcase/checks/v38.1/dialogue.png) |
 
-![新手校准室](showcase/v24/tutorial.png)
+![新手校准室与场景教学](showcase/checks/v38.1/tutorial.png)
 
 ## 玩法与操作
 
@@ -66,9 +66,9 @@ Windows导出使用Compatibility / ANGLE渲染，已在Windows与RTX 5060 Laptop
 
 ## 当前完成度
 
-已完成：启动界面与操作手册、人物行走和互动动作、碰撞与点击寻路、特斯拉NPC、星系仪光效、水晶分裂选关、三世界规则与环境动效、完整新手解谜、世界切换胶片过渡、±45°视角、背景音乐与音效、裂隙出入场，以及盖章归档返回大厅。
+已完成：启动界面与操作手册、人物行走和互动动作、碰撞与点击寻路、室内大厅与校准室、特斯拉自由交谈、双人立绘剧情框、Q版头像字幕、镇纸初见展示、世界重叠示意、三步目标及三世界规则教学、星系仪引路与水晶分裂选关、完整新手解谜、世界切换胶片过渡、±45°视角、背景音乐与音效、裂隙出入场，以及盖章归档返回大厅。
 
-待制作：NPC漫画对话、正式关卡和完整主线剧情。本版尚未接入男女角色语音。
+正在制作、未纳入本版：三档存档选择、第二关及其上下层地图。后续继续制作完整主线剧情。本版尚未接入男女角色语音。
 
 启动界面保留组员提交的插画设计，并接入当前大厅与选关流程；仓库历史保留该提交。
 
@@ -86,13 +86,14 @@ game/
 showcase/          公开实机截图与检查报告
 ```
 
-**v0.24 Windows导出检查：35项选关及完整通关返回、29项启动界面整合，共64项，全部通过。** 已逐帧检查完整水晶、悬停微裂、碎片展开、旋转汇聚与裂隙入场，运行日志无脚本或着色器错误。
+**本次冻结版本共203项检查全部通过：66项解谜检查、Windows导出程序的52项菜单与转场检查、85项剧情及完整通关归档检查。** 发布程序直接从冻结的完成版源码导出，未混入后续正在修改的文件；最终运行日志无脚本或着色器错误。
 
-报告见 [`showcase/checks/v24`](showcase/checks/v24)。在图形环境中执行：
+报告和实机截图见 [`showcase/checks/v38.1`](showcase/checks/v38.1)。在图形环境中执行：
 
 ```text
 Godot --path game --fixed-fps 60 -- --hub-check --artifacts=<报告目录>
 Godot --path game --fixed-fps 60 -- --menu-self-test --artifacts=<报告目录>
+Godot --path game --fixed-fps 60 -- --dialogue-check --artifacts=<报告目录>
 ```
 
 ## 素材与AI辅助制作

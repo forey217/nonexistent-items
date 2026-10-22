@@ -22,6 +22,7 @@ var skill_status: Label
 var current_world_label: Label
 var current_world := 0
 var completion_label: Label
+var footer: Panel
 
 func _ready() -> void:
 	font.font_names = PackedStringArray(["Microsoft YaHei","Arial"])
@@ -75,7 +76,7 @@ func _ready() -> void:
 	law_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	object_label = label(rules,"",Vector2(14,119),14,Color("8a7153"))
 	label(rules,"磁力靴：衍月保持贴地行走",Vector2(14,170),11,Color("90928d"))
-	var footer := panel(root,Vector2(22,711),Vector2(1236,76))
+	footer = panel(root,Vector2(22,711),Vector2(1236,76))
 	label(footer,"WASD / 左键移动   ·   右键镇纸 / E 推动   ·   1 / 2 / 3 切换世界   ·   左 Alt + 左键拖动视角",Vector2(17,10),16,Color("354d5d"))
 	message_label = label(footer,"",Vector2(17,40),15,Color("728086"))
 	message_label.size = Vector2(1200,28)

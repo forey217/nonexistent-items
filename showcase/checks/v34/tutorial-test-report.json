@@ -1,0 +1,351 @@
+{
+	"checks": 66,
+	"failures": 0,
+	"results": [
+		{
+			"details": {
+				"gate_open": true,
+				"landed": true,
+				"seconds": 0.833333333333334
+			},
+			"passed": true,
+			"test": "heavy_fall_is_quicker_and_activates_end_plate"
+		},
+		{
+			"details": {
+				"gate_open": true,
+				"landed": true,
+				"seconds": 0.825
+			},
+			"passed": true,
+			"test": "quicker_fall_is_consistent_at_60_and_120_fps"
+		},
+		{
+			"details": {
+				"gate_open": false,
+				"landed": true,
+				"seconds": 1.36666666666667
+			},
+			"passed": true,
+			"test": "normal_world_fall_and_insufficient_pressure_unchanged"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "initial_world_and_locked_exit"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ice_inertia_without_repeated_input"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "first_stop_no_overshoot"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "normal_weight_cannot_release_stop"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "locked_stop_interaction_returns_towards_start"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "return_stops_at_start_without_overshoot"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_weight_releases_stop"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_cannot_be_pushed"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "mechanical_latch_persists_across_worlds"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "rail_end_no_overshoot"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ice_end_interaction_reverses_along_unlocked_rail"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ice_end_return_stops_at_origin_without_relocking"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "returned_weight_can_reach_end_again"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "bottom_plate_alone_does_not_open_exit"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "switch_preserves_position_and_height"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_gravity_brings_object_down"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "upward_gravity_reaches_ceiling_receiver"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ceiling_contact_alone_does_not_open_exit"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ordinary_gravity_lands_but_insufficient_weight"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ice_return_preserves_completed_star_and_moon"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "both_conditions_open_exit"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "exit_requires_maintained_heavy_pressure"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "wrong_location_cannot_calibrate_receiver"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "wrong_world_order_is_recoverable"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_stops_mid_slide_without_teleport"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "interrupted_slide_resumes"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reset_recovers_midair_and_clears_all_latches"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "slide_contacts_are_frame_rate_independent"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "long_frame_stays_on_rail"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "tutorial_spawn_clear"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "guarded_rail_is_solid"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "closed_portal_is_solid"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "skill_card_is_in_upper_left"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "same_world_does_not_consume_cooldown"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "invalid_world_does_not_consume_cooldown"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "world_tile_starts_shared_one_point_five_second_cooldown"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "keyboard_and_target_buttons_cannot_bypass_cooldown"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "world_tile_changes_world_without_moving_player"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "cast_gesture_and_effect_active"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "movement_restored_before_cooldown_ends"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "cannot_switch_before_one_point_five_seconds"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "rejected_input_does_not_extend_cooldown"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "skill_recovers_at_one_point_five_seconds"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "skill_works_again_after_recovery"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "r_restores_safe_start_midair"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reset_clears_cast_and_cooldown"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "h_reveals_progressive_hint"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "right_click_moves_to_first_plate"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "world_button_releases_latched_stop"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "remote_right_click_walks_to_safe_stand_then_pushes"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "live_upward_gravity_calibrates_receiver"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "live_heavy_landing_opens_portal"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "open_portal_is_walkable"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "complete_by_walking_into_open_gate"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "world_change_cannot_close_gate_on_player"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reset_recloses_portal"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "manual_takeover_cancels_queued_interaction"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "losing_focus_cancels_pending_push"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "new_room_boundary_0"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "new_room_boundary_1"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "new_room_boundary_2"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "new_room_boundary_3"
+		},
+		{
+			"details": {
+				"samples": 1340
+			},
+			"passed": true,
+			"test": "all_sampled_positions_collision_free"
+		}
+	],
+	"sampled_positions": 1340
+}

@@ -8,6 +8,7 @@ var prepared := false
 var age := 0.0
 var origin := Vector2.ZERO
 var destination := Vector2.ZERO
+var approach_scale := 1.0
 
 func _ready() -> void:
 	process_physics_priority=-30
@@ -18,7 +19,7 @@ func prepare(owner_room: Node2D) -> void:
 	destination=room.spawn_point
 	origin=destination
 	for offset in [Vector2(-24,-12),Vector2(24,-12),Vector2(-20,12)]:
-		var candidate: Vector2=destination+offset
+		var candidate: Vector2=destination+offset*approach_scale
 		if room.navigation.is_safe(candidate) and room.actor_position_is_clear(candidate) and room.segment_is_clear(candidate,destination):
 			origin=candidate;break
 	player.teleport_for_reset(origin)

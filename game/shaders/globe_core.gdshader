@@ -1,6 +1,8 @@
 shader_type canvas_item;
 uniform float clock = 0.0;
 uniform float attention : hint_range(0.0, 1.0) = 0.0;
+uniform vec2 core_center=vec2(2.5,-89.5);
+uniform float core_radius=96.0;
 varying vec2 sprite_position;
 
 float hash21(vec2 p) {
@@ -13,7 +15,7 @@ void vertex() {
 
 void fragment() {
 	vec4 base=texture(TEXTURE,UV);
-	vec2 p=(sprite_position-vec2(2.5,-89.5))/96.0;
+	vec2 p=(sprite_position-core_center)/core_radius;
 	float sphere=1.0-smoothstep(0.88,1.01,length(p));
 	// Animate the blue glass only; keep the painted brass and stand intact.
 	float blue=smoothstep(0.04,0.27,base.b-max(base.r,base.g)*0.9)*sphere;

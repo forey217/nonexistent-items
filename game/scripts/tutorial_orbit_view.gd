@@ -33,6 +33,7 @@ var feedback=preload("res://scripts/bureau_feedback.gd").new()
 var atmosphere=preload("res://scripts/bureau_atmosphere.gd").new()
 var pointer_position:=Vector2(-10000,-10000)
 var weight_hovered := false
+var teaching = preload("res://scripts/tutorial_visual_guide.gd").new()
 var hover_strength := 0.0
 var hover_age := 0.0
 var arrival_viewport: SubViewport
@@ -70,6 +71,8 @@ func finish_arrival_rift() -> void:
 
 func _ready() -> void:
 	font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
+	# Continuous 3D floor/elevations now fill the frame at every orbit angle.
+	# The cosmos is visible through the textured observatory windows.
 	viewport.size=Vector2i(1280,800)
 	viewport.transparent_bg=true
 	viewport.own_world_3d=true
@@ -102,6 +105,7 @@ func _ready() -> void:
 	display_fx.modulate.a=0.55
 	film.view=self
 	add_child(film)
+	teaching.view=self;add_child(teaching)
 	set_angle(0)
 	_sync_state(0.0)
 
@@ -119,7 +123,7 @@ func _setup_lighting() -> void:
 	light.light_cull_mask=31
 	light.rotation_degrees=Vector3(-58,-38,0)
 	light.light_color=Color("fff1d4")
-	light.light_energy=0.72
+	light.light_energy=0.50
 	light.shadow_enabled=true
 	light.directional_shadow_max_distance=45
 	light.shadow_bias=0.035
@@ -161,7 +165,7 @@ func _build_theme(index: int) -> void:
 	b.weight()
 	var gate:=_group(root3,to_world(room.portal_position))
 	b.scene=gate
-	b.model("gate",Vector3.ZERO,Vector3.ONE*0.42,PI*0.25)
+	b.portal_frame()
 	var bars:=_group(gate,Vector3.ZERO)
 	bars.rotation.y=PI*0.25
 	for i in range(5):b.box(Vector3(-0.55+i*0.275,0.85,0),Vector3(0.018,1.7,0.018),b.brass,bars)
@@ -332,6 +336,10 @@ func _sync_state(delta: float) -> void:
 	film.sync()
 	camera.cull_mask=(1<<index)|(1<<3)|(1<<4)
 	for i in range(3):
+		# Hide a return elevation when it becomes edge-on, so its long wall
+		# cannot appear as an opaque stripe in front of the puzzle at +/-45 degrees.
+		themes[i].root.get_node("InteriorBackWall").visible=cos(deg_to_rad(45.0+angle))>0.10
+		themes[i].root.get_node("InteriorSideWall").visible=sin(deg_to_rad(45.0+angle))>0.10
 		themes[i].root.visible=i==index or (film.active and (i==film.from_world or i==film.to_world))
 		if themes[i].root.visible:_sync_theme(themes[i],i,delta)
 	last_world=index
@@ -401,7 +409,8 @@ func _draw() -> void:
 			draw_polyline(outline+PackedVector2Array([outline[0]]),Color(1.0,0.82,0.35,amount*pulse),2.5,true)
 			var target := camera.unproject_position(landmarks.anchor_position(i))
 			var text: String=["星位踏板","月痕印座","封界踏板"][i]
-			var tag := map_tag(target,text,amount)
+			if teaching.mode=="anchors" and teaching.anchor_index==i:text=["01 · 先定星位","02 · 再压月痕","03 · 最后封界缝"][i]
+			var tag := map_tag(target,text,amount,16 if teaching.mode=="anchors" and teaching.anchor_index==i else 10)
 			var tip: Vector2=outline[0]
 			for point in outline:
 				if point.distance_squared_to(tag.get_center())<tip.distance_squared_to(tag.get_center()):tip=point
@@ -459,8 +468,8 @@ func weight_screen_hull() -> PackedVector2Array:
 func _exit_tree() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
-func map_tag(target: Vector2,text: String,highlight: float=0.0) -> Rect2:
-	var dimensions := Vector2(ceilf(font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,10).x)+12,17)
+func map_tag(target: Vector2,text: String,highlight: float=0.0,points: int=10) -> Rect2:
+	var dimensions := Vector2(ceilf(font.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,points).x)+12,17 if points==10 else points+10)
 	var avoid := weight_screen_rect().grow(9)
 	var selected := Rect2(target+Vector2(48,-30),dimensions)
 	for offset in [Vector2(48,-30),Vector2(-48-dimensions.x,-30),Vector2(48,22),Vector2(-48-dimensions.x,22),Vector2(16,-62),Vector2(-16-dimensions.x,42)]:
@@ -477,7 +486,7 @@ func map_tag(target: Vector2,text: String,highlight: float=0.0) -> Rect2:
 	box.set_border_width_all(1)
 	box.set_corner_radius_all(3)
 	draw_style_box(box,selected)
-	draw_string(font,selected.position+Vector2(6,12),text,HORIZONTAL_ALIGNMENT_LEFT,-1,10,Color("e5e6dc"))
+	draw_string(font,selected.position+Vector2(6,12 if points==10 else points+3),text,HORIZONTAL_ALIGNMENT_LEFT,-1,points,Color("e5e6dc"))
 	return selected
 
 func badge(at: Vector2,text: String,highlight: float=0.0) -> void:

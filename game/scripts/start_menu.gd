@@ -13,6 +13,7 @@ var world := 0
 var elapsed := 0.0
 var motion_enabled := true
 var starting := false
+var entry_progress := 0.0
 var title_font: Font = preload("res://assets/fonts/ma_shan_zheng/MaShanZheng-Regular.ttf")
 var title_group := Control.new()
 var main_title: Label
@@ -284,9 +285,13 @@ func begin() -> void:
 	start_button.disabled = true
 	fade.mouse_filter = Control.MOUSE_FILTER_STOP
 	sound.tone(440, 0.25)
-	var tween := create_tween()
-	tween.tween_property(fade, "modulate:a", 1.0, 0.45)
-	tween.tween_callback(func(): start_requested.emit())
+	start_requested.emit()
+
+func set_entry_progress(value: float) -> void:
+	entry_progress = value
+	root.modulate.a = 1.0 - smoothstep(0.0, 0.42, value)
+	background_material.set_shader_parameter("entry_phase", smoothstep(0.0, 1.0, value) if motion_enabled else 0.0)
+	queue_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo or starting: return
@@ -345,7 +350,10 @@ func _scene_point(uv: Vector2) -> Vector2:
 	# Match the background shader so the orbit lights stay attached to the globe.
 	var zoom := 1.06 + 0.014 * sin(elapsed * 0.45)
 	var drift := Vector2(sin(elapsed * 0.48) * 0.011, sin(elapsed * 0.36) * 0.006)
-	return ((uv - Vector2(0.5, 0.5) - drift - pointer_offset) * zoom + Vector2(0.5, 0.5)) * Vector2(1280, 800)
+	var approach := smoothstep(0.0, 1.0, entry_progress) if motion_enabled else 0.0
+	zoom *= lerpf(1.0, 1.16, approach)
+	var focus := Vector2(0.5, 0.5).lerp(Vector2(0.70, 0.503), approach)
+	return ((uv - focus - drift - pointer_offset) * zoom + Vector2(0.5, 0.5)) * Vector2(1280, 800)
 
 func _draw_globe_orbits() -> void:
 	var center := _scene_point(Vector2(0.8897, 0.503))
@@ -362,8 +370,10 @@ func _draw_globe_orbits() -> void:
 		draw_set_transform(Vector2.ZERO)
 
 func _draw() -> void:
-	_veil(Rect2(0, 0, 1280, 310), 0.28, 0.0)
-	_veil(Rect2(0, 360, 1280, 440), 0.0, 0.77)
+	var menu_opacity := 1.0 - smoothstep(0.0, 0.6, entry_progress)
+	_veil(Rect2(0, 0, 1280, 310), 0.28 * menu_opacity, 0.0)
+	_veil(Rect2(0, 360, 1280, 440), 0.0, 0.77 * menu_opacity)
+	if starting:return
 	draw_rect(Rect2(0, 0, 1280, 800), Color(COLORS[world], 0.025))
 	_draw_globe_orbits()
 	for i in range(58):

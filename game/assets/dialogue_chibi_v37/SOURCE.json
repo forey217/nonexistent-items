@@ -1,0 +1,39 @@
+{
+  "mode": "built-in image_gen",
+  "date": "2026-10-22",
+  "processing": "Technical trim of transparent padding using alpha > 12 bounding box; original RGBA pixels inside retained unmodified.",
+  "assets": [
+    {
+      "name": "yanyue.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-da0b7034-5e6f-4060-8245-8187deae14a1.png",
+      "references": [
+        "game/assets/dialogue_v31/yanyue_portrait.png"
+      ],
+      "alpha_trim": [
+        71,
+        36,
+        1175,
+        1216
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG chibi dialogue avatar for the game 世界不按说明书. Input image1 is an identity and clothing reference for Yanyue, NOT a picture to reproduce unchanged. Create a new finely painted 2D CHIBI HEAD-AND-SHOULDERS portrait. Gently enlarged head (about75% of subject height), small shoulders, natural expressive brown eyes, simplified readable facial features, calm curious young-adult woman, attentive expression and a tiny relaxed smile, not babyish or an exaggerated emoji. Preserve black hair, straight fringe and TWO side hair buns, blue crystal hair ornaments, small blue crystal earrings, white high turtleneck. Slight three-quarter orientation towards image RIGHT while both eyes remain visible. Clear hair silhouette and clean refined thin outlines, soft painterly shading, restrained blue accents, bright legible face, warm white main light and very subtle cool rim light. Match a sophisticated ivory/navy/brass astronomical bureau game. Square composition, ENTIRE hairstyle and ornaments visible with small even transparent safety margin, head centered slightly above middle, include only neck and SMALL shoulder section. Designed to remain identifiable at64x64 display, avoid excessive tiny detail. No body below shoulders, no text, name, frame, badge, scenery, opaque circle, watermark or checkerboard. Actual transparent alpha background.",
+      "sha256": "d37b1512a1f1c2e933b23454b8fd59950e2ef5c89a7fa8cadb35ec61d5e12b6b"
+    },
+    {
+      "name": "tesla.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-37ac5291-056e-40bb-b6dd-d612fbce24ed.png",
+      "references": [
+        "game/assets/npc/tesla_v01.png",
+        "generated Yanyue chibi avatar as style reference"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE transparent PNG chibi dialogue avatar. Input image1 is Tesla's exact identity and costume reference. Input image2 is the APPROVED Yanyue chibi avatar and is a STYLE, rendering, chibi proportions and framing reference ONLY; do not include Yanyue. Create Tesla in exactly this companion avatar series: finely painted 2D head-and-small-shoulders, gently oversized head (75% subject height), refined thin outline, soft painterly shadows and warm clear face, readable at64x64. Adult man with deep brown wavy swept-back side-parted hair, tidy thin mustache, distinctive brows and nose, mature but friendly and patient experienced colleague, slight raised brow and restrained amused smile. Retain dark charcoal Victorian suit lapels, white shirt collar and dark cravat from image1, only small shoulder section. Modest three-quarter turn towards image RIGHT with both eyes visible, natural facial proportions simplified into chibi style consistent with image2. Warm white key light and very subtle cool rim light. Entire hair and head silhouette visible with small transparent safety margin, head centered slightly above middle. No full body, hands, glasses, goggles, lab coat, lightning, inventions, scenery, lettering, name, frame, badge, circle, watermark or checkerboard. Single intact portrait, square image, real transparent alpha background.",
+      "sha256": "71884901df0329c6a01b357997caaa2abaac0acfd643eb54520ea9e74dac85bf",
+      "alpha_trim": [
+        163,
+        21,
+        1146,
+        1228
+      ]
+    }
+  ],
+  "rights": "Derived from the user-provided competition character and existing project artwork. No new CC0 or ownership claim."
+}

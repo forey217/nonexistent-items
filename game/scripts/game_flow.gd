@@ -7,8 +7,11 @@ var returning := false
 var return_effect: CanvasLayer
 var level_menu: CanvasLayer
 var menu_revealing := false
+var title_entry: CanvasLayer
 var return_menu_button: Button
 var title_return_pending := false
+var dialogue: Node
+var hall_entered := false
 
 func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
@@ -21,11 +24,21 @@ func _ready() -> void:
 	ambience=preload("res://scripts/bureau_audio.gd").new()
 	add_child(ambience)
 	_build_title_navigation()
-	if "--hub" in args or "--hub-check" in args:show_hub(false)
+	dialogue=preload("res://scripts/bureau_dialogue.gd").new()
+	dialogue.flow=self
+	# Legacy suites exercise mechanics without waiting on story pages. The dedicated
+	# dialogue suite keeps the real presentation and input routing enabled.
+	dialogue.enabled="--dialogue-check" in args or not Array(args).any(func(arg):return arg.ends_with("-check") or arg.ends_with("-self-test") or arg.ends_with("-demo") or arg.contains("capture"))
+	add_child(dialogue)
+	if "--hub" in args or "--hub-check" in args or "--paperweight-preview" in args or "--teaching-preview" in args:show_hub(false)
 	elif Array(args).any(func(arg):return arg in ["--tutorial","--tutorial-capture","--skill-capture","--tutorial-self-test","--orbit-self-test","--tutorial-demo","--hud-check","--task-check","--pad-guide-check","--film-check","--polish-check","--archive-check","--interaction-check","--wall-self-test"]):show_tutorial()
 	else:show_menu()
 	if "--menu-self-test" in args:
 		var suite=load("res://tests/menu_tests.gd").new()
+		add_child(suite)
+		suite.run.call_deferred(self)
+	if "--dialogue-check" in args:
+		var suite=load("res://tests/dialogue_checks.gd").new()
 		add_child(suite)
 		suite.run.call_deferred(self)
 	if "--tutorial-demo" in args:
@@ -113,6 +126,9 @@ func _build_title_navigation() -> void:
 func _process(_delta: float) -> void:
 	if not is_instance_valid(return_menu_button) or not is_instance_valid(current): return
 	var playable := not current.has_signal("start_requested")
+	var full_hall: bool=current.get("hall_camera")!=null
+	return_menu_button.position=Vector2(1054,22) if full_hall else Vector2(1054,655)
+	ambience.toggle_button.position=Vector2(22,22) if full_hall else Vector2(22,378)
 	var busy := closing or returning or menu_revealing or title_return_pending or level_menu != null
 	if current.has_method("arrival_busy") and current.arrival_busy(): busy = true
 	return_menu_button.visible = playable and not busy
@@ -130,22 +146,20 @@ func request_title_return() -> bool:
 func _start_from_menu() -> void:
 	if closing or menu_revealing:return
 	menu_revealing=true
-	show_hub(false)
-	current.process_mode=Node.PROCESS_MODE_DISABLED
 	ambience.toggle_button.hide()
-	var cover:=CanvasLayer.new()
-	cover.layer=45
-	var veil:=ColorRect.new()
-	veil.size=Vector2(1280,800)
-	veil.color=Color("102632")
-	cover.add_child(veil)
-	add_child(cover)
-	var reveal:=create_tween()
-	reveal.tween_property(veil,"modulate:a",0.0,0.3)
-	await reveal.finished
-	cover.queue_free()
+	title_entry=preload("res://scripts/bureau_entry_transition.gd").new()
+	add_child(title_entry)
+	await title_entry.play(current,self)
+	title_entry.queue_free()
+	title_entry=null
+	var entry:=preload("res://scripts/hall_entry.gd").new()
+	current.entry_effect=entry
+	add_child(entry)
+	entry.begin(current,not hall_entered,true)
+	hall_entered=true
+	await entry.finished
+	entry.queue_free()
 	menu_revealing=false
-	current.process_mode=Node.PROCESS_MODE_INHERIT
 	ambience.toggle_button.show()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -159,6 +173,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if request_title_return(): get_viewport().set_input_as_handled()
 
 func clear_scene() -> void:
+	if is_instance_valid(dialogue):dialogue.clear()
 	if is_instance_valid(current):
 		remove_child(current)
 		current.queue_free()
@@ -170,6 +185,10 @@ func show_tutorial() -> void:
 	current.completed.connect(_on_completed)
 	current.hub_requested.connect(func(): show_hub.call_deferred(false))
 	add_child(current)
+	dialogue.bind(current,"tutorial")
+	current.dialogue_hint.connect(dialogue.hint)
+	current.dialogue_reset.connect(dialogue.reset_tutorial)
+	current.dialogue_notice.connect(dialogue.notice)
 	for item in current.hud.menu_buttons:item.pressed.connect(ambience.play_ui)
 
 func _on_completed() -> void:
@@ -181,6 +200,7 @@ func _on_completed() -> void:
 
 func _begin_archive_return() -> void:
 	var room=current
+	dialogue.archive()
 	room.process_mode=Node.PROCESS_MODE_DISABLED
 	room.player.controls_locked=true
 	room.player.cancel_navigation()
@@ -230,10 +250,13 @@ func show_hub(cleared: bool) -> void:
 	current=load("res://scripts/tutorial_hub.gd").new()
 	current.cleared=cleared
 	current.levels_requested.connect(open_level_menu)
+	current.dialogue_requested.connect(dialogue.talk_to_tesla)
 	add_child(current)
+	dialogue.bind(current,"hub")
 
 func open_level_menu() -> void:
-	if returning or level_menu!=null:return
+	if returning or level_menu!=null or dialogue.modal:return
+	dialogue.begin_selection()
 	current.player.cancel_navigation()
 	current.process_mode=Node.PROCESS_MODE_DISABLED
 	ambience.toggle_button.hide()
@@ -247,6 +270,7 @@ func open_level_menu() -> void:
 
 func _close_level_menu() -> void:
 	if level_menu==null:return
+	dialogue.clear()
 	level_menu.queue_free();level_menu=null
 	current.process_mode=Node.PROCESS_MODE_INHERIT
 	ambience.toggle_button.show()

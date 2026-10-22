@@ -1,0 +1,93 @@
+{
+  "execution": "built-in image_gen",
+  "date": "2026-10-22",
+  "purpose": "Godot runtime layered interior assets for reception and tutorial; not a flat concept backdrop",
+  "postprocessing": "Only alpha-bounds trimming for desk/globe imports. Generated subject alpha retained. No background removal through color keying.",
+  "assets": [
+    {
+      "name": "reception_wall",
+      "file": "reception_wall.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-7586a41b-1d59-4fc0-858e-20226c7a9301.png",
+      "active": true,
+      "transparent_background": false,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production game texture, NOT a scene concept. Match the reference's premium retro astronomical space-station interior: ivory ceramic and warm stone, dark navy structural metal, restrained champagne brass, fine machined joints, warm concealed lighting, detailed physically credible materials, semi-realistic painted game art. The input is a STYLE AND MATERIAL reference only. No people, no desk, no free-standing furniture, no HUD, no labels, no readable text, no watermark. Entire image must be an exactly straight-on ORTHOGRAPHIC architectural ELEVATION, zero perspective, zero isometric angle, no visible floor, no ceiling plane, no exterior silhouette. Perfectly rectangular architectural plate filling canvas to every edge, for mapping onto actual wall geometry. Landscape aspect 2:1. Baked lighting soft and even, sharp readable architectural details, no blur. Create the reception wall elevation: a richly crafted dark walnut and brass BUILT-IN ARCHIVE WALL, with ivory structural piers at left and right and a wide ivory upper frieze. Upper center has an elegant BLANK dark navy rectangular brass-framed nameplate, no letters; leave its center empty. Below it, embedded archival book shelves with cream linen folders, leather-bound books, two small brass astronomical instruments, recessed walnut cabinetry with inset panels, brass handles and a warm thin concealed light under the frieze. Lower 15% is continuous dark paneled cabinetry and a stone/brass base course. Shelf openings are varied purposeful proportions, realistic depth and shadows, never a grid of generic squares. Architectural millwork, not a toy bookcase. No perspective and no ground.",
+      "sha256": "208210b5811cc611eb9d9a655986823c4dccfa7be691c6658153c095e0c3a5c2"
+    },
+    {
+      "name": "panorama_wall",
+      "file": "panorama_wall.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-9ac2217d-19bd-4010-b72a-8f3161ad5904.png",
+      "active": true,
+      "transparent_background": false,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production game texture, NOT a scene concept. Match the reference's premium retro astronomical space-station interior: ivory ceramic and warm stone, dark navy structural metal, restrained champagne brass, fine machined joints, warm concealed lighting, detailed physically credible materials, semi-realistic painted game art. The input is a STYLE AND MATERIAL reference only. No people, no desk, no free-standing furniture, no HUD, no labels, no readable text, no watermark. Entire image must be an exactly straight-on ORTHOGRAPHIC architectural ELEVATION, zero perspective, zero isometric angle, no visible floor, no ceiling plane, no exterior silhouette. Perfectly rectangular architectural plate filling canvas to every edge, for mapping onto actual wall geometry. Landscape aspect 2:1. Baked lighting soft and even, sharp readable architectural details, no blur. Create a large panoramic space-observation WINDOW WALL: one very broad rounded-rectangle viewport occupying central 78% width, substantial layered ivory/navy/brass frame with beveled inner reveals, tiny structural bolts, slight glass reflection at edges only. Through the clear glass see deep blue quiet space, a large blue planet in the upper-right region and a soft distant nebula, fewer bright stars. Flanking wall piers have elegant vertical warm-white lamps. Lower 17% is a navy metal service dado with thin gold edge and a few recessed grilles. Upper 12% has a subtle curved arch cornice and warm concealed light. Real depth in window recess. EXACT straight front elevation, rectangular plate, no side of the room or floor.",
+      "sha256": "8d9126839870d4c64d85ca8048a221b15674942e2dded71d2422f71ab2178435"
+    },
+    {
+      "name": "calibration_wall",
+      "file": "calibration_wall.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-c4c67c78-069c-46bd-9b7a-229e3a74bdec.png",
+      "active": true,
+      "transparent_background": false,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production game texture, NOT a scene concept. Match the reference's premium retro astronomical space-station interior: ivory ceramic and warm stone, dark navy structural metal, restrained champagne brass, fine machined joints, warm concealed lighting, detailed physically credible materials, semi-realistic painted game art. The input is a STYLE AND MATERIAL reference only. No people, no desk, no free-standing furniture, no HUD, no labels, no readable text, no watermark. Entire image must be an exactly straight-on ORTHOGRAPHIC architectural ELEVATION, zero perspective, zero isometric angle, no visible floor, no ceiling plane, no exterior silhouette. Perfectly rectangular architectural plate filling canvas to every edge, for mapping onto actual wall geometry. Landscape aspect 2:1. Baked lighting soft and even, sharp readable architectural details, no blur. Create the wall elevation for a precision parallel-universe calibration laboratory of this same institution. Center 60% has a broad curved-top observation viewport showing quiet deep-blue space and a faint enormous orbital mechanism outside. At left and right are detailed inset scientific instrumentation panels: navy enamel frames, finely machined brass brackets, small glass instrument dials, subtle ivory ceramic covers, delicate engraved measurement ticks, low intensity blue status lights. Lower 20% is a layered service plinth with conduits concealed in recessed channels, ventilation grilles and maintenance covers. Upper cornice gently curved, warm-white concealed light. No screen filled with text, no cables across central window, no machinery protruding in front. Detailed noble craftsmanship, restrained clean scientific laboratory. EXACT frontal rectangular wall texture, no room perspective.",
+      "sha256": "31f56b25a006b4d0ed1463d853bffd52afde978fb1ef9e909fad9c5c4f32042c"
+    },
+    {
+      "name": "reception_desk",
+      "file": "reception_desk.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-4d7cf460-b930-4223-b69d-4ebb7bb48ca4.png",
+      "active": false,
+      "transparent_background": true,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent-background 2D GAME PROP SPRITE, just one isolated reception desk, no environment or people. Use the reference only for the craftsmanship, palette and material quality. A premium dark walnut space-observation bureau reception desk, richly paneled fronts with fine brass inlay and one central celestial compass emblem, rounded/chamfered corners, believable desk thickness and feet, brass handles, clean base silhouette. On top include a single small warm brass desk lamp, a short orderly stack of archival books and a tiny embedded blue-glass terminal. Camera is ORTHOGRAPHIC ISOMETRIC, elevated about 30 degrees, view from front-right, top edges follow approximately +/-26.565 degree slopes; the long desk front runs down-right, shorter right side runs up-right. Table footprint a long rectangular parallelogram, length/depth about 2.6:1.4. Detailed semi-realistic painted game art consistent with reference, not toy low-poly. Entire object visible including feet, centered and fills most of canvas with minimal transparent margins. No chair, no Tesla, no bookshelves, no floor plane, no cast shadow extending away, no surrounding items, no UI or text. True transparent alpha background, not checkerboard. Landscape 3:2.",
+      "sha256": "4be6e01320f88697233fa68f3ce696aad30ac8586f6e1eb1df7237e13a43ab07"
+    },
+    {
+      "name": "reception_globe",
+      "file": "reception_globe.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-9d28b319-753e-487c-b88b-949ffb88889d.png",
+      "active": true,
+      "transparent_background": true,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production transparent-background 2D GAME PROP SPRITE. One isolated spectacular blue celestial armillary instrument for a retro-futuristic universe observation bureau, match the supplied interior concept for rich navy/ivory/champagne brass materials and semi-realistic game painting. A luminous sapphire transparent celestial globe containing subtle stars and wisps of blue energy, precise concentric polished brass rings at different inclinations, small carefully machined pivots and engraved ticks, supported on a sturdy navy-and-brass circular pedestal with stepped base. Silhouette strongly readable, globe is the focal object. Camera ORTHOGRAPHIC ISOMETRIC from above at about30 degrees, top of circular pedestal visible as a perspective ellipse, entire object visible, centered with minimal transparent margins, no dramatic perspective. Globe occupies upper65% of the prop, stand lower35%. This is a single movable game environment prop, not a full room, no surrounding railing or separate satellite spheres, no people, no table, no floor, no outside shadow, no lettering or HUD. True alpha transparent background, not checkerboard. Portrait aspect 4:5.",
+      "sha256": "400289f20c3bc1962b71a84785f1e24108cc7c44fe02f885dfa5924cd8124525"
+    },
+    {
+      "name": "ivory_floor",
+      "file": "ivory_floor.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-05dc6312-c897-4892-8f0c-f022e6125ebb.png",
+      "active": true,
+      "transparent_background": false,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: stylized-concept. Production SEAMLESS square material texture for an upscale astronomical space-station interior game floor, based only on the reference's ivory stone material. EXACT top-down orthographic flat square ivory/warm-light-gray ceramic stone surface filling canvas edge to edge. Very subtle fine beige marble veins and restrained satin microtexture, broad quiet clean surface, medium-light value. Fully diffuse uniform neutral illumination, no specular glare, no baked reflected room, no directional shadows, no perspective, no tile grid, no grout, no panel borders, no gold lines, no symbols, no people, no objects, no text. Tileable texture, realistic close-up material detail but low-contrast veins so puzzle objects remain clear. Square 1:1.",
+      "sha256": "7663894b6b129f23c82269bbb9338c9f6e602559ea2e3519ff1c4b2d55f08943"
+    },
+    {
+      "name": "reception_desk_v2",
+      "file": "reception_desk_v2.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-bb91bd7d-9af6-4cf4-8308-cf99e93bec95.png",
+      "active": true,
+      "transparent_background": true,
+      "references": [
+        "C:/Users/forey/Documents/ChatGPT/温州/.artifact_work/interior-v30/desk-layout-reference.png",
+        "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/接待大厅室内-v01/接待大厅-室内概念-v01.png"
+      ],
+      "prompt": "Use case: precise-object-edit. Production alpha game sprite. Image1 is the EXISTING DESK SPRITE and the EXACT geometry/camera/shape to preserve. Image2 is MATERIAL/CRAFTSMANSHIP reference only. Repaint Image1 as a premium richly detailed dark walnut and champagne-brass astronomical bureau office desk matching image2's material quality. Preserve Image1's compact deep rectangular footprint, full desk HEIGHT, camera angle, diagonal top edges, solid tall front cabinet face, right drawer pedestal, left small brass desk lamp, central leather writing blotter and book. Keep its near-square overall silhouette (including lamp), with the FRONT cabinet panel tall enough to occlude the legs of a character standing behind it. This must be a compact freestanding OFFICE DESK, never a long low reception counter, no U-shape, no curved wings, no extra-wide table. Preserve exactly the framing and camera in image1. Add subtle wood grain, convincing beveled metal inlays, precision brass handles and tasteful celestial embossing. Fine semi-realistic painted game asset, NOT cartoon plastic, not a room scene. No person, no wall, no ground, no extra background objects. One complete desk fully visible, true transparent alpha background, minimal transparent padding. Do not change the silhouette or camera. Transparent pixels must remain transparent.",
+      "sha256": "a3f4f9bf31c5aabc885bb87c7ae3d31927ab1fd6e02205c0506e80e2cd97f01c"
+    }
+  ]
+}

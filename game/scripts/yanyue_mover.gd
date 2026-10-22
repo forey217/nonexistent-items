@@ -83,6 +83,13 @@ func teleport_for_reset(destination: Vector2) -> void:
 func is_navigating() -> bool:
 	return route_index < route.size()
 
+func face_toward(target: Vector2) -> void:
+	var direction:=target-global_position
+	if direction.length_squared()<0.01:return
+	_last_direction=direction.normalized()
+	_update_facing(_last_direction)
+	_art.pose(_walk_time,walking,facing_row,_last_direction,1.0)
+
 func _physics_process(delta: float) -> void:
 	var keyboard := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	keyboard=input_basis.basis_xform(keyboard)

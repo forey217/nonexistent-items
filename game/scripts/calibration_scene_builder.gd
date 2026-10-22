@@ -9,6 +9,9 @@ var brass: StandardMaterial3D
 var dark: StandardMaterial3D
 var glow: StandardMaterial3D
 var palette_shader: Shader
+var stone_texture: Texture2D=preload("res://assets/interior_v30/ivory_floor.png")
+var lab_wall: Texture2D=preload("res://assets/interior_v30/calibration_wall.png")
+var panorama_wall: Texture2D=preload("res://assets/interior_v30/panorama_wall.png")
 
 func configure(index: int,parent: Node3D) -> void:
 	theme=index
@@ -28,13 +31,60 @@ void fragment(){
  else result=enamel.rgb*mix(0.8,1.08,lum);
  ALBEDO=result; ROUGHNESS=0.8;
 }"""
-	var creams := [Color("c3d6da"),Color("dfd0b5"),Color("d6cfdf")]
-	var metals := [Color("475c68"),Color("5b5250"),Color("57536c")]
+	var creams := [Color("e4e9e7"),Color("e8dec9"),Color("e2dfee")]
+	var metals := [Color("304a5c"),Color("4b4642"),Color("41435b")]
 	cream=material(creams[theme])
+	cream.albedo_texture=stone_texture
 	metal=material(metals[theme])
 	brass=material(Color("b19b6b"))
+	brass.metallic=0.58;brass.roughness=0.37
 	dark=material(Color("293841"))
 	glow=material([Color("a3e5ed"),Color("edbc7e"),Color("c0b4ed")][theme],true)
+
+func textured_panel(at: Vector3,size: Vector2,texture: Texture2D,angle:=0.0,uv:=Rect2(0,0,1,1)) -> MeshInstance3D:
+	var mat:=material(Color.WHITE)
+	mat.albedo_texture=texture
+	mat.roughness=0.72
+	mat.cull_mode=BaseMaterial3D.CULL_DISABLED
+	mat.uv1_scale=Vector3(uv.size.x,uv.size.y,1)
+	mat.uv1_offset=Vector3(uv.position.x,uv.position.y,0)
+	mat.emission_enabled=true;mat.emission_texture=texture;mat.emission=Color.WHITE
+	mat.emission_energy_multiplier=0.16
+	var mesh:=QuadMesh.new();mesh.size=size
+	var node:=MeshInstance3D.new();node.mesh=mesh;node.material_override=mat
+	node.position=at;node.rotation.y=angle
+	node.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	scene.add_child(node)
+	return node
+
+func interior_shell() -> void:
+	preload("res://scripts/calibration_interior.gd").new().build(self)
+
+func portal_frame() -> void:
+	var frame:=Node3D.new();scene.add_child(frame);frame.rotation.y=PI*0.25
+	var path: Array[Vector2]=[Vector2(-0.75,0.10),Vector2(-0.75,1.66),Vector2(-0.55,1.99),Vector2(0.55,1.99),Vector2(0.75,1.66),Vector2(0.75,0.10)]
+	for i in range(path.size()-1):
+		var a:=path[i];var b:=path[i+1];var center: Vector2=(a+b)*0.5
+		var length:=a.distance_to(b)
+		var angle:=-atan2(b.x-a.x,b.y-a.y)
+		var body:=box(Vector3(center.x,center.y,0),Vector3(0.19,length+0.05,0.28),metal,frame)
+		body.rotation.z=angle
+		for edge in [-0.065,0.065]:
+			var offset:=Vector2(edge,0).rotated(angle)
+			var trim:=box(Vector3(center.x+offset.x,center.y+offset.y,0.15),Vector3(0.018,length+0.045,0.025),brass,frame)
+			trim.rotation.z=angle
+		var enamel:=box(Vector3(center.x,center.y,0.151),Vector3(0.080,length*0.84,0.026),cream,frame)
+		enamel.rotation.z=angle
+	for x in [-0.75,0.75]:
+		box(Vector3(x,0.10,0),Vector3(0.34,0.20,0.40),metal,frame)
+		box(Vector3(x,0.20,0),Vector3(0.35,0.035,0.41),brass,frame)
+		for y in [0.38,0.66,0.94,1.22,1.50]:
+			var screw:=cylinder(Vector3(x,y,0.18),0.026,0.02,brass,frame)
+			screw.rotation.x=PI*0.5
+	var seal:=cylinder(Vector3(0,2.10,0.12),0.16,0.045,brass,frame);seal.rotation.x=PI*0.5
+	var seal_core:=cylinder(Vector3(0,2.10,0.15),0.12,0.018,dark,frame);seal_core.rotation.x=PI*0.5
+	box(Vector3(0,2.10,0.17),Vector3(0.018,0.20,0.014),brass,frame)
+	box(Vector3(0,2.10,0.17),Vector3(0.20,0.018,0.014),brass,frame)
 
 func material(color: Color, emission := false) -> StandardMaterial3D:
 	var m := StandardMaterial3D.new()
@@ -91,34 +141,7 @@ func recolor(node: Node) -> void:
 	for child in node.get_children(): recolor(child)
 
 func room_base() -> void:
-	# Continuous slab, inset floor panels and machined brass edge.
-	box(Vector3(6,-0.14,4),Vector3(12,0.28,8),metal)
-	box(Vector3(6,-0.025,4),Vector3(12.06,0.05,8.06),brass)
-	for u in range(12):
-		for v in range(8):
-			var floor_mat:=material(cream.albedo_color.darkened(0.035 if (u+v)%2==0 else 0.0))
-			box(Vector3(u+0.5,0.005,v+0.5),Vector3(0.986,0.04,0.986),floor_mat)
-	# Kenney panels face inward. Each module spans two gameplay grid cells.
-	for i in range(6):
-		model("template-wall-detail-a" if i%3==0 else "template-wall",Vector3(1+i*2,0,-0.04),Vector3(0.5,0.47,0.22),PI)
-	for i in range(4):
-		model("template-wall-detail-a" if i%2==0 else "template-wall",Vector3(-0.04,0,1+i*2),Vector3(0.5,0.47,0.22),-PI*0.5)
-	# Back-wall service spine, inset light strips and safety skirting.
-	for z in [0.09,0.17]: box(Vector3(6,0.28,z),Vector3(12.05,0.045,0.04),brass)
-	for x in [0.09,0.17]: box(Vector3(x,0.28,4),Vector3(0.04,0.045,8),brass)
-	for i in range(6): box(Vector3(1+i*2,1.65,0.23),Vector3(0.66,0.045,0.025),glow)
-	for i in range(4): box(Vector3(0.23,1.65,1+i*2),Vector3(0.025,0.045,0.66),glow)
-	# Recessed observation windows, segmented mullions and labelling plates.
-	for x in [4.0,8.0]:
-		box(Vector3(x,1.15,0.13),Vector3(1.30,0.68,0.08),metal)
-		box(Vector3(x,1.15,0.185),Vector3(1.16,0.54,0.025),dark)
-		for j in range(3):
-			box(Vector3(x-0.38+j*0.38,1.15,0.203),Vector3(0.018,0.54,0.025),brass)
-			box(Vector3(x-0.38+j*0.38,1.32,0.22),Vector3(0.28,0.035,0.01),glow)
-	for z in [2.0,6.0]:
-		box(Vector3(0.13,1.15,z),Vector3(0.08,0.68,1.30),metal)
-		box(Vector3(0.185,1.15,z),Vector3(0.025,0.54,1.16),dark)
-		for j in range(3): box(Vector3(0.203,1.15,z-0.38+j*0.38),Vector3(0.025,0.54,0.018),brass)
+	interior_shell()
 	# Service trenches lead from wall instrumentation to the calibration rig.
 	box(Vector3(6.8,0.04,2.35),Vector3(0.18,0.025,3.1),dark)
 	box(Vector3(6.8,0.06,2.35),Vector3(0.035,0.025,3.1),brass)
@@ -153,6 +176,9 @@ func receiver() -> void:
 		box(Vector3(x,1.5,-0.12),Vector3(0.13,3.0,0.16),metal)
 		box(Vector3(x,1.5,-0.025),Vector3(0.045,2.92,0.028),brass)
 		box(Vector3(x,0.08,-0.12),Vector3(0.32,0.16,0.36),metal)
+		cylinder(Vector3(x,1.48,-0.12),0.070,2.74,brass)
+		for y in [0.22,0.70,1.18,1.66,2.14,2.62]:
+			cylinder(Vector3(x,y,-0.12),0.089,0.055,metal)
 		for j in range(14): box(Vector3(x,0.24+j*0.18,0.0),Vector3(0.10,0.045,0.035),cream)
 	box(Vector3(0,2.96,-0.12),Vector3(1.23,0.18,0.32),metal)
 	box(Vector3(0,2.82,0),Vector3(0.74,0.10,0.46),brass)
@@ -188,6 +214,7 @@ func cabinet() -> void:
 		for i in range(3): cylinder(Vector3(x-0.14+i*0.14,1.82,0),0.04,0.22,brass)
 	for x in [-0.67,0.67]: box(Vector3(x,0.08,0),Vector3(0.18,0.16,0.53),dark)
 	model("cables",Vector3(0.0,0.025,0.02),Vector3(0.55,0.5,0.35))
+	textured_panel(Vector3(0,0.98,0.35),Vector2(1.25,1.31),lab_wall,0,Rect2(0.025,0.15,0.18,0.67))
 
 func console_desk() -> void:
 	for x in [-0.85,0.85]: box(Vector3(x,0.4,0),Vector3(0.39,0.8,0.85),metal)
@@ -200,4 +227,8 @@ func console_desk() -> void:
 		for i in range(3): box(Vector3(x,1.08+i*0.09,-0.16),Vector3(0.34-i*0.06,0.015,0.01),glow)
 	for i in range(9): box(Vector3(-0.7+i*0.18,0.935,0.22),Vector3(0.09,0.03,0.085),cream if i%3 else glow)
 	box(Vector3(0.65,0.95,0.28),Vector3(0.34,0.04,0.23),dark)
+	for x in [-0.65,0.0,0.65]:
+		textured_panel(Vector3(x,1.18,-0.145),Vector2(0.45,0.32),lab_wall,0,Rect2(0.78,0.21,0.16,0.36))
+	for side in [-1.0,1.0]:
+		textured_panel(Vector3(side*1.055,0.42,0),Vector2(0.70,0.53),lab_wall,side*PI*0.5,Rect2(0.017,0.33,0.17,0.40))
 

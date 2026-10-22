@@ -1,0 +1,672 @@
+{
+	"checks": 64,
+	"dialogue_history": [
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "衍月？欢迎来到世界检查局。我是特斯拉，今天由我带你熟悉工作。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "yanyue",
+			"style": "story",
+			"text": "我来的时候，看见外面的楼梯通向了两片不同的天空。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "看来你已经见过我们要处理的问题了。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "yanyue",
+			"style": "story",
+			"text": "那不是这里的建筑风格？",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "至少不在设计图上。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "平行世界通常各走各的路。但有些时候，它们会靠得太近，甚至重叠在一起。",
+			"visual": "overlap"
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "同一个地方，会同时出现几套不同的规则。物品受哪一套影响，也就变得不稳定。",
+			"visual": "overlap"
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "yanyue",
+			"style": "story",
+			"text": "所以，我们要把它们分开？",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "先锚定，让每个世界找回自己的位置。我们用这个——镇纸。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "opening",
+			"speaker": "yanyue",
+			"style": "story",
+			"text": "压住纸的那个镇纸？",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "exhibit-skip",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "先锚定，让每个世界找回自己的位置。我们用这个——镇纸。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "after-skip",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "准备好了，就到星系仪旁边来。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "reminder",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "先到星系仪旁边，找出那片区域。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "after-skip",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "准备好了，就到星系仪旁边来。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "select-whole",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "要去的地方，就在这块水晶里面？",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "select-fragments",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "找到了。01号，新手校准室。",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "stage-0",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "通讯正常。听得见吗？",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "stage-0",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "听得见。这里看起来……比外面安静。",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "stage-0",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "重叠不一定会发出声音。看导轨上的镇纸，还有那三处黄铜机关。",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "stage-0",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "先定星位，再压月痕，最后封界缝。这一片区域就能稳定下来。",
+			"visual": "anchors"
+		},
+		{
+			"phase": 0,
+			"segment": "test-ice-lesson",
+			"speaker": "tesla",
+			"style": "light",
+			"text": "现在是冰晶世界。导轨的摩擦很小，镇纸受到推动后，会一直滑到挡块前。",
+			"visual": "law-ice"
+		},
+		{
+			"phase": 0,
+			"segment": "hint",
+			"speaker": "tesla",
+			"style": "light",
+			"text": "星位在带五角星的锚座上。",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "first-push",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "真的只推了一下……它自己滑过去了。",
+			"visual": "law-ice"
+		},
+		{
+			"phase": 1,
+			"segment": "stage-1",
+			"speaker": "yanyue",
+			"style": "light",
+			"text": "到地方了。星位怎么没亮？",
+			"visual": ""
+		},
+		{
+			"phase": 1,
+			"segment": "stage-1",
+			"speaker": "tesla",
+			"style": "light",
+			"text": "位置对了，重量还不够。",
+			"visual": ""
+		},
+		{
+			"phase": 1,
+			"segment": "stage-1",
+			"speaker": "tesla",
+			"style": "light",
+			"text": "切到重力世界。同一块镇纸在那里会变得更重，足以压下踏板。",
+			"visual": "law-heavy"
+		},
+		{
+			"phase": 2,
+			"segment": "stage-2",
+			"speaker": "yanyue",
+			"style": "aside",
+			"text": "星位亮了，挡块也打开了。",
+			"visual": "law-heavy"
+		},
+		{
+			"phase": 2,
+			"segment": "stage-2",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "第一处坐标已经锁定。接下来找月痕，就在导轨尽头的上方。",
+			"visual": ""
+		},
+		{
+			"phase": 3,
+			"segment": "stage-3",
+			"speaker": "yanyue",
+			"style": "light",
+			"text": "下面到了。可月痕在那么高的地方。",
+			"visual": ""
+		},
+		{
+			"phase": 3,
+			"segment": "stage-3",
+			"speaker": "tesla",
+			"style": "light",
+			"text": "还记得第三个世界吗？倒悬世界的重力朝上。",
+			"visual": "law-inverted"
+		},
+		{
+			"phase": 3,
+			"segment": "first-float",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "纸片也飘起来了……我怎么还站在地上？",
+			"visual": "law-inverted"
+		},
+		{
+			"phase": 4,
+			"segment": "stage-4",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "月痕也亮了。可那道裂缝还在。",
+			"visual": ""
+		},
+		{
+			"phase": 5,
+			"segment": "stage-5",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "裂缝合上了。",
+			"visual": ""
+		},
+		{
+			"phase": 5,
+			"segment": "stage-5",
+			"speaker": "tesla",
+			"style": "aside",
+			"text": "读数稳定，三处校准全部完成。做得不错。",
+			"visual": ""
+		},
+		{
+			"phase": 4,
+			"segment": "gate-lost",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "门又关了。",
+			"visual": ""
+		},
+		{
+			"phase": 5,
+			"segment": "gate-restored",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "归位门已经稳定。保持重力世界，通过归位门回来。",
+			"visual": ""
+		},
+		{
+			"phase": 5,
+			"segment": "archive",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "现场校准完成。开始归档。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "debrief",
+			"speaker": "tesla",
+			"style": "story",
+			"text": "欢迎回来，衍月。第一份现场记录已经归档。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "after-skip",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "准备好了，就到星系仪旁边来。",
+			"visual": ""
+		},
+		{
+			"phase": -1,
+			"segment": "select-whole",
+			"speaker": "yanyue",
+			"style": "subtitle",
+			"text": "要去的地方，就在这块水晶里面？",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "stage-0",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "还是这三个步骤。试着自己完成，我在这里看着。",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "reset",
+			"speaker": "tesla",
+			"style": "subtitle",
+			"text": "现场已复位。我们重新来，这次留意每次变化带来的结果。",
+			"visual": ""
+		},
+		{
+			"phase": 0,
+			"segment": "dynamic-rule",
+			"speaker": "tesla",
+			"style": "light",
+			"text": "先试试冰晶世界。那里的导轨摩擦很小，适合运送镇纸。",
+			"visual": ""
+		}
+	],
+	"failures": 0,
+	"results": [
+		{
+			"details": {},
+			"passed": true,
+			"test": "dialogue_suite_uses_real_enabled_director"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "title_reaches_opening_story"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "opening_blocks_movement_and_world_input"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "tesla_portrait_on_right_with_text_clear"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "story_controls_do_not_cover_portrait"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "story_body_fits_two_lines"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "space_advances_to_yanyue"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ordinary_story_does_not_show_item"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "overlap_waits_for_spoken_world_name"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "overlap_introduction_shows_three_worlds"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "parallel_world_layers_converge"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "overlap_stays_across_explanation_without_restarting"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ordinary_followup_clears_overlap"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "item_waits_until_name_is_revealed"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "first_paperweight_mention_reveals_real_model"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "item_display_leaves_story_text_and_portrait_clear"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "continuing_hides_item_and_stops_rendering"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "mute_still_works_during_modal_story"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "skip_restores_hub_and_keeps_next_destination"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "skipping_story_clears_item_exhibit"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "click_tesla_reopens_contextual_conversation"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "selection_has_unboxed_subtitles"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "split_updates_subtitle_to_first_level"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "selection_clears_old_dialogue_during_flight"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_rift_enters_tutorial"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "entry_uses_subtitles_without_locking_gameplay"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "three_anchor_cue_is_driven_by_actual_dialogue"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "anchor_sequence_starts_at_star"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "anchor_sequence_then_targets_moon"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "anchor_sequence_ends_at_seal_pad"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "teaching_cleanup_preserves_user_hover"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "ice_rule_annotates_real_object_without_simulating_it"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "rule_label_avoids_actor_mechanisms_and_HUD"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "law_arrows_follow_camera_projection"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "new_hint_clears_previous_scene_annotation"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "H_uses_tesla_light_frame_in_safe_footer"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_push_reaches_first_plate"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "first_plate_uses_yanyue_light_frame"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_lesson_previews_the_requested_rule"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "light_panel_clears_mechanisms_at_-45"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "light_panel_clears_mechanisms_at_45"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_activates_star"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "stage_progress_replaces_stale_weight_instruction"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "heavy_confirmation_shows_actual_pressure"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_transport_reaches_end"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "inverted_lesson_previews_upward_gravity"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "first_float_connects_upward_arrows_to_real_movement"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_inverted_world_completes_moon"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "moon_uses_unboxed_subtitle"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_seal_finishes_before_success_dialogue"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "tesla_confirmation_uses_small_aside"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "lost_pressure_explains_reclosed_gate"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "restore_pressure_does_not_repeat_full_success_scene"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "real_walk_starts_archive"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "archive_only_shows_subtitle"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "return_arrival_finishes_before_debrief"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "debrief_locks_after_rift_not_during_it"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "replay_uses_short_entry_without_opening_story"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "R_clears_old_lines_and_uses_short_reset"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "reset_clears_scene_teaching"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "footer_restored_when_dialogue_hides"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "all_opening_and_debrief_lines_fit_at_runtime"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "all_tutorial_light_and_aside_lines_fit_two_lines"
+		},
+		{
+			"details": {},
+			"passed": true,
+			"test": "pending_rule_uses_actual_world_when_displayed"
+		}
+	]
+}

@@ -3,6 +3,8 @@ uniform float clock=0.0;
 uniform int kind=0;
 uniform float charge=0.0;
 uniform vec2 piece_origin=vec2(0.0);
+uniform float glass_finish=0.0;
+uniform float view_phase=0.0;
 varying vec2 place;
 float hash21(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 void vertex(){place=(VERTEX+piece_origin)/vec2(76.0,120.0);}
@@ -61,6 +63,9 @@ void fragment(){
 		col+=vec3(0.65,0.81,0.80)*stars;
 		col+=vec3(0.16,0.41,0.44)*exp(-d*d*8.0);
 	}
+	float sweep=abs(p.x*0.82+p.y*0.32-sin(view_phase)*0.70);
+	float reflection=exp(-sweep*sweep*95.0)*glass_finish;
+	col+=vec3(0.22,0.39,0.48)*reflection*0.52;
 	col=mix(col,vec3(0.92,1.0,0.97),charge*0.86);
 	COLOR=vec4(col,1.0);
 }

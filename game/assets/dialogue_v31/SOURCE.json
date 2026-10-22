@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-22",
+  "asset": "yanyue_portrait.png",
+  "purpose": "Runtime transparent half-body Yanyue portrait for A/B/C dialogue UI",
+  "tool": "built-in image_gen.imagegen",
+  "generated_source": "C:/Users/forey/.codex/generated_images/01a15f44-ca5c-75a2-b785-ab61ecb9b57e/exec-9259406d-3826-4e6c-b3c8-90f473fecf54.png",
+  "references": ["../yanyue_rig_v02.png", "../../../showcase/dialogue-design-v01/yanyue-a.png"],
+  "processing": "Copied without pixel edits. Godot AtlasTexture selects half-body or shoulder region at runtime.",
+  "rights": "Based on the user-provided competition character and existing project artwork. No new CC0 or ownership claim.",
+  "transparent_background": true,
+  "prompt": "Use case: identity-preserve. Asset type: final runtime transparent visual novel game dialogue portrait PNG, single intact character. Reference image 1 is Yanyue's EXISTING identity and clothing from a split skeletal sprite atlas; reference image 2 is the APPROVED dialogue design board for portrait style only. Reconstruct ONE INTACT waist-up Yanyue portrait matching the approved board. Young ADULT woman with brown twin hair buns, brown eyes, blue crystal hairpins, long blue crystal earrings, white ribbed high-neck sweater with complete shoulders and sleeves, black pleated skirt visible only to waist. Preserve face, hairstyle, character age and costume. Three-quarter face toward viewer's RIGHT, gentle curious attentive expression, graceful neutral pose, complete natural arms with hands resting near waist, no hand gesture needed. Dark ink fine outlines and soft illustrated shading consistent with reference. Composition centered, full hair and both shoulders and elbows entirely inside canvas with 8% transparent margin. Waist bottom is a clean crop; no detached parts, no extra characters, no dialogue box, no lettering, no background, no floor, no circle, no cast shadow, no opaque white rectangle. Actual RGBA transparency. This is a polished game-ready half-body portrait, not a sheet or mockup."
+}
