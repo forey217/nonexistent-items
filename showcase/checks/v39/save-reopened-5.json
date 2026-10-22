@@ -1,0 +1,26 @@
+{
+	"checks": 5,
+	"failures": 0,
+	"results": [
+		{
+			"passed": true,
+			"test": "title_zoom_opens_save_picker"
+		},
+		{
+			"passed": true,
+			"test": "reopened_process_shows_completed_record"
+		},
+		{
+			"passed": true,
+			"test": "slot_selection_finishes_scene_entry"
+		},
+		{
+			"passed": true,
+			"test": "fresh_process_restores_completed_hub"
+		},
+		{
+			"passed": true,
+			"test": "other_slot_remains_a_fresh_story"
+		}
+	]
+}

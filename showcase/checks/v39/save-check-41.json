@@ -1,0 +1,170 @@
+{
+	"checks": 41,
+	"failures": 0,
+	"results": [
+		{
+			"passed": true,
+			"test": "fresh_store_has_three_empty_slots"
+		},
+		{
+			"passed": true,
+			"test": "create_record_writes_valid_json"
+		},
+		{
+			"passed": true,
+			"test": "record_progress_can_be_updated"
+		},
+		{
+			"passed": true,
+			"test": "new_store_instance_reads_previous_progress"
+		},
+		{
+			"passed": true,
+			"test": "profiles_do_not_share_story_or_progress"
+		},
+		{
+			"passed": true,
+			"test": "creating_existing_slot_cannot_overwrite_it"
+		},
+		{
+			"passed": true,
+			"test": "invalid_checkpoint_does_not_replace_record"
+		},
+		{
+			"passed": true,
+			"test": "interrupted_or_corrupt_write_recovers_last_valid_backup"
+		},
+		{
+			"passed": true,
+			"test": "malformed_types_are_reported_without_overwriting"
+		},
+		{
+			"passed": true,
+			"test": "invalid_slot_numbers_cannot_create_files"
+		},
+		{
+			"passed": true,
+			"test": "last_used_slot_survives_reload"
+		},
+		{
+			"passed": true,
+			"test": "title_zoom_opens_save_picker"
+		},
+		{
+			"passed": true,
+			"test": "all_three_live_cards_are_empty"
+		},
+		{
+			"passed": true,
+			"test": "keyboard_selects_second_card"
+		},
+		{
+			"passed": true,
+			"test": "selecting_card_does_not_create_a_save"
+		},
+		{
+			"passed": true,
+			"test": "mute_shortcut_works_in_save_picker"
+		},
+		{
+			"passed": true,
+			"test": "slot_selection_finishes_scene_entry"
+		},
+		{
+			"passed": true,
+			"test": "empty_slot_starts_fresh_hub"
+		},
+		{
+			"passed": true,
+			"test": "new_record_can_start_opening_story"
+		},
+		{
+			"passed": true,
+			"test": "seen_story_is_written_to_selected_slot"
+		},
+		{
+			"passed": true,
+			"test": "profile_enters_real_tutorial"
+		},
+		{
+			"passed": true,
+			"test": "all_six_checkpoints_restore_consistent_puzzle_state"
+		},
+		{
+			"passed": true,
+			"test": "real_push_reaches_first_checkpoint"
+		},
+		{
+			"passed": true,
+			"test": "stable_transport_checkpoint_autosaves"
+		},
+		{
+			"passed": true,
+			"test": "real_heavy_world_sets_star"
+		},
+		{
+			"passed": true,
+			"test": "star_checkpoint_and_playtime_are_saved"
+		},
+		{
+			"passed": true,
+			"test": "title_zoom_opens_save_picker"
+		},
+		{
+			"passed": true,
+			"test": "existing_slot_shows_real_checkpoint_summary"
+		},
+		{
+			"passed": true,
+			"test": "cancel_returns_to_menu_without_rewriting_save"
+		},
+		{
+			"passed": true,
+			"test": "title_zoom_opens_save_picker"
+		},
+		{
+			"passed": true,
+			"test": "slot_selection_finishes_scene_entry"
+		},
+		{
+			"passed": true,
+			"test": "another_empty_slot_has_independent_story_and_progress"
+		},
+		{
+			"passed": true,
+			"test": "title_zoom_opens_save_picker"
+		},
+		{
+			"passed": true,
+			"test": "slot_selection_finishes_scene_entry"
+		},
+		{
+			"passed": true,
+			"test": "continue_restores_scene_and_star_checkpoint"
+		},
+		{
+			"passed": true,
+			"test": "loaded_game_can_continue_to_rail_end"
+		},
+		{
+			"passed": true,
+			"test": "loaded_game_can_activate_moon"
+		},
+		{
+			"passed": true,
+			"test": "loaded_game_can_complete_seal"
+		},
+		{
+			"passed": true,
+			"test": "loaded_game_returns_through_archive"
+		},
+		{
+			"passed": true,
+			"test": "success_is_saved_before_archive_finishes"
+		},
+		{
+			"passed": true,
+			"test": "completion_does_not_modify_other_slot"
+		}
+	]
+}

@@ -1,0 +1,29 @@
+{
+  "version": "v39",
+  "mode": "built-in image_gen",
+  "reference": "C:/Users/forey/Documents/ChatGPT/温州/游戏策划/美术概念/存档选择界面-v01/方案二-扇形档案页.png",
+  "assets": [
+    {
+      "file": "background.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-7b8da285-479c-4a8f-8a8e-264044d90e3e.png",
+      "prompt": "Use case: precise-object-edit. Edit the reference into the FINAL CLEAN BACKGROUND PLATE for the same game save screen. KEEP the existing room, camera, complete centered blue-and-brass armillary globe, its position/size, walnut shelves, doorway, desk, lamps, windows, warm light, stone floor and painterly quality EXACTLY. REMOVE ALL interface graphics: all three ivory archive cards and clips, all their text and borders, the header, return button, footer, any floating UI. Reconstruct the unobscured lower globe and its brass pedestal and the floor behind the cards naturally. Keep the full complete instrument in the SAME centered upper-middle location. No people, letters, cards or UI anywhere. Landscape8:5. This is an editable game BACKGROUND ONLY; runtime UI will be laid over the lower half. No extra redesign.",
+      "processing": "Copied final output into project."
+    },
+    {
+      "file": "card.png",
+      "original": "C:/Users/forey/.codex/generated_images/01a13fe0-4c80-7e33-876d-99ce1bf8163c/exec-04c8f7b5-5f83-4752-abe2-bbf93d8b1dbd.png",
+      "prompt": "Use case: stylized-concept. Derive ONE blank game UI archive-card asset from the reference's ivory fan archive pages. True transparent alpha background. Straight upright FRONT VIEW with NO rotation, perspective or surrounding scene. Entire thin rectangular ivory paper record page with refined thin champagne-brass rim, tiny dark navy engraved corner ornaments, a small ornate brass clip centered at TOP with a circular blue EMPTY gemstone setting. Fine cream paper grain, very faint low-contrast astronomical watermark confined mostly to LOWER THIRD and corners. Broad clean EMPTY ivory center for runtime labels, thumbnail and buttons. No text, number, plus sign, image vignette, dividers, buttons or readable lettering. Complete card and clip entirely in frame, tight small transparent margin. Aspect4:5 portrait. Substantial exquisite painted material, matching the exact bureau palette. NO long outside shadow, opaque rectangle background, checkerboard or extra cards. Intended body approximately244x296px at runtime, clip above body. Genuine RGBA transparency.",
+      "processing": "Trimmed transparent margin to alpha>12 bounding box [81,7,1041,1353]; preserved RGBA."
+    },
+    {
+      "file": "thumbnail.png",
+      "source": "C:/Users/forey/Documents/ChatGPT/温州/.artifact_work/lab-fullframe-v01/render-final/world-0-angle-0.png",
+      "kind": "existing project screenshot"
+    },
+    {
+      "file": "hub_thumbnail.png",
+      "source": "C:/Users/forey/Documents/ChatGPT/温州/.artifact_work/lab-fullframe-v01/hub-native/01-hub-tesla-no-chest.png",
+      "kind": "existing project screenshot"
+    }
+  ]
+}
