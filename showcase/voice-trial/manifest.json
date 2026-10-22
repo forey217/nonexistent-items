@@ -1,0 +1,50 @@
+[
+  {
+    "role": "衍月",
+    "voice": "zh-CN-XiaoyiNeural",
+    "rate": "+3%",
+    "pitch": "+2Hz",
+    "text": "这里就是观察局？和我想象中有点不一样。",
+    "file": "yanyue_01.mp3"
+  },
+  {
+    "role": "衍月",
+    "voice": "zh-CN-XiaoyiNeural",
+    "rate": "+3%",
+    "pitch": "+2Hz",
+    "text": "等等……如果换一个世界，这块镇纸会怎么样？",
+    "file": "yanyue_02.mp3"
+  },
+  {
+    "role": "衍月",
+    "voice": "zh-CN-XiaoyiNeural",
+    "rate": "+3%",
+    "pitch": "+2Hz",
+    "text": "成功了！原来这几个世界还能这样配合。",
+    "file": "yanyue_03.mp3"
+  },
+  {
+    "role": "男性 NPC",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "-5%",
+    "pitch": "-2Hz",
+    "text": "欢迎来到校准室。准备好了，就走近看看吧。",
+    "file": "npc_01.mp3"
+  },
+  {
+    "role": "男性 NPC",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "-5%",
+    "pitch": "-2Hz",
+    "text": "别急着再推一次。换个世界，观察它的变化。",
+    "file": "npc_02.mp3"
+  },
+  {
+    "role": "男性 NPC",
+    "voice": "zh-CN-YunxiNeural",
+    "rate": "-5%",
+    "pitch": "-2Hz",
+    "text": "校准完成，归位门已经开启。回来吧。",
+    "file": "npc_03.mp3"
+  }
+]
