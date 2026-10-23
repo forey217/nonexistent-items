@@ -119,7 +119,7 @@ func run(test_room: Node2D) -> void:
 	_record("no_folded_mesh_gaps_during_knee_bends",all_leg_quads_renderable,{"quads":checked_leg_quads,"phases_per_direction":32})
 	_record("back_hands_do_not_swing_through_spine",back_hands_stay_on_sides)
 	var steps_per_second: float = room.player.DEFAULT_SPEED/room.player._art.STRIDE_DISTANCE*2.0
-	_record("calm_walking_cadence",steps_per_second>=1.4 and steps_per_second<=1.9,{"steps_per_second":steps_per_second,"speed":room.player.DEFAULT_SPEED})
+	_record("walking_cadence_after_speed_increase",steps_per_second>=1.7 and steps_per_second<=2.1,{"steps_per_second":steps_per_second,"speed":room.player.DEFAULT_SPEED})
 	_record("shared_depth_sort",room.sort_layer.y_sort_enabled and room.player.get_parent()==room.props[0].get_parent())
 	for action in ACTIONS:
 		_record("input_binding_"+action,InputMap.action_get_events(action).size()==2)
@@ -142,7 +142,8 @@ func run(test_room: Node2D) -> void:
 	]
 	for trial in sustained_cases:
 		await _place(trial[0])
-		var sustained := await _hold(trial[1],82)
+		# Keep the full-gait sample inside its 200px obstacle-free corridor at any speed.
+		var sustained := await _hold(trial[1],ceili(200.0/room.player.speed*60.0))
 		_record("sustained_full_gait_%d"%trial[2],sustained["clear"] and sustained["frames"].size()>=16 and room.player.facing_row==trial[2],{"phases":sustained["frames"],"facing":room.player.facing_row})
 		_record("stop_returns_to_idle_%d"%trial[2],not room.player.walking and room.player.selected_frame == -1 and not room.player._art.moving)
 

@@ -4,9 +4,11 @@ var kind:="weight"
 var clock:=0.0
 var hovered:=false
 var textures: Array[Texture2D]=[]
+var live_rendering:=true
 var font:=SystemFont.new()
 
 func _ready() -> void:
+	if not live_rendering:set_process(false);return
 	font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
 	var asset: String="gate" if kind=="portal" else kind
 	for i in range(3):textures.append(load("res://assets/calibration_v03/%s-%d.png"%[asset,i]))

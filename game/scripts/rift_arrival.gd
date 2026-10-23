@@ -3,12 +3,15 @@ signal completed
 var room: Node2D
 var player: CharacterBody2D
 var visual: Node2D
+var foreground_visual: Node2D
+const DURATION := 2.15
 var active := false
 var prepared := false
 var age := 0.0
 var origin := Vector2.ZERO
 var destination := Vector2.ZERO
 var approach_scale := 1.0
+var playback_speed := 1.0
 
 func _ready() -> void:
 	process_physics_priority=-30
@@ -30,8 +33,15 @@ func prepare(owner_room: Node2D) -> void:
 		visual=room.orbit_view.prepare_arrival_rift(origin)
 	else:
 		visual=preload("res://scripts/spatial_rift.gd").new()
+		visual.render_pass="rear"
 		visual.position=origin+Vector2(0,-0.2)
 		room.sort_layer.add_child(visual)
+		foreground_visual=preload("res://scripts/spatial_rift.gd").new()
+		foreground_visual.render_pass="front"
+		foreground_visual.position=origin+Vector2(0,4)
+		foreground_visual.art_offset=Vector2(0,-4.2)
+		room.sort_layer.add_child(foreground_visual)
+		visual.linked_pass=foreground_visual
 	_set_alpha(0.0)
 
 func play() -> void:
@@ -46,13 +56,13 @@ func _set_alpha(value: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not active:return
-	age+=delta
+	age+=delta*playback_speed
 	visual.age=age;visual.queue_redraw()
-	_set_alpha(smoothstep(0.22,0.60,age))
+	_set_alpha(smoothstep(0.66,1.08,age))
 	player.controls_locked=true
 	var offset:=destination-player.position
-	player.cinematic_motion=offset.normalized()*minf(68.0,offset.length()/maxf(delta,0.001)) if age>0.25 and age<0.98 else Vector2.ZERO
-	if age>=1.10:
+	player.cinematic_motion=offset.normalized()*minf(78.0,offset.length()/maxf(delta,0.001)) if age>0.72 and age<1.43 else Vector2.ZERO
+	if age>=DURATION:
 		cancel()
 		completed.emit()
 
@@ -66,6 +76,7 @@ func cancel() -> void:
 	if is_instance_valid(visual):
 		if room.get("orbit_view")!=null:room.orbit_view.finish_arrival_rift()
 		else:visual.queue_free()
+	if is_instance_valid(foreground_visual):foreground_visual.queue_free()
 
 func busy() -> bool:
 	return active or prepared

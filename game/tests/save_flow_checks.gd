@@ -3,6 +3,7 @@ var app: Node
 var results: Array[Dictionary]=[]
 var failures:=0
 var directory:=""
+var checked_continuous_entry:=false
 
 func frames(count: int) -> void:
 	for i in range(count):await get_tree().physics_frame
@@ -32,13 +33,32 @@ func snapshot(name: String) -> void:
 	await RenderingServer.frame_post_draw
 	get_viewport().get_texture().get_image().save_png(directory.path_join(name+".png"))
 
-func open_picker() -> void:
+func open_picker(motion_off:=false) -> void:
+	if motion_off:app.current.motion_enabled=false
+	var painting: TextureRect=app.current.background_rect
+	var material: ShaderMaterial=painting.material
 	app.current.begin()
 	check("title_zoom_opens_save_picker",await until(func():return is_instance_valid(app.save_picker)))
-	await frames(50)
+	var center: Vector2=app.save_picker.globe_center()
+	if not checked_continuous_entry:
+		checked_continuous_entry=true
+		var picker=app.save_picker
+		key(KEY_ENTER);key(KEY_RIGHT)
+		click(Vector2(640,500))
+		check("card_fade_blocks_early_choice",not picker.ready_for_input() and app.active_slot==0 and not picker.busy)
+		check("picker_inherits_actual_painting_and_material",picker.background==painting and picker.background.material==material and painting.texture.resource_path.ends_with("bureau-interior-v4.png"))
+		check("continuous_entry_ends_at_final_globe_composition",center.distance_to(Vector2(640,300))<0.5 and picker.background.size==Vector2(1280,800))
+		await snapshot("00-continuous-entry-card-fade")
+	await until(func():return app.save_picker.ready_for_input())
+	check("save_cards_fade_in_without_background_reframing",app.save_picker.cards.all(func(card):return card.modulate.a>0.98) and app.save_picker.globe_center().distance_to(center)<0.01)
 
-func enter_slot(slot: int) -> void:
-	app.save_picker.select(slot);key(KEY_ENTER)
+func enter_slot(slot: int,card_body:=false) -> void:
+	if card_body:
+		# Use the record's title area, well outside the action button, including tilted cards.
+		var point: Vector2=app.save_picker.cards[slot-1].to_global(Vector2(0,-20))
+		click(point);click(point)
+	else:
+		app.save_picker.select(slot);key(KEY_ENTER)
 	check("slot_selection_finishes_scene_entry",await until(func():return app.save_picker==null and not app.menu_revealing and not app.current.has_signal("start_requested")))
 	await frames(4)
 
@@ -87,7 +107,7 @@ func run(flow: Node) -> void:
 	key(KEY_RIGHT);check("keyboard_selects_second_card",app.save_picker.selected==2)
 	check("selecting_card_does_not_create_a_save",app.save_book.inspect(2).status=="empty" and app.active_slot==0)
 	key(KEY_M);await frames(2);check("mute_shortcut_works_in_save_picker",app.ambience.muted);key(KEY_M)
-	await enter_slot(2)
+	await enter_slot(2,true)
 	check("empty_slot_starts_fresh_hub",app.active_slot==2 and app.current.get("state")==null and app.completed_runs==0 and not app.dialogue.intro_seen)
 	app.dialogue.enabled=true
 	click(app.current.world_to_screen(app.current.npc_art.to_global(Vector2(0,-70))))
@@ -116,11 +136,11 @@ func run(flow: Node) -> void:
 	var before: String=FileAccess.get_file_as_string(app.save_book.path_for(2))
 	key(KEY_ESCAPE);await frames(4)
 	check("cancel_returns_to_menu_without_rewriting_save",app.current.has_signal("start_requested") and not app.current.starting and FileAccess.get_file_as_string(app.save_book.path_for(2))==before)
-	await open_picker();app.save_picker.motion_enabled=false
-	await enter_slot(1)
+	await open_picker(true)
+	await enter_slot(1,true)
 	check("another_empty_slot_has_independent_story_and_progress",app.active_slot==1 and not app.dialogue.intro_seen and app.completed_runs==0 and int(app.save_book.inspect(2).data.checkpoint)==2)
 	key(KEY_F10);await frames(5);await open_picker();await snapshot("03-two-independent-records")
-	await enter_slot(2);room=app.current
+	await enter_slot(2,true);room=app.current
 	check("continue_restores_scene_and_star_checkpoint",room.get("state")!=null and room.state.first_latched and room.state.stage()==2 and app.dialogue.intro_seen and not room.player.controls_locked)
 	await snapshot("04-restored-star-checkpoint")
 	while room.world_cooldown>0 or room.casting:await frames(1)

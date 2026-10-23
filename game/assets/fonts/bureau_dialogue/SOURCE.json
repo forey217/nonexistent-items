@@ -1,0 +1,12 @@
+{
+  "font": "Bureau Dialogue Regular",
+  "change": "Only U+56DE 回 outline repaired; advance width preserved. Other glyph outlines and Unicode mappings verified unchanged.",
+  "base": "ZCOOL XiaoWei Regular",
+  "glyph_source": "Source Han Serif CN Regular",
+  "license": "SIL OFL 1.1; both notices preserved.",
+  "original_sha256": "a42b620140f493db42f741351dfbf343c0936d58588ee8004b8b2a218d997ff1",
+  "glyph_source_sha256": "3754ea669c530e2473354f8f6d9f79680a44d7e26ec7d00eeabee4a7e0753c5d",
+  "output_sha256": "0a090d600db5fb0998024b4b36af80d8592f243dd8b5eb7c5a0605baf14a67ff",
+  "verified_unchanged_glyphs": 7018,
+  "repaired_contours": 4
+}

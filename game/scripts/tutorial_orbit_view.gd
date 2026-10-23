@@ -2,6 +2,7 @@ extends Node2D
 ## Live orthographic presentation of the existing 2D puzzle.
 ## Camera orbit affects rendering/input projection, never collision or puzzle state.
 const Builder=preload("res://scripts/calibration_scene_builder.gd")
+const StaticBatch=preload("res://scripts/static_mesh_batch.gd")
 const PIXELS:=65.05382387
 const HEIGHT_PIXELS:=56.33826408
 const LIMIT:=45.0
@@ -40,34 +41,19 @@ var arrival_viewport: SubViewport
 var arrival_sprite: Sprite3D
 var arrival_rift: Node2D
 
+var arrival_gate: Node3D
+
 func prepare_arrival_rift(at: Vector2) -> Node2D:
-	if arrival_viewport==null:
-		arrival_viewport=SubViewport.new()
-		arrival_viewport.size=Vector2i(128,192)
-		arrival_viewport.transparent_bg=true
-		add_child(arrival_viewport)
-		arrival_rift=preload("res://scripts/spatial_rift.gd").new()
-		arrival_rift.position=Vector2(64,170)
-		arrival_viewport.add_child(arrival_rift)
-		arrival_sprite=Sprite3D.new()
-		arrival_sprite.texture=arrival_viewport.get_texture()
-		arrival_sprite.pixel_size=1.0/PIXELS
-		arrival_sprite.offset=Vector2(0,74)
-		arrival_sprite.billboard=BaseMaterial3D.BILLBOARD_FIXED_Y
-		arrival_sprite.scale.y=PIXELS/HEIGHT_PIXELS
-		arrival_sprite.shaded=false
-		arrival_sprite.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		arrival_sprite.layers=1<<3
-		world_root.add_child(arrival_sprite)
-	arrival_viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
-	arrival_sprite.position=to_world(at,0.035)
-	arrival_sprite.show()
-	arrival_rift.age=0.0;arrival_rift.queue_redraw()
-	return arrival_rift
+	if not is_instance_valid(arrival_gate):
+		arrival_gate=preload("res://scripts/armillary_billboard.gd").new()
+		world_root.add_child(arrival_gate)
+		arrival_viewport=arrival_gate.rear_viewport
+		arrival_sprite=arrival_gate.rear_sprite
+		arrival_rift=arrival_gate.rear_ink
+	return arrival_gate.begin(to_world(at,0.035),camera.position-to_world(at))
 
 func finish_arrival_rift() -> void:
-	if arrival_sprite!=null:arrival_sprite.hide()
-	if arrival_viewport!=null:arrival_viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
+	if is_instance_valid(arrival_gate):arrival_gate.stop()
 
 func _ready() -> void:
 	font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
@@ -151,21 +137,27 @@ func _build_theme(index: int) -> void:
 	var b:=Builder.new()
 	b.configure(index,root3)
 	b.room_base()
+	StaticBatch.compact(root3,[&"InteriorBackWall",&"InteriorSideWall"])
 	var cabinet:=_group(root3,to_world(room.props[0].position))
 	b.scene=cabinet
 	b.cabinet()
+	StaticBatch.compact(cabinet)
 	var console:=_group(root3,to_world(room.props[1].position))
 	b.scene=console
 	b.console_desk()
+	StaticBatch.compact(console)
 	var receiver:=_group(root3,to_world(room.rail_end))
 	b.scene=receiver
 	b.receiver()
+	StaticBatch.compact(receiver)
 	var weight:=_group(root3,to_world(room.rail_start))
 	b.scene=weight
 	b.weight()
+	StaticBatch.compact(weight)
 	var gate:=_group(root3,to_world(room.portal_position))
 	b.scene=gate
 	b.portal_frame()
+	StaticBatch.compact(gate)
 	var bars:=_group(gate,Vector3.ZERO)
 	bars.rotation.y=PI*0.25
 	for i in range(5):b.box(Vector3(-0.55+i*0.275,0.85,0),Vector3(0.018,1.7,0.018),b.brass,bars)

@@ -8,6 +8,10 @@ var kind:="cabinet"
 var last_world:=-1
 var font:=SystemFont.new()
 var sample_height:=0.0
+var live_rendering:=true
+
+func _ready() -> void:
+	if not live_rendering:set_process(false)
 
 func configure(key: String,title: String,center: Vector2,shape: PackedVector2Array,_width: float) -> void:
 	kind="cabinet" if key=="bookcase" else "console"
@@ -51,7 +55,7 @@ func inspection_text() -> String:
 	return "锚点监测：星位%s · 月痕%s · 界缝%s。"%["已定" if room.state.first_latched else "未定","已稳" if room.state.receiver_latched else "未稳","已封" if room.state.gate_open else "未封"]
 
 func _draw() -> void:
-	if room==null:return
+	if room==null or not live_rendering:return
 	var active:=Color("8de0bb")
 	var off:=Color("5d626b")
 	if kind=="cabinet":

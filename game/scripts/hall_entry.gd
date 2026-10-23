@@ -26,11 +26,12 @@ func begin(hub: Node2D,first: bool,revealed := false) -> void:
 	room_revealed=revealed
 	duration=3.4 if first else 1.55
 	if revealed:
-		duration=1.65 if first else 1.2
+		duration=2.55 if first else 1.2
 		veil.modulate.a=0.0
-	room.dialogue_footer.hide()
+	room.movement_hint.hide()
 	room.arrival_title.hide();room.arrival_title.set_process(false)
 	if not is_instance_valid(room.arrival):room.prepare_return_arrival(1.7)
+	room.arrival.playback_speed=1.0 if first else 1.08
 	active=true
 	set_physics_process(true)
 
@@ -51,7 +52,6 @@ func _physics_process(delta: float) -> void:
 		room.player.cinematic_motion=Vector2.ZERO
 		room.player.controls_locked=false
 		room.face_tesla()
-		room.dialogue_footer.show()
 		active=false
 		veil.hide();set_physics_process(false)
 		finished.emit()

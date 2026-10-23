@@ -48,7 +48,7 @@ func _draw() -> void:
 	var center: Vector2=left.lerp(corner,0.5)-Vector2(0,WALL_HEIGHT*0.68)
 	var basis:=Transform2D(Vector2(0.894427,-0.447214),Vector2(0,1),center)
 	draw_set_transform_matrix(basis)
-	var title:="平行宇宙观察局"
+	var title:="世界观察局"
 	var width:=title_font.get_string_size(title,HORIZONTAL_ALIGNMENT_LEFT,-1,20).x
 	draw_string(title_font,Vector2(-width*0.5,8),title,HORIZONTAL_ALIGNMENT_LEFT,-1,20,Color("efd9a0"))
 	draw_set_transform_matrix(Transform2D.IDENTITY)

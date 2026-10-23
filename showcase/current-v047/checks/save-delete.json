@@ -1,0 +1,190 @@
+{
+	"checks": 46,
+	"failures": 0,
+	"results": [
+		{
+			"passed": true,
+			"test": "delete_removes_main_backup_and_temporary"
+		},
+		{
+			"passed": true,
+			"test": "deletion_preserves_other_slot_and_settings"
+		},
+		{
+			"passed": true,
+			"test": "recent_selection_moves_to_remaining_record"
+		},
+		{
+			"passed": true,
+			"test": "new_reader_cannot_recover_deleted_backup"
+		},
+		{
+			"passed": true,
+			"test": "deleted_slot_can_be_created_fresh"
+		},
+		{
+			"passed": true,
+			"test": "out_of_range_delete_cannot_touch_records"
+		},
+		{
+			"passed": true,
+			"test": "partial_delete_failure_rolls_back_main_and_backup"
+		},
+		{
+			"passed": true,
+			"test": "failed_delete_preserves_recent_selection"
+		},
+		{
+			"passed": true,
+			"test": "metadata_failure_rolls_back_entire_record"
+		},
+		{
+			"passed": true,
+			"test": "damaged_records_can_be_deleted"
+		},
+		{
+			"passed": true,
+			"test": "backup_only_record_is_deleted_without_resurrection"
+		},
+		{
+			"passed": true,
+			"test": "orphan_temporary_file_is_removed"
+		},
+		{
+			"passed": true,
+			"test": "directory_collision_fails_before_deleting_anything"
+		},
+		{
+			"passed": true,
+			"test": "save_picker_opens"
+		},
+		{
+			"passed": true,
+			"test": "ready_and_damaged_cards_offer_delete"
+		},
+		{
+			"passed": true,
+			"test": "delete_targets_are_at_least_32_pixels"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "keep_record_has_default_keyboard_focus"
+		},
+		{
+			"passed": true,
+			"test": "default_enter_cancels_without_modifying_save"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "modal_blocks_background_entry_and_selection"
+		},
+		{
+			"passed": true,
+			"test": "escape_cancels_without_modifying_save"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "mouse_keep_record_cancels"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "confirmed_delete_clears_only_pinned_slot"
+		},
+		{
+			"passed": true,
+			"test": "deleted_active_profile_is_cleared_from_memory"
+		},
+		{
+			"passed": true,
+			"test": "success_updates_card_without_reentering_or_replaying"
+		},
+		{
+			"passed": true,
+			"test": "success_shows_target_number"
+		},
+		{
+			"passed": true,
+			"test": "autosave_cannot_recreate_deleted_profile"
+		},
+		{
+			"passed": true,
+			"test": "keyboard_delete_opens_damaged_record"
+		},
+		{
+			"passed": true,
+			"test": "keyboard_confirm_deletes_damaged_record"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "failed_delete_keeps_modal_and_card_intact"
+		},
+		{
+			"passed": true,
+			"test": "failure_restores_keep_record_focus"
+		},
+		{
+			"passed": true,
+			"test": "whole_existing_card_still_enters"
+		},
+		{
+			"passed": true,
+			"test": "existing_card_restores_correct_profile"
+		},
+		{
+			"passed": true,
+			"test": "save_picker_opens"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "delete_after_return_clears_real_active_record"
+		},
+		{
+			"passed": true,
+			"test": "empty_card_can_start_fresh_after_delete"
+		},
+		{
+			"passed": true,
+			"test": "recreated_profile_has_fresh_story"
+		},
+		{
+			"passed": true,
+			"test": "save_picker_opens"
+		},
+		{
+			"passed": true,
+			"test": "trash_opens_pinned_modal_without_entering_game"
+		},
+		{
+			"passed": true,
+			"test": "other_profile_survives_full_delete_and_recreate_flow"
+		},
+		{
+			"passed": true,
+			"test": "global_audio_preferences_are_unchanged"
+		}
+	]
+}

@@ -137,7 +137,7 @@ func run(test_room: Node2D) -> void:
 	record("tutorial_spawn_clear",room.actor_position_is_clear(room.player.position))
 	record("guarded_rail_is_solid",not room.actor_position_is_clear(room.first_plate))
 	record("closed_portal_is_solid",not room.actor_position_is_clear(room.portal_position))
-	record("skill_card_is_in_upper_left",room.hud.skill_panel.get_global_rect().position.x<100 and room.hud.skill_panel.get_global_rect().position.y<300)
+	record("world_instruments_are_at_bottom_center",absf(room.hud.skill_panel.get_global_rect().get_center().x-640)<1 and room.hud.skill_panel.get_global_rect().position.y>700)
 	record("same_world_does_not_consume_cooldown",not room.change_world(0) and room.world_cooldown==0)
 	record("invalid_world_does_not_consume_cooldown",not room.change_world(9) and room.world_cooldown==0)
 	var before: Vector2=room.player.position
@@ -164,6 +164,8 @@ func run(test_room: Node2D) -> void:
 	key(KEY_3); await wait_frames(50)
 	record("skill_works_again_after_recovery",room.state.world==2 and room.state.elevation>0)
 	key(KEY_R); await wait_frames(3)
+	record("r_requests_confirmation_midair",room.hud.menu.confirmation.visible)
+	room.hud.menu.confirm_button.pressed.emit();await wait_frames(3)
 	record("r_restores_safe_start_midair",room.state.world==0 and room.state.elevation==0 and room.player.position==room.spawn_point)
 	record("reset_clears_cast_and_cooldown",room.world_cooldown==0 and not room.casting and not room.switch_fx.active and room.player._art.cast_amount==0)
 	key(KEY_H); key(KEY_H); key(KEY_H)

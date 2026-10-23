@@ -11,7 +11,7 @@ func _ready() -> void:
 	size = Vector2(560,100)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var bureau := Label.new()
-	bureau.text = "观 察 局"
+	bureau.text = "世 界 观 察 局"
 	bureau.position = Vector2(0,0)
 	bureau.size = Vector2(560,22)
 	bureau.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

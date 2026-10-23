@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-23",
+  "game": "世界不按说明书 · 双关薄玻璃UI v01",
+  "sha256": "b71e1a651de8c96049e30a7192835cc66aa14a0ea48fc1a7bd27d8d4f8e8b325",
+  "exe_bytes": 195457192,
+  "results": [
+    {
+      "suite": "两关玻璃材质、通讯分页、窗口、全屏和倍率",
+      "checks": 46,
+      "failures": 0,
+      "source": "export-glass/glass-ui-report.json",
+      "native": true
+    },
+    {
+      "suite": "任务、规则、冷却、暂停、设置与地图输入",
+      "checks": 31,
+      "failures": 0,
+      "source": "export-hud/hud-report.json",
+      "native": true
+    },
+    {
+      "suite": "第一关剧情、通讯与字幕排版",
+      "checks": 93,
+      "failures": 0,
+      "source": "export-dialogue/dialogue-test-report.json",
+      "native": true
+    },
+    {
+      "suite": "第二关80条配音、通讯触发和阅读状态",
+      "checks": 56,
+      "failures": 0,
+      "source": "export-story/paper-story-report.json",
+      "native": true
+    },
+    {
+      "suite": "楼梯护栏、正确朝向、键盘和点击上下楼",
+      "checks": 57,
+      "failures": 0,
+      "source": "export-guards/guardrail-report.json",
+      "native": true
+    },
+    {
+      "suite": "第一关存档、续玩、通关和归档返回",
+      "checks": 48,
+      "failures": 0,
+      "source": "export-save/save-test-report.json",
+      "native": true
+    },
+    {
+      "suite": "第一关新进程读取已完成存档",
+      "checks": 9,
+      "failures": 0,
+      "source": "export-save-reopen/save-test-report.json",
+      "native": true
+    },
+    {
+      "suite": "第二关完整解谜、存档、归档与重新进入",
+      "checks": 147,
+      "failures": 0,
+      "source": "export-complete/paper-mill-report.json",
+      "native": true
+    },
+    {
+      "suite": "第二关新进程续玩",
+      "checks": 4,
+      "failures": 0,
+      "source": "export-resume/paper-mill-report.json",
+      "native": true
+    },
+    {
+      "suite": "面板相机避让、拾取、楼梯及渲染矩阵",
+      "checks": 156,
+      "failures": 0,
+      "source": "export-delivery/delivery-report.json",
+      "native": true
+    }
+  ]
+}

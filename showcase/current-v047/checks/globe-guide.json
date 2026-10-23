@@ -1,0 +1,114 @@
+{
+	"checks": 27,
+	"failures": 0,
+	"results": [
+		{
+			"passed": true,
+			"test": "fresh_profile_starts_without_guide_flags"
+		},
+		{
+			"passed": true,
+			"test": "hall_keeps_original_starlight_before_conversation"
+		},
+		{
+			"passed": true,
+			"test": "opening_dialogue_never_starts_guidance_early"
+		},
+		{
+			"passed": true,
+			"test": "last_line_releases_actor_and_schedules_wakeup"
+		},
+		{
+			"passed": true,
+			"test": "wakeup_waits_before_first_light"
+		},
+		{
+			"passed": true,
+			"test": "core_lights_before_base_and_full_orbit"
+		},
+		{
+			"passed": true,
+			"test": "wakeup_reaches_local_core_orbits_and_base"
+		},
+		{
+			"passed": true,
+			"test": "caption_uses_matching_serif_and_ignores_mouse"
+		},
+		{
+			"passed": true,
+			"test": "invitation_keeps_player_movement_available"
+		},
+		{
+			"passed": true,
+			"test": "caption_fades_after_three_seconds_but_light_remains"
+		},
+		{
+			"passed": true,
+			"test": "steady_breath_is_subtle_and_three_second_period"
+		},
+		{
+			"passed": true,
+			"test": "blocked_menu_attempt_does_not_finish_guidance"
+		},
+		{
+			"passed": true,
+			"test": "globe_click_opens_existing_world_selection"
+		},
+		{
+			"passed": true,
+			"test": "successful_opening_starts_smooth_local_fade"
+		},
+		{
+			"passed": true,
+			"test": "local_light_fades_even_while_hall_is_paused"
+		},
+		{
+			"passed": true,
+			"test": "completion_is_written_to_selected_save"
+		},
+		{
+			"passed": true,
+			"test": "closing_selector_does_not_restart_guidance"
+		},
+		{
+			"passed": true,
+			"test": "returning_to_hall_does_not_replay_completed_guide"
+		},
+		{
+			"passed": true,
+			"test": "second_profile_starts_independently"
+		},
+		{
+			"passed": true,
+			"test": "skipping_opening_schedules_same_wakeup"
+		},
+		{
+			"passed": true,
+			"test": "skip_route_reaches_same_lit_guidance"
+		},
+		{
+			"passed": true,
+			"test": "unfinished_guidance_is_saved_without_marking_complete"
+		},
+		{
+			"passed": true,
+			"test": "reloading_profile_restores_awakened_state"
+		},
+		{
+			"passed": true,
+			"test": "loading_unfinished_guide_resumes_without_replaying_animation"
+		},
+		{
+			"passed": true,
+			"test": "legacy_save_remains_valid"
+		},
+		{
+			"passed": true,
+			"test": "legacy_seen_intro_uses_steady_light_without_replaying"
+		},
+		{
+			"passed": true,
+			"test": "guide_flags_must_be_boolean_when_present"
+		}
+	]
+}

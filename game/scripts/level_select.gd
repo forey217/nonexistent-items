@@ -33,7 +33,6 @@ func _ready() -> void:
 	sky.material=clock_material;root.add_child(sky)
 	root.add_child(art);art.draw.connect(_draw_map)
 	var ui=preload("res://scripts/tutorial_hud.gd").new()
-	ui.font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
 	close_button=ui.button(root,"返回接待室   Esc",Vector2(22,20),Vector2(190,38))
 	close_button.pressed.connect(close)
 	heading=ui.label(root,"平行世界观测",Vector2(360,49),38,Color("e6e6cd"))

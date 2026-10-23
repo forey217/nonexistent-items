@@ -1,0 +1,22 @@
+{
+	"checks": 4,
+	"failures": 0,
+	"results": [
+		{
+			"passed": true,
+			"test": "fresh_process_loads_completed_guide_record"
+		},
+		{
+			"passed": true,
+			"test": "completed_guide_never_replays_after_restart"
+		},
+		{
+			"passed": true,
+			"test": "other_save_keeps_unfinished_guide_independent"
+		},
+		{
+			"passed": true,
+			"test": "unfinished_guide_resumes_steady_without_wake_or_caption"
+		}
+	]
+}

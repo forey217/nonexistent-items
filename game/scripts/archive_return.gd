@@ -13,6 +13,8 @@ var image: Texture2D
 var age := 0.0
 var active := false
 var number := 1
+var record_title:="校准记录归档"
+var record_scene:="新手校准室"
 var revealed := false
 var stamped := false
 var filed := false
@@ -89,9 +91,9 @@ func _draw_frame() -> void:
 	var detail:=smoothstep(0.18,0.54,age)
 	if detail>0.001:
 		canvas.draw_set_transform(Vector2.ZERO)
-		_text("平 行 宇 宙 观 察 局",Vector2(65,70),21,Color(ink,detail),true)
+		_text("世 界 观 察 局",Vector2(65,70),21,Color(ink,detail),true)
 		canvas.draw_line(Vector2(65,87),Vector2(1210,87),Color(gold,detail*0.55),1.0,true)
-		_text("校准记录归档",Vector2(65,121),14,Color(ink,detail*0.7))
+		_text(record_title,Vector2(65,121),14,Color(ink,detail*0.7))
 		_draw_cabinet(false,detail)
 		_draw_cabinet(true,detail)
 	if age<1.54:
@@ -111,9 +113,9 @@ func _draw_frame() -> void:
 			canvas.draw_texture_rect_region(image,photo_rect,source)
 		if detail>0.001:
 			_panel(Rect2(-294,-203,588,405),Color.TRANSPARENT,Color(gold,detail*0.7),4,1)
-			_text("观察局 · 异常空间记录",Vector2(-281,-174),20,Color(ink,detail),true)
+			_text("世界观察局 · 异常空间记录",Vector2(-281,-174),20,Color(ink,detail),true)
 			_text("NO. %03d"%number,Vector2(192,-174),14,Color(gold,detail))
-			_text("新手校准室",Vector2(-280,-149),13,Color(ink,detail*0.8))
+			_text(record_scene,Vector2(-280,-149),13,Color(ink,detail*0.8))
 			canvas.draw_line(Vector2(-280,-141),Vector2(279,-141),Color(gold,detail*0.55),1.0,true)
 			_text("稳定锚点  03 / 03",Vector2(-280,187),13,Color(ink,detail*0.8))
 			_text("空间关系：已恢复",Vector2(135,187),13,Color(ink,detail*0.8))
@@ -154,7 +156,7 @@ func _draw_cabinet(front_only: bool,alpha: float) -> void:
 		_panel(Rect2(961,302,260,241),Color("e2d8bf"),Color(gold,alpha),10,2)
 		_panel(Rect2(972,313,238,78),Color("f7f1df"),Color(gold,alpha*0.7),5,1)
 		_text("校 准 档 案",Vector2(1017,345),23,Color(dark,alpha),true)
-		_text("观 察 局  /  A - 01",Vector2(1020,372),12,Color(dark,alpha*0.65))
+		_text("世 界 观 察 局  /  A - 01",Vector2(1020,372),12,Color(dark,alpha*0.65))
 		_panel(Rect2(988,386,206,13),Color(dark,alpha),Color(gold,alpha),5,2)
 	else:
 		_panel(Rect2(963,401,256,140),Color("e2d8bf"),Color(gold,alpha),6,1)

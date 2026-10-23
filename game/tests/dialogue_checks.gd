@@ -62,14 +62,25 @@ func run(flow: Node) -> void:
 	await snapshot("00b-rift-arrival")
 	check("arrival_finishes_and_releases_movement",await until(func():return not app.menu_revealing) and not hub.arrival_busy() and not hub.player.controls_locked)
 	await frames(120)
-	check("looking_around_never_starts_opening_on_a_timer",not d.modal and not d.intro_seen and d.active.is_empty() and hub.tesla_prompt.visible)
+	check("looking_around_never_starts_opening_on_a_timer",not d.modal and not d.intro_seen and d.active.is_empty() and hub.desk_beacon.visible)
+	check("desk_beacon_marks_walkable_conversation_ground",hub.navigation.is_safe(hub.desk_beacon.position) and hub.actor_position_is_clear(hub.desk_beacon.position) and hub.desk_beacon.position.distance_to(hub.npc.position)<=145)
+	check("movement_guide_floats_at_bottom_center_without_panel",hub.movement_hint.visible and hub.movement_hint.opacity>0.99 and hub.movement_hint.position.x+hub.movement_hint.size.x*0.5==640 and hub.movement_hint.mouse_filter==Control.MOUSE_FILTER_IGNORE and not hub.movement_hint is Panel)
+	var mouse_motion:=InputEventMouseMotion.new();mouse_motion.position=Vector2(800,650)
+	get_viewport().push_input(mouse_motion,true);await frames(2)
+	check("moving_pointer_keeps_movement_guide_visible",not hub.movement_hint.dismissed and hub.movement_hint.visible)
 	await snapshot("00c-free-exploration")
 	var before_exploring: Vector2=hub.player.position
 	Input.action_press("walk_left");await frames(12);Input.action_release("walk_left")
 	check("player_can_explore_before_first_conversation",hub.player.position.distance_to(before_exploring)>10 and not d.modal)
+	check("WASD_gradually_fades_movement_guide",hub.movement_hint.dismissed and hub.movement_hint.opacity>0 and hub.movement_hint.opacity<0.99)
+	await snapshot("00d-movement-hint-fading")
+	await frames(55)
+	check("movement_guide_stays_gone_after_first_movement",not hub.movement_hint.visible and hub.movement_hint.opacity==0)
 	hub.reset_player()
+	await frames(3)
+	check("reset_does_not_replay_movement_guide",not hub.movement_hint.visible)
 	click(hub.world_to_screen(hub.npc_art.to_global(Vector2(0,-70))));await frames(3)
-	check("clicking_tesla_starts_initial_story",d.modal and d.segment=="opening" and not hub.tesla_prompt.visible)
+	check("clicking_tesla_starts_initial_story",d.modal and d.segment=="opening" and not hub.desk_beacon.visible)
 	var original: Vector2=hub.player.position
 	check("opening_actor_faces_tesla",hub.player.facing_row==2 and hub.player._last_direction.dot(hub.player.global_position.direction_to(hub.npc.global_position))>0.99)
 	Input.action_press("walk_right");await frames(12);Input.action_release("walk_right")
@@ -94,9 +105,7 @@ func run(flow: Node) -> void:
 	await snapshot("02aa-worlds-overlapping")
 	var overlap_age: float=d.view.world_overlap.age
 	d.advance();await frames(2)
-	check("overlap_stays_across_explanation_without_restarting",d.view.world_overlap.active and d.view.world_overlap.age>overlap_age)
-	d.advance();await frames(2)
-	check("ordinary_followup_clears_overlap",not d.view.world_overlap.active)
+	check("short_opening_clears_overlap_on_next_ordinary_line",not d.view.world_overlap.active and d.active.text=="那该怎么修？" and overlap_age>0)
 	while d.active.get("exhibit","").is_empty():d.advance()
 	check("item_waits_until_name_is_revealed",not d.view.item_exhibit.visible)
 	d.view.body.visible_characters=-1;await frames(38)
@@ -105,7 +114,7 @@ func run(flow: Node) -> void:
 	await snapshot("02b-paperweight-introduction")
 	d.advance();await frames(2)
 	check("continuing_hides_item_and_stops_rendering",not d.view.item_exhibit.visible and d.view.item_exhibit.viewport.render_target_update_mode==SubViewport.UPDATE_DISABLED)
-	d.play("exhibit-skip",[d.Lines.opening()[8]],false)
+	d.play("exhibit-skip",[d.Lines.opening().filter(func(item):return item.exhibit=="paperweight")[0]],false)
 	d.view.body.visible_characters=-1;await frames(2)
 	key(KEY_M);await frames(2)
 	check("mute_still_works_during_modal_story",app.ambience.muted)
@@ -125,14 +134,14 @@ func run(flow: Node) -> void:
 	app.level_menu.select_level()
 	await until(func():return app.level_menu.phase==2)
 	await frames(2)
-	check("split_updates_subtitle_to_first_level",d.active.text.contains("01号"))
+	check("split_uses_one_brief_menu_hint_without_duplicate_npc_lines",d.active.is_empty() and app.level_menu.subtitle.text.contains("世界碎片"))
 	app.level_menu.select_level()
 	check("selection_clears_old_dialogue_during_flight",await until(func():return d.active.is_empty()))
 	check("real_rift_enters_tutorial",await until(func():return app.level_menu==null and app.current.get("state")!=null and not app.current.arrival_busy()))
 	var room=app.current
 	await frames(3)
 	check("entry_uses_subtitles_without_locking_gameplay",d.view.mode=="subtitle" and not d.modal and not room.player.controls_locked)
-	check("calibration_subtitles_use_dark_ink",not d.view.subtitle_dark_background and d.view.subtitle.get_theme_color("default_color")==Color("203b4a"))
+	check("calibration_subtitles_use_warm_text_on_glass_plate",d.view.level_subtitle_plate.visible and d.view.subtitle.get_theme_color("default_color")==preload("res://scripts/instrument_theme.gd").TEXT)
 	var guide=room.orbit_view.teaching
 	for i in range(8):
 		if d.active.get("visual","")=="anchors":break
@@ -162,7 +171,7 @@ func run(flow: Node) -> void:
 	await snapshot("03d-ice-rule")
 	room.show_hint();await frames(2)
 	check("new_hint_clears_previous_scene_annotation",guide.mode.is_empty())
-	check("H_uses_tesla_light_frame_in_safe_footer",d.view.mode=="light" and not d.modal and d.view.portrait.position.x>1100 and d.view.paper.position.y>=707 and not room.hud.footer.visible and room.hud.skill_panel.visible)
+	check("H_uses_tesla_light_frame_above_world_instruments",d.view.mode=="light" and not d.modal and d.view.paper.instrument and d.view.paper.get_global_rect().end.y<room.hud.skill_panel.position.y and not room.hud.footer.visible and room.hud.skill_panel.visible)
 	await snapshot("03-tesla-light")
 	room.request_push()
 	check("real_push_reaches_first_plate",await until(func():return room.state.rail_position>=room.State.FIRST_STOP))
@@ -190,10 +199,9 @@ func run(flow: Node) -> void:
 	await snapshot("06-yanyue-aside")
 	await ready_world(room);room.change_world(0);await until(func():return not room.casting)
 	room.request_push();check("real_transport_reaches_end",await until(func():return room.state.rail_position>=room.State.RAIL_LENGTH))
-	for i in range(5):
-		if d.active.get("visual","")=="law-inverted":break
-		d.timer=0;await frames(1)
-	check("inverted_lesson_previews_upward_gravity",guide.mode=="law-inverted" and guide.law_world==2 and room.state.world==0)
+	check("moon_default_prompts_leave_rule_choice_to_player",d.phase==3 and ([d.active]+d.pending).all(func(item):return not item.text.contains("倒悬") and not item.cue.contains("3")))
+	room.show_hint();room.show_hint();await frames(2)
+	check("requested_second_hint_previews_upward_gravity",guide.mode=="law-inverted" and guide.law_world==2 and room.state.world==0)
 	await frames(4);await snapshot("06a-inverted-preview")
 	await ready_world(room);room.change_world(2)
 	await until(func():return room.state.elevation>5 and guide.mode=="law-inverted")
@@ -227,10 +235,10 @@ func run(flow: Node) -> void:
 	room=app.current;await frames(3)
 	check("replay_uses_short_entry_without_opening_story",d.context=="tutorial" and d.tutorial_runs==2 and d.active.text.begins_with("还是这三个步骤") and not d.modal)
 	room.reset_tutorial();await frames(3)
-	check("R_clears_old_lines_and_uses_short_reset",d.phase==0 and d.segment=="reset" and d.pending.size()==1 and room.state.world==0)
+	check("R_clears_old_lines_and_uses_short_reset",d.phase==0 and d.segment=="reset" and d.pending.is_empty() and room.state.world==0)
 	check("reset_clears_scene_teaching",room.orbit_view.teaching.mode.is_empty() and room.orbit_view.landmarks.teaching_index==-1)
 	d.clear();await frames(2)
-	check("footer_restored_when_dialogue_hides",room.hud.footer.visible and not d.view.root.visible)
+	check("transient_hud_restored_when_dialogue_hides",not room.hud.dialogue_occupied and not d.view.root.visible)
 	# All approved long dialogue lines must fit the real modal body, not just the first page.
 	var fitting:=true
 	for item in d.Lines.opening()+d.Lines.debrief():
@@ -258,14 +266,14 @@ func run(flow: Node) -> void:
 	for item in subtitle_lines:
 		if item.style!="subtitle":continue
 		d.view.present(item.speaker,item.text,"subtitle");await frames(1)
-		subtitle_text_preserved=subtitle_text_preserved and d.view.subtitle.get_parsed_text()==item.text
-		speaker_avatars=speaker_avatars and d.view.subtitle_avatar.visible and d.view.subtitle_avatar.speaker==item.speaker and d.view.subtitle_avatar.texture!=null and not d.view.name_label.visible
+		subtitle_text_preserved=subtitle_text_preserved and ("".join(d.view.caption_pages)==item.text if d.view.level_hud_layout else d.view.subtitle.get_parsed_text()==item.text)
+		speaker_avatars=speaker_avatars and d.view.subtitle_avatar.visible and d.view.subtitle_avatar.speaker==item.speaker and d.view.subtitle_avatar.texture!=null and d.view.name_label.visible==d.view.level_hud_layout
 		subtitle_fits=subtitle_fits and d.view.subtitle.get_line_count()<=2 and d.view.subtitle.get_content_height()<=d.view.subtitle.size.y
 		for character in item.text:
 			if not character.strip_edges().is_empty():subtitle_glyphs=subtitle_glyphs and d.view.subtitle_font.has_char(character.unicode_at(0))
 	check("serif_subtitles_fit_two_lines_without_clipping",subtitle_fits)
-	check("name_free_subtitles_preserve_complete_spoken_text",subtitle_text_preserved)
-	check("every_speaker_uses_its_chibi_instead_of_name_label",speaker_avatars)
+	check("paged_subtitles_preserve_complete_spoken_text",subtitle_text_preserved)
+	check("speaker_portrait_and_level_name_are_consistent",speaker_avatars)
 	check("subtitle_avatar_leaves_clear_text_gap_and_does_not_block_input",d.view.subtitle_avatar.get_global_rect().end.x+12<=d.view.subtitle.get_global_rect().position.x and d.view.subtitle_avatar.mouse_filter==Control.MOUSE_FILTER_IGNORE and d.view.subtitle.mouse_filter==Control.MOUSE_FILTER_IGNORE)
 	check("packaged_serif_covers_all_subtitle_characters",subtitle_glyphs)
 	d.play("subtitle-specimen",[d.Lines.line("tesla","先定星位，再压月痕，最后封界缝。这一片区域就能稳定下来。")],false)
@@ -281,16 +289,17 @@ func run(flow: Node) -> void:
 	hub=app.current
 	check("returning_from_title_uses_short_arrival",not hub.entry_effect.first_visit and hub.entry_effect.duration<first_entry_duration)
 	await until(func():return not app.menu_revealing)
-	var approach:=Vector2.ZERO
-	for offset in [Vector2(-115,20),Vector2(-125,0),Vector2(-100,-50),Vector2(0,-120),Vector2(110,10)]:
-		var candidate: Vector2=hub.npc.position+offset
-		if hub.navigation.is_safe(candidate) and hub.actor_position_is_clear(candidate) and not hub.navigation.find_path(hub.player.position,candidate).is_empty():
-			approach=candidate;break
-	check("tesla_has_reachable_conversation_approach",approach!=Vector2.ZERO)
-	hub.queue_destination(approach)
+	await frames(55)
+	click(hub.world_to_screen(hub.player.position+Vector2(-20,0)));await frames(15)
+	check("ground_click_gradually_dismisses_movement_guide",hub.movement_hint.dismissed and hub.movement_hint.opacity>0 and hub.movement_hint.opacity<0.99)
+	await frames(50)
+	check("mouse_dismissed_guide_never_reappears",not hub.movement_hint.visible)
+	var approach: Vector2=hub.desk_beacon.position
+	check("tesla_has_reachable_conversation_approach",not hub.navigation.find_path(hub.player.position,approach).is_empty())
+	click(hub.world_to_screen(approach))
 	check("walking_near_tesla_starts_initial_story",await until(func():return d.modal) and d.segment=="opening" and hub.player.position.distance_to(hub.npc.position)<=145)
 	key(KEY_ESCAPE);await frames(90)
-	check("staying_near_tesla_does_not_repeat_opening",not d.modal and d.intro_seen and not hub.tesla_prompt.visible)
+	check("staying_near_tesla_does_not_repeat_opening",not d.modal and d.intro_seen and not hub.desk_beacon.visible)
 	d.clear()
 	var report:={"checks":results.size(),"failures":failures,"results":results,"dialogue_history":d.history}
 	var file:=FileAccess.open(directory.path_join("dialogue-test-report.json"),FileAccess.WRITE)

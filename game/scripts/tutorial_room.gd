@@ -41,6 +41,7 @@ var _pending_push := false
 var _gate_open := false
 var _refresh_navigation := 0
 var _hint_level := 0
+var _hint_stage := -1
 var _last_stage := -1
 var _last_goal := -1
 var _last_state := Vector2i(-1,-1)
@@ -94,6 +95,7 @@ func _ready() -> void:
 	gate_polygon=rect_shape(10.15,1.65,1.1,0.7)
 	spawn_point=iso(1.4,5.95)
 	floor_art.room=self
+	floor_art.live_rendering=false
 	add_child(floor_art)
 	_create_walls()
 	_add_solid(rail_polygon,"GuardedRail")
@@ -102,14 +104,17 @@ func _ready() -> void:
 	_add_prop("bookcase",iso(2.1,0.9),Vector2(1.7,0.55),143)
 	_add_prop("desk",iso(6.8,0.8),Vector2(2.25,1.1),174)
 	var receiver := MachineArt.new()
+	receiver.live_rendering=false
 	receiver.room=self
 	receiver.kind="receiver"
 	receiver.position=rail_end+Vector2(0,0.5)
 	sort_layer.add_child(receiver)
 	weight_art.room=self
+	weight_art.live_rendering=false
 	weight_art.position=rail_start
 	sort_layer.add_child(weight_art)
 	portal_art.room=self
+	portal_art.live_rendering=false
 	portal_art.kind="portal"
 	portal_art.position=portal_position
 	sort_layer.add_child(portal_art)
@@ -155,6 +160,7 @@ func _ready() -> void:
 
 func _add_prop(key: String,at: Vector2,size: Vector2,width: float) -> void:
 	var prop := Prop.new()
+	prop.live_rendering=false
 	prop.room=self
 	var u := Vector2(46,23)*size.x*0.5
 	var v := Vector2(-46,23)*size.y*0.5
@@ -222,12 +228,16 @@ func _hit_block(at: Vector2) -> bool:
 	return Rect2(block_ground_position()+Vector2(-29,-state.elevation-30),Vector2(58,49)).has_point(at)
 
 func _input(event: InputEvent) -> void:
+	if hud.menu.visible:return
+	if event is InputEventMouse and hud.blocks_map(event.position):
+		if event is InputEventMouseButton and not event.pressed and orbit_view!=null:orbit_view.handle_input(event)
+		return
 	if orbit_view!=null and (event is InputEventMouseMotion or event is InputEventMouseButton):orbit_view.pointer_position=event.position
 	if orbit_view!=null and orbit_view.handle_input(event):
 		get_viewport().set_input_as_handled()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if finished: return
+	if finished or hud.menu.visible: return
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index==MOUSE_BUTTON_LEFT:
 			if orbit_view.left_alt or orbit_view.dragging:return
@@ -246,7 +256,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_3: change_world(2)
 			KEY_E: request_push()
 			KEY_H: show_hint()
-			KEY_R: reset_tutorial()
+			KEY_R: hud.request_reset()
 			KEY_F2: debug_visible=not debug_visible
 			KEY_ESCAPE: cancel_orders()
 
@@ -350,8 +360,8 @@ func _tick_push(delta: float) -> void:
 	if not push_committed and push_age>=PUSH_CONTACT:
 		push_committed=true
 		hud.message(state.push())
-		if state.world==State.World.HEAVY:dialogue_notice.emit("它现在的重量适合压机关。要把它送过去，先试试摩擦更小的世界。")
-		elif state.elevation>0.3:dialogue_notice.emit("先让它落回导轨，接触稳了才能推动。")
+		if state.world==State.World.HEAVY:dialogue_notice.emit("它现在太重，无法推动。看看现有的规则。")
+		elif state.elevation>0.3:dialogue_notice.emit("先让它接触导轨，才能推动。")
 		if absf(state.rail_speed)>0.1:sound.play_event("push")
 	if push_age>=PUSH_DURATION:_clear_push()
 
@@ -405,6 +415,7 @@ func _tick_skill(delta: float) -> void:
 		player._art.cast_amount=0.0
 
 func reset_tutorial() -> void:
+	hud.task_tracker.collapse()
 	if is_instance_valid(arrival):arrival.cancel()
 	state.reset()
 	_clear_push()
@@ -445,11 +456,13 @@ func cancel_orders() -> void:
 	hud.message("已取消移动与待执行交互。")
 
 func show_hint() -> void:
+	if _hint_stage!=state.stage():_hint_level=0;_hint_stage=state.stage()
 	_hint_level=mini(_hint_level+1,3)
 	hud.message("提示 %d/3：%s"%[_hint_level,state.hint(_hint_level)])
 	dialogue_hint.emit(state.hint(_hint_level))
 
 func _physics_process(delta: float) -> void:
+	if hud.menu.visible:return
 	_elapsed+=delta
 	if finished: return
 	_tick_skill(delta)

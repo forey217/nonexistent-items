@@ -1,5 +1,5 @@
 extends Node2D
-## Teammate's illustrated title screen. Previews do not change gameplay state.
+## Illustrated title screen with archive-paper settings and a shared audio slider.
 signal start_requested
 signal quit_requested
 
@@ -7,13 +7,20 @@ const INK := Color("e5e6df")
 const GOLD := Color("b59a67")
 const PAPER := Color("142932")
 const COLORS := [Color("82d4e4"), Color("e4b776"), Color("b5a0ed")]
-const WORLD_NAMES := ["冰晶", "重力", "倒悬"]
-const WORLD_RULES := ["让惯性，带你走得更远。", "轻如镇纸，也能重若千钧。", "换个世界，向上坠落。"]
 var world := 0
 var elapsed := 0.0
 var motion_enabled := true
 var starting := false
 var entry_progress := 0.0
+const SAVE_ENTRY_DURATION := 1.4
+const SAVE_ENTRY_ZOOM := 4.65
+const GLOBE_UV := Vector2(0.8897, 0.503)
+const SAVE_GLOBE_CENTER := Vector2(640, 300)
+var save_entry := false
+var entry_start_zoom := 1.06
+var entry_start_focus := Vector2(0.5, 0.5)
+var camera_zoom := 1.06
+var camera_focus := Vector2(0.5, 0.5)
 var title_font: Font = preload("res://assets/fonts/ma_shan_zheng/MaShanZheng-Regular.ttf")
 var title_group := Control.new()
 var main_title: Label
@@ -21,30 +28,25 @@ var background_rect := TextureRect.new()
 var background_material := ShaderMaterial.new()
 var title_material := ShaderMaterial.new()
 var pointer_offset := Vector2.ZERO
-var font := SystemFont.new()
+var font := FontVariation.new()
 var options_button: Button
 var manual_button: Button
-var options_panel: Panel
-var options_shade: ColorRect
+var options_page: Control
+var options_panel: Control
+var options_shade: Control
 var active_index := 0
 var main_buttons: Array[Button] = []
 var root := Control.new()
 var start_button: Button
-var rule_label: Label
-var world_label: Label
-var help_panel: Panel
-var help_shade: ColorRect
-var help_copy: Label
-var mute_button: Button
-var motion_button: Button
+var help_panel: Control
 var quit_button: Button
-var selectors: Array[Button] = []
 var scene_art: Texture2D
 var fade: ColorRect
 var sound = preload("res://scripts/tutorial_audio.gd").new()
 
 func _ready() -> void:
-	font.font_names = PackedStringArray(["Microsoft YaHei", "Noto Sans CJK SC", "Arial"])
+	font.base_font=preload("res://assets/fonts/source_han_serif/SourceHanSerifCN-Regular.otf")
+	font.variation_embolden=0.16
 	add_child(sound)
 	scene_art = load("res://assets/start_menu/bureau-interior-v4.png")
 	background_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -60,7 +62,7 @@ func _ready() -> void:
 	root.size = Vector2(1280, 800)
 	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_build_floating_title()
-	start_button = _menu_button("进入观察局", 0)
+	start_button = _menu_button("进入世界观察局", 0)
 	start_button.pressed.connect(begin)
 	options_button = _menu_button("选项", 1)
 	options_button.pressed.connect(open_options)
@@ -70,10 +72,9 @@ func _ready() -> void:
 		main_buttons[i].focus_neighbor_top = main_buttons[(i + 2) % 3].get_path()
 		main_buttons[i].focus_neighbor_bottom = main_buttons[(i + 1) % 3].get_path()
 	_center_label("同一件东西，换个世界，就有另一种解法。", Rect2(200, 710, 880, 30), 16, Color("d2d6cd"))
-	_label("平行世界观察局  ·  本地试玩", Vector2(34, 757), 11, Color("a8b7b8"))
+	_label("世界观察局  ·  本地试玩", Vector2(34, 757), 11, Color("a8b7b8"))
 	_label("↑ ↓ 选择    Enter 确认    M 声音    F11 全屏", Vector2(917, 757), 11, Color("a8b7b8"))
 	_build_options()
-	_build_help()
 	fade = ColorRect.new()
 	fade.color = Color("102632")
 	fade.size = Vector2(1280, 800)
@@ -81,10 +82,8 @@ func _ready() -> void:
 	fade.modulate.a = 0
 	root.add_child(fade)
 	root.z_index = 5
-	select_world(0)
 	start_button.grab_focus()
 	for arg in OS.get_cmdline_user_args():
-		if arg.begins_with("--menu-world="): select_world(arg.trim_prefix("--menu-world=").to_int())
 		if arg == "--menu-options": open_options()
 		if arg == "--menu-help": open_help()
 	_capture_if_requested.call_deferred()
@@ -151,6 +150,7 @@ func _menu_button(text: String, index: int) -> Button:
 	button.add_theme_constant_override("outline_size", 1)
 	button.add_theme_constant_override("shadow_offset_y", 2)
 	button.mouse_entered.connect(func(): _set_active(index))
+	button.mouse_exited.connect(_refresh_main_button_styles)
 	button.focus_entered.connect(func(): _set_active(index))
 	main_buttons.append(button)
 	_set_active(0)
@@ -158,126 +158,44 @@ func _menu_button(text: String, index: int) -> Button:
 
 func _set_active(index: int) -> void:
 	active_index = index
+	_refresh_main_button_styles()
+
+func _refresh_main_button_styles() -> void:
 	for i in range(main_buttons.size()):
-		main_buttons[i].add_theme_font_size_override("font_size", 28 if i == index else 24)
-		main_buttons[i].add_theme_color_override("font_color", Color("fff9e8") if i == index else Color("d7d7cb"))
+		main_buttons[i].add_theme_font_size_override("font_size", 28 if main_buttons[i].is_hovered() else 24)
+		main_buttons[i].add_theme_color_override("font_color", Color("fff9e8") if i == active_index else Color("d7d7cb"))
 	queue_redraw()
 
-func _panel_label(text: String, pos: Vector2, size: int) -> Label:
-	var label := _label(text, pos, size, INK)
-	root.remove_child(label)
-	options_panel.add_child(label)
-	return label
-
-func _panel_button(text: String, rect: Rect2) -> Button:
-	var button := _button(text, rect)
-	root.remove_child(button)
-	options_panel.add_child(button)
-	return button
-
 func _build_options() -> void:
-	options_shade = ColorRect.new()
-	options_shade.size = Vector2(1280, 800)
-	options_shade.color = Color(0.025, 0.045, 0.075, 0.68)
-	root.add_child(options_shade)
-	options_panel = Panel.new()
-	options_panel.position = Vector2(350, 140)
-	options_panel.size = Vector2(580, 520)
-	options_panel.add_theme_stylebox_override("panel", _style(Color("182f39"), Color("6b7776")))
-	options_shade.add_child(options_panel)
-	_panel_label("旅 途 选 项", Vector2(210, 28), 24)
-	_panel_label("世界氛围预览", Vector2(40, 91), 14)
-	for i in range(3):
-		var button := _panel_button(WORLD_NAMES[i], Rect2(40 + i * 170, 125, 160, 40))
-		button.pressed.connect(func(): select_world(i))
-		selectors.append(button)
-	world_label = _panel_label("", Vector2(40, 190), 17)
-	rule_label = _panel_label("", Vector2(40, 225), 14)
-	mute_button = _panel_button("声音：开  M", Rect2(40, 275, 240, 44))
-	mute_button.pressed.connect(func(): get_parent().ambience.toggle_mute())
-	motion_button = _panel_button("动态画面：开", Rect2(300, 275, 240, 44))
-	motion_button.pressed.connect(func():
-		motion_enabled = not motion_enabled
-		motion_button.text = "动态画面：开" if motion_enabled else "动态画面：关"
-		queue_redraw()
-	)
-	manual_button = _panel_button("操作说明", Rect2(40, 339, 500, 44))
-	manual_button.pressed.connect(open_help)
-	var back := _panel_button("返回旅途  /  Esc", Rect2(40, 430, 500, 46))
-	back.pressed.connect(close_options)
-	options_shade.hide()
-
-func _focus_options(enabled: bool) -> void:
-	for control in options_panel.get_children():
-		if control is Button: control.focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
+	options_page=preload("res://scripts/archive_options.gd").new()
+	options_page.audio=get_parent().ambience
+	root.add_child(options_page)
+	options_panel=options_page.sheet
+	options_shade=options_page
+	help_panel=options_page.manual_content
+	manual_button=options_page.manual_button
+	options_page.closed.connect(_options_closed)
 
 func open_options() -> void:
-	if starting: return
-	for control in main_buttons: control.focus_mode = Control.FOCUS_NONE
-	options_shade.show()
-	selectors[world].grab_focus()
+	if starting:return
+	for control in main_buttons:control.focus_mode=Control.FOCUS_NONE
+	options_page.open()
 	queue_redraw()
 
 func close_options() -> void:
-	options_shade.hide()
-	for control in main_buttons: control.focus_mode = Control.FOCUS_ALL
+	options_page.close()
+
+func _options_closed() -> void:
+	for control in main_buttons:control.focus_mode=Control.FOCUS_ALL
 	options_button.grab_focus()
 	queue_redraw()
 
-
-func _build_help() -> void:
-	help_shade = ColorRect.new()
-	help_shade.size = Vector2(1280,800)
-	help_shade.color = Color(0.02,0.05,0.07,0.8)
-	root.add_child(help_shade)
-	help_panel = Panel.new()
-	help_panel.position = Vector2(415, 135)
-	help_panel.size = Vector2(425, 495)
-	help_panel.add_theme_stylebox_override("panel", _style(PAPER, GOLD))
-	help_shade.add_child(help_panel)
-	var copy := Label.new()
-	help_copy = copy
-	copy.position = Vector2(27, 25)
-	copy.add_theme_font_override("font", font)
-	copy.add_theme_font_size_override("font_size", 16)
-	copy.add_theme_color_override("font_color", INK)
-	copy.text = "观 察 员 行 动 手 册\n\nWASD / 方向键       移动\n鼠标左键                 点击地面寻路\n右键镇纸 / E           互动镇纸\n1、2、3                    切换世界（冷却1.5秒）\nH                                逐步提示\nR                                重置校准室\n左Alt + 左键拖动     旋转视角\nM / F11                    静音 / 全屏\nF10                            返回启动界面\n\n开始旅程后，点击大厅星系仪选择关卡。\n这里的世界按钮仅用于规则预览。"
-	help_panel.add_child(copy)
-	var close := _button("合上手册  /  Esc", Rect2(25, 425, 375, 44), true)
-	root.remove_child(close)
-	help_panel.add_child(close)
-	close.name = "Close"
-	close.pressed.connect(close_help)
-	help_panel.hide()
-	help_shade.hide()
-
 func open_help() -> void:
-	_focus_options(false)
-	for control in root.get_children():
-		if control is Button:control.focus_mode=Control.FOCUS_NONE
-	help_shade.show()
-	help_panel.show()
-	help_panel.get_node("Close").grab_focus()
+	if not options_page.visible:open_options()
+	options_page.open_manual()
 
 func close_help() -> void:
-	_focus_options(true)
-	help_panel.hide()
-	help_shade.hide()
-	for control in root.get_children():
-		if control is Button:control.focus_mode=Control.FOCUS_ALL
-	if options_shade.visible:
-		for control in main_buttons: control.focus_mode = Control.FOCUS_NONE
-		manual_button.grab_focus()
-	else:
-		start_button.grab_focus()
-
-func select_world(index: int) -> void:
-	world = clampi(index, 0, 2)
-	world_label.text = "0%d  /  %s世界" % [world + 1, WORLD_NAMES[world]]
-	rule_label.text = WORLD_RULES[world]
-	for i in range(selectors.size()):
-		selectors[i].add_theme_stylebox_override("normal", _style(Color("35505a") if i == world else Color("203943"), GOLD if i == world else Color("d9d3c3")))
-	queue_redraw()
+	options_page.close_manual()
 
 func begin() -> void:
 	if starting or help_panel.visible or options_shade.visible: return
@@ -290,8 +208,28 @@ func begin() -> void:
 func set_entry_progress(value: float) -> void:
 	entry_progress = value
 	root.modulate.a = 1.0 - smoothstep(0.0, 0.42, value)
+	if save_entry:
+		var progress := smoothstep(0.0, 1.0, value) if motion_enabled else 0.0
+		# Interpolate the visible image rectangle: both endpoints cover the viewport,
+		# so every intermediate rectangle stays inside the original painting too.
+		camera_zoom = 1.0 / lerpf(1.0 / entry_start_zoom, 1.0 / SAVE_ENTRY_ZOOM, progress)
+		var final_focus := GLOBE_UV - (SAVE_GLOBE_CENTER / Vector2(1280, 800) - Vector2(0.5, 0.5)) / SAVE_ENTRY_ZOOM
+		camera_focus = entry_start_focus.lerp(final_focus, progress)
+		background_material.set_shader_parameter("camera_zoom", camera_zoom)
+		background_material.set_shader_parameter("camera_focus", camera_focus)
+		queue_redraw()
+		return
 	background_material.set_shader_parameter("entry_phase", smoothstep(0.0, 1.0, value) if motion_enabled else 0.0)
 	queue_redraw()
+
+func prepare_save_entry() -> void:
+	# Capture the exact currently rendered camera, including mouse parallax.
+	# The same material and TextureRect continue into the save picker.
+	save_entry = true
+	entry_start_zoom = 1.06 + 0.014 * sin(elapsed * 0.45)
+	entry_start_focus = Vector2(0.5, 0.5) + Vector2(sin(elapsed * 0.48) * 0.011, sin(elapsed * 0.36) * 0.006) + pointer_offset
+	background_material.set_shader_parameter("fixed_camera", true)
+	set_entry_progress(0.0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo or starting: return
@@ -304,13 +242,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		var fullscreen := DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if fullscreen else DisplayServer.WINDOW_MODE_FULLSCREEN)
 		get_viewport().set_input_as_handled()
-	elif not help_panel.visible and event.keycode in [KEY_1, KEY_2, KEY_3]:
-		select_world(event.keycode - KEY_1)
-		get_viewport().set_input_as_handled()
 
 func _process(delta: float) -> void:
-	if is_instance_valid(mute_button):
-		mute_button.text = "声音：关  M" if get_parent().ambience.muted else "声音：开  M"
+	if save_entry:return
 	if motion_enabled:
 		elapsed += delta
 		var target := (get_viewport().get_mouse_position() / Vector2(1280, 800) - Vector2(0.5, 0.5)).clamp(Vector2(-0.5, -0.5), Vector2(0.5, 0.5)) * 0.004
@@ -323,7 +257,7 @@ func _build_floating_title() -> void:
 	title_group.pivot_offset = Vector2(640, 210)
 	title_group.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(title_group)
-	var agency := _center_label("平行世界观察局", Rect2(180, 108, 920, 26), 16, Color("dbc69c"))
+	var agency := _center_label("世界观察局", Rect2(180, 108, 920, 26), 16, Color("dbc69c"))
 	main_title = _center_label("世界不按说明书", Rect2(80, 150, 1120, 118), 86, Color("fff0cf"), true)
 	title_material.shader = preload("res://shaders/bureau_title_sheen.gdshader")
 	main_title.material = title_material
@@ -347,6 +281,7 @@ func _apply_motion() -> void:
 	title_material.set_shader_parameter("motion_time", elapsed)
 
 func _scene_point(uv: Vector2) -> Vector2:
+	if save_entry:return ((uv - camera_focus) * camera_zoom + Vector2(0.5, 0.5)) * Vector2(1280, 800)
 	# Match the background shader so the orbit lights stay attached to the globe.
 	var zoom := 1.06 + 0.014 * sin(elapsed * 0.45)
 	var drift := Vector2(sin(elapsed * 0.48) * 0.011, sin(elapsed * 0.36) * 0.006)
@@ -382,7 +317,7 @@ func _draw() -> void:
 		var alpha := 0.3 + 0.4 * (0.5 + 0.5 * sin(elapsed * 1.2 + i))
 		draw_circle(Vector2(x, y), 7, Color(COLORS[world], alpha * 0.13))
 		draw_circle(Vector2(x, y), 1.8 + i % 3 * 0.3, Color(COLORS[world], alpha), true, -1, true)
-	if not options_shade or not help_shade or options_shade.visible or help_shade.visible: return
+	if not options_shade or options_shade.visible: return
 	var y := 452.0 + active_index * 62
 	var pulse := 0.7 + 0.15 * sin(elapsed * 1.4)
 	for i in range(10, 0, -1):

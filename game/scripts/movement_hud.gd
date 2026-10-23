@@ -21,7 +21,7 @@ func _ready() -> void:
 	header.add_theme_stylebox_override("panel", _panel_style())
 	root_control.add_child(header)
 	_label(header, "不存在的物品", Vector2(22,10), 25, Color("283d4d"))
-	_label(header, "衍月移动 v0.3  /  观察局试验室", Vector2(230,22), 14, Color("687477"))
+	_label(header, "衍月移动 v0.3  /  世界观察局试验室", Vector2(230,22), 14, Color("687477"))
 	mode_label = _label(header,"",Vector2(690,22),14,Color("44748c"))
 	var reset := _button(header,"重置  R",Vector2(920,15),Vector2(116,36))
 	reset.pressed.connect(func() -> void: reset_requested.emit())

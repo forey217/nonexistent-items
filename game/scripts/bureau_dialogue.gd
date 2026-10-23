@@ -4,10 +4,13 @@ const Lines = preload("res://scripts/dialogue_script.gd")
 var flow: Node
 var enabled := true
 var view: CanvasLayer
+var voice: Node
 var room: Node
 var context := ""
 var modal := false
 var intro_seen := false
+var globe_awakened:=false
+var globe_guided:=false
 var debrief_seen := false
 var tutorial_runs := 0
 var pending: Array=[]
@@ -17,6 +20,7 @@ var seen: Dictionary={}
 var history: Array[Dictionary]=[]
 var phase := -1
 var menu_phase := -1
+var selection_prompt_seen := false
 var timer := 0.0
 var idle := 0.0
 var elapsed := 0.0
@@ -28,22 +32,38 @@ var saved_mode := Node.PROCESS_MODE_INHERIT
 var saved_lock := false
 var notice_time := -10.0
 var hub_near_age := 0.0
+const IDLE_SECONDS:=35.0
+var observed_position:=Vector2.ZERO
+var observed_world:=-1
+var observed_rail:=-1.0
+var observed_height:=-1.0
+var caption_duration:=0.0
 
 func _ready() -> void:
+	voice=preload("res://scripts/dialogue_voice.gd").new()
+	var args:=OS.get_cmdline_user_args()
+	# Existing accelerated mechanics/UI suites retain their original timing.
+	voice.enabled="--voice-check" in args or not Array(args).any(func(arg):return arg.ends_with("-check") or arg.ends_with("-self-test") or arg.ends_with("-demo") or arg.contains("capture"))
+	add_child(voice)
 	view=preload("res://scripts/dialogue_view.gd").new();add_child(view)
+	view.voice=voice
 	view.advanced.connect(advance);view.skipped.connect(skip)
 
 func bind(next_room: Node,kind: String) -> void:
 	clear();room=next_room;context=kind;seen.clear();phase=-1;idle=0;elapsed=0
 	first_push=false;first_float=false;hub_wait=kind=="hub"
 	hub_near_age=0.0
-	if kind=="hub":room.set_tesla_invitation(enabled and not intro_seen and not room.cleared)
+	observed_position=room.player.position;observed_world=-1;observed_rail=-1;observed_height=-1
+	if kind=="hub":
+		room.set_tesla_invitation(enabled and not intro_seen and not room.cleared)
+		if enabled and intro_seen and not globe_guided and not room.cleared:room.begin_globe_guidance(false)
 	if kind=="tutorial":tutorial_runs+=1
 
 func _footer(occupied: bool) -> void:
 	if not is_instance_valid(room):return
-	if context=="tutorial" and is_instance_valid(room.hud.footer):room.hud.footer.visible=not occupied
-	elif context=="hub" and is_instance_valid(room.dialogue_footer):room.dialogue_footer.visible=not occupied
+	if context=="tutorial" and is_instance_valid(room.hud.footer):room.hud.set_dialogue_occupied(occupied,modal)
+	elif context=="hub" and is_instance_valid(room.movement_hint):
+		room.movement_hint.obscure(occupied);room.obscure_globe_guidance(occupied and modal)
 
 func _set_modal(value: bool) -> void:
 	if modal==value:return
@@ -57,6 +77,8 @@ func _set_modal(value: bool) -> void:
 		locked_room=null
 
 func clear() -> void:
+	if is_instance_valid(voice):voice.stop()
+	if is_instance_valid(flow.ambience):flow.ambience.dialogue_active=false
 	if context=="tutorial" and is_instance_valid(room):room.orbit_view.teaching.stop()
 	_set_modal(false);pending.clear();active.clear();segment="";timer=0
 	if is_instance_valid(view):view.clear()
@@ -67,20 +89,36 @@ func play(id: String,lines: Array,once: bool=true) -> void:
 	clear();seen[id]=true;segment=id;pending=lines.duplicate(true);_next()
 
 func _next() -> void:
-	if pending.is_empty():clear();return
+	if pending.is_empty():
+		var opening_done:=segment=="opening" and context=="hub"
+		clear()
+		if opening_done:_complete_opening()
+		return
 	active=pending.pop_front()
 	if context=="tutorial" and is_instance_valid(room) and room.state.world!=0 and active.text.begins_with("现在是冰晶世界"):
 		active.text="先试试冰晶世界。那里的导轨摩擦很小，适合运送镇纸。"
+	active.id=Lines.voice_id(active.speaker,active.text)
+	var voice_duration: float=voice.start_line(active)
 	var style: String=active.get("style","subtitle")
 	_set_modal(style=="story")
 	var visual: String=active.get("visual","")
 	view.set_subtitle_background(is_instance_valid(flow.level_menu) or flow.returning)
+	view.level_hud_layout=context=="tutorial" and not flow.returning
 	if flow.returning:view.layer=110
 	view.present(active.speaker,active.text,style,active.get("cue",""),active.get("exhibit",""),visual);_footer(true)
+	if context=="tutorial" and is_instance_valid(room):view.keep_subtitle_clear_of(room.hud.skill_panel)
 	if context=="tutorial" and is_instance_valid(room):room.orbit_view.teaching.start(visual)
 	timer=clampf(1.0+active.text.length()*0.10,2.4,6.5)
 	if style=="light":timer=maxf(timer,4.5)
-	history.append({"segment":segment,"speaker":active.speaker,"text":active.text,"style":style,"phase":phase,"visual":visual})
+	if visual=="anchors":timer=maxf(timer,4.5)
+	if voice_duration>0:timer=maxf(timer,voice_duration+0.25)
+	if view.level_hud_layout and not modal:
+		timer=maxf(timer,view.caption_pages.size()*2.4)
+		caption_duration=timer;view.caption_duration=timer
+	if context=="tutorial" and visual=="anchors" and voice_duration>0:
+		var cues: Dictionary=voice.current.get("cue_seconds",{})
+		room.orbit_view.teaching.sync_speech(voice,cues,voice_duration+0.20)
+	history.append({"id":active.id,"segment":segment,"speaker":active.speaker,"text":active.text,"style":style,"phase":phase,"visual":visual})
 	if history.size()>250:history.pop_front()
 
 func advance() -> void:
@@ -88,8 +126,14 @@ func advance() -> void:
 
 func skip() -> void:
 	if not modal:return
+	var opening_done:=segment=="opening" and context=="hub"
 	clear()
-	if context=="hub":play("after-skip",[Lines.line("tesla","准备好了，就到星系仪旁边来。")],false)
+	if context=="hub":play("after-skip",Lines.event("after-skip"),false)
+	if opening_done:_complete_opening()
+
+func _complete_opening() -> void:
+	if not is_instance_valid(room) or globe_guided or globe_awakened:return
+	globe_awakened=true;room.begin_globe_guidance()
 
 func talk_to_tesla() -> void:
 	if not enabled or modal or context!="hub" or not is_instance_valid(room):return
@@ -100,14 +144,20 @@ func talk_to_tesla() -> void:
 		intro_seen=true;play("opening",Lines.opening(),false)
 	elif room.cleared:
 		debrief_seen=true;play("debrief",Lines.debrief(),false)
-	else:play("reminder",[Lines.line("tesla","先到星系仪旁边，找出那片区域。","story"),Lines.line("tesla","先定星位，再压月痕，最后封界缝。","story")],false)
+	else:play("reminder",Lines.event("reminder"),false)
 
 func hint(text: String) -> void:
-	play("hint",[Lines.line("tesla",text,"light","H  再看一层提示")],false)
+	idle=0
+	var visual:=""
+	if context=="tutorial" and is_instance_valid(room) and room._hint_level>=2:
+		if text.contains("倒悬"):visual="law-inverted"
+		elif text.contains("重力"):visual="law-heavy"
+		elif text.contains("冰晶"):visual="law-ice"
+	play("hint",[Lines.line("tesla",text,"light","H  再看一层提示","",visual)],false)
 
 func reset_tutorial() -> void:
 	clear();seen.clear();phase=0;first_push=false;first_float=false;idle=0
-	play("reset",[Lines.line("tesla","现场已复位。我们重新来，这次留意每次变化带来的结果。"),Lines.line("tesla","先试试冰晶世界。那里的导轨摩擦很小，适合运送镇纸。","light","1  冰晶 · E 推动")])
+	play("reset",Lines.event("reset"))
 
 func notice(text: String) -> void:
 	if elapsed-notice_time<6.0:return
@@ -118,16 +168,21 @@ func begin_selection() -> void:
 	clear();hub_wait=false;menu_phase=-1
 
 func archive() -> void:
-	clear();play("archive",[Lines.line("tesla","现场校准完成。开始归档。")],false)
+	clear();play("archive",Lines.event("archive"),false)
 
 func _process(delta: float) -> void:
+	if is_instance_valid(room) and room.get("hud")!=null and room.hud.get("menu")!=null and room.hud.menu.visible:return
+	if is_instance_valid(voice) and is_instance_valid(flow.ambience):flow.ambience.dialogue_active=voice.speaking() or (is_instance_valid(flow.current) and flow.current.get("communications")!=null and flow.current.communications.speaking())
 	if not enabled or not is_instance_valid(room):return
 	elapsed+=delta
 	if is_instance_valid(flow.level_menu):
 		var next_phase: int=flow.level_menu.phase
 		if next_phase!=menu_phase:
 			menu_phase=next_phase
-			if next_phase==0:play("select-whole",Lines.selection(false),false)
+			if next_phase==0:
+				if not selection_prompt_seen:
+					selection_prompt_seen=true
+					play("select-whole",Lines.selection(false),false)
 			elif next_phase==2:play("select-fragments",Lines.selection(true),false)
 			else:clear()
 	elif context=="hub" and hub_wait and not flow.menu_revealing and not flow.returning and not room.arrival_busy() and elapsed>0.5:
@@ -138,7 +193,7 @@ func _process(delta: float) -> void:
 			var args:=OS.get_cmdline_user_args()
 			if "--paperweight-preview" in args or "--teaching-preview" in args:
 				hub_wait=false;intro_seen=true;room.set_tesla_invitation(false)
-				play("opening",Lines.opening().slice(8 if "--paperweight-preview" in args else 5))
+				play("opening",Lines.opening().slice(4 if "--paperweight-preview" in args else 2))
 			else:
 				hub_near_age=hub_near_age+delta if room.player.position.distance_to(room.npc.position)<=145.0 else 0.0
 				if hub_near_age>=0.3:talk_to_tesla()
@@ -147,7 +202,8 @@ func _process(delta: float) -> void:
 		_tick_tutorial(delta)
 	if not active.is_empty() and not modal:
 		timer-=delta
-		if timer<=0:_next()
+		if view.level_hud_layout:view.set_caption_elapsed(caption_duration-timer)
+		if timer<=0 and not voice.speaking():_next()
 
 func _tick_tutorial(delta: float) -> void:
 	var state=room.state
@@ -157,21 +213,31 @@ func _tick_tutorial(delta: float) -> void:
 		var old:=phase;phase=step;idle=0
 		clear()
 		if old==5 and step==4:
-			play("gate-lost",[Lines.line("yanyue","门又关了。"),Lines.line("tesla","封界踏板需要持续受压。切回重力世界，等镇纸落稳，再回来。","light","2  重力")],false)
+			play("gate-lost",Lines.event("gate-lost"),false)
 		elif not seen.has("stage-%d"%step):play("stage-%d"%step,Lines.tutorial(step,state.world,tutorial_runs>1))
-		elif step==5:play("gate-restored",[Lines.line("tesla","归位门已经稳定。保持重力世界，通过归位门回来。")],false)
-	else:idle+=delta
+		elif step==5:play("gate-restored",Lines.event("gate-restored"),false)
 	if not first_push and absf(state.rail_speed)>0.1:
 		first_push=true
-		play("first-push",[Lines.line("yanyue","真的只推了一下……它自己滑过去了。","subtitle","","","law-ice"),Lines.line("tesla","留意挡块。它会替你接住镇纸。")])
+		play("first-push",Lines.event("first-push"))
 	if state.world==2 and state.elevation>3 and not first_float:
 		first_float=true
 		if phase==3:
-			play("first-float",[Lines.line("yanyue","纸片也飘起来了……我怎么还站在地上？","subtitle","","","law-inverted"),Lines.line("tesla","检查员的靴子有固定装置。工作时，你得先站得稳。")])
+			play("first-float",Lines.event("first-float"))
 		elif phase<3:
-			play("early-float",[Lines.line("yanyue","升起来了，可这里没有印座。"),Lines.line("tesla","方向找对了，还需要找对位置。月痕在导轨尽头的上方。","light")])
-	if idle>18 and active.is_empty() and not seen.has("idle-%d"%phase):
+			play("early-float",Lines.event("early-float"))
+	_tick_idle(delta)
+
+func _input(event: InputEvent) -> void:
+	if context!="tutorial" or not enabled:return
+	if (event is InputEventKey and event.pressed and not event.echo) or (event is InputEventMouseButton and event.pressed):idle=0
+
+func _tick_idle(delta: float) -> void:
+	var state=room.state
+	var changed: bool=observed_position.distance_squared_to(room.player.position)>0.01 or observed_world!=state.world or absf(observed_rail-state.rail_position)>0.01 or absf(observed_height-state.elevation)>0.01
+	observed_position=room.player.position;observed_world=state.world;observed_rail=state.rail_position;observed_height=state.elevation
+	var blocked: bool=modal or not active.is_empty() or flow.menu_revealing or flow.returning or room.arrival_busy() or room.casting or room.interacting or room.seal_active or room.finished or room.player.controls_locked or room.orbit_view.dragging or room.player.is_navigating() or room.player.walking or absf(state.rail_speed)>0.1 or absf(state.vertical_speed)>0.1
+	if changed:idle=0
+	elif not blocked:idle+=delta
+	if not blocked and idle>=IDLE_SECONDS and not seen.has("idle-%d"%phase):
 		seen["idle-%d"%phase]=true
-		var message: String=state.hint(2)
-		if phase==2:message="切回冰晶世界，再推一次。挡块已经打开，这次它能滑到尽头。"
-		play("idle",[Lines.line("tesla",message,"light","H  逐步提示")],false)
+		play("idle",Lines.event("idle"),false)

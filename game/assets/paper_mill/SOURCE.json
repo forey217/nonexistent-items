@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-22",
+  "project": "世界不按说明书 / 02纸山叠影",
+  "usage": "stone/wood/wall/roof are material maps on live geometry; bamboo is an alpha billboard outside the playable bounds",
+  "references": [
+    "../../docs/第二关纸山叠影-背景与整合提示词-v01.md"
+  ],
+  "generation": [
+    {
+      "file": "stone.png",
+      "original": "C:\\Users\\forey\\.codex\\generated_images\\01a1628d-38f3-7213-b18c-dfc9334669cb\\exec-4483e696-a1c0-4f09-b386-4c6cd3992f3e.png",
+      "execution": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Production SEAMLESS GAME MATERIAL TEXTURE for a Wenzhou Zeya traditional paper mill stone courtyard. One square texture, strict orthographic TOP DOWN, flat edge-to-edge surface only, realistic fine semi-realistic painted grey warm stone paving. Large varied rectangular old blue-grey stone slabs with slightly chipped edges, shallow irregular mortar gaps, restrained tiny moss flecks in some joints, subtle mineral grain and fine wear. Medium-light grey with slight warm beige undertones, low contrast, bright neutral diffuse even illumination. Slab scale appropriate to a human walking surface. Seamlessly tileable in both axes. No perspective, no buildings, no people, no objects, no text, no vignette, no cast shadows, no directional lighting, no shiny glare, no water, no dark borders, no framed illustration.",
+      "transparent_background": false
+    },
+    {
+      "file": "wood.png",
+      "original": "C:\\Users\\forey\\.codex\\generated_images\\01a1628d-38f3-7213-b18c-dfc9334669cb\\exec-c49d7d31-d9c4-4371-9d56-2e3ce5f22f33.png",
+      "execution": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Production SEAMLESS GAME MATERIAL TEXTURE for Wenzhou Zeya traditional bamboo-paper mill wooden walkways and timber machinery. One square flat edge-to-edge material, strict orthographic front view, realistic rich medium-dark old warm brown timber planks, long straight wood grain running vertically, slight natural grain variation and subtle worn edges, restrained knots and narrow dark joints, believable fine textured semi-realistic painted wood, not cartoon and not plastic. Neutral uniform diffuse lighting, no perspective, no highlights, no surrounding architecture, no room, no objects, no text, no vignette, no border, no external cast shadows. Tileable in both axes; dark enough to contrast with light cream paper but still detailed and readable.",
+      "transparent_background": false
+    },
+    {
+      "file": "bamboo-v01.png",
+      "original": "C:\\Users\\forey\\.codex\\generated_images\\01a1628d-38f3-7213-b18c-dfc9334669cb\\exec-77218b28-ab37-47a6-b2ae-13a3c439f78c.png",
+      "execution": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Production TRANSPARENT game vegetation asset: ONE complete natural cluster of slender Chinese bamboo plants for a semi-realistic Wenzhou Zeya paper-mill environment, isolated with TRUE ALPHA transparency. Three to five slim slightly curved segmented green-brown bamboo culms, dense elegant sprays of fine lance-shaped leaves concentrated in upper two-thirds, varied muted olive and deep green leaf tones, credible fine painted realistic foliage with natural depth, warm neutral soft daylight from upper left. Entire cluster and all leaf tips fully within canvas, no cropped tips. Three-quarter elevated isometric gameplay view with upright vertical stalks, not flat botanical diagram. Root feet clustered into small unobtrusive base with no ground island. Rich refined game-art material quality, not childish cartoon, no thick ink outline, no plastic. No scenery, sky, buildings, pots, floor, text, borders, cast ground shadow or checkerboard. Tall portrait canvas.",
+      "transparent_background": true
+    },
+    {
+      "file": "wall.png",
+      "original": "C:\\Users\\forey\\.codex\\generated_images\\01a1628d-38f3-7213-b18c-dfc9334669cb\\exec-6cc993c8-df94-4f1d-a509-c4237eeceec3.png",
+      "execution": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. Production SEAMLESS game architecture MATERIAL texture, ONE square image. Straight-on orthographic elevation of a traditional Wenzhou Zeya paper-mill rough stone retaining wall. Natural irregular grey granite blocks carefully stacked in horizontal courses, warm-grey recessed mortar, slightly rounded worn corners, subtle stone grain, rare moss in joints, hand-built believable rural Chinese masonry. Refined semi-realistic painted game art, medium-light neutral grey-green stone, restrained low contrast and evenly diffuse neutral lighting. Flat edge-to-edge tileable surface, no perspective, no buildings, no door, no window, no sky, no ground, no text, no image border, no cast shadow, no vignette, no overgrown jungle.",
+      "transparent_background": false
+    },
+    {
+      "file": "roof.png",
+      "original": "C:\\Users\\forey\\.codex\\generated_images\\01a1628d-38f3-7213-b18c-dfc9334669cb\\exec-5577f955-7566-45df-a56d-4beef70c3948.png",
+      "execution": "built-in image_gen",
+      "prompt": "Use case: stylized-concept. ONE square production SEAMLESS game material texture, strict orthographic top-down close-up of small traditional Chinese grey clay roof tiles for a Wenzhou Zeya rural paper mill. Repeating parallel courses of finely crafted half-round small blue-grey black clay tiles, slight tonal variation, shallow credible weathering and subtle dust, neat overlapping joints, fine ceramic grain, realistic refined painted game asset finish. Muted charcoal blue-grey, soft neutral diffuse even lighting, no harsh white shine, no moss piles, no perspective, no roof silhouette, no building, no eaves, no sky, no text, no borders. Tile seamlessly in both axes. Keep straight regular alignment and real-scale small tile pattern.",
+      "transparent_background": false
+    }
+  ]
+}

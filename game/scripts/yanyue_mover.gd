@@ -5,7 +5,7 @@ signal movement_notice(message: String)
 
 const FOOT_RADIUS := 13.0
 const WalkRig = preload("res://scripts/yanyue_walk_rig.gd")
-const DEFAULT_SPEED := 145.0
+const DEFAULT_SPEED := 174.0
 var speed := DEFAULT_SPEED
 var route := PackedVector2Array()
 var route_index := 0

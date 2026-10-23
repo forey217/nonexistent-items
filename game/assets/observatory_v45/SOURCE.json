@@ -1,0 +1,25 @@
+{
+  "generator": "Built-in image_gen, used through the imagegen skill. Generated specifically for this project on 2026-10-23. No third-party stock images.",
+  "assets": [
+    {
+      "file": "sealed_observatory.png",
+      "role": "Empty menu background, separate from crystal/UI.",
+      "prompt": "Use case: stylized-concept. Asset type: production background illustration for a Godot game level-selection menu, landscape 16:10, high resolution. Create ONLY the empty background, no central crystal, no UI, no lettering, no people. Theme: inside an enormous elegant brass armillary observatory, a World Observation Bureau instrument, refined antique science meets luminous blue cosmos. Carefully painted polished 2.5D game art, fine material detail matching dark walnut, antique champagne brass, ivory and blue starlight reception interior. Composition: central 55 percent of the frame is calm luminous slate navy blue with a soft ice blue halo, very clean negative space for a large separate interactive crystal and six selectable fragments. At extreme screen edges sweeping thick brass orbital rails, machined graduated rings, dark navy metal junctions and subtle dark walnut frame details extend out of frame, no rail crossing the central area. Mid distance an enormous curved transparent observation glass, only delicate curved reflections at the edges, not a white veil. Beyond glass ONE graceful diffuse blue white nebula stream arcs along the far upper left and lower edges, sparse well spaced stars and a partly cropped small pale blue planet on the far right. Sense of vast celestial space, atmospheric depth, bright readable and welcoming, magical yet precise scientific instrument. Broad blue reflected light illuminates brass bevels, soft warm gold glints; central blue is medium value, not black. Balanced hierarchy, cinematic elegant ornament, no busy wallpaper full of repeated spiral galaxies. No glowing crystal, no pedestal, no object in the center, no text, no letters, no logo, no watermark."
+    },
+    {
+      "file": "star_glass_paint.png",
+      "role": "Shared glass optical-paint texture; mapped in shared source coordinates onto six independent extruded meshes, not a standalone flat sprite.",
+      "prompt": "Use case: stylized-concept. Asset type: premium fantasy game glass-crystal surface reference and texture, single isolated object on truly transparent background. Portrait composition, crystal occupies almost all canvas height, centered. A single large, exquisite transparent pale ice-blue STAR GLASS crystal, elegant full-bodied vertical elongated hexagonal prism, pointed at top and bottom, width about 65 percent of its height. Symmetric outline: pointed top, sloping shoulders, broad almost vertical left and right sides, sloping lower end to pointed bottom. It is thick polished translucent optical glass, not an opaque gemstone or ice sculpture. Three or four large clean glass planes, delicately bevelled edges, convincing refraction, slight internal curved reflections, darker transparent blue side, bright silver-blue highlights and tiny warm champagne gold glints. Fine painterly 2.5D videogame production art with beautiful tactile material, classic brass celestial observatory aesthetic, controlled soft studio lighting from upper left. Inside the glass a SMALL luminous blue white star suspended in depth, a few delicate orbit curves and sparse star dust. Smooth nuanced clear glass surfaces with depth and soft reflected sky, no opaque filled triangular mosaic, no black facet triangles, no bold six-way radial seam, no thick glowing outline, no lightning or violent cracks. No pedestal, no surrounding frame, no labels, no text, no UI, no floor, no background. The finished object should look like a costly polished optical artifact containing a miniature universe."
+    },
+    {
+      "file": "level_01.png",
+      "role": "Static miniature of the real first level",
+      "source": "Project native runtime screenshot, .artifact_work/onboarding-v42/export-native-final/02-checkpoint-saved.png"
+    },
+    {
+      "file": "level_02.png",
+      "role": "Static miniature of the real second level",
+      "source": "Project native runtime screenshot, showcase/checks/paper-mill-v01/delivery-native/01-upper-overview.png"
+    }
+  ]
+}

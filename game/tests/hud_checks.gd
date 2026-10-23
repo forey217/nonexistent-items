@@ -52,15 +52,17 @@ func run(flow: Node2D) -> void:
 	record("movement_available_while_title_visible",room.player.position.distance_to(before)>5 and title.visible)
 	key(KEY_Q);await frames(2)
 	record("q_has_no_action_when_ready",room.state.world==0 and room.world_cooldown==0 and not room.casting)
-	var left_column := true
+	var right_column := true
+	room.hud.toggle_menu()
 	for i in range(4):
 		var rect: Rect2=room.hud.menu_buttons[i].get_global_rect()
-		left_column=left_column and rect.position.x==32 and rect.end.x<210
-		if i>0:left_column=left_column and rect.position.y>room.hud.menu_buttons[i-1].get_global_rect().end.y
-	record("four_actions_in_one_left_column",left_column)
+		right_column=right_column and rect.position.x>900 and rect.end.x<=1258
+		if i>0:right_column=right_column and rect.position.y>room.hud.menu_buttons[i-1].get_global_rect().end.y
+	record("four_actions_in_collapsible_right_menu",right_column)
+	room.hud.toggle_menu()
 	var skill_rect: Rect2=room.hud.skill_panel.get_global_rect()
-	record("world_panel_smaller_than_old_panel",skill_rect.size.x<247 and skill_rect.size.y<180 and room.hud.worlds.size()==3)
-	record("cooldown_strip_fits_inside_card",room.hud.cooldown_bar.size.y<=4 and skill_rect.encloses(room.hud.cooldown_bar.get_global_rect()))
+	record("world_instruments_compact_and_bottom_centered",skill_rect.size.x<=300 and skill_rect.size.y==64 and room.hud.worlds.size()==3 and skill_rect.position.y>700)
+	record("world_buttons_fit_inside_instrument_group",skill_rect.encloses(room.hud.worlds[0].get_global_rect()) and skill_rect.encloses(room.hud.worlds[2].get_global_rect()))
 	while title.age<3.2:await frames(1)
 	record("title_gradually_fading",title.visible and title.modulate.a>0.2 and title.modulate.a<0.8)
 	await snapshot("02-title-fading")
@@ -79,14 +81,15 @@ func run(flow: Node2D) -> void:
 	key(KEY_1);await frames(40)
 	record("key_one_selects_ice_world",room.state.world==0)
 	record("switching_world_does_not_replay_title",not title.visible)
-	click(room.hud.menu_buttons[3]);await frames(2)
+	room.hud.toggle_menu();click(room.hud.menu_buttons[3]);await frames(2)
 	record("left_hint_button_works",room._hint_level==1)
 	room.orbit_view.set_angle(32)
-	click(room.hud.menu_buttons[0]);await frames(2)
+	room.hud.toggle_menu();click(room.hud.menu_buttons[0]);await frames(2)
 	record("left_reset_view_button_works",room.orbit_view.angle==0)
-	click(room.hud.menu_buttons[2]);await frames(3)
+	room.hud.toggle_menu();click(room.hud.menu_buttons[2]);await frames(2)
+	click(room.hud.menu.confirm_button);await frames(3)
 	record("left_reset_button_works_without_replaying_title",room.player.position==room.spawn_point and room.world_cooldown==0 and not title.visible)
-	click(room.hud.menu_buttons[1]);await frames(50)
+	room.hud.toggle_menu();click(room.hud.menu_buttons[1]);await frames(50)
 	record("left_return_button_opens_hub",app.current.get_script().resource_path.ends_with("tutorial_hub.gd"))
 	await snapshot("05-hub-arrival")
 	# Reenter through the globe and its single level crystal.

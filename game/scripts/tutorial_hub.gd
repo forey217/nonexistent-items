@@ -12,13 +12,15 @@ var hint_text: Label
 var pointer := Vector2(-1000,-1000)
 var globe_fx: Node2D
 var architecture: Node2D
-var dialogue_footer: Panel
+var movement_hint: Control
 var hall_camera:=Camera2D.new()
 var furnishings: Array[Node2D]=[]
 var entry_effect: CanvasLayer
 var arrival_title: Control
-var tesla_prompt: Panel
+var desk_beacon: Node2D
 var invite_tesla := false
+var globe_guide_hint: Label
+var globe_guidance_obscured:=false
 
 func _add_prop(key: String,title: String,at: Vector2,size: Vector2,width: float) -> void:
 	if key=="chest":return
@@ -52,6 +54,7 @@ func _ready() -> void:
 	globe_fx.ink.set_shader_parameter("core_center",core_local)
 	globe_fx.ink.set_shader_parameter("core_radius",globe.art.texture.get_width()*0.33)
 	globe.add_child(globe_fx)
+	globe_fx.awakened.connect(func():get_parent().ambience.play_globe_awaken())
 	hud.hide()
 	_add_tesla()
 	face_tesla()
@@ -63,31 +66,51 @@ func _ready() -> void:
 	obstacles.append(_npc_footprint())
 	navigation=preload("res://scripts/hall_navigation.gd").new()
 	navigation.configure(floor_polygon,obstacles,player.FOOT_RADIUS,Callable(self,"segment_is_clear"))
+	desk_beacon=preload("res://scripts/hall_desk_beacon.gd").new()
+	var desk: Node2D=props.filter(func(prop):return prop.name=="Desk")[0]
+	for offset in [Vector2(-48,48),Vector2(-68,36),Vector2(-92,12)]:
+		var candidate: Vector2=desk.position+offset
+		if navigation.is_safe(candidate) and not navigation.find_path(spawn_point,candidate).is_empty():
+			desk_beacon.position=candidate;break
+	desk_beacon.hide()
+	sort_layer.add_child(desk_beacon)
 	hall_camera.position=Vector2(640,400)
 	hall_camera.limit_left=-350;hall_camera.limit_right=1630
 	hall_camera.limit_top=-240;hall_camera.limit_bottom=1220
 	add_child(hall_camera);hall_camera.make_current();hall_camera.force_update_scroll()
 	var ui=preload("res://scripts/tutorial_hud.gd").new()
-	ui.font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
 	var layer:=CanvasLayer.new();add_child(layer)
 	arrival_title=preload("res://scripts/map_arrival_title.gd").new()
 	arrival_title.map_name="接待大厅";layer.add_child(arrival_title)
-	var footer: Panel=ui.panel(layer,Vector2(22,742),Vector2(540,36))
-	dialogue_footer=footer
-	ui.label(footer,"WASD / 点击地面移动    ·    星系仪选关    ·    特斯拉交谈",Vector2(12,9),13,Color("4b6371"))
+	movement_hint=preload("res://scripts/hall_movement_hint.gd").new()
+	layer.add_child(movement_hint)
 	hint=ui.panel(layer,Vector2.ZERO,Vector2(175,31))
 	hint.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	hint_text=ui.label(hint,"星系仪 · 点击观测",Vector2(10,5),14,Color("4d737d"))
 	hint.hide()
-	tesla_prompt=ui.panel(layer,Vector2.ZERO,Vector2(220,34))
-	tesla_prompt.mouse_filter=Control.MOUSE_FILTER_IGNORE
-	ui.label(tesla_prompt,"特斯拉 · 靠近或点击交谈",Vector2(12,8),14,Color("4d737d"))
-	tesla_prompt.hide()
+	globe_guide_hint=Label.new();globe_guide_hint.text="前往星系仪，开启观测"
+	globe_guide_hint.size=Vector2(320,32);globe_guide_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	globe_guide_hint.add_theme_font_override("font",preload("res://assets/fonts/source_han_serif/SourceHanSerifCN-Regular.otf"))
+	globe_guide_hint.add_theme_font_size_override("font_size",19)
+	globe_guide_hint.add_theme_color_override("font_color",Color("294859"))
+	globe_guide_hint.add_theme_color_override("font_outline_color",Color("f2dfaf"))
+	globe_guide_hint.add_theme_constant_override("outline_size",3)
+	globe_guide_hint.mouse_filter=Control.MOUSE_FILTER_IGNORE;globe_guide_hint.hide();layer.add_child(globe_guide_hint)
 	ui.free()
+
+func begin_globe_guidance(animated: bool=true) -> void:
+	if not cleared:globe_fx.begin_guidance(animated)
+
+func finish_globe_guidance() -> void:
+	globe_guide_hint.hide();globe_fx.finish_guidance()
+
+func obscure_globe_guidance(value: bool) -> void:
+	globe_guidance_obscured=value
+	if value:globe_guide_hint.hide()
 
 func set_tesla_invitation(value: bool) -> void:
 	invite_tesla=value
-	if not value:tesla_prompt.hide()
+	if not value:desk_beacon.hide()
 
 func _add_furnishings() -> void:
 	var data: Array=[
@@ -158,28 +181,38 @@ func start_return_arrival() -> void:
 
 func _process(_delta: float) -> void:
 	_tick_camera(_delta)
-	tesla_prompt.visible=invite_tesla and not arrival_busy()
-	tesla_prompt.position=world_to_screen(npc.position)+Vector2(-110,-190)
+	desk_beacon.visible=invite_tesla and not arrival_busy()
+	if not arrival_busy():
+		movement_hint.offer()
+		if Input.get_vector("walk_left","walk_right","walk_up","walk_down").length_squared()>0.01:movement_hint.dismiss()
 	return_age=arrival.age if is_instance_valid(arrival) and arrival.active else -1.0
 	var over_globe: bool=globe.art.get_rect().has_point(globe.art.to_local(screen_to_world(pointer)))
 	var over_npc: bool=npc_art.get_rect().has_point(npc_art.to_local(screen_to_world(pointer)))
-	hint.visible=(over_globe or (over_npc and not invite_tesla)) and not arrival_busy()
+	hint.visible=over_globe and not arrival_busy()
 	if over_globe:
 		hint.position=world_to_screen(globe.position)+Vector2(-83,-208)
 		hint_text.text="星系仪 · 点击观测"
-	elif over_npc:
-		hint.position=world_to_screen(npc.position)+Vector2(-75,-171)
-		hint_text.text="特斯拉 · 点击交谈"
 	globe.art.modulate=Color(1.09,1.09,1.03) if over_globe else Color.WHITE
 	globe_fx.hovered=over_globe and not arrival_busy()
+	var guide_point:=world_to_screen(globe.to_global(globe_fx.core))+Vector2(-160,-112)
+	globe_guide_hint.position=Vector2(clampf(guide_point.x,20,940),clampf(guide_point.y,55,700))
+	globe_guide_hint.modulate.a=globe_fx.hint_opacity
+	globe_guide_hint.visible=globe_fx.hint_opacity>0.001 and not globe_guidance_obscured and not arrival_busy()
+	if globe_guide_hint.visible:hint.hide()
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND if (over_globe or over_npc) and not arrival_busy() else Input.CURSOR_ARROW)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse: pointer=event.position
+	if arrival_busy() or player.controls_locked:return
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT] or event.keycode in [KEY_W,KEY_A,KEY_S,KEY_D]:movement_hint.dismiss()
+	elif event is InputEventMouseButton and event.pressed and event.button_index in [MOUSE_BUTTON_LEFT,MOUSE_BUTTON_RIGHT,MOUSE_BUTTON_MIDDLE]:movement_hint.dismiss()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if arrival_busy():return
 	if event is InputEventMouseButton and event.pressed:
+		if event.button_index==MOUSE_BUTTON_LEFT and invite_tesla and desk_beacon.contains_point(screen_to_world(event.position)):
+			queue_destination(desk_beacon.position);get_viewport().set_input_as_handled();return
 		if event.button_index==MOUSE_BUTTON_LEFT and npc_art.get_rect().has_point(npc_art.to_local(screen_to_world(event.position))):
 			player.cancel_navigation();dialogue_requested.emit();get_viewport().set_input_as_handled();return
 		if event.button_index in [MOUSE_BUTTON_LEFT,MOUSE_BUTTON_RIGHT] and globe.art.get_rect().has_point(globe.art.to_local(screen_to_world(event.position))):

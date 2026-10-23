@@ -2,11 +2,15 @@ extends Control
 ## Resolution-independent paper/optical UI. Text is rendered separately.
 var speaker := "tesla"
 var kind := "story"
+var instrument:=false
 
 func shape(at: Vector2, dimensions: Vector2, cut: float=15.0) -> PackedVector2Array:
 	return PackedVector2Array([at+Vector2(cut,0),at+Vector2(dimensions.x-cut,0),at+Vector2(dimensions.x,cut),at+Vector2(dimensions.x,dimensions.y-cut),at+Vector2(dimensions.x-cut,dimensions.y),at+Vector2(cut,dimensions.y),at+Vector2(0,dimensions.y-cut),at+Vector2(0,cut)])
 
 func _draw() -> void:
+	if instrument and kind!="story":
+		draw_style_box(preload("res://scripts/instrument_theme.gd").style(),Rect2(Vector2.ZERO,size))
+		return
 	var heroine := speaker=="yanyue"
 	var accent := Color("83c8df") if heroine else Color("b99a60")
 	var paper := Color("faf7ee")

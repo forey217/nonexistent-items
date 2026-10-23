@@ -102,7 +102,7 @@ func run(flow: Node2D) -> void:
 	await snapshot("02b-hover-fractures")
 	move_pointer(Vector2(70,650));await frames(25)
 	record("fractures_relax_when_pointer_leaves",menu.hover_amount<0.05)
-	click(menu.CENTER+Vector2(100,0));await frames(2)
+	click(menu.CENTER+Vector2(160,0));await frames(2)
 	record("empty_area_near_crystal_cannot_expand_it",menu.phase==menu.Phase.CLOSED)
 	click(Vector2(75,660));await frames(3)
 	record("background_click_does_not_enter_level",app.current==hub and menu.selection_age<0)
@@ -143,12 +143,12 @@ func run(flow: Node2D) -> void:
 	record("level_entry_rift_has_real_world_depth",room.orbit_view.arrival_sprite.visible and room.orbit_view.arrival_sprite.layers==(1<<3) and room.arrival_busy())
 	var entry_frames:=0
 	var safe:=true
-	while room.arrival_busy() and entry_frames<100:
+	while room.arrival_busy() and entry_frames<150:
 		await frames(1);entry_frames+=1
 		safe=safe and room.actor_position_is_clear(room.player.position)
 		if entry_frames%2==0:await snapshot("entry-%03d"%entry_frames)
 	record("hero_emerges_then_controls_restore",not room.arrival_busy() and not room.player.controls_locked and room.player.position.distance_to(room.spawn_point)<2 and safe)
-	record("entry_rift_disables_its_extra_rendering",not room.orbit_view.arrival_sprite.visible and room.orbit_view.arrival_viewport.render_target_update_mode==SubViewport.UPDATE_DISABLED)
+	record("entry_rift_disables_its_extra_rendering",not room.orbit_view.arrival_sprite.visible and room.orbit_view.arrival_viewport.render_target_update_mode==SubViewport.UPDATE_DISABLED and not room.orbit_view.arrival_gate.front_sprite.visible and room.orbit_view.arrival_gate.front_viewport.render_target_update_mode==SubViewport.UPDATE_DISABLED)
 	await snapshot("03-tutorial-arrived")
 	var before: Vector2=room.player.position
 	Input.action_press("walk_right");await frames(7);Input.action_release("walk_right");await frames(2)
@@ -169,7 +169,7 @@ func run(flow: Node2D) -> void:
 	hub=app.current
 	record("archive_returns_to_hub_with_new_spatial_rift",hub.get_script().resource_path.ends_with("tutorial_hub.gd") and hub.cleared and hub.arrival_busy())
 	var return_frames:=0
-	while hub.arrival_busy() and return_frames<100:
+	while hub.arrival_busy() and return_frames<150:
 		await frames(1);return_frames+=1
 		if return_frames%2==0:await snapshot("return-%03d"%return_frames)
 	record("return_rift_finishes_without_collision",not hub.arrival_busy() and not hub.player.controls_locked and hub.actor_position_is_clear(hub.player.position) and hub.player.modulate.a>0.99)

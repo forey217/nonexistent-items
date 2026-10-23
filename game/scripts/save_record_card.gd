@@ -3,6 +3,9 @@ var index:=1
 var record: Dictionary={"status":"empty","data":{}}
 var selected:=false
 var hovered:=false
+var delete_hovered:=false
+var delete_button:=Button.new()
+signal delete_requested
 var paper: Texture2D
 var thumbnail: Texture2D
 var location:=""
@@ -10,11 +13,23 @@ var progress:=""
 var font:=FontVariation.new()
 const RECT:=Rect2(-130,-182,260,364)
 const ACTION:=Rect2(-98,130,196,30)
+const DELETE_RECT:=Rect2(80,-126,34,34)
 const INK:=Color("203b4a")
 
 func _ready() -> void:
 	font.base_font=preload("res://assets/fonts/source_han_serif/SourceHanSerifCN-Regular.otf")
 	font.variation_embolden=0.16
+	delete_button.position=DELETE_RECT.position;delete_button.size=DELETE_RECT.size
+	delete_button.tooltip_text="删除记录";delete_button.focus_mode=Control.FOCUS_NONE
+	for state in ["normal","hover","pressed","focus","disabled"]:delete_button.add_theme_stylebox_override(state,StyleBoxEmpty.new())
+	delete_button.pressed.connect(func():delete_requested.emit())
+	add_child(delete_button);delete_button.hide()
+
+func can_delete() -> bool:
+	return record.get("status","empty")!="empty"
+
+func on_delete(at: Vector2) -> bool:
+	return can_delete() and DELETE_RECT.has_point(to_local(at))
 
 func contains(at: Vector2) -> bool:
 	return RECT.has_point(to_local(at))
@@ -38,6 +53,18 @@ func _draw() -> void:
 	draw_line(Vector2(-84,-53),Vector2(84,-53),Color("a59270"),0.8,true)
 	var ready: bool=record.status=="ready"
 	var damaged: bool=record.status=="damaged"
+	delete_button.visible=can_delete()
+	if can_delete():
+		var color:=Color("8d433e") if delete_hovered else Color("98645a")
+		if delete_hovered:
+			var style:=StyleBoxFlat.new();style.bg_color=Color(0.97,0.90,0.80,0.8)
+			style.border_color=Color(color,0.7);style.set_border_width_all(1);style.set_corner_radius_all(3)
+			draw_style_box(style,DELETE_RECT)
+		var center:=DELETE_RECT.get_center()
+		draw_polyline(PackedVector2Array([center+Vector2(-6,-4),center+Vector2(-5,8),center+Vector2(5,8),center+Vector2(6,-4)]),color,1.5,true)
+		draw_line(center+Vector2(-8,-7),center+Vector2(8,-7),color,1.5,true)
+		draw_polyline(PackedVector2Array([center+Vector2(-3,-7),center+Vector2(-3,-10),center+Vector2(3,-10),center+Vector2(3,-7)]),color,1.4,true)
+		for x in [-2,2]:draw_line(center+Vector2(x,-2),center+Vector2(x,5),color,1.2,true)
 	text(location if ready else ("记录暂不可读" if damaged else "新建记录"),-25,21)
 	if ready:
 		if thumbnail!=null:

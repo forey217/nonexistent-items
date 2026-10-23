@@ -70,7 +70,7 @@ func play(menu: Node2D,flow: Node) -> void:
 	hub.hall_camera.zoom=zoom_start
 	hub.hall_camera.position=camera_start
 	hub.hall_camera.force_update_scroll()
-	hub.dialogue_footer.hide()
+	hub.movement_hint.hide()
 	hub.arrival_title.hide();hub.arrival_title.set_process(false)
 	flow.return_menu_button.hide()
 	stage="arrival"

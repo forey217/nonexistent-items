@@ -1,6 +1,8 @@
 shader_type canvas_item;
 uniform float clock = 0.0;
 uniform float attention : hint_range(0.0, 1.0) = 0.0;
+uniform float guidance : hint_range(0.0, 1.0) = 0.0;
+uniform float orbit_guidance : hint_range(0.0, 1.0) = 0.0;
 uniform vec2 core_center=vec2(2.5,-89.5);
 uniform float core_radius=96.0;
 varying vec2 sprite_position;
@@ -27,8 +29,13 @@ void fragment() {
 	vec2 star=fract(cell)-vec2(0.25+hash21(grid)*0.5,0.25+hash21(grid+7.0)*0.5);
 	float twinkle=0.35+0.65*pow(0.5+0.5*sin(clock*1.5+hash21(grid+9.0)*6.28),3.0);
 	float spark=exp(-dot(star,star)*900.0)*step(0.40,hash21(grid+13.0))*twinkle;
-	float strength=0.8+attention*0.65;
+	float strength=0.8+attention*0.65+guidance*0.85;
 	vec3 glow=vec3(0.08,0.27,0.38)*ribbons*(0.6+pulse*0.4)+vec3(0.45,0.85,1.0)*spark;
 	glow+=vec3(0.02,0.05,0.09)*pulse;
-	COLOR=vec4(base.rgb+glow*blue*strength,base.a);
+	glow+=vec3(0.06,0.16,0.21)*guidance*(0.4+0.6*exp(-dot(p,p)*3.0));
+	float brass=smoothstep(0.03,0.17,base.r-base.b)*smoothstep(0.01,0.12,base.g-base.b);
+	float band=1.0-smoothstep(1.10,1.65,length(p));
+	float sweep=pow(0.5+0.5*sin(atan(p.y,p.x)*2.0-clock*0.85+length(p)*3.0),8.0);
+	vec3 gold=vec3(0.19,0.13,0.045)*brass*band*sweep*orbit_guidance;
+	COLOR=vec4(base.rgb+glow*blue*strength+gold,base.a);
 }

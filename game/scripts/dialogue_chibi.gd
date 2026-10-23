@@ -3,6 +3,7 @@ extends Control
 var speaker:=""
 var texture: Texture2D
 var opacity:=1.0
+var observation:=false
 
 func _ready() -> void:
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
@@ -21,9 +22,10 @@ func _process(delta: float) -> void:
 	if opacity>=1.0:set_process(false)
 
 func _draw() -> void:
-	draw_circle(Vector2(32,34),30,Color(0.08,0.16,0.20,0.12*opacity))
-	draw_circle(Vector2(32,32),30,Color(0.98,0.96,0.91,0.98*opacity))
-	draw_arc(Vector2(32,32),30,0,TAU,80,Color(0.72,0.60,0.40,opacity),1.3,true)
+	if not observation:
+		draw_circle(Vector2(32,34),30,Color(0.08,0.16,0.20,0.12*opacity))
+		draw_circle(Vector2(32,32),30,Color(0.98,0.96,0.91,0.98*opacity))
+		draw_arc(Vector2(32,32),30,0,TAU,80,Color(0.72,0.60,0.40,opacity),1.3,true)
 	if texture==null:return
 	var dimensions:=texture.get_size()
 	var scale_factor:=minf(60.0/dimensions.x,60.0/dimensions.y)

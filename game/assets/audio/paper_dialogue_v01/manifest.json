@@ -1,0 +1,7048 @@
+{
+  "scope": "纸山叠影 P2-01 至 P2-08、状态回应与三级主动提示",
+  "profiles": {
+    "yanyue": {
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz"
+    },
+    "tesla": {
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz"
+    }
+  },
+  "items": [
+    {
+      "display_text": "这里是泽雅纸山。两座纸坊错位重叠，连水路和机关都串到一起了。",
+      "file": "vo_tesla_33c26ca850b603f8.mp3",
+      "id": "vo_tesla_33c26ca850b603f8",
+      "nodes": [
+        "P2-01"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "这里是泽雅纸山。两座纸坊错位重叠，连水路和机关都串到一起了。",
+      "status": "generated",
+      "duration_seconds": 6.816,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "d248b4aa5a946a5967440592c34b9e60e19f1e345b0b51efcdc8e70a67b32521",
+      "words": [
+        {
+          "text": "这里",
+          "start": 0,
+          "duration": 0.3533
+        },
+        {
+          "text": "是",
+          "start": 0.3112,
+          "duration": 0.1902
+        },
+        {
+          "text": "泽雅",
+          "start": 0.5286,
+          "duration": 0.4212
+        },
+        {
+          "text": "纸山",
+          "start": 0.9634,
+          "duration": 0.4891
+        },
+        {
+          "text": "两座",
+          "start": 2.0807,
+          "duration": 0.462
+        },
+        {
+          "text": "纸坊",
+          "start": 2.5563,
+          "duration": 0.4076
+        },
+        {
+          "text": "错位",
+          "start": 2.9911,
+          "duration": 0.2989
+        },
+        {
+          "text": "重叠",
+          "start": 3.3036,
+          "duration": 0.5435
+        },
+        {
+          "text": "连",
+          "start": 4.0101,
+          "duration": 0.2446
+        },
+        {
+          "text": "水路",
+          "start": 4.2683,
+          "duration": 0.4891
+        },
+        {
+          "text": "和",
+          "start": 4.7846,
+          "duration": 0.1495
+        },
+        {
+          "text": "机关",
+          "start": 4.9476,
+          "duration": 0.5163
+        },
+        {
+          "text": "都",
+          "start": 5.4911,
+          "duration": 0.231
+        },
+        {
+          "text": "串到",
+          "start": 5.7221,
+          "duration": 0.3397
+        },
+        {
+          "text": "一起",
+          "start": 6.0753,
+          "duration": 0.3397
+        },
+        {
+          "text": "了",
+          "start": 6.415,
+          "duration": 0.1766
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.05,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "看来，这次一块镇纸不够用了。",
+      "file": "vo_yanyue_861dd84920474268.mp3",
+      "id": "vo_yanyue_861dd84920474268",
+      "nodes": [
+        "P2-01"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "看来，这次一块镇纸不够用了。",
+      "status": "generated",
+      "duration_seconds": 2.592,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "d54a44343c69bbec95813bb2d63302a4fa1f6a924c6570e1aa63bc9556c0b341",
+      "words": [
+        {
+          "text": "看来",
+          "start": 0.0085,
+          "duration": 0.449
+        },
+        {
+          "text": "这次",
+          "start": 0.7124,
+          "duration": 0.3398
+        },
+        {
+          "text": "一块",
+          "start": 1.0644,
+          "duration": 0.3155
+        },
+        {
+          "text": "镇纸",
+          "start": 1.392,
+          "duration": 0.3155
+        },
+        {
+          "text": "不",
+          "start": 1.7197,
+          "duration": 0.1092
+        },
+        {
+          "text": "够用",
+          "start": 1.8289,
+          "duration": 0.352
+        },
+        {
+          "text": "了",
+          "start": 2.1809,
+          "duration": 0.1456
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.392
+      },
+      "peak_dbfs": -5.59,
+      "normalization_gain_db": 1.76,
+      "trim_start_seconds": 0.15,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "对。先去上层工具间找到留影夹，再让山纹、水纹两块镇纸稳住各自的锚位。",
+      "file": "vo_tesla_600ed5d168c95553.mp3",
+      "id": "vo_tesla_600ed5d168c95553",
+      "nodes": [
+        "P2-01"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "对。先去上层工具间找到留影夹，再让山纹、水纹两块镇纸稳住各自的锚位。",
+      "status": "generated",
+      "duration_seconds": 8.136,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "70ddc7178184533da10b4e94699b3a0f315cd83104658ee56f5d65d9cea029e4",
+      "words": [
+        {
+          "text": "对",
+          "start": 0,
+          "duration": 0.3668
+        },
+        {
+          "text": "先",
+          "start": 0.9134,
+          "duration": 0.2717
+        },
+        {
+          "text": "去",
+          "start": 1.1851,
+          "duration": 0.1766
+        },
+        {
+          "text": "上层",
+          "start": 1.3889,
+          "duration": 0.3533
+        },
+        {
+          "text": "工具",
+          "start": 1.7558,
+          "duration": 0.3397
+        },
+        {
+          "text": "间",
+          "start": 2.0954,
+          "duration": 0.2717
+        },
+        {
+          "text": "找到",
+          "start": 2.4623,
+          "duration": 0.3397
+        },
+        {
+          "text": "留影",
+          "start": 2.8155,
+          "duration": 0.3668
+        },
+        {
+          "text": "夹",
+          "start": 3.1824,
+          "duration": 0.2989
+        },
+        {
+          "text": "再",
+          "start": 3.7123,
+          "duration": 0.2038
+        },
+        {
+          "text": "让",
+          "start": 3.9161,
+          "duration": 0.1902
+        },
+        {
+          "text": "山纹",
+          "start": 4.1335,
+          "duration": 0.5571
+        },
+        {
+          "text": "水纹",
+          "start": 4.8128,
+          "duration": 0.5435
+        },
+        {
+          "text": "两块",
+          "start": 5.3835,
+          "duration": 0.4348
+        },
+        {
+          "text": "镇纸",
+          "start": 5.8318,
+          "duration": 0.4891
+        },
+        {
+          "text": "稳住",
+          "start": 6.4297,
+          "duration": 0.5571
+        },
+        {
+          "text": "各自",
+          "start": 7.0139,
+          "duration": 0.3397
+        },
+        {
+          "text": "的",
+          "start": 7.3536,
+          "duration": 0.1087
+        },
+        {
+          "text": "锚位",
+          "start": 7.4759,
+          "duration": 0.4076
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 5.8318
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.07,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "工具间就在那边，可中间这一段廊道不见了。",
+      "file": "vo_yanyue_4150557cadc703d5.mp3",
+      "id": "vo_yanyue_4150557cadc703d5",
+      "nodes": [
+        "P2-02"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "工具间就在那边，可中间这一段廊道不见了。",
+      "status": "generated",
+      "duration_seconds": 3.504,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "cda1af97e844f3a55029c4e15c5b8300d3ed0940f379af074f30ff5f583ad3f8",
+      "words": [
+        {
+          "text": "工具",
+          "start": 0.0085,
+          "duration": 0.352
+        },
+        {
+          "text": "间",
+          "start": 0.3605,
+          "duration": 0.2063
+        },
+        {
+          "text": "就",
+          "start": 0.5789,
+          "duration": 0.1214
+        },
+        {
+          "text": "在",
+          "start": 0.7003,
+          "duration": 0.1335
+        },
+        {
+          "text": "那边",
+          "start": 0.8459,
+          "duration": 0.4005
+        },
+        {
+          "text": "可",
+          "start": 1.477,
+          "duration": 0.1578
+        },
+        {
+          "text": "中间",
+          "start": 1.6348,
+          "duration": 0.3883
+        },
+        {
+          "text": "这",
+          "start": 2.0353,
+          "duration": 0.1213
+        },
+        {
+          "text": "一段",
+          "start": 2.1566,
+          "duration": 0.2427
+        },
+        {
+          "text": "廊道",
+          "start": 2.4115,
+          "duration": 0.2913
+        },
+        {
+          "text": "不见",
+          "start": 2.7149,
+          "duration": 0.3519
+        },
+        {
+          "text": "了",
+          "start": 3.0668,
+          "duration": 0.1699
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -6.01,
+      "normalization_gain_db": 0.19,
+      "trim_start_seconds": 0.15,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "留影夹……真能把一个世界的样子夹住？",
+      "file": "vo_yanyue_cce8b134d1b7a0d3.mp3",
+      "id": "vo_yanyue_cce8b134d1b7a0d3",
+      "nodes": [
+        "P2-03"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "留影夹……真能把一个世界的样子夹住？",
+      "status": "generated",
+      "duration_seconds": 3.0,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "6673ce561dcbfe592317eeb4a0397d9817744fa206668d9db623a76a0ef26d57",
+      "words": [
+        {
+          "text": "留影",
+          "start": 0.0085,
+          "duration": 0.4369
+        },
+        {
+          "text": "夹",
+          "start": 0.4454,
+          "duration": 0.2913
+        },
+        {
+          "text": "真",
+          "start": 0.9794,
+          "duration": 0.2185
+        },
+        {
+          "text": "能",
+          "start": 1.1979,
+          "duration": 0.1214
+        },
+        {
+          "text": "把",
+          "start": 1.3314,
+          "duration": 0.1456
+        },
+        {
+          "text": "一个世界",
+          "start": 1.4891,
+          "duration": 0.4733
+        },
+        {
+          "text": "的",
+          "start": 1.9624,
+          "duration": 0.085
+        },
+        {
+          "text": "样子",
+          "start": 2.0595,
+          "duration": 0.2306
+        },
+        {
+          "text": "夹住",
+          "start": 2.3023,
+          "duration": 0.4126
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -6.29,
+      "normalization_gain_db": 1.5,
+      "trim_start_seconds": 0.15,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "找带黄铜夹环的机关。它能固定机关当前的姿态，切换世界后也会保留。",
+      "file": "vo_tesla_4ea4e3d8734ef157.mp3",
+      "id": "vo_tesla_4ea4e3d8734ef157",
+      "nodes": [
+        "P2-03"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "找带黄铜夹环的机关。它能固定机关当前的姿态，切换世界后也会保留。",
+      "status": "generated",
+      "duration_seconds": 6.912,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "fd2ec94b6925bebd159340d7a6ce5539ad024f48a6a58c0f5736475c5b0e3d29",
+      "words": [
+        {
+          "text": "找",
+          "start": 0,
+          "duration": 0.3125
+        },
+        {
+          "text": "带",
+          "start": 0.2904,
+          "duration": 0.1902
+        },
+        {
+          "text": "黄铜",
+          "start": 0.4807,
+          "duration": 0.4348
+        },
+        {
+          "text": "夹环",
+          "start": 0.929,
+          "duration": 0.4076
+        },
+        {
+          "text": "的",
+          "start": 1.3366,
+          "duration": 0.0815
+        },
+        {
+          "text": "机关",
+          "start": 1.4318,
+          "duration": 0.462
+        },
+        {
+          "text": "它",
+          "start": 2.522,
+          "duration": 0.2174
+        },
+        {
+          "text": "能",
+          "start": 2.7393,
+          "duration": 0.163
+        },
+        {
+          "text": "固定",
+          "start": 2.916,
+          "duration": 0.3125
+        },
+        {
+          "text": "机关",
+          "start": 3.2421,
+          "duration": 0.3804
+        },
+        {
+          "text": "当前",
+          "start": 3.6497,
+          "duration": 0.3533
+        },
+        {
+          "text": "的",
+          "start": 4.0029,
+          "duration": 0.0815
+        },
+        {
+          "text": "姿态",
+          "start": 4.098,
+          "duration": 0.4484
+        },
+        {
+          "text": "切换",
+          "start": 4.791,
+          "duration": 0.3533
+        },
+        {
+          "text": "世界",
+          "start": 5.1578,
+          "duration": 0.2581
+        },
+        {
+          "text": "后",
+          "start": 5.416,
+          "duration": 0.2582
+        },
+        {
+          "text": "也",
+          "start": 5.7692,
+          "duration": 0.2038
+        },
+        {
+          "text": "会",
+          "start": 5.973,
+          "duration": 0.163
+        },
+        {
+          "text": "保留",
+          "start": 6.1497,
+          "duration": 0.5163
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.09,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "取回夹子后，机关恢复原来的规则。",
+      "file": "vo_tesla_8e378e33f5815113.mp3",
+      "id": "vo_tesla_8e378e33f5815113",
+      "nodes": [
+        "P2-03"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "取回夹子后，机关恢复原来的规则。",
+      "status": "generated",
+      "duration_seconds": 3.216,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "aad8402b39731c1586391f9a9e6f1f3b3538cc1bc706af9daf80238e2c346b90",
+      "words": [
+        {
+          "text": "取回",
+          "start": 0,
+          "duration": 0.3533
+        },
+        {
+          "text": "夹子",
+          "start": 0.3312,
+          "duration": 0.3125
+        },
+        {
+          "text": "后",
+          "start": 0.6437,
+          "duration": 0.2717
+        },
+        {
+          "text": "机关",
+          "start": 1.0513,
+          "duration": 0.4484
+        },
+        {
+          "text": "恢复",
+          "start": 1.5133,
+          "duration": 0.4076
+        },
+        {
+          "text": "原来",
+          "start": 1.948,
+          "duration": 0.3804
+        },
+        {
+          "text": "的",
+          "start": 2.3285,
+          "duration": 0.1087
+        },
+        {
+          "text": "规则",
+          "start": 2.4507,
+          "duration": 0.5027
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.79,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "先让楼下的接物台保持在接物高度，为山纹镇纸准备一个安全落点。",
+      "file": "vo_tesla_eb8bd28309497124.mp3",
+      "id": "vo_tesla_eb8bd28309497124",
+      "nodes": [
+        "P2-03"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "先让楼下的接物台保持在接物高度，为山纹镇纸准备一个安全落点。",
+      "status": "generated",
+      "duration_seconds": 5.976,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "be7de807cb5b83a2185e01190d07dd28be8e23932aec271251294be12877f27a",
+      "words": [
+        {
+          "text": "先",
+          "start": 0,
+          "duration": 0.2174
+        },
+        {
+          "text": "让",
+          "start": 0.1917,
+          "duration": 0.1766
+        },
+        {
+          "text": "楼下",
+          "start": 0.3955,
+          "duration": 0.2989
+        },
+        {
+          "text": "的",
+          "start": 0.6945,
+          "duration": 0.0951
+        },
+        {
+          "text": "接物台",
+          "start": 0.8032,
+          "duration": 0.6114
+        },
+        {
+          "text": "保持",
+          "start": 1.5097,
+          "duration": 0.2717
+        },
+        {
+          "text": "在",
+          "start": 1.7814,
+          "duration": 0.2038
+        },
+        {
+          "text": "接物",
+          "start": 2.0124,
+          "duration": 0.3125
+        },
+        {
+          "text": "高度",
+          "start": 2.3385,
+          "duration": 0.5027
+        },
+        {
+          "text": "为山纹镇纸",
+          "start": 3.1129,
+          "duration": 1.0326
+        },
+        {
+          "text": "准备",
+          "start": 4.2407,
+          "duration": 0.3397
+        },
+        {
+          "text": "一个",
+          "start": 4.5939,
+          "duration": 0.2717
+        },
+        {
+          "text": "安全",
+          "start": 4.8928,
+          "duration": 0.394
+        },
+        {
+          "text": "落点",
+          "start": 5.3004,
+          "duration": 0.4891
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 3.1129
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.85,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "接物台留在这个高度了。现在换个世界，它也不会落下吧。",
+      "file": "vo_yanyue_8f8c3ed6aa6aae24.mp3",
+      "id": "vo_yanyue_8f8c3ed6aa6aae24",
+      "nodes": [
+        "P2-04-catch"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "接物台留在这个高度了。现在换个世界，它也不会落下吧。",
+      "status": "generated",
+      "duration_seconds": 4.896,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "1d7b6a42b29bd87f692042ac6725cf95bd01d4e5469c7df3179af2ab9d1b9ce8",
+      "words": [
+        {
+          "text": "接物台",
+          "start": 0.0085,
+          "duration": 0.5704
+        },
+        {
+          "text": "留",
+          "start": 0.5911,
+          "duration": 0.1578
+        },
+        {
+          "text": "在",
+          "start": 0.7488,
+          "duration": 0.1456
+        },
+        {
+          "text": "这个",
+          "start": 0.9066,
+          "duration": 0.182
+        },
+        {
+          "text": "高度",
+          "start": 1.1008,
+          "duration": 0.3519
+        },
+        {
+          "text": "了",
+          "start": 1.4527,
+          "duration": 0.1699
+        },
+        {
+          "text": "现在",
+          "start": 2.1673,
+          "duration": 0.4612
+        },
+        {
+          "text": "换",
+          "start": 2.6406,
+          "duration": 0.182
+        },
+        {
+          "text": "个",
+          "start": 2.8226,
+          "duration": 0.0728
+        },
+        {
+          "text": "世界",
+          "start": 2.9076,
+          "duration": 0.4369
+        },
+        {
+          "text": "它",
+          "start": 3.5629,
+          "duration": 0.1456
+        },
+        {
+          "text": "也",
+          "start": 3.7207,
+          "duration": 0.1214
+        },
+        {
+          "text": "不会",
+          "start": 3.842,
+          "duration": 0.2549
+        },
+        {
+          "text": "落下",
+          "start": 4.109,
+          "duration": 0.3034
+        },
+        {
+          "text": "吧",
+          "start": 4.4124,
+          "duration": 0.2063
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -5.52,
+      "normalization_gain_db": 1.88,
+      "trim_start_seconds": 0.15,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "桥留下来了。看来，它记住的是刚才的样子。",
+      "file": "vo_yanyue_d1843faaca597c2d.mp3",
+      "id": "vo_yanyue_d1843faaca597c2d",
+      "nodes": [
+        "P2-04-bridge"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "桥留下来了。看来，它记住的是刚才的样子。",
+      "status": "generated",
+      "duration_seconds": 4.152,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "ad5003eef7f42fc4c331e0e765953d47a0153e660f28ed0fb13449701531501d",
+      "words": [
+        {
+          "text": "桥",
+          "start": 0.0185,
+          "duration": 0.3034
+        },
+        {
+          "text": "留",
+          "start": 0.322,
+          "duration": 0.1335
+        },
+        {
+          "text": "下来",
+          "start": 0.4554,
+          "duration": 0.3398
+        },
+        {
+          "text": "了",
+          "start": 0.7953,
+          "duration": 0.2063
+        },
+        {
+          "text": "看来",
+          "start": 1.5462,
+          "duration": 0.4976
+        },
+        {
+          "text": "它",
+          "start": 2.3108,
+          "duration": 0.1335
+        },
+        {
+          "text": "记住",
+          "start": 2.4564,
+          "duration": 0.3155
+        },
+        {
+          "text": "的",
+          "start": 2.772,
+          "duration": 0.0971
+        },
+        {
+          "text": "是",
+          "start": 2.869,
+          "duration": 0.1214
+        },
+        {
+          "text": "刚才",
+          "start": 3.0025,
+          "duration": 0.364
+        },
+        {
+          "text": "的",
+          "start": 3.3666,
+          "duration": 0.085
+        },
+        {
+          "text": "样子",
+          "start": 3.4637,
+          "duration": 0.4126
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -4.44,
+      "normalization_gain_db": 2.45,
+      "trim_start_seconds": 0.14,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "没错，它保留住了。",
+      "file": "vo_tesla_0dfdf8f9efabb084.mp3",
+      "id": "vo_tesla_0dfdf8f9efabb084",
+      "nodes": [
+        "P2-04-confirm"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "没错，它保留住了。",
+      "status": "generated",
+      "duration_seconds": 1.824,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "430841024519522866a0a554b124135aa7ca28a8b8573709d8393ad08a6f8e35",
+      "words": [
+        {
+          "text": "没错",
+          "start": 0,
+          "duration": 0.5027
+        },
+        {
+          "text": "它",
+          "start": 0.5657,
+          "duration": 0.231
+        },
+        {
+          "text": "保",
+          "start": 0.7968,
+          "duration": 0.231
+        },
+        {
+          "text": "留住",
+          "start": 1.0413,
+          "duration": 0.4076
+        },
+        {
+          "text": "了",
+          "start": 1.4489,
+          "duration": 0.1359
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.5,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "留影夹一次只能固定一处。取回后，原来的机关会恢复变化。",
+      "file": "vo_tesla_b7102bb1412d3a9b.mp3",
+      "id": "vo_tesla_b7102bb1412d3a9b",
+      "nodes": [
+        "clip-limit"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "留影夹一次只能固定一处。取回后，原来的机关会恢复变化。",
+      "status": "generated",
+      "duration_seconds": 6.048,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "2a37d196adae8c65b7b2a18fdff4e49ecee94d055f610b2e210525766981da13",
+      "words": [
+        {
+          "text": "留影",
+          "start": 0,
+          "duration": 0.4076
+        },
+        {
+          "text": "夹",
+          "start": 0.3555,
+          "duration": 0.2038
+        },
+        {
+          "text": "一次",
+          "start": 0.5593,
+          "duration": 0.4348
+        },
+        {
+          "text": "只能",
+          "start": 1.0893,
+          "duration": 0.394
+        },
+        {
+          "text": "固定",
+          "start": 1.5104,
+          "duration": 0.3533
+        },
+        {
+          "text": "一",
+          "start": 1.8773,
+          "duration": 0.163
+        },
+        {
+          "text": "处",
+          "start": 2.0403,
+          "duration": 0.2989
+        },
+        {
+          "text": "取回",
+          "start": 2.955,
+          "duration": 0.3668
+        },
+        {
+          "text": "后",
+          "start": 3.3218,
+          "duration": 0.2717
+        },
+        {
+          "text": "原来",
+          "start": 3.743,
+          "duration": 0.3397
+        },
+        {
+          "text": "的",
+          "start": 4.0827,
+          "duration": 0.1359
+        },
+        {
+          "text": "机关会",
+          "start": 4.2322,
+          "duration": 0.6386
+        },
+        {
+          "text": "恢复",
+          "start": 4.9795,
+          "duration": 0.3533
+        },
+        {
+          "text": "变化",
+          "start": 5.3463,
+          "duration": 0.4755
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.11,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "接住了！楼上的东西，真的能交给楼下来接。",
+      "file": "vo_yanyue_ac5b1f83ca7997d8.mp3",
+      "id": "vo_yanyue_ac5b1f83ca7997d8",
+      "nodes": [
+        "P2-05"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "接住了！楼上的东西，真的能交给楼下来接。",
+      "status": "generated",
+      "duration_seconds": 3.912,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "a0966a6f078d4ad51af4890eedeafcd7d116cb8c093ffa2a7ff2abaecd280924",
+      "words": [
+        {
+          "text": "接住",
+          "start": 0.0085,
+          "duration": 0.352
+        },
+        {
+          "text": "了",
+          "start": 0.3605,
+          "duration": 0.1578
+        },
+        {
+          "text": "楼上",
+          "start": 1.0629,
+          "duration": 0.3641
+        },
+        {
+          "text": "的",
+          "start": 1.427,
+          "duration": 0.085
+        },
+        {
+          "text": "东西",
+          "start": 1.5241,
+          "duration": 0.4733
+        },
+        {
+          "text": "真的",
+          "start": 2.2158,
+          "duration": 0.2549
+        },
+        {
+          "text": "能",
+          "start": 2.4828,
+          "duration": 0.1214
+        },
+        {
+          "text": "交给",
+          "start": 2.6163,
+          "duration": 0.267
+        },
+        {
+          "text": "楼下",
+          "start": 2.8954,
+          "duration": 0.3034
+        },
+        {
+          "text": "来",
+          "start": 3.211,
+          "duration": 0.1456
+        },
+        {
+          "text": "接",
+          "start": 3.3566,
+          "duration": 0.2791
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -5.38,
+      "normalization_gain_db": 2.01,
+      "trim_start_seconds": 0.15,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸回到楼上了。下一步，把它送到上层锚座。",
+      "file": "vo_tesla_1a9572a906046ef1.mp3",
+      "id": "vo_tesla_1a9572a906046ef1",
+      "nodes": [
+        "P2-06"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸回到楼上了。下一步，把它送到上层锚座。",
+      "status": "generated",
+      "duration_seconds": 5.112,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "a9be83ac9fb867d1958c4e2d82c78ed4ced32fce452403349b533d7793c6f864",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.9375
+        },
+        {
+          "text": "回到",
+          "start": 1.007,
+          "duration": 0.3668
+        },
+        {
+          "text": "楼上",
+          "start": 1.3874,
+          "duration": 0.4076
+        },
+        {
+          "text": "了",
+          "start": 1.795,
+          "duration": 0.163
+        },
+        {
+          "text": "下一步",
+          "start": 2.5738,
+          "duration": 0.5843
+        },
+        {
+          "text": "把",
+          "start": 3.2803,
+          "duration": 0.163
+        },
+        {
+          "text": "它",
+          "start": 3.4434,
+          "duration": 0.1359
+        },
+        {
+          "text": "送",
+          "start": 3.5928,
+          "duration": 0.2038
+        },
+        {
+          "text": "到",
+          "start": 3.7966,
+          "duration": 0.1766
+        },
+        {
+          "text": "上层",
+          "start": 4.0004,
+          "duration": 0.3804
+        },
+        {
+          "text": "锚座",
+          "start": 4.3945,
+          "duration": 0.462
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.47,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "锚座就在桥那边，得让这条路保持畅通。",
+      "file": "vo_yanyue_3afe948d52cf71a9.mp3",
+      "id": "vo_yanyue_3afe948d52cf71a9",
+      "nodes": [
+        "P2-06-bridge"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "锚座就在桥那边，得让这条路保持畅通。",
+      "status": "generated",
+      "duration_seconds": 3.408,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "12f8dd4ab6a742547d674203c2b5230416ff0823081c11b5a7cf5d459b00fd0a",
+      "words": [
+        {
+          "text": "锚座",
+          "start": 0.0185,
+          "duration": 0.3762
+        },
+        {
+          "text": "就",
+          "start": 0.4069,
+          "duration": 0.1456
+        },
+        {
+          "text": "在",
+          "start": 0.5525,
+          "duration": 0.1214
+        },
+        {
+          "text": "桥",
+          "start": 0.686,
+          "duration": 0.2185
+        },
+        {
+          "text": "那边",
+          "start": 0.9045,
+          "duration": 0.4005
+        },
+        {
+          "text": "得",
+          "start": 1.5234,
+          "duration": 0.1335
+        },
+        {
+          "text": "让",
+          "start": 1.6569,
+          "duration": 0.1456
+        },
+        {
+          "text": "这",
+          "start": 1.8147,
+          "duration": 0.1213
+        },
+        {
+          "text": "条",
+          "start": 1.936,
+          "duration": 0.1942
+        },
+        {
+          "text": "路",
+          "start": 2.1302,
+          "duration": 0.2063
+        },
+        {
+          "text": "保持",
+          "start": 2.3486,
+          "duration": 0.2913
+        },
+        {
+          "text": "畅通",
+          "start": 2.652,
+          "duration": 0.449
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -7.02,
+      "normalization_gain_db": 1.63,
+      "trim_start_seconds": 0.14,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "上层稳住了，楼下的保护罩也打开了。",
+      "file": "vo_yanyue_7e178fb10ebf7f03.mp3",
+      "id": "vo_yanyue_7e178fb10ebf7f03",
+      "nodes": [
+        "P2-07"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "上层稳住了，楼下的保护罩也打开了。",
+      "status": "generated",
+      "duration_seconds": 3.096,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "8a73da29e410e211fe732b918ce61e1c520b8173047fdf7f68775bfb42522ba2",
+      "words": [
+        {
+          "text": "上层",
+          "start": 0.0185,
+          "duration": 0.4369
+        },
+        {
+          "text": "稳住",
+          "start": 0.4676,
+          "duration": 0.4005
+        },
+        {
+          "text": "了",
+          "start": 0.868,
+          "duration": 0.1578
+        },
+        {
+          "text": "楼下",
+          "start": 1.2443,
+          "duration": 0.2913
+        },
+        {
+          "text": "的",
+          "start": 1.5355,
+          "duration": 0.085
+        },
+        {
+          "text": "保护",
+          "start": 1.6326,
+          "duration": 0.3034
+        },
+        {
+          "text": "罩",
+          "start": 1.936,
+          "duration": 0.1942
+        },
+        {
+          "text": "也",
+          "start": 2.1423,
+          "duration": 0.1214
+        },
+        {
+          "text": "打开",
+          "start": 2.2758,
+          "duration": 0.3519
+        },
+        {
+          "text": "了",
+          "start": 2.6277,
+          "duration": 0.182
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -4.01,
+      "normalization_gain_db": 1.69,
+      "trim_start_seconds": 0.14,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "还差水纹镇纸。把它送到下层导向井，让它接触上方的锚位。",
+      "file": "vo_tesla_b4eb10589dc5cc1c.mp3",
+      "id": "vo_tesla_b4eb10589dc5cc1c",
+      "nodes": [
+        "P2-07"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "还差水纹镇纸。把它送到下层导向井，让它接触上方的锚位。",
+      "status": "generated",
+      "duration_seconds": 6.144,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "2718460e25360aa3b87671cbde83e8d0a52b5d360dad9b7949d98811a055224a",
+      "words": [
+        {
+          "text": "还",
+          "start": 0,
+          "duration": 0.2717
+        },
+        {
+          "text": "差",
+          "start": 0.2061,
+          "duration": 0.2446
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 0.4778,
+          "duration": 0.8968
+        },
+        {
+          "text": "把",
+          "start": 2.0039,
+          "duration": 0.1902
+        },
+        {
+          "text": "它",
+          "start": 2.1941,
+          "duration": 0.1766
+        },
+        {
+          "text": "送",
+          "start": 2.3843,
+          "duration": 0.2038
+        },
+        {
+          "text": "到",
+          "start": 2.5882,
+          "duration": 0.1902
+        },
+        {
+          "text": "下层",
+          "start": 2.8055,
+          "duration": 0.4484
+        },
+        {
+          "text": "导向",
+          "start": 3.2675,
+          "duration": 0.4076
+        },
+        {
+          "text": "井",
+          "start": 3.6751,
+          "duration": 0.3125
+        },
+        {
+          "text": "让",
+          "start": 4.1235,
+          "duration": 0.231
+        },
+        {
+          "text": "它",
+          "start": 4.3545,
+          "duration": 0.1766
+        },
+        {
+          "text": "接触",
+          "start": 4.5447,
+          "duration": 0.394
+        },
+        {
+          "text": "上方",
+          "start": 4.9659,
+          "duration": 0.4076
+        },
+        {
+          "text": "的",
+          "start": 5.3735,
+          "duration": 0.0815
+        },
+        {
+          "text": "锚位",
+          "start": 5.4686,
+          "duration": 0.4076
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0.4778
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.31,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "一张纸，原来要两个世界一起压平。",
+      "file": "vo_yanyue_55adbcfc4b706f06.mp3",
+      "id": "vo_yanyue_55adbcfc4b706f06",
+      "nodes": [
+        "P2-08"
+      ],
+      "speaker": "yanyue",
+      "character": "衍月",
+      "gender": "female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "direction": "观察与轻微惊讶，口语自然",
+      "synthesis_text": "一张纸，原来要两个世界一起压平。",
+      "status": "generated",
+      "duration_seconds": 3.072,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "92da333e198701402dd81a662940485b5e144b8d07d24ce3d233acb75c72c917",
+      "words": [
+        {
+          "text": "一",
+          "start": 0.0185,
+          "duration": 0.1456
+        },
+        {
+          "text": "张",
+          "start": 0.1642,
+          "duration": 0.2185
+        },
+        {
+          "text": "纸",
+          "start": 0.3826,
+          "duration": 0.2913
+        },
+        {
+          "text": "原来",
+          "start": 0.9045,
+          "duration": 0.3277
+        },
+        {
+          "text": "要",
+          "start": 1.2443,
+          "duration": 0.1214
+        },
+        {
+          "text": "两",
+          "start": 1.3778,
+          "duration": 0.1699
+        },
+        {
+          "text": "个",
+          "start": 1.5477,
+          "duration": 0.0728
+        },
+        {
+          "text": "世界",
+          "start": 1.6326,
+          "duration": 0.3398
+        },
+        {
+          "text": "一起",
+          "start": 1.9846,
+          "duration": 0.2913
+        },
+        {
+          "text": "压平",
+          "start": 2.288,
+          "duration": 0.5097
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -5.62,
+      "normalization_gain_db": 1.24,
+      "trim_start_seconds": 0.14,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "两处读数都稳定了。纸页已恢复完整，通过上层归位门，回局里归档。",
+      "file": "vo_tesla_7a61254f03772e68.mp3",
+      "id": "vo_tesla_7a61254f03772e68",
+      "nodes": [
+        "P2-08"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "两处读数都稳定了。纸页已恢复完整，通过上层归位门，回局里归档。",
+      "status": "generated",
+      "duration_seconds": 6.936,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e602d6126fe51e6a936401a98d93655721956cf523bfd9d15e36665a6e5cc6e0",
+      "words": [
+        {
+          "text": "两",
+          "start": 0,
+          "duration": 0.2853
+        },
+        {
+          "text": "处",
+          "start": 0.2297,
+          "duration": 0.1766
+        },
+        {
+          "text": "读数",
+          "start": 0.4199,
+          "duration": 0.4484
+        },
+        {
+          "text": "都",
+          "start": 0.8954,
+          "duration": 0.1902
+        },
+        {
+          "text": "稳定",
+          "start": 1.0993,
+          "duration": 0.4076
+        },
+        {
+          "text": "了",
+          "start": 1.5068,
+          "duration": 0.163
+        },
+        {
+          "text": "纸页",
+          "start": 2.2857,
+          "duration": 0.4891
+        },
+        {
+          "text": "已",
+          "start": 2.802,
+          "duration": 0.1902
+        },
+        {
+          "text": "恢复",
+          "start": 3.0057,
+          "duration": 0.3397
+        },
+        {
+          "text": "完整",
+          "start": 3.359,
+          "duration": 0.5299
+        },
+        {
+          "text": "通过",
+          "start": 4.0112,
+          "duration": 0.4348
+        },
+        {
+          "text": "上层",
+          "start": 4.4732,
+          "duration": 0.4755
+        },
+        {
+          "text": "归位",
+          "start": 4.9623,
+          "duration": 0.3125
+        },
+        {
+          "text": "门",
+          "start": 5.2748,
+          "duration": 0.2989
+        },
+        {
+          "text": "回局",
+          "start": 5.6824,
+          "duration": 0.4348
+        },
+        {
+          "text": "里",
+          "start": 6.1172,
+          "duration": 0.1223
+        },
+        {
+          "text": "归档",
+          "start": 6.253,
+          "duration": 0.462
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.5,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "如果需要一起分析，按 H 联系我。",
+      "file": "vo_tesla_337f76beda3be900.mp3",
+      "id": "vo_tesla_337f76beda3be900",
+      "nodes": [
+        "idle"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "如果需要一起分析，按 诶尺 联系我。",
+      "status": "generated",
+      "duration_seconds": 3.768,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "930fffeed666d91ee3faeb434969e998f5c64d9723e36e65b277a6bee5c17b04",
+      "words": [
+        {
+          "text": "如果",
+          "start": 0,
+          "duration": 0.3668
+        },
+        {
+          "text": "需要",
+          "start": 0.3248,
+          "duration": 0.2717
+        },
+        {
+          "text": "一起",
+          "start": 0.6237,
+          "duration": 0.2582
+        },
+        {
+          "text": "分析",
+          "start": 0.8954,
+          "duration": 0.4891
+        },
+        {
+          "text": "按",
+          "start": 1.5884,
+          "duration": 0.3804
+        },
+        {
+          "text": "诶尺",
+          "start": 2.1454,
+          "duration": 0.6522
+        },
+        {
+          "text": "联系",
+          "start": 2.9607,
+          "duration": 0.3668
+        },
+        {
+          "text": "我",
+          "start": 3.3275,
+          "duration": 0.2717
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.45,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "工具间在上层旧廊后面，先观察缺失的通路。",
+      "file": "vo_tesla_e6051b4c3bae9cee.mp3",
+      "id": "vo_tesla_e6051b4c3bae9cee",
+      "nodes": [
+        "H-tool-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "工具间在上层旧廊后面，先观察缺失的通路。",
+      "status": "generated",
+      "duration_seconds": 4.128,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "71481aa88073bc88bee289e9dbecc6f27d2d811b48476269ce9cf21e346ec950",
+      "words": [
+        {
+          "text": "工具",
+          "start": 0,
+          "duration": 0.4484
+        },
+        {
+          "text": "间",
+          "start": 0.3327,
+          "duration": 0.2582
+        },
+        {
+          "text": "在",
+          "start": 0.618,
+          "duration": 0.2038
+        },
+        {
+          "text": "上层",
+          "start": 0.8354,
+          "duration": 0.4484
+        },
+        {
+          "text": "旧",
+          "start": 1.2974,
+          "duration": 0.1495
+        },
+        {
+          "text": "廊",
+          "start": 1.4468,
+          "duration": 0.163
+        },
+        {
+          "text": "后面",
+          "start": 1.6235,
+          "duration": 0.4484
+        },
+        {
+          "text": "先",
+          "start": 2.2349,
+          "duration": 0.2989
+        },
+        {
+          "text": "观察",
+          "start": 2.5474,
+          "duration": 0.4212
+        },
+        {
+          "text": "缺失",
+          "start": 2.9957,
+          "duration": 0.3668
+        },
+        {
+          "text": "的",
+          "start": 3.3626,
+          "duration": 0.0951
+        },
+        {
+          "text": "通路",
+          "start": 3.4713,
+          "duration": 0.4755
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.4,
+      "trim_start_seconds": 0.28,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "显影能让这个世界里隐去的结构重新出现。",
+      "file": "vo_tesla_44dc22008340414f.mp3",
+      "id": "vo_tesla_44dc22008340414f",
+      "nodes": [
+        "H-tool-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "显影能让这个世界里隐去的结构重新出现。",
+      "status": "generated",
+      "duration_seconds": 3.864,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e1a556c69f3367ab14254da7fe8705b3953c638dab55f96fdc0a5c77a236b9c9",
+      "words": [
+        {
+          "text": "显影",
+          "start": 0,
+          "duration": 0.5163
+        },
+        {
+          "text": "能",
+          "start": 0.5078,
+          "duration": 0.1087
+        },
+        {
+          "text": "让",
+          "start": 0.6165,
+          "duration": 0.1766
+        },
+        {
+          "text": "这个",
+          "start": 0.8068,
+          "duration": 0.2446
+        },
+        {
+          "text": "世界",
+          "start": 1.0649,
+          "duration": 0.3261
+        },
+        {
+          "text": "里",
+          "start": 1.391,
+          "duration": 0.1902
+        },
+        {
+          "text": "隐",
+          "start": 1.6084,
+          "duration": 0.2174
+        },
+        {
+          "text": "去",
+          "start": 1.8258,
+          "duration": 0.1495
+        },
+        {
+          "text": "的",
+          "start": 1.9752,
+          "duration": 0.1087
+        },
+        {
+          "text": "结构",
+          "start": 2.0975,
+          "duration": 0.462
+        },
+        {
+          "text": "重新",
+          "start": 2.6546,
+          "duration": 0.5027
+        },
+        {
+          "text": "出现",
+          "start": 3.1709,
+          "duration": 0.4348
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.58,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在上层按4显影，再走过旧廊，到工具间取得留影夹。",
+      "file": "vo_tesla_38cfff95c96d9ad8.mp3",
+      "id": "vo_tesla_38cfff95c96d9ad8",
+      "nodes": [
+        "H-tool-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层按四显影，再走过旧廊，到工具间取得留影夹。",
+      "status": "generated",
+      "duration_seconds": 5.352,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "13ad958dd14e0c4f754d025999f2ee2db3164f4905cbd6cd3129afab850135db",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3397
+        },
+        {
+          "text": "上层",
+          "start": 0.2865,
+          "duration": 0.394
+        },
+        {
+          "text": "按",
+          "start": 0.7077,
+          "duration": 0.1766
+        },
+        {
+          "text": "四",
+          "start": 0.8979,
+          "duration": 0.2174
+        },
+        {
+          "text": "显影",
+          "start": 1.1153,
+          "duration": 0.5163
+        },
+        {
+          "text": "再",
+          "start": 1.7947,
+          "duration": 0.2853
+        },
+        {
+          "text": "走过",
+          "start": 2.08,
+          "duration": 0.3125
+        },
+        {
+          "text": "旧",
+          "start": 2.4061,
+          "duration": 0.1902
+        },
+        {
+          "text": "廊",
+          "start": 2.5963,
+          "duration": 0.3261
+        },
+        {
+          "text": "到",
+          "start": 3.099,
+          "duration": 0.2582
+        },
+        {
+          "text": "工具",
+          "start": 3.3708,
+          "duration": 0.3533
+        },
+        {
+          "text": "间",
+          "start": 3.724,
+          "duration": 0.2717
+        },
+        {
+          "text": "取得",
+          "start": 4.0229,
+          "duration": 0.3668
+        },
+        {
+          "text": "留",
+          "start": 4.4034,
+          "duration": 0.1766
+        },
+        {
+          "text": "影夹",
+          "start": 4.58,
+          "duration": 0.5163
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.32,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "水纹镇纸还在下层封存架里，锁扣在它上方。",
+      "file": "vo_tesla_6c06fd693d2391ef.mp3",
+      "id": "vo_tesla_6c06fd693d2391ef",
+      "nodes": [
+        "H-cage-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "水纹镇纸还在下层封存架里，锁扣在它上方。",
+      "status": "generated",
+      "duration_seconds": 4.32,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "f370a048b2fc81fced87930b7bcd807093234e1a38c4c941598173499ad6c8cf",
+      "words": [
+        {
+          "text": "水纹镇纸",
+          "start": 0,
+          "duration": 0.8288
+        },
+        {
+          "text": "还",
+          "start": 0.9018,
+          "duration": 0.0951
+        },
+        {
+          "text": "在",
+          "start": 0.997,
+          "duration": 0.1495
+        },
+        {
+          "text": "下层",
+          "start": 1.16,
+          "duration": 0.4891
+        },
+        {
+          "text": "封存",
+          "start": 1.6763,
+          "duration": 0.394
+        },
+        {
+          "text": "架",
+          "start": 2.0839,
+          "duration": 0.231
+        },
+        {
+          "text": "里",
+          "start": 2.3149,
+          "duration": 0.2174
+        },
+        {
+          "text": "锁",
+          "start": 2.6953,
+          "duration": 0.2717
+        },
+        {
+          "text": "扣",
+          "start": 2.9671,
+          "duration": 0.231
+        },
+        {
+          "text": "在",
+          "start": 3.2116,
+          "duration": 0.2038
+        },
+        {
+          "text": "它",
+          "start": 3.4154,
+          "duration": 0.163
+        },
+        {
+          "text": "上方",
+          "start": 3.5921,
+          "duration": 0.462
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.98,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "倒悬能让未固定的镇纸向上浮起。",
+      "file": "vo_tesla_fbe4eca1bfe70fe2.mp3",
+      "id": "vo_tesla_fbe4eca1bfe70fe2",
+      "nodes": [
+        "H-cage-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "倒悬能让未固定的镇纸向上浮起。",
+      "status": "generated",
+      "duration_seconds": 3.408,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "28e3e36e536b5d94e82cc4f904644db8ba9d48b9112133377db9153c4542371b",
+      "words": [
+        {
+          "text": "倒悬",
+          "start": 0,
+          "duration": 0.5163
+        },
+        {
+          "text": "能",
+          "start": 0.4778,
+          "duration": 0.1359
+        },
+        {
+          "text": "让",
+          "start": 0.6137,
+          "duration": 0.2038
+        },
+        {
+          "text": "未",
+          "start": 0.8447,
+          "duration": 0.2038
+        },
+        {
+          "text": "固定",
+          "start": 1.0485,
+          "duration": 0.3261
+        },
+        {
+          "text": "的",
+          "start": 1.3746,
+          "duration": 0.0951
+        },
+        {
+          "text": "镇纸",
+          "start": 1.4833,
+          "duration": 0.5435
+        },
+        {
+          "text": "向上",
+          "start": 2.1082,
+          "duration": 0.5027
+        },
+        {
+          "text": "浮起",
+          "start": 2.6246,
+          "duration": 0.5027
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.4833
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.42,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到倒悬，让水纹镇纸上浮触碰顶部锁扣。",
+      "file": "vo_tesla_466b38f05134c2b1.mp3",
+      "id": "vo_tesla_466b38f05134c2b1",
+      "nodes": [
+        "H-cage-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到倒悬，让水纹镇纸上浮触碰顶部锁扣。",
+      "status": "generated",
+      "duration_seconds": 4.824,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "2aa7f9d37ae218f130dd0c50a9f150ef3cb01681cf39bdd34be27a97a298eb07",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "下层",
+          "start": 0.2868,
+          "duration": 0.5299
+        },
+        {
+          "text": "切",
+          "start": 0.8439,
+          "duration": 0.1359
+        },
+        {
+          "text": "到",
+          "start": 0.9798,
+          "duration": 0.1087
+        },
+        {
+          "text": "倒悬",
+          "start": 1.1021,
+          "duration": 0.4891
+        },
+        {
+          "text": "让",
+          "start": 1.7407,
+          "duration": 0.2989
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.0532,
+          "duration": 0.6929
+        },
+        {
+          "text": "上",
+          "start": 2.7597,
+          "duration": 0.2853
+        },
+        {
+          "text": "浮触",
+          "start": 3.045,
+          "duration": 0.4484
+        },
+        {
+          "text": "碰顶部",
+          "start": 3.507,
+          "duration": 0.5978
+        },
+        {
+          "text": "锁",
+          "start": 4.1184,
+          "duration": 0.1902
+        },
+        {
+          "text": "扣",
+          "start": 4.3086,
+          "duration": 0.2853
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.0532
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.16,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "接物台需要先升到能接住落物的高度。",
+      "file": "vo_tesla_5a7768a4e36e491c.mp3",
+      "id": "vo_tesla_5a7768a4e36e491c",
+      "nodes": [
+        "H-water-to-catch-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "接物台需要先升到能接住落物的高度。",
+      "status": "generated",
+      "duration_seconds": 3.336,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "8905dd22efb6a8b5d985cd599ed4718ee23419e099a1993a28a4b3326ca67566",
+      "words": [
+        {
+          "text": "接",
+          "start": 0,
+          "duration": 0.2038
+        },
+        {
+          "text": "物台",
+          "start": 0.1482,
+          "duration": 0.394
+        },
+        {
+          "text": "需要",
+          "start": 0.5693,
+          "duration": 0.231
+        },
+        {
+          "text": "先升",
+          "start": 0.8139,
+          "duration": 0.3668
+        },
+        {
+          "text": "到",
+          "start": 1.1943,
+          "duration": 0.2717
+        },
+        {
+          "text": "能",
+          "start": 1.5612,
+          "duration": 0.2582
+        },
+        {
+          "text": "接住",
+          "start": 1.8329,
+          "duration": 0.4212
+        },
+        {
+          "text": "落物",
+          "start": 2.2541,
+          "duration": 0.3125
+        },
+        {
+          "text": "的",
+          "start": 2.5666,
+          "duration": 0.0951
+        },
+        {
+          "text": "高度",
+          "start": 2.6753,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.15,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "水纹镇纸可以沿下层导轨运送，接物踏板是它的一个止挡。",
+      "file": "vo_tesla_43172246261690cb.mp3",
+      "id": "vo_tesla_43172246261690cb",
+      "nodes": [
+        "H-water-to-catch-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "水纹镇纸可以沿下层导轨运送，接物踏板是它的一个止挡。",
+      "status": "generated",
+      "duration_seconds": 5.112,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e16f9a9868173d3cfb8518f0f68cc6e2c4b202830eba70d8b5fd7d0c69c9f744",
+      "words": [
+        {
+          "text": "水纹镇纸",
+          "start": 0,
+          "duration": 0.8424
+        },
+        {
+          "text": "可以",
+          "start": 0.9018,
+          "duration": 0.163
+        },
+        {
+          "text": "沿下层",
+          "start": 1.0785,
+          "duration": 0.625
+        },
+        {
+          "text": "导轨",
+          "start": 1.7171,
+          "duration": 0.3668
+        },
+        {
+          "text": "运送",
+          "start": 2.0975,
+          "duration": 0.4348
+        },
+        {
+          "text": "接",
+          "start": 2.7632,
+          "duration": 0.2446
+        },
+        {
+          "text": "物踏板",
+          "start": 3.0078,
+          "duration": 0.6386
+        },
+        {
+          "text": "是",
+          "start": 3.7415,
+          "duration": 0.1902
+        },
+        {
+          "text": "它",
+          "start": 3.9317,
+          "duration": 0.1495
+        },
+        {
+          "text": "的",
+          "start": 4.0812,
+          "duration": 0.1087
+        },
+        {
+          "text": "一个",
+          "start": 4.2035,
+          "duration": 0.2174
+        },
+        {
+          "text": "止挡",
+          "start": 4.4345,
+          "duration": 0.5027
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 3.29,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到冰晶，将水纹镇纸送向接物踏板。",
+      "file": "vo_tesla_257d070bb4ef4efb.mp3",
+      "id": "vo_tesla_257d070bb4ef4efb",
+      "nodes": [
+        "H-water-to-catch-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到冰晶，将水纹镇纸送向接物踏板。",
+      "status": "generated",
+      "duration_seconds": 4.488,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "ea84eaaf97556d747f67317d4a9ce266c15bdb3f3a86d8b0f393a16778283f4d",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "下层",
+          "start": 0.2868,
+          "duration": 0.5299
+        },
+        {
+          "text": "切到",
+          "start": 0.8168,
+          "duration": 0.2853
+        },
+        {
+          "text": "冰晶",
+          "start": 1.1157,
+          "duration": 0.4348
+        },
+        {
+          "text": "将",
+          "start": 1.7407,
+          "duration": 0.2717
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.026,
+          "duration": 0.8832
+        },
+        {
+          "text": "送向",
+          "start": 3.0043,
+          "duration": 0.4484
+        },
+        {
+          "text": "接物",
+          "start": 3.4526,
+          "duration": 0.2853
+        },
+        {
+          "text": "踏板",
+          "start": 3.7515,
+          "duration": 0.4891
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.026
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.45,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "水纹镇纸到了接物踏板，但接物台还没升到位。",
+      "file": "vo_tesla_7748b15d1255b3a7.mp3",
+      "id": "vo_tesla_7748b15d1255b3a7",
+      "nodes": [
+        "H-raise-catch-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "水纹镇纸到了接物踏板，但接物台还没升到位。",
+      "status": "generated",
+      "duration_seconds": 4.32,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e371ab76099e93dba6c0feb21ff43758340f6be0052d9c4a4175262d6cef3925",
+      "words": [
+        {
+          "text": "水纹镇纸",
+          "start": 0,
+          "duration": 0.8968
+        },
+        {
+          "text": "到",
+          "start": 0.9662,
+          "duration": 0.1359
+        },
+        {
+          "text": "了",
+          "start": 1.1021,
+          "duration": 0.0951
+        },
+        {
+          "text": "接",
+          "start": 1.2108,
+          "duration": 0.1766
+        },
+        {
+          "text": "物踏板",
+          "start": 1.3874,
+          "duration": 0.6657
+        },
+        {
+          "text": "但",
+          "start": 2.2434,
+          "duration": 0.2446
+        },
+        {
+          "text": "接",
+          "start": 2.5015,
+          "duration": 0.1494
+        },
+        {
+          "text": "物台",
+          "start": 2.651,
+          "duration": 0.462
+        },
+        {
+          "text": "还",
+          "start": 3.1401,
+          "duration": 0.1902
+        },
+        {
+          "text": "没",
+          "start": 3.3439,
+          "duration": 0.1495
+        },
+        {
+          "text": "升",
+          "start": 3.4934,
+          "duration": 0.163
+        },
+        {
+          "text": "到位",
+          "start": 3.67,
+          "duration": 0.394
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.13,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "接物踏板需要足够的重量才能工作。",
+      "file": "vo_tesla_dd771e9cf60a555c.mp3",
+      "id": "vo_tesla_dd771e9cf60a555c",
+      "nodes": [
+        "H-raise-catch-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "接物踏板需要足够的重量才能工作。",
+      "status": "generated",
+      "duration_seconds": 3.072,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "ac26541ab62c1f1f86a948d36a983ce0782920eff68f70d19b824a5efa7bb77c",
+      "words": [
+        {
+          "text": "接",
+          "start": 0,
+          "duration": 0.231
+        },
+        {
+          "text": "物踏板",
+          "start": 0.1953,
+          "duration": 0.6114
+        },
+        {
+          "text": "需要",
+          "start": 0.9018,
+          "duration": 0.2853
+        },
+        {
+          "text": "足够",
+          "start": 1.2143,
+          "duration": 0.3668
+        },
+        {
+          "text": "的",
+          "start": 1.5812,
+          "duration": 0.1087
+        },
+        {
+          "text": "重量",
+          "start": 1.7035,
+          "duration": 0.4076
+        },
+        {
+          "text": "才能",
+          "start": 2.1382,
+          "duration": 0.2446
+        },
+        {
+          "text": "工作",
+          "start": 2.3964,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.47,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到重力，等待接物台完全升起。",
+      "file": "vo_tesla_d4a7f4d21bebc18b.mp3",
+      "id": "vo_tesla_d4a7f4d21bebc18b",
+      "nodes": [
+        "H-raise-catch-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到重力，等待接物台完全升起。",
+      "status": "generated",
+      "duration_seconds": 3.816,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "7737ec7d0ad68e43c7541fba9b83d55e599a594df49ff9598ea79ecb4d1f4be7",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3261
+        },
+        {
+          "text": "下层",
+          "start": 0.2729,
+          "duration": 0.4891
+        },
+        {
+          "text": "切到",
+          "start": 0.7621,
+          "duration": 0.2853
+        },
+        {
+          "text": "重力",
+          "start": 1.061,
+          "duration": 0.4484
+        },
+        {
+          "text": "等待",
+          "start": 1.6588,
+          "duration": 0.3533
+        },
+        {
+          "text": "接物台",
+          "start": 2.0257,
+          "duration": 0.5571
+        },
+        {
+          "text": "完全",
+          "start": 2.6099,
+          "duration": 0.5027
+        },
+        {
+          "text": "升起",
+          "start": 3.1262,
+          "duration": 0.4348
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.51,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "接物台升起来了，需要让它保持在接物高度。",
+      "file": "vo_tesla_71bcc7f4165c31e0.mp3",
+      "id": "vo_tesla_71bcc7f4165c31e0",
+      "nodes": [
+        "H-fix-catch-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "接物台升起来了，需要让它保持在接物高度。",
+      "status": "generated",
+      "duration_seconds": 3.84,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "5e27a1fe0244d11b2629066c3868c90b5de215b8c584abac95bf87af165fb165",
+      "words": [
+        {
+          "text": "接物台",
+          "start": 0,
+          "duration": 0.5435
+        },
+        {
+          "text": "升",
+          "start": 0.535,
+          "duration": 0.1902
+        },
+        {
+          "text": "起来",
+          "start": 0.7252,
+          "duration": 0.2717
+        },
+        {
+          "text": "了",
+          "start": 0.997,
+          "duration": 0.163
+        },
+        {
+          "text": "需要",
+          "start": 1.323,
+          "duration": 0.3125
+        },
+        {
+          "text": "让",
+          "start": 1.6491,
+          "duration": 0.1495
+        },
+        {
+          "text": "它",
+          "start": 1.7986,
+          "duration": 0.1223
+        },
+        {
+          "text": "保持",
+          "start": 1.9345,
+          "duration": 0.5163
+        },
+        {
+          "text": "在接物",
+          "start": 2.5323,
+          "duration": 0.6114
+        },
+        {
+          "text": "高度",
+          "start": 3.1573,
+          "duration": 0.4484
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.3,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "留影夹能固定带黄铜夹环的机关当前姿态。",
+      "file": "vo_tesla_a021894b62a2ce26.mp3",
+      "id": "vo_tesla_a021894b62a2ce26",
+      "nodes": [
+        "H-fix-catch-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "留影夹能固定带黄铜夹环的机关当前姿态。",
+      "status": "generated",
+      "duration_seconds": 3.864,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "80f42c7ac1be385ab67e895696052e9fcfb0619447be19b84e2a424b132a2f6d",
+      "words": [
+        {
+          "text": "留影",
+          "start": 0,
+          "duration": 0.4212
+        },
+        {
+          "text": "夹",
+          "start": 0.3891,
+          "duration": 0.1902
+        },
+        {
+          "text": "能",
+          "start": 0.5793,
+          "duration": 0.1766
+        },
+        {
+          "text": "固定",
+          "start": 0.7696,
+          "duration": 0.4076
+        },
+        {
+          "text": "带",
+          "start": 1.2043,
+          "duration": 0.1902
+        },
+        {
+          "text": "黄铜",
+          "start": 1.4082,
+          "duration": 0.3804
+        },
+        {
+          "text": "夹环",
+          "start": 1.8022,
+          "duration": 0.3804
+        },
+        {
+          "text": "的",
+          "start": 2.1826,
+          "duration": 0.0951
+        },
+        {
+          "text": "机关",
+          "start": 2.2913,
+          "duration": 0.4212
+        },
+        {
+          "text": "当前",
+          "start": 2.7397,
+          "duration": 0.4212
+        },
+        {
+          "text": "姿态",
+          "start": 3.1745,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.6,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "靠近下层接物台的黄铜夹环，使用留影夹固定接物台。",
+      "file": "vo_tesla_2fb91eac926f1946.mp3",
+      "id": "vo_tesla_2fb91eac926f1946",
+      "nodes": [
+        "H-fix-catch-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "靠近下层接物台的黄铜夹环，使用留影夹固定接物台。",
+      "status": "generated",
+      "duration_seconds": 4.992,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "b784020369993b9b85d389ce9250c3b5d0689a8b097301fa2c23148994f06ce4",
+      "words": [
+        {
+          "text": "靠近",
+          "start": 0,
+          "duration": 0.4755
+        },
+        {
+          "text": "下层",
+          "start": 0.4571,
+          "duration": 0.3804
+        },
+        {
+          "text": "接物",
+          "start": 0.8511,
+          "duration": 0.2989
+        },
+        {
+          "text": "台",
+          "start": 1.15,
+          "duration": 0.1902
+        },
+        {
+          "text": "的",
+          "start": 1.3402,
+          "duration": 0.1223
+        },
+        {
+          "text": "黄铜",
+          "start": 1.4897,
+          "duration": 0.3668
+        },
+        {
+          "text": "夹环",
+          "start": 1.8701,
+          "duration": 0.5163
+        },
+        {
+          "text": "使用",
+          "start": 2.5766,
+          "duration": 0.3397
+        },
+        {
+          "text": "留",
+          "start": 2.9299,
+          "duration": 0.1495
+        },
+        {
+          "text": "影夹",
+          "start": 3.0793,
+          "duration": 0.4755
+        },
+        {
+          "text": "固定",
+          "start": 3.65,
+          "duration": 0.4212
+        },
+        {
+          "text": "接物台",
+          "start": 4.0848,
+          "duration": 0.6386
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.54,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "下层已有安全落点，楼上的落料板仍被检修撑支住。",
+      "file": "vo_tesla_059c5321cbbae82f.mp3",
+      "id": "vo_tesla_059c5321cbbae82f",
+      "nodes": [
+        "H-support-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "下层已有安全落点，楼上的落料板仍被检修撑支住。",
+      "status": "generated",
+      "duration_seconds": 4.872,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "c0256914ecfdbc624f2c1c69735d3e5b722c8842a63af8d60a70c73b80544dbb",
+      "words": [
+        {
+          "text": "下层",
+          "start": 0,
+          "duration": 0.5843
+        },
+        {
+          "text": "已",
+          "start": 0.5622,
+          "duration": 0.1223
+        },
+        {
+          "text": "有",
+          "start": 0.6845,
+          "duration": 0.1223
+        },
+        {
+          "text": "安全",
+          "start": 0.8339,
+          "duration": 0.3397
+        },
+        {
+          "text": "落点",
+          "start": 1.1872,
+          "duration": 0.4755
+        },
+        {
+          "text": "楼上",
+          "start": 1.8529,
+          "duration": 0.3668
+        },
+        {
+          "text": "的",
+          "start": 2.2198,
+          "duration": 0.0951
+        },
+        {
+          "text": "落料",
+          "start": 2.3285,
+          "duration": 0.2717
+        },
+        {
+          "text": "板",
+          "start": 2.6002,
+          "duration": 0.2717
+        },
+        {
+          "text": "仍",
+          "start": 2.9807,
+          "duration": 0.2989
+        },
+        {
+          "text": "被",
+          "start": 3.2796,
+          "duration": 0.163
+        },
+        {
+          "text": "检修",
+          "start": 3.4562,
+          "duration": 0.4891
+        },
+        {
+          "text": "撑支",
+          "start": 3.9589,
+          "duration": 0.4212
+        },
+        {
+          "text": "住",
+          "start": 4.3801,
+          "duration": 0.2446
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.71,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "落料板的检修联锁，需要接物台先固定到位。",
+      "file": "vo_tesla_3b5241cc8827d6e8.mp3",
+      "id": "vo_tesla_3b5241cc8827d6e8",
+      "nodes": [
+        "H-support-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "落料板的检修联锁，需要接物台先固定到位。",
+      "status": "generated",
+      "duration_seconds": 3.816,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "2adc3afbd3cab350274aa891e13f0c49249e9114f871d5f449f1ecf5ba8c78dc",
+      "words": [
+        {
+          "text": "落料",
+          "start": 0,
+          "duration": 0.3804
+        },
+        {
+          "text": "板",
+          "start": 0.3048,
+          "duration": 0.1359
+        },
+        {
+          "text": "的",
+          "start": 0.4407,
+          "duration": 0.1223
+        },
+        {
+          "text": "检修",
+          "start": 0.5901,
+          "duration": 0.3125
+        },
+        {
+          "text": "联锁",
+          "start": 0.9026,
+          "duration": 0.5027
+        },
+        {
+          "text": "需要",
+          "start": 1.4868,
+          "duration": 0.3668
+        },
+        {
+          "text": "接物",
+          "start": 1.8673,
+          "duration": 0.394
+        },
+        {
+          "text": "台",
+          "start": 2.2749,
+          "duration": 0.2582
+        },
+        {
+          "text": "先",
+          "start": 2.533,
+          "duration": 0.2446
+        },
+        {
+          "text": "固定",
+          "start": 2.7912,
+          "duration": 0.3397
+        },
+        {
+          "text": "到位",
+          "start": 3.1445,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.18,
+      "trim_start_seconds": 0.24,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "到上层落料口旁，操作检修撑将它解除。",
+      "file": "vo_tesla_58efda745c25db7c.mp3",
+      "id": "vo_tesla_58efda745c25db7c",
+      "nodes": [
+        "H-support-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "到上层落料口旁，操作检修撑将它解除。",
+      "status": "generated",
+      "duration_seconds": 4.032,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "4b3348b4c68700686e24b0bebd5446e813c4361f530514b1941234b04fd920d4",
+      "words": [
+        {
+          "text": "到",
+          "start": 0,
+          "duration": 0.3125
+        },
+        {
+          "text": "上层",
+          "start": 0.2504,
+          "duration": 0.462
+        },
+        {
+          "text": "落料口",
+          "start": 0.7396,
+          "duration": 0.4212
+        },
+        {
+          "text": "旁",
+          "start": 1.1608,
+          "duration": 0.3125
+        },
+        {
+          "text": "操作",
+          "start": 1.6499,
+          "duration": 0.394
+        },
+        {
+          "text": "检修",
+          "start": 2.0575,
+          "duration": 0.4755
+        },
+        {
+          "text": "撑",
+          "start": 2.5466,
+          "duration": 0.2989
+        },
+        {
+          "text": "将",
+          "start": 2.8727,
+          "duration": 0.1766
+        },
+        {
+          "text": "它",
+          "start": 3.0493,
+          "duration": 0.1359
+        },
+        {
+          "text": "解除",
+          "start": 3.1988,
+          "duration": 0.5843
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.29,
+      "trim_start_seconds": 0.24,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "检修撑已解除，山纹镇纸仍在落料板上。",
+      "file": "vo_tesla_b88ab973648919ae.mp3",
+      "id": "vo_tesla_b88ab973648919ae",
+      "nodes": [
+        "H-drop-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "检修撑已解除，山纹镇纸仍在落料板上。",
+      "status": "generated",
+      "duration_seconds": 3.96,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "7e39ce71d3bad81e287f16feec5086bb9d3c0f671beb87a49ba111d1479b5737",
+      "words": [
+        {
+          "text": "检修",
+          "start": 0,
+          "duration": 0.5299
+        },
+        {
+          "text": "撑",
+          "start": 0.4978,
+          "duration": 0.2174
+        },
+        {
+          "text": "已",
+          "start": 0.7152,
+          "duration": 0.1223
+        },
+        {
+          "text": "解除",
+          "start": 0.8511,
+          "duration": 0.5571
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 1.5576,
+          "duration": 0.856
+        },
+        {
+          "text": "仍",
+          "start": 2.5087,
+          "duration": 0.2717
+        },
+        {
+          "text": "在",
+          "start": 2.7804,
+          "duration": 0.2038
+        },
+        {
+          "text": "落料",
+          "start": 3.0114,
+          "duration": 0.2445
+        },
+        {
+          "text": "板",
+          "start": 3.256,
+          "duration": 0.163
+        },
+        {
+          "text": "上",
+          "start": 3.419,
+          "duration": 0.2717
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.5576
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 3.97,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "更大的向下压力能作用于落料板。",
+      "file": "vo_tesla_2c18a330cdae04c2.mp3",
+      "id": "vo_tesla_2c18a330cdae04c2",
+      "nodes": [
+        "H-drop-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "更大的向下压力能作用于落料板。",
+      "status": "generated",
+      "duration_seconds": 2.928,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "a4a58d9ccaa9caefccaac271e4b5518ae75c6c551c3c5175caa522f9eedb419a",
+      "words": [
+        {
+          "text": "更",
+          "start": 0,
+          "duration": 0.2582
+        },
+        {
+          "text": "大",
+          "start": 0.2125,
+          "duration": 0.1495
+        },
+        {
+          "text": "的",
+          "start": 0.362,
+          "duration": 0.1223
+        },
+        {
+          "text": "向下",
+          "start": 0.5114,
+          "duration": 0.3397
+        },
+        {
+          "text": "压力",
+          "start": 0.8647,
+          "duration": 0.4212
+        },
+        {
+          "text": "能",
+          "start": 1.3674,
+          "duration": 0.2446
+        },
+        {
+          "text": "作用",
+          "start": 1.6255,
+          "duration": 0.3125
+        },
+        {
+          "text": "于",
+          "start": 1.938,
+          "duration": 0.2038
+        },
+        {
+          "text": "落料",
+          "start": 2.169,
+          "duration": 0.2853
+        },
+        {
+          "text": "板",
+          "start": 2.4543,
+          "duration": 0.3261
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.45,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在上层切到重力，让山纹镇纸压开落料板。",
+      "file": "vo_tesla_70fbcad167b91a71.mp3",
+      "id": "vo_tesla_70fbcad167b91a71",
+      "nodes": [
+        "H-drop-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到重力，让山纹镇纸压开落料板。",
+      "status": "generated",
+      "duration_seconds": 4.32,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "a6639b4f7ac0d7de43f2445ea8e9c50a0c7ee49e0458e462e98b8fad29b7f5ef",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2853
+        },
+        {
+          "text": "上层",
+          "start": 0.2532,
+          "duration": 0.5163
+        },
+        {
+          "text": "切",
+          "start": 0.7968,
+          "duration": 0.1495
+        },
+        {
+          "text": "到",
+          "start": 0.9462,
+          "duration": 0.163
+        },
+        {
+          "text": "重力",
+          "start": 1.1228,
+          "duration": 0.4348
+        },
+        {
+          "text": "让",
+          "start": 1.7071,
+          "duration": 0.3125
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 2.0332,
+          "duration": 0.8832
+        },
+        {
+          "text": "压开",
+          "start": 3.0114,
+          "duration": 0.4484
+        },
+        {
+          "text": "落料板",
+          "start": 3.4598,
+          "duration": 0.5843
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.0332
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.42,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸已经到楼下，水纹镇纸可以离开接物踏板了。",
+      "file": "vo_tesla_7700ed16a36e34c7.mp3",
+      "id": "vo_tesla_7700ed16a36e34c7",
+      "nodes": [
+        "H-release-water-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸已经到楼下，水纹镇纸可以离开接物踏板了。",
+      "status": "generated",
+      "duration_seconds": 4.872,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "52e1c7005c06862e9ce46ff2b82a92dafa46c83f1837ec0b85655e0c64357638",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.856
+        },
+        {
+          "text": "已经",
+          "start": 0.8375,
+          "duration": 0.2989
+        },
+        {
+          "text": "到",
+          "start": 1.1364,
+          "duration": 0.163
+        },
+        {
+          "text": "楼下",
+          "start": 1.313,
+          "duration": 0.4755
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 1.9924,
+          "duration": 0.9239
+        },
+        {
+          "text": "可以",
+          "start": 2.9978,
+          "duration": 0.2717
+        },
+        {
+          "text": "离开",
+          "start": 3.2832,
+          "duration": 0.462
+        },
+        {
+          "text": "接物",
+          "start": 3.7723,
+          "duration": 0.2989
+        },
+        {
+          "text": "踏板",
+          "start": 4.0848,
+          "duration": 0.3668
+        },
+        {
+          "text": "了",
+          "start": 4.4516,
+          "duration": 0.2174
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.02,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "接物台由夹子固定后，不再需要水纹镇纸一直压着。",
+      "file": "vo_tesla_b6c3d4486a953943.mp3",
+      "id": "vo_tesla_b6c3d4486a953943",
+      "nodes": [
+        "H-release-water-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "接物台由夹子固定后，不再需要水纹镇纸一直压着。",
+      "status": "generated",
+      "duration_seconds": 4.488,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "8ac9138b649a15124b70ceb88a63ee61ce696aae86633d7e277045fdad32b7f3",
+      "words": [
+        {
+          "text": "接物台",
+          "start": 0,
+          "duration": 0.6114
+        },
+        {
+          "text": "由",
+          "start": 0.5929,
+          "duration": 0.163
+        },
+        {
+          "text": "夹子",
+          "start": 0.7696,
+          "duration": 0.3261
+        },
+        {
+          "text": "固定",
+          "start": 1.1093,
+          "duration": 0.2989
+        },
+        {
+          "text": "后",
+          "start": 1.4082,
+          "duration": 0.2853
+        },
+        {
+          "text": "不再",
+          "start": 1.8158,
+          "duration": 0.3533
+        },
+        {
+          "text": "需要",
+          "start": 2.1826,
+          "duration": 0.2853
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.4951,
+          "duration": 0.8696
+        },
+        {
+          "text": "一直",
+          "start": 3.4598,
+          "duration": 0.3397
+        },
+        {
+          "text": "压",
+          "start": 3.813,
+          "duration": 0.231
+        },
+        {
+          "text": "着",
+          "start": 4.044,
+          "duration": 0.2174
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.4951
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.96,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切回冰晶，让水纹镇纸落回导轨。",
+      "file": "vo_tesla_b0a19f5c9756918c.mp3",
+      "id": "vo_tesla_b0a19f5c9756918c",
+      "nodes": [
+        "H-release-water-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切回冰晶，让水纹镇纸落回导轨。",
+      "status": "generated",
+      "duration_seconds": 3.984,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "49cce2072e9c8117d0871d9e677e7c4b53a277847bbd84f62a97304c356b9a15",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2853
+        },
+        {
+          "text": "下层",
+          "start": 0.2632,
+          "duration": 0.5163
+        },
+        {
+          "text": "切回",
+          "start": 0.7796,
+          "duration": 0.3397
+        },
+        {
+          "text": "冰晶",
+          "start": 1.1328,
+          "duration": 0.4348
+        },
+        {
+          "text": "让",
+          "start": 1.7171,
+          "duration": 0.2853
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.016,
+          "duration": 0.9103
+        },
+        {
+          "text": "落回",
+          "start": 2.9535,
+          "duration": 0.3804
+        },
+        {
+          "text": "导轨",
+          "start": 3.3475,
+          "duration": 0.4076
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.016
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.16,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸需要回到上层，先找到运纸吊台。",
+      "file": "vo_tesla_10f3e64bb08428d2.mp3",
+      "id": "vo_tesla_10f3e64bb08428d2",
+      "nodes": [
+        "H-mountain-to-lift-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸需要回到上层，先找到运纸吊台。",
+      "status": "generated",
+      "duration_seconds": 4.008,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "eaad358cd5f3a7f157465536934589d3eb0544da4642c4ec0be4eea38109a3ac",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.8016
+        },
+        {
+          "text": "需要",
+          "start": 0.8711,
+          "duration": 0.231
+        },
+        {
+          "text": "回到",
+          "start": 1.1157,
+          "duration": 0.2717
+        },
+        {
+          "text": "上层",
+          "start": 1.401,
+          "duration": 0.5843
+        },
+        {
+          "text": "先",
+          "start": 2.1347,
+          "duration": 0.2717
+        },
+        {
+          "text": "找到",
+          "start": 2.42,
+          "duration": 0.3668
+        },
+        {
+          "text": "运纸",
+          "start": 2.814,
+          "duration": 0.3804
+        },
+        {
+          "text": "吊台",
+          "start": 3.1945,
+          "duration": 0.5571
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.14,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "下层导轨连接着接物区、转运止挡和吊台。",
+      "file": "vo_tesla_59e6ee4bd1a29414.mp3",
+      "id": "vo_tesla_59e6ee4bd1a29414",
+      "nodes": [
+        "H-mountain-to-lift-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "下层导轨连接着接物区、转运止挡和吊台。",
+      "status": "generated",
+      "duration_seconds": 4.44,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "66afafa2ba0963c8abf6c4f160d357f53e4b400152d38afee887ce8045f749cc",
+      "words": [
+        {
+          "text": "下层",
+          "start": 0,
+          "duration": 0.462
+        },
+        {
+          "text": "导轨",
+          "start": 0.4499,
+          "duration": 0.4891
+        },
+        {
+          "text": "连接",
+          "start": 1.0341,
+          "duration": 0.3804
+        },
+        {
+          "text": "着",
+          "start": 1.4146,
+          "duration": 0.1766
+        },
+        {
+          "text": "接物区",
+          "start": 1.6184,
+          "duration": 0.6386
+        },
+        {
+          "text": "转运",
+          "start": 2.4064,
+          "duration": 0.4755
+        },
+        {
+          "text": "止挡",
+          "start": 2.8955,
+          "duration": 0.462
+        },
+        {
+          "text": "和",
+          "start": 3.3847,
+          "duration": 0.1766
+        },
+        {
+          "text": "吊",
+          "start": 3.5749,
+          "duration": 0.2038
+        },
+        {
+          "text": "台",
+          "start": 3.7787,
+          "duration": 0.4076
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.32,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层冰晶规则中，将山纹镇纸经中央止挡送到运纸吊台。",
+      "file": "vo_tesla_52f80593734fd1d8.mp3",
+      "id": "vo_tesla_52f80593734fd1d8",
+      "nodes": [
+        "H-mountain-to-lift-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层冰晶规则中，将山纹镇纸经中央止挡送到运纸吊台。",
+      "status": "generated",
+      "duration_seconds": 5.88,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "237434133c77e3b54778aff6c8693193bb080ec627cad202ff9962a3e0bc1f44",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "下层",
+          "start": 0.2768,
+          "duration": 0.462
+        },
+        {
+          "text": "冰晶",
+          "start": 0.766,
+          "duration": 0.3261
+        },
+        {
+          "text": "规则",
+          "start": 1.1057,
+          "duration": 0.3533
+        },
+        {
+          "text": "中",
+          "start": 1.4589,
+          "duration": 0.2582
+        },
+        {
+          "text": "将",
+          "start": 1.8937,
+          "duration": 0.2989
+        },
+        {
+          "text": "山纹镇",
+          "start": 2.2062,
+          "duration": 0.625
+        },
+        {
+          "text": "纸",
+          "start": 2.8312,
+          "duration": 0.2174
+        },
+        {
+          "text": "经",
+          "start": 3.0486,
+          "duration": 0.2174
+        },
+        {
+          "text": "中央",
+          "start": 3.2796,
+          "duration": 0.3261
+        },
+        {
+          "text": "止挡",
+          "start": 3.6193,
+          "duration": 0.5163
+        },
+        {
+          "text": "送",
+          "start": 4.2307,
+          "duration": 0.2174
+        },
+        {
+          "text": "到",
+          "start": 4.448,
+          "duration": 0.2038
+        },
+        {
+          "text": "运纸",
+          "start": 4.679,
+          "duration": 0.394
+        },
+        {
+          "text": "吊台",
+          "start": 5.0866,
+          "duration": 0.5163
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.2062
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.46,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸到了吊台，水轮还需要水闸踏板来驱动。",
+      "file": "vo_tesla_70e641a271972742.mp3",
+      "id": "vo_tesla_70e641a271972742",
+      "nodes": [
+        "H-water-to-sluice-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸到了吊台，水轮还需要水闸踏板来驱动。",
+      "status": "generated",
+      "duration_seconds": 4.656,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "fd4bdf086ae73c23430fc84a3fa860ea0953b0144d1cb9c62ed5d164b27d3375",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.856
+        },
+        {
+          "text": "到",
+          "start": 0.8375,
+          "duration": 0.1223
+        },
+        {
+          "text": "了",
+          "start": 0.9598,
+          "duration": 0.0815
+        },
+        {
+          "text": "吊",
+          "start": 1.0549,
+          "duration": 0.2038
+        },
+        {
+          "text": "台",
+          "start": 1.2587,
+          "duration": 0.394
+        },
+        {
+          "text": "水轮",
+          "start": 1.938,
+          "duration": 0.4484
+        },
+        {
+          "text": "还",
+          "start": 2.4136,
+          "duration": 0.2038
+        },
+        {
+          "text": "需要",
+          "start": 2.631,
+          "duration": 0.2717
+        },
+        {
+          "text": "水闸",
+          "start": 2.9299,
+          "duration": 0.4348
+        },
+        {
+          "text": "踏板",
+          "start": 3.3782,
+          "duration": 0.4212
+        },
+        {
+          "text": "来",
+          "start": 3.8266,
+          "duration": 0.1495
+        },
+        {
+          "text": "驱动",
+          "start": 3.9897,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.75,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "水纹镇纸和山纹镇纸可以分别承担运输与驱动任务。",
+      "file": "vo_tesla_509fcd03569ebee9.mp3",
+      "id": "vo_tesla_509fcd03569ebee9",
+      "nodes": [
+        "H-water-to-sluice-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "水纹镇纸和山纹镇纸可以分别承担运输与驱动任务。",
+      "status": "generated",
+      "duration_seconds": 4.8,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "1d360b699d8515f9c6114c80e3bd15a0b8fbdbc0192cf0fe68614cfcef8d221d",
+      "words": [
+        {
+          "text": "水纹镇纸",
+          "start": 0,
+          "duration": 0.8696
+        },
+        {
+          "text": "和",
+          "start": 0.949,
+          "duration": 0.1359
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 1.0985,
+          "duration": 0.8288
+        },
+        {
+          "text": "可以",
+          "start": 2.0224,
+          "duration": 0.2038
+        },
+        {
+          "text": "分别",
+          "start": 2.2398,
+          "duration": 0.3125
+        },
+        {
+          "text": "承担",
+          "start": 2.5659,
+          "duration": 0.4076
+        },
+        {
+          "text": "运输",
+          "start": 3.0007,
+          "duration": 0.5299
+        },
+        {
+          "text": "与",
+          "start": 3.5577,
+          "duration": 0.2174
+        },
+        {
+          "text": "驱动",
+          "start": 3.7887,
+          "duration": 0.3804
+        },
+        {
+          "text": "任务",
+          "start": 4.1827,
+          "duration": 0.3668
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 3.8,
+      "trim_start_seconds": 0.18,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层冰晶规则中，将水纹镇纸经中央止挡送到水闸踏板。",
+      "file": "vo_tesla_b981a6f831195b4d.mp3",
+      "id": "vo_tesla_b981a6f831195b4d",
+      "nodes": [
+        "H-water-to-sluice-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层冰晶规则中，将水纹镇纸经中央止挡送到水闸踏板。",
+      "status": "generated",
+      "duration_seconds": 5.88,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "2ef6391124d41a6601920172eafb9f2f0ee2dc03fafb9a5b6eaf408689d1718c",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3125
+        },
+        {
+          "text": "下层",
+          "start": 0.3004,
+          "duration": 0.462
+        },
+        {
+          "text": "冰晶",
+          "start": 0.7896,
+          "duration": 0.3261
+        },
+        {
+          "text": "规则",
+          "start": 1.1293,
+          "duration": 0.3533
+        },
+        {
+          "text": "中",
+          "start": 1.4825,
+          "duration": 0.2582
+        },
+        {
+          "text": "将",
+          "start": 1.9173,
+          "duration": 0.2989
+        },
+        {
+          "text": "水纹镇",
+          "start": 2.2298,
+          "duration": 0.625
+        },
+        {
+          "text": "纸",
+          "start": 2.8548,
+          "duration": 0.231
+        },
+        {
+          "text": "经",
+          "start": 3.0857,
+          "duration": 0.2174
+        },
+        {
+          "text": "中央",
+          "start": 3.3168,
+          "duration": 0.3261
+        },
+        {
+          "text": "止挡",
+          "start": 3.6564,
+          "duration": 0.5163
+        },
+        {
+          "text": "送",
+          "start": 4.2814,
+          "duration": 0.231
+        },
+        {
+          "text": "到",
+          "start": 4.5124,
+          "duration": 0.163
+        },
+        {
+          "text": "水闸",
+          "start": 4.7026,
+          "duration": 0.4484
+        },
+        {
+          "text": "踏板",
+          "start": 5.1646,
+          "duration": 0.4755
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.2298
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.62,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "吊台上的山纹镇纸等待水轮将它送回上层。",
+      "file": "vo_tesla_17feef65a74e9ae3.mp3",
+      "id": "vo_tesla_17feef65a74e9ae3",
+      "nodes": [
+        "H-power-lift-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "吊台上的山纹镇纸等待水轮将它送回上层。",
+      "status": "generated",
+      "duration_seconds": 4.152,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "70896ca6d612e683a9b0c3af013471d97b549ebf22c14c0cfa87ca1832a7ae63",
+      "words": [
+        {
+          "text": "吊台",
+          "start": 0,
+          "duration": 0.4076
+        },
+        {
+          "text": "上",
+          "start": 0.352,
+          "duration": 0.1359
+        },
+        {
+          "text": "的",
+          "start": 0.4878,
+          "duration": 0.1087
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 0.6237,
+          "duration": 0.8288
+        },
+        {
+          "text": "等待",
+          "start": 1.5476,
+          "duration": 0.2989
+        },
+        {
+          "text": "水轮",
+          "start": 1.8601,
+          "duration": 0.5299
+        },
+        {
+          "text": "将",
+          "start": 2.4987,
+          "duration": 0.2445
+        },
+        {
+          "text": "它",
+          "start": 2.7432,
+          "duration": 0.1766
+        },
+        {
+          "text": "送回",
+          "start": 2.9335,
+          "duration": 0.394
+        },
+        {
+          "text": "上层",
+          "start": 3.3411,
+          "duration": 0.5435
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0.6237
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.95,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "水闸踏板受重压后，会驱动水轮和吊台。",
+      "file": "vo_tesla_256f189984b58c10.mp3",
+      "id": "vo_tesla_256f189984b58c10",
+      "nodes": [
+        "H-power-lift-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "水闸踏板受重压后，会驱动水轮和吊台。",
+      "status": "generated",
+      "duration_seconds": 3.984,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "548e58848081d38eb5e88f72015b28b3fbb3329fa61f264bb1cb27cdf1be785a",
+      "words": [
+        {
+          "text": "水闸",
+          "start": 0,
+          "duration": 0.4484
+        },
+        {
+          "text": "踏板",
+          "start": 0.4463,
+          "duration": 0.4484
+        },
+        {
+          "text": "受",
+          "start": 0.9218,
+          "duration": 0.1902
+        },
+        {
+          "text": "重压",
+          "start": 1.1257,
+          "duration": 0.3397
+        },
+        {
+          "text": "后",
+          "start": 1.4653,
+          "duration": 0.2853
+        },
+        {
+          "text": "会",
+          "start": 1.8458,
+          "duration": 0.2989
+        },
+        {
+          "text": "驱动",
+          "start": 2.1582,
+          "duration": 0.3125
+        },
+        {
+          "text": "水轮",
+          "start": 2.4843,
+          "duration": 0.4348
+        },
+        {
+          "text": "和",
+          "start": 2.9463,
+          "duration": 0.163
+        },
+        {
+          "text": "吊",
+          "start": 3.1229,
+          "duration": 0.2038
+        },
+        {
+          "text": "台",
+          "start": 3.3268,
+          "duration": 0.394
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.02,
+      "trim_start_seconds": 0.18,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到重力，等待吊台将山纹镇纸送到上层。",
+      "file": "vo_tesla_a014f61a0d47cd97.mp3",
+      "id": "vo_tesla_a014f61a0d47cd97",
+      "nodes": [
+        "H-power-lift-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到重力，等待吊台将山纹镇纸送到上层。",
+      "status": "generated",
+      "duration_seconds": 4.776,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e7ddac6f2a53a670ca2b09b94791533a894812d78848d823708944cbf33d8d75",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3125
+        },
+        {
+          "text": "下层",
+          "start": 0.2804,
+          "duration": 0.5299
+        },
+        {
+          "text": "切到",
+          "start": 0.8103,
+          "duration": 0.2989
+        },
+        {
+          "text": "重力",
+          "start": 1.1228,
+          "duration": 0.4348
+        },
+        {
+          "text": "等待",
+          "start": 1.7207,
+          "duration": 0.3261
+        },
+        {
+          "text": "吊台",
+          "start": 2.0603,
+          "duration": 0.4755
+        },
+        {
+          "text": "将",
+          "start": 2.563,
+          "duration": 0.2174
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 2.794,
+          "duration": 0.8288
+        },
+        {
+          "text": "送到",
+          "start": 3.65,
+          "duration": 0.3125
+        },
+        {
+          "text": "上层",
+          "start": 3.9761,
+          "duration": 0.5435
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.794
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.48,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸到了上层，下一站是固定中转台。",
+      "file": "vo_tesla_04e3fd83fb8e9d32.mp3",
+      "id": "vo_tesla_04e3fd83fb8e9d32",
+      "nodes": [
+        "H-leave-lift-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸到了上层，下一站是固定中转台。",
+      "status": "generated",
+      "duration_seconds": 4.08,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "12f560ea5a8dccae6d4451f1efc42315dbd152107a3cb5b772316685f0537f6e",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.8152
+        },
+        {
+          "text": "到",
+          "start": 0.8068,
+          "duration": 0.1359
+        },
+        {
+          "text": "了",
+          "start": 0.9426,
+          "duration": 0.0679
+        },
+        {
+          "text": "上层",
+          "start": 1.0241,
+          "duration": 0.5978
+        },
+        {
+          "text": "下",
+          "start": 1.8258,
+          "duration": 0.2717
+        },
+        {
+          "text": "一",
+          "start": 2.1111,
+          "duration": 0.0951
+        },
+        {
+          "text": "站",
+          "start": 2.2062,
+          "duration": 0.2582
+        },
+        {
+          "text": "是",
+          "start": 2.4915,
+          "duration": 0.2446
+        },
+        {
+          "text": "固定",
+          "start": 2.7497,
+          "duration": 0.3668
+        },
+        {
+          "text": "中",
+          "start": 3.1165,
+          "duration": 0.1495
+        },
+        {
+          "text": "转台",
+          "start": 3.2796,
+          "duration": 0.5299
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.57,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "上层和下层的规则独立，运送镇纸需要低摩擦导轨。",
+      "file": "vo_tesla_77bd628efdd3e58c.mp3",
+      "id": "vo_tesla_77bd628efdd3e58c",
+      "nodes": [
+        "H-leave-lift-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "上层和下层的规则独立，运送镇纸需要低摩擦导轨。",
+      "status": "generated",
+      "duration_seconds": 5.016,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "daeac983fe33f63ab9863bef1e0431d64be6089dbd25785b6fd6509150b9bcf6",
+      "words": [
+        {
+          "text": "上层",
+          "start": 0,
+          "duration": 0.5571
+        },
+        {
+          "text": "和",
+          "start": 0.5386,
+          "duration": 0.1359
+        },
+        {
+          "text": "下层",
+          "start": 0.688,
+          "duration": 0.4076
+        },
+        {
+          "text": "的",
+          "start": 1.0957,
+          "duration": 0.1495
+        },
+        {
+          "text": "规则",
+          "start": 1.2723,
+          "duration": 0.3397
+        },
+        {
+          "text": "独立",
+          "start": 1.6255,
+          "duration": 0.4484
+        },
+        {
+          "text": "运送",
+          "start": 2.3185,
+          "duration": 0.4076
+        },
+        {
+          "text": "镇纸",
+          "start": 2.7397,
+          "duration": 0.5299
+        },
+        {
+          "text": "需要",
+          "start": 3.3511,
+          "duration": 0.4348
+        },
+        {
+          "text": "低",
+          "start": 3.813,
+          "duration": 0.2038
+        },
+        {
+          "text": "摩擦",
+          "start": 4.0168,
+          "duration": 0.3125
+        },
+        {
+          "text": "导轨",
+          "start": 4.3429,
+          "duration": 0.4484
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.7397
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.88,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在上层切到冰晶，将山纹镇纸从吊台推出到固定中转台。",
+      "file": "vo_tesla_8300f9583569b66d.mp3",
+      "id": "vo_tesla_8300f9583569b66d",
+      "nodes": [
+        "H-leave-lift-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到冰晶，将山纹镇纸从吊台推出到固定中转台。",
+      "status": "generated",
+      "duration_seconds": 5.664,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "1fe35782555115d9952b3ab56e23ad636b194a7f0413f04b7d52bb7b997bc3bb",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "上层",
+          "start": 0.2568,
+          "duration": 0.462
+        },
+        {
+          "text": "切到",
+          "start": 0.7188,
+          "duration": 0.2853
+        },
+        {
+          "text": "冰晶",
+          "start": 1.0177,
+          "duration": 0.4348
+        },
+        {
+          "text": "将",
+          "start": 1.6835,
+          "duration": 0.2853
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 1.9824,
+          "duration": 0.7609
+        },
+        {
+          "text": "从",
+          "start": 2.852,
+          "duration": 0.1495
+        },
+        {
+          "text": "吊台",
+          "start": 3.015,
+          "duration": 0.5571
+        },
+        {
+          "text": "推出",
+          "start": 3.6807,
+          "duration": 0.3397
+        },
+        {
+          "text": "到",
+          "start": 4.0204,
+          "duration": 0.231
+        },
+        {
+          "text": "固定",
+          "start": 4.2786,
+          "duration": 0.394
+        },
+        {
+          "text": "中转",
+          "start": 4.6862,
+          "duration": 0.3804
+        },
+        {
+          "text": "台",
+          "start": 5.0666,
+          "duration": 0.3397
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.9824
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.2,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "桥那边就是上层锚座，需要先保证运输通路。",
+      "file": "vo_tesla_cc0b5674b3aea3a8.mp3",
+      "id": "vo_tesla_cc0b5674b3aea3a8",
+      "nodes": [
+        "H-show-bridge-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "桥那边就是上层锚座，需要先保证运输通路。",
+      "status": "generated",
+      "duration_seconds": 4.128,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "2810f00a96abb8006238d0881b838ad0c124a8e7adf9073ca4216c8aa7d5c5a6",
+      "words": [
+        {
+          "text": "桥",
+          "start": 0,
+          "duration": 0.2853
+        },
+        {
+          "text": "那边",
+          "start": 0.2597,
+          "duration": 0.4076
+        },
+        {
+          "text": "就",
+          "start": 0.6945,
+          "duration": 0.1359
+        },
+        {
+          "text": "是",
+          "start": 0.8303,
+          "duration": 0.163
+        },
+        {
+          "text": "上层",
+          "start": 1.0205,
+          "duration": 0.3533
+        },
+        {
+          "text": "锚座",
+          "start": 1.3738,
+          "duration": 0.4891
+        },
+        {
+          "text": "需要",
+          "start": 2.0124,
+          "duration": 0.3533
+        },
+        {
+          "text": "先",
+          "start": 2.3793,
+          "duration": 0.231
+        },
+        {
+          "text": "保证",
+          "start": 2.6238,
+          "duration": 0.4484
+        },
+        {
+          "text": "运输",
+          "start": 3.0993,
+          "duration": 0.3397
+        },
+        {
+          "text": "通路",
+          "start": 3.4526,
+          "duration": 0.4076
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.35,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "显影能让木桥出现，留影夹可以保留机关当前的姿态。",
+      "file": "vo_tesla_bc9b733e8377ddc3.mp3",
+      "id": "vo_tesla_bc9b733e8377ddc3",
+      "nodes": [
+        "H-show-bridge-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "显影能让木桥出现，留影夹可以保留机关当前的姿态。",
+      "status": "generated",
+      "duration_seconds": 4.704,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "46589fe1ae7845cb4e5a10dbc3321085434391a5505f9f3f460dc216e50abab6",
+      "words": [
+        {
+          "text": "显影",
+          "start": 0,
+          "duration": 0.5027
+        },
+        {
+          "text": "能",
+          "start": 0.5042,
+          "duration": 0.0951
+        },
+        {
+          "text": "让",
+          "start": 0.5993,
+          "duration": 0.163
+        },
+        {
+          "text": "木桥",
+          "start": 0.7896,
+          "duration": 0.3668
+        },
+        {
+          "text": "出现",
+          "start": 1.17,
+          "duration": 0.4212
+        },
+        {
+          "text": "留影",
+          "start": 1.7814,
+          "duration": 0.394
+        },
+        {
+          "text": "夹",
+          "start": 2.189,
+          "duration": 0.2581
+        },
+        {
+          "text": "可以",
+          "start": 2.4472,
+          "duration": 0.2853
+        },
+        {
+          "text": "保留",
+          "start": 2.7461,
+          "duration": 0.3804
+        },
+        {
+          "text": "机关",
+          "start": 3.1537,
+          "duration": 0.3668
+        },
+        {
+          "text": "当前",
+          "start": 3.5477,
+          "duration": 0.3668
+        },
+        {
+          "text": "的",
+          "start": 3.9146,
+          "duration": 0.0815
+        },
+        {
+          "text": "姿态",
+          "start": 4.0097,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.9,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在上层切到显影，让跨渠木桥重新出现。",
+      "file": "vo_tesla_4ed18f0fd5cb6e11.mp3",
+      "id": "vo_tesla_4ed18f0fd5cb6e11",
+      "nodes": [
+        "H-show-bridge-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到显影，让跨渠木桥重新出现。",
+      "status": "generated",
+      "duration_seconds": 4.176,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "6d43397e3a2aff3efe090b187a2d498384da7354e6efdaf00564365889cb355b",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3261
+        },
+        {
+          "text": "上层",
+          "start": 0.284,
+          "duration": 0.4755
+        },
+        {
+          "text": "切到",
+          "start": 0.7596,
+          "duration": 0.2717
+        },
+        {
+          "text": "显影",
+          "start": 1.0449,
+          "duration": 0.5435
+        },
+        {
+          "text": "让",
+          "start": 1.7243,
+          "duration": 0.3261
+        },
+        {
+          "text": "跨渠",
+          "start": 2.0775,
+          "duration": 0.3804
+        },
+        {
+          "text": "木桥",
+          "start": 2.4715,
+          "duration": 0.5163
+        },
+        {
+          "text": "重新",
+          "start": 3.015,
+          "duration": 0.4755
+        },
+        {
+          "text": "出现",
+          "start": 3.5041,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.5,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "木桥出现了，需要在运送镇纸时仍然保持通畅。",
+      "file": "vo_tesla_d2257be7bf06caa7.mp3",
+      "id": "vo_tesla_d2257be7bf06caa7",
+      "nodes": [
+        "H-fix-bridge-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "木桥出现了，需要在运送镇纸时仍然保持通畅。",
+      "status": "generated",
+      "duration_seconds": 4.416,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "78c4161ca3efb35c06418f48d49a14a68fe297fd982125e487dd81c0adbae2cf",
+      "words": [
+        {
+          "text": "木桥",
+          "start": 0,
+          "duration": 0.4076
+        },
+        {
+          "text": "出现",
+          "start": 0.3655,
+          "duration": 0.3533
+        },
+        {
+          "text": "了",
+          "start": 0.7188,
+          "duration": 0.163
+        },
+        {
+          "text": "需要",
+          "start": 1.0585,
+          "duration": 0.3397
+        },
+        {
+          "text": "在",
+          "start": 1.4118,
+          "duration": 0.2174
+        },
+        {
+          "text": "运送",
+          "start": 1.6563,
+          "duration": 0.3533
+        },
+        {
+          "text": "镇纸",
+          "start": 2.0232,
+          "duration": 0.4076
+        },
+        {
+          "text": "时",
+          "start": 2.4307,
+          "duration": 0.2989
+        },
+        {
+          "text": "仍然",
+          "start": 2.8248,
+          "duration": 0.4755
+        },
+        {
+          "text": "保持",
+          "start": 3.3139,
+          "duration": 0.3533
+        },
+        {
+          "text": "通畅",
+          "start": 3.6807,
+          "duration": 0.462
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.0232
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.1,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "留影夹一次只能固定一处，可以从接物台取回，再用于木桥。",
+      "file": "vo_tesla_1e60d180a47ad630.mp3",
+      "id": "vo_tesla_1e60d180a47ad630",
+      "nodes": [
+        "H-fix-bridge-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "留影夹一次只能固定一处，可以从接物台取回，再用于木桥。",
+      "status": "generated",
+      "duration_seconds": 5.448,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e547d6e21bf7a5766c694e35a296080f6ce57592fc75ed895d42a4598353f337",
+      "words": [
+        {
+          "text": "留影",
+          "start": 0,
+          "duration": 0.394
+        },
+        {
+          "text": "夹",
+          "start": 0.342,
+          "duration": 0.1766
+        },
+        {
+          "text": "一次",
+          "start": 0.5186,
+          "duration": 0.4076
+        },
+        {
+          "text": "只能",
+          "start": 1.0349,
+          "duration": 0.2989
+        },
+        {
+          "text": "固定",
+          "start": 1.361,
+          "duration": 0.3397
+        },
+        {
+          "text": "一",
+          "start": 1.7143,
+          "duration": 0.1902
+        },
+        {
+          "text": "处",
+          "start": 1.9045,
+          "duration": 0.2717
+        },
+        {
+          "text": "可以",
+          "start": 2.3257,
+          "duration": 0.2853
+        },
+        {
+          "text": "从接",
+          "start": 2.6246,
+          "duration": 0.3261
+        },
+        {
+          "text": "物台",
+          "start": 2.9507,
+          "duration": 0.3397
+        },
+        {
+          "text": "取回",
+          "start": 3.3039,
+          "duration": 0.5027
+        },
+        {
+          "text": "再",
+          "start": 3.9561,
+          "duration": 0.3668
+        },
+        {
+          "text": "用于",
+          "start": 4.3229,
+          "duration": 0.2989
+        },
+        {
+          "text": "木桥",
+          "start": 4.6354,
+          "duration": 0.5707
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.11,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "取回留影夹，靠近木桥的黄铜夹环，将显影木桥固定。",
+      "file": "vo_tesla_c41cb057e32871f4.mp3",
+      "id": "vo_tesla_c41cb057e32871f4",
+      "nodes": [
+        "H-fix-bridge-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "取回留影夹，靠近木桥的黄铜夹环，将显影木桥固定。",
+      "status": "generated",
+      "duration_seconds": 5.088,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "45fc171d1fc8071dcad9a87c51b635092ef193623619660afc65bf8d497d4bbb",
+      "words": [
+        {
+          "text": "取回",
+          "start": 0,
+          "duration": 0.3804
+        },
+        {
+          "text": "留",
+          "start": 0.3584,
+          "duration": 0.1495
+        },
+        {
+          "text": "影夹",
+          "start": 0.5078,
+          "duration": 0.5027
+        },
+        {
+          "text": "靠近",
+          "start": 1.1057,
+          "duration": 0.462
+        },
+        {
+          "text": "木桥",
+          "start": 1.5812,
+          "duration": 0.3668
+        },
+        {
+          "text": "的",
+          "start": 1.948,
+          "duration": 0.1223
+        },
+        {
+          "text": "黄铜",
+          "start": 2.0975,
+          "duration": 0.3533
+        },
+        {
+          "text": "夹环",
+          "start": 2.4643,
+          "duration": 0.5299
+        },
+        {
+          "text": "将",
+          "start": 3.1709,
+          "duration": 0.3125
+        },
+        {
+          "text": "显影",
+          "start": 3.497,
+          "duration": 0.4891
+        },
+        {
+          "text": "木桥",
+          "start": 3.9997,
+          "duration": 0.4212
+        },
+        {
+          "text": "固定",
+          "start": 4.4345,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.69,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "木桥已经保留，山纹镇纸的目标是上层锚座。",
+      "file": "vo_tesla_5a0bdcc820c48cd0.mp3",
+      "id": "vo_tesla_5a0bdcc820c48cd0",
+      "nodes": [
+        "H-transport-upper-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "木桥已经保留，山纹镇纸的目标是上层锚座。",
+      "status": "generated",
+      "duration_seconds": 4.2,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "de89a32490d782ea3a51705f50a18ed16b07f8f7413549c074da7ab73049b47a",
+      "words": [
+        {
+          "text": "木桥",
+          "start": 0,
+          "duration": 0.4891
+        },
+        {
+          "text": "已经",
+          "start": 0.4507,
+          "duration": 0.2446
+        },
+        {
+          "text": "保留",
+          "start": 0.7088,
+          "duration": 0.5027
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 1.4289,
+          "duration": 0.7473
+        },
+        {
+          "text": "的",
+          "start": 2.1762,
+          "duration": 0.0951
+        },
+        {
+          "text": "目标",
+          "start": 2.2849,
+          "duration": 0.394
+        },
+        {
+          "text": "是",
+          "start": 2.6789,
+          "duration": 0.2446
+        },
+        {
+          "text": "上层",
+          "start": 3.005,
+          "duration": 0.5027
+        },
+        {
+          "text": "锚座",
+          "start": 3.5213,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.4289
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.82,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "冰晶适合沿导轨运送镇纸，夹住的木桥不随规则消失。",
+      "file": "vo_tesla_de0918da96f4e715.mp3",
+      "id": "vo_tesla_de0918da96f4e715",
+      "nodes": [
+        "H-transport-upper-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "冰晶适合沿导轨运送镇纸，夹住的木桥不随规则消失。",
+      "status": "generated",
+      "duration_seconds": 5.376,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "764fe828a0de46edb804f85d6aeea31acf12deaebbc01f3797faf5467575efa5",
+      "words": [
+        {
+          "text": "冰晶",
+          "start": 0,
+          "duration": 0.5163
+        },
+        {
+          "text": "适合",
+          "start": 0.5278,
+          "duration": 0.3261
+        },
+        {
+          "text": "沿",
+          "start": 0.8675,
+          "duration": 0.2038
+        },
+        {
+          "text": "导轨",
+          "start": 1.0849,
+          "duration": 0.4755
+        },
+        {
+          "text": "运送",
+          "start": 1.5876,
+          "duration": 0.3533
+        },
+        {
+          "text": "镇纸",
+          "start": 1.9545,
+          "duration": 0.5435
+        },
+        {
+          "text": "夹住",
+          "start": 2.6746,
+          "duration": 0.3533
+        },
+        {
+          "text": "的",
+          "start": 3.0278,
+          "duration": 0.0679
+        },
+        {
+          "text": "木桥",
+          "start": 3.1093,
+          "duration": 0.5571
+        },
+        {
+          "text": "不",
+          "start": 3.7751,
+          "duration": 0.231
+        },
+        {
+          "text": "随",
+          "start": 4.0061,
+          "duration": 0.231
+        },
+        {
+          "text": "规则",
+          "start": 4.2507,
+          "duration": 0.3668
+        },
+        {
+          "text": "消失",
+          "start": 4.6311,
+          "duration": 0.4891
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.9545
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.27,
+      "trim_start_seconds": 0.18,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在上层切到冰晶，将山纹镇纸经桥后止挡送到上层锚座。",
+      "file": "vo_tesla_0615bd4c79f7a4a6.mp3",
+      "id": "vo_tesla_0615bd4c79f7a4a6",
+      "nodes": [
+        "H-transport-upper-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到冰晶，将山纹镇纸经桥后止挡送到上层锚座。",
+      "status": "generated",
+      "duration_seconds": 5.832,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "26440874a4a253452c34078fccec4e4c65173bade1beb9c1be18979df9cd30a2",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3125
+        },
+        {
+          "text": "上层",
+          "start": 0.2704,
+          "duration": 0.4891
+        },
+        {
+          "text": "切到",
+          "start": 0.7596,
+          "duration": 0.2717
+        },
+        {
+          "text": "冰晶",
+          "start": 1.0449,
+          "duration": 0.4484
+        },
+        {
+          "text": "将",
+          "start": 1.7786,
+          "duration": 0.2853
+        },
+        {
+          "text": "山纹镇",
+          "start": 2.0775,
+          "duration": 0.5299
+        },
+        {
+          "text": "纸",
+          "start": 2.6074,
+          "duration": 0.2853
+        },
+        {
+          "text": "经",
+          "start": 2.9878,
+          "duration": 0.2445
+        },
+        {
+          "text": "桥",
+          "start": 3.2324,
+          "duration": 0.2038
+        },
+        {
+          "text": "后",
+          "start": 3.4362,
+          "duration": 0.2174
+        },
+        {
+          "text": "止",
+          "start": 3.6536,
+          "duration": 0.3397
+        },
+        {
+          "text": "挡送",
+          "start": 4.0748,
+          "duration": 0.394
+        },
+        {
+          "text": "到",
+          "start": 4.4688,
+          "duration": 0.231
+        },
+        {
+          "text": "上层",
+          "start": 4.727,
+          "duration": 0.4348
+        },
+        {
+          "text": "锚座",
+          "start": 5.1753,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.0775
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.37,
+      "trim_start_seconds": 0.22,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸已到上层锚座，但锚位还没有稳定。",
+      "file": "vo_tesla_640194b514f94ea7.mp3",
+      "id": "vo_tesla_640194b514f94ea7",
+      "nodes": [
+        "H-anchor-upper-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸已到上层锚座，但锚位还没有稳定。",
+      "status": "generated",
+      "duration_seconds": 4.2,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "21683ba7e20ca3f667d884f420d88227d39f1db02393b493e2c7497b47ae578c",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.856
+        },
+        {
+          "text": "已",
+          "start": 0.9154,
+          "duration": 0.0951
+        },
+        {
+          "text": "到",
+          "start": 1.0105,
+          "duration": 0.1766
+        },
+        {
+          "text": "上层",
+          "start": 1.2143,
+          "duration": 0.3804
+        },
+        {
+          "text": "锚座",
+          "start": 1.6084,
+          "duration": 0.4755
+        },
+        {
+          "text": "但",
+          "start": 2.2741,
+          "duration": 0.2446
+        },
+        {
+          "text": "锚位",
+          "start": 2.5323,
+          "duration": 0.4484
+        },
+        {
+          "text": "还",
+          "start": 3.0078,
+          "duration": 0.2174
+        },
+        {
+          "text": "没有",
+          "start": 3.2388,
+          "duration": 0.231
+        },
+        {
+          "text": "稳定",
+          "start": 3.4834,
+          "duration": 0.4348
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.68,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "上层锚座需要持续的向下压力。",
+      "file": "vo_tesla_55f85caeb6e83f13.mp3",
+      "id": "vo_tesla_55f85caeb6e83f13",
+      "nodes": [
+        "H-anchor-upper-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "上层锚座需要持续的向下压力。",
+      "status": "generated",
+      "duration_seconds": 3.048,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "e5616cf8658093a02aba9f3f616b356dddcb1ffdab0e5db5237e48d2b381de88",
+      "words": [
+        {
+          "text": "上层",
+          "start": 0,
+          "duration": 0.4348
+        },
+        {
+          "text": "锚座",
+          "start": 0.4127,
+          "duration": 0.5027
+        },
+        {
+          "text": "需要",
+          "start": 1.0105,
+          "duration": 0.231
+        },
+        {
+          "text": "持续",
+          "start": 1.2551,
+          "duration": 0.462
+        },
+        {
+          "text": "的",
+          "start": 1.7171,
+          "duration": 0.2038
+        },
+        {
+          "text": "向下",
+          "start": 1.948,
+          "duration": 0.4484
+        },
+        {
+          "text": "压力",
+          "start": 2.41,
+          "duration": 0.394
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.1,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在上层切到重力，让山纹镇纸压稳锚座。",
+      "file": "vo_tesla_aa78fa53b6483b62.mp3",
+      "id": "vo_tesla_aa78fa53b6483b62",
+      "nodes": [
+        "H-anchor-upper-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到重力，让山纹镇纸压稳锚座。",
+      "status": "generated",
+      "duration_seconds": 4.056,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "66188f889fb3d8d34062d33b752158ec56fc78a4d1cf07edf8faeb2c92f06978",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2853
+        },
+        {
+          "text": "上层",
+          "start": 0.2632,
+          "duration": 0.5299
+        },
+        {
+          "text": "切",
+          "start": 0.8203,
+          "duration": 0.1495
+        },
+        {
+          "text": "到",
+          "start": 0.9698,
+          "duration": 0.163
+        },
+        {
+          "text": "重力",
+          "start": 1.1464,
+          "duration": 0.4076
+        },
+        {
+          "text": "让",
+          "start": 1.6899,
+          "duration": 0.2989
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 2.0024,
+          "duration": 0.8968
+        },
+        {
+          "text": "压稳",
+          "start": 2.9263,
+          "duration": 0.4076
+        },
+        {
+          "text": "锚座",
+          "start": 3.3339,
+          "duration": 0.5027
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.0024
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.59,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "上层稳住了，下层导向井前的低位通道仍未打开。",
+      "file": "vo_tesla_f628a93a1e4e84c9.mp3",
+      "id": "vo_tesla_f628a93a1e4e84c9",
+      "nodes": [
+        "H-lower-passage-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "上层稳住了，下层导向井前的低位通道仍未打开。",
+      "status": "generated",
+      "duration_seconds": 4.68,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "034853084b9f71ec6419ec665a5444a73f5ef0d54a24742ce57cee54f1956479",
+      "words": [
+        {
+          "text": "上层",
+          "start": 0,
+          "duration": 0.462
+        },
+        {
+          "text": "稳住",
+          "start": 0.4299,
+          "duration": 0.394
+        },
+        {
+          "text": "了",
+          "start": 0.8239,
+          "duration": 0.1495
+        },
+        {
+          "text": "下层",
+          "start": 1.1772,
+          "duration": 0.4891
+        },
+        {
+          "text": "导向",
+          "start": 1.6799,
+          "duration": 0.4076
+        },
+        {
+          "text": "井",
+          "start": 2.0875,
+          "duration": 0.1766
+        },
+        {
+          "text": "前",
+          "start": 2.2641,
+          "duration": 0.1766
+        },
+        {
+          "text": "的",
+          "start": 2.4407,
+          "duration": 0.1495
+        },
+        {
+          "text": "低位",
+          "start": 2.6174,
+          "duration": 0.3125
+        },
+        {
+          "text": "通道",
+          "start": 2.9435,
+          "duration": 0.4076
+        },
+        {
+          "text": "仍",
+          "start": 3.4462,
+          "duration": 0.3125
+        },
+        {
+          "text": "未",
+          "start": 3.7587,
+          "duration": 0.1495
+        },
+        {
+          "text": "打开",
+          "start": 3.9217,
+          "duration": 0.4755
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.0,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "山纹镇纸离开吊台后，吊台归底才能释放通道联锁。",
+      "file": "vo_tesla_db97f7b77f11effb.mp3",
+      "id": "vo_tesla_db97f7b77f11effb",
+      "nodes": [
+        "H-lower-passage-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸离开吊台后，吊台归底才能释放通道联锁。",
+      "status": "generated",
+      "duration_seconds": 4.728,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "c278a87e2989a4663968aa7aed1f1278226f644e5b5c5b084d87ea59b75f7166",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0,
+          "duration": 0.8016
+        },
+        {
+          "text": "离开",
+          "start": 0.8032,
+          "duration": 0.2446
+        },
+        {
+          "text": "吊台",
+          "start": 1.0613,
+          "duration": 0.3397
+        },
+        {
+          "text": "后",
+          "start": 1.401,
+          "duration": 0.2853
+        },
+        {
+          "text": "吊台",
+          "start": 1.8358,
+          "duration": 0.4484
+        },
+        {
+          "text": "归底",
+          "start": 2.2841,
+          "duration": 0.4891
+        },
+        {
+          "text": "才能",
+          "start": 2.882,
+          "duration": 0.2989
+        },
+        {
+          "text": "释放",
+          "start": 3.1945,
+          "duration": 0.4212
+        },
+        {
+          "text": "通道",
+          "start": 3.6428,
+          "duration": 0.3397
+        },
+        {
+          "text": "联锁",
+          "start": 3.9961,
+          "duration": 0.5027
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.8,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到冰晶，移开压着水闸的水纹镇纸，让吊台归底。",
+      "file": "vo_tesla_b22ceb3946a31d86.mp3",
+      "id": "vo_tesla_b22ceb3946a31d86",
+      "nodes": [
+        "H-lower-passage-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到冰晶，移开压着水闸的水纹镇纸，让吊台归底。",
+      "status": "generated",
+      "duration_seconds": 5.52,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "daa41730ad677d93f1b0b337805dcccbdf696042d03d0091ad3899dcff7b54be",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "下层",
+          "start": 0.2768,
+          "duration": 0.5299
+        },
+        {
+          "text": "切到",
+          "start": 0.8068,
+          "duration": 0.2853
+        },
+        {
+          "text": "冰晶",
+          "start": 1.1057,
+          "duration": 0.4348
+        },
+        {
+          "text": "移",
+          "start": 1.7443,
+          "duration": 0.2038
+        },
+        {
+          "text": "开压",
+          "start": 1.948,
+          "duration": 0.462
+        },
+        {
+          "text": "着",
+          "start": 2.41,
+          "duration": 0.1495
+        },
+        {
+          "text": "水闸",
+          "start": 2.573,
+          "duration": 0.4348
+        },
+        {
+          "text": "的",
+          "start": 3.0078,
+          "duration": 0.1087
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 3.1437,
+          "duration": 0.856
+        },
+        {
+          "text": "让",
+          "start": 4.1084,
+          "duration": 0.3261
+        },
+        {
+          "text": "吊台",
+          "start": 4.448,
+          "duration": 0.3533
+        },
+        {
+          "text": "归底",
+          "start": 4.8149,
+          "duration": 0.4348
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 3.1437
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.31,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "最后一个锚位在下层导向井的上方。",
+      "file": "vo_tesla_82b2021e73b40cbb.mp3",
+      "id": "vo_tesla_82b2021e73b40cbb",
+      "nodes": [
+        "H-water-to-guide-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "最后一个锚位在下层导向井的上方。",
+      "status": "generated",
+      "duration_seconds": 3.264,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "24949773899df043d9a2b8728cfe3c57811a00ce5e159b37ac775b2900ba79b6",
+      "words": [
+        {
+          "text": "最后",
+          "start": 0,
+          "duration": 0.4076
+        },
+        {
+          "text": "一个",
+          "start": 0.3755,
+          "duration": 0.2038
+        },
+        {
+          "text": "锚位",
+          "start": 0.5929,
+          "duration": 0.5027
+        },
+        {
+          "text": "在",
+          "start": 1.2043,
+          "duration": 0.1495
+        },
+        {
+          "text": "下层",
+          "start": 1.3674,
+          "duration": 0.5027
+        },
+        {
+          "text": "导向",
+          "start": 1.8837,
+          "duration": 0.4212
+        },
+        {
+          "text": "井",
+          "start": 2.3049,
+          "duration": 0.1495
+        },
+        {
+          "text": "的",
+          "start": 2.4543,
+          "duration": 0.0679
+        },
+        {
+          "text": "上方",
+          "start": 2.5359,
+          "duration": 0.4755
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 1.15,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "低位通道已经打开，水纹镇纸可以沿导轨前往导向井。",
+      "file": "vo_tesla_26ec4f9e09989d02.mp3",
+      "id": "vo_tesla_26ec4f9e09989d02",
+      "nodes": [
+        "H-water-to-guide-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "低位通道已经打开，水纹镇纸可以沿导轨前往导向井。",
+      "status": "generated",
+      "duration_seconds": 4.896,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "b5e875d87cec854d2c517f13bd3f8ccb4557c04f31178a235f0972724c23243a",
+      "words": [
+        {
+          "text": "低位",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "通道",
+          "start": 0.2668,
+          "duration": 0.3533
+        },
+        {
+          "text": "已经",
+          "start": 0.6473,
+          "duration": 0.2174
+        },
+        {
+          "text": "打开",
+          "start": 0.8783,
+          "duration": 0.4891
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 1.6663,
+          "duration": 0.8968
+        },
+        {
+          "text": "可以",
+          "start": 2.6446,
+          "duration": 0.231
+        },
+        {
+          "text": "沿",
+          "start": 2.8891,
+          "duration": 0.2038
+        },
+        {
+          "text": "导轨",
+          "start": 3.0929,
+          "duration": 0.4755
+        },
+        {
+          "text": "前往",
+          "start": 3.5957,
+          "duration": 0.3397
+        },
+        {
+          "text": "导向",
+          "start": 3.9625,
+          "duration": 0.3668
+        },
+        {
+          "text": "井",
+          "start": 4.3293,
+          "duration": 0.3533
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.6663
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 3.47,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层冰晶规则中，将水纹镇纸经中央止挡送到导向井。",
+      "file": "vo_tesla_f6d6a6dddfbde995.mp3",
+      "id": "vo_tesla_f6d6a6dddfbde995",
+      "nodes": [
+        "H-water-to-guide-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层冰晶规则中，将水纹镇纸经中央止挡送到导向井。",
+      "status": "generated",
+      "duration_seconds": 5.568,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "574de2306943c87c427e3940628a067f97f6fb6181cc901c147d5ecfe54c1c08",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.3125
+        },
+        {
+          "text": "下层",
+          "start": 0.2904,
+          "duration": 0.4484
+        },
+        {
+          "text": "冰晶",
+          "start": 0.766,
+          "duration": 0.3261
+        },
+        {
+          "text": "规则",
+          "start": 1.1057,
+          "duration": 0.3533
+        },
+        {
+          "text": "中",
+          "start": 1.4589,
+          "duration": 0.2717
+        },
+        {
+          "text": "将",
+          "start": 1.9073,
+          "duration": 0.2989
+        },
+        {
+          "text": "水纹镇",
+          "start": 2.2198,
+          "duration": 0.625
+        },
+        {
+          "text": "纸",
+          "start": 2.8448,
+          "duration": 0.231
+        },
+        {
+          "text": "经",
+          "start": 3.0757,
+          "duration": 0.2038
+        },
+        {
+          "text": "中央",
+          "start": 3.2932,
+          "duration": 0.4212
+        },
+        {
+          "text": "止",
+          "start": 3.7279,
+          "duration": 0.2717
+        },
+        {
+          "text": "挡送",
+          "start": 3.9997,
+          "duration": 0.394
+        },
+        {
+          "text": "到",
+          "start": 4.3937,
+          "duration": 0.2038
+        },
+        {
+          "text": "导向",
+          "start": 4.6247,
+          "duration": 0.394
+        },
+        {
+          "text": "井",
+          "start": 5.0187,
+          "duration": 0.3261
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.2198
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.78,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "水纹镇纸到了导向井，需要接触上方的锚位。",
+      "file": "vo_tesla_13e630879ff3e4d5.mp3",
+      "id": "vo_tesla_13e630879ff3e4d5",
+      "nodes": [
+        "H-anchor-lower-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "水纹镇纸到了导向井，需要接触上方的锚位。",
+      "status": "generated",
+      "duration_seconds": 4.008,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "5b9a430027fc4c8f5bbdd30ae742d6aced58e7ba666a4fb85c1a05f13397c18b",
+      "words": [
+        {
+          "text": "水纹镇纸",
+          "start": 0,
+          "duration": 0.8832
+        },
+        {
+          "text": "到",
+          "start": 0.8847,
+          "duration": 0.1495
+        },
+        {
+          "text": "了",
+          "start": 1.0341,
+          "duration": 0.1223
+        },
+        {
+          "text": "导向",
+          "start": 1.17,
+          "duration": 0.4212
+        },
+        {
+          "text": "井",
+          "start": 1.5912,
+          "duration": 0.3261
+        },
+        {
+          "text": "需要",
+          "start": 2.0532,
+          "duration": 0.3533
+        },
+        {
+          "text": "接触",
+          "start": 2.42,
+          "duration": 0.3668
+        },
+        {
+          "text": "上方",
+          "start": 2.814,
+          "duration": 0.394
+        },
+        {
+          "text": "的",
+          "start": 3.208,
+          "duration": 0.0951
+        },
+        {
+          "text": "锚位",
+          "start": 3.3168,
+          "duration": 0.4076
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 0
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 4.78,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "倒悬会使未固定的镇纸向上浮起。",
+      "file": "vo_tesla_c92e49ee5b8e13af.mp3",
+      "id": "vo_tesla_c92e49ee5b8e13af",
+      "nodes": [
+        "H-anchor-lower-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "倒悬会使未固定的镇纸向上浮起。",
+      "status": "generated",
+      "duration_seconds": 3.408,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "95e650f026d775bb18f7c3c1529894945fe646785d1c88f28bb01af6acff7157",
+      "words": [
+        {
+          "text": "倒悬会",
+          "start": 0,
+          "duration": 0.7609
+        },
+        {
+          "text": "使",
+          "start": 0.6541,
+          "duration": 0.1902
+        },
+        {
+          "text": "未",
+          "start": 0.8715,
+          "duration": 0.231
+        },
+        {
+          "text": "固定",
+          "start": 1.1025,
+          "duration": 0.3397
+        },
+        {
+          "text": "的",
+          "start": 1.4422,
+          "duration": 0.0815
+        },
+        {
+          "text": "镇纸",
+          "start": 1.5373,
+          "duration": 0.5435
+        },
+        {
+          "text": "向上",
+          "start": 2.1623,
+          "duration": 0.4891
+        },
+        {
+          "text": "浮起",
+          "start": 2.665,
+          "duration": 0.4891
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 1.5373
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 2.73,
+      "trim_start_seconds": 0.27,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到倒悬，等待水纹镇纸上浮到顶部锚位。",
+      "file": "vo_tesla_1645086c49aad734.mp3",
+      "id": "vo_tesla_1645086c49aad734",
+      "nodes": [
+        "H-anchor-lower-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到倒悬，等待水纹镇纸上浮到顶部锚位。",
+      "status": "generated",
+      "duration_seconds": 4.68,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "4472d512c7d103609f4eb9faed88b2b9308d3476f54fc0d532f9955a977a9e68",
+      "words": [
+        {
+          "text": "在",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "下层",
+          "start": 0.2768,
+          "duration": 0.5299
+        },
+        {
+          "text": "切",
+          "start": 0.8339,
+          "duration": 0.1495
+        },
+        {
+          "text": "到",
+          "start": 0.9834,
+          "duration": 0.1223
+        },
+        {
+          "text": "倒悬",
+          "start": 1.1193,
+          "duration": 0.5027
+        },
+        {
+          "text": "等待",
+          "start": 1.785,
+          "duration": 0.394
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.2062,
+          "duration": 0.7745
+        },
+        {
+          "text": "上浮",
+          "start": 2.9943,
+          "duration": 0.3804
+        },
+        {
+          "text": "到",
+          "start": 3.3747,
+          "duration": 0.2174
+        },
+        {
+          "text": "顶部",
+          "start": 3.6193,
+          "duration": 0.3804
+        },
+        {
+          "text": "锚位",
+          "start": 4.0132,
+          "duration": 0.4212
+        }
+      ],
+      "cue_seconds": {
+        "镇纸": 2.2062
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.06,
+      "trim_start_seconds": 0.2,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "两层都已稳定，可以带着这次观测结果返回。",
+      "file": "vo_tesla_c863e9e61d8bd086.mp3",
+      "id": "vo_tesla_c863e9e61d8bd086",
+      "nodes": [
+        "H-exit-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "两层都已稳定，可以带着这次观测结果返回。",
+      "status": "generated",
+      "duration_seconds": 4.008,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "0396d6cb87d99019d8bfe6b9630fa601194a6f6ef897978bb5a1e36eba1f0bc3",
+      "words": [
+        {
+          "text": "两",
+          "start": 0,
+          "duration": 0.2989
+        },
+        {
+          "text": "层",
+          "start": 0.2532,
+          "duration": 0.2582
+        },
+        {
+          "text": "都",
+          "start": 0.5386,
+          "duration": 0.1223
+        },
+        {
+          "text": "已",
+          "start": 0.6609,
+          "duration": 0.1223
+        },
+        {
+          "text": "稳定",
+          "start": 0.7968,
+          "duration": 0.5163
+        },
+        {
+          "text": "可以",
+          "start": 1.5304,
+          "duration": 0.2446
+        },
+        {
+          "text": "带",
+          "start": 1.7886,
+          "duration": 0.1902
+        },
+        {
+          "text": "着",
+          "start": 1.9788,
+          "duration": 0.163
+        },
+        {
+          "text": "这次",
+          "start": 2.169,
+          "duration": 0.2989
+        },
+        {
+          "text": "观测",
+          "start": 2.4951,
+          "duration": 0.394
+        },
+        {
+          "text": "结果",
+          "start": 2.9027,
+          "duration": 0.2989
+        },
+        {
+          "text": "返回",
+          "start": 3.2152,
+          "duration": 0.5435
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.78,
+      "trim_start_seconds": 0.21,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "归位门在上层山纹锚座后方。",
+      "file": "vo_tesla_e508e9cca9239b63.mp3",
+      "id": "vo_tesla_e508e9cca9239b63",
+      "nodes": [
+        "H-exit-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "归位门在上层山纹锚座后方。",
+      "status": "generated",
+      "duration_seconds": 3.048,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "d24d6d7eb35e6696a112ed41199f2c389dab3954a0240e6ad44206bbd5d69967",
+      "words": [
+        {
+          "text": "归位",
+          "start": 0,
+          "duration": 0.3668
+        },
+        {
+          "text": "门",
+          "start": 0.2912,
+          "duration": 0.2582
+        },
+        {
+          "text": "在",
+          "start": 0.658,
+          "duration": 0.1766
+        },
+        {
+          "text": "上层",
+          "start": 0.8483,
+          "duration": 0.4212
+        },
+        {
+          "text": "山纹",
+          "start": 1.283,
+          "duration": 0.4891
+        },
+        {
+          "text": "锚座",
+          "start": 1.8673,
+          "duration": 0.4348
+        },
+        {
+          "text": "后方",
+          "start": 2.3157,
+          "duration": 0.4755
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.42,
+      "trim_start_seconds": 0.24,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "经楼梯回到上层，走入已经打开的归位门。",
+      "file": "vo_tesla_c57208361cc0b35a.mp3",
+      "id": "vo_tesla_c57208361cc0b35a",
+      "nodes": [
+        "H-exit-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "经楼梯回到上层，走入已经打开的归位门。",
+      "status": "generated",
+      "duration_seconds": 3.816,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "542b8a7376571d0cf0056b6f1db7d48b21ebccc86a094104de5072697365644e",
+      "words": [
+        {
+          "text": "经",
+          "start": 0,
+          "duration": 0.2717
+        },
+        {
+          "text": "楼梯",
+          "start": 0.2186,
+          "duration": 0.4076
+        },
+        {
+          "text": "回到",
+          "start": 0.6534,
+          "duration": 0.2717
+        },
+        {
+          "text": "上层",
+          "start": 0.9387,
+          "duration": 0.625
+        },
+        {
+          "text": "走入",
+          "start": 1.7132,
+          "duration": 0.394
+        },
+        {
+          "text": "已经",
+          "start": 2.1343,
+          "duration": 0.2717
+        },
+        {
+          "text": "打开",
+          "start": 2.4197,
+          "duration": 0.3533
+        },
+        {
+          "text": "的",
+          "start": 2.7729,
+          "duration": 0.1359
+        },
+        {
+          "text": "归位",
+          "start": 2.936,
+          "duration": 0.2989
+        },
+        {
+          "text": "门",
+          "start": 3.2349,
+          "duration": 0.3668
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 3.31,
+      "trim_start_seconds": 0.23,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    }
+  ],
+  "voice_metadata": {
+    "zh-CN-XiaoyiNeural": {
+      "Name": "Microsoft Server Speech Text to Speech Voice (zh-CN, XiaoyiNeural)",
+      "ShortName": "zh-CN-XiaoyiNeural",
+      "Gender": "Female",
+      "Locale": "zh-CN",
+      "LocaleName": "Chinese (Mandarin, Simplified)",
+      "SuggestedCodec": "audio-24khz-48kbitrate-mono-mp3",
+      "FriendlyName": "Microsoft Xiaoyi Online (Natural) - Chinese (Mainland)",
+      "Status": "GA",
+      "VoiceTag": {
+        "ContentCategories": [
+          "Cartoon",
+          "Novel"
+        ],
+        "VoicePersonalities": [
+          "Lively"
+        ]
+      }
+    },
+    "zh-CN-YunyangNeural": {
+      "Name": "Microsoft Server Speech Text to Speech Voice (zh-CN, YunyangNeural)",
+      "ShortName": "zh-CN-YunyangNeural",
+      "Gender": "Male",
+      "Locale": "zh-CN",
+      "LocaleName": "Chinese (Mandarin, Simplified)",
+      "SuggestedCodec": "audio-24khz-48kbitrate-mono-mp3",
+      "FriendlyName": "Microsoft Yunyang Online (Natural) - Chinese (Mainland)",
+      "Status": "GA",
+      "VoiceTag": {
+        "ContentCategories": [
+          "News"
+        ],
+        "VoicePersonalities": [
+          "Professional",
+          "Reliable"
+        ]
+      }
+    }
+  },
+  "id_rule": "vo_{speaker}_ + SHA256(speaker + LF + 精确字幕)前16位",
+  "human_listening_review": "pending",
+  "license_note": "Generated using Microsoft online voices through edge-tts; original trial provenance retained; not declared CC0.",
+  "generation_status": "complete"
+}

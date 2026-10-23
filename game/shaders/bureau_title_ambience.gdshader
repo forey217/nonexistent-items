@@ -3,6 +3,9 @@ shader_type canvas_item;
 uniform float motion_time = 0.0;
 uniform vec2 pointer_offset = vec2(0.0);
 uniform float entry_phase = 0.0;
+uniform bool fixed_camera = false;
+uniform float camera_zoom = 1.06;
+uniform vec2 camera_focus = vec2(0.5);
 
 void fragment() {
 	float zoom = 1.06 + 0.014 * sin(motion_time * 0.45);
@@ -10,6 +13,9 @@ void fragment() {
 	vec2 drift = vec2(sin(motion_time * 0.48) * 0.011, sin(motion_time * 0.36) * 0.006);
 	vec2 focus = mix(vec2(0.5), vec2(0.70, 0.503), entry_phase);
 	vec2 uv = (UV - vec2(0.5)) / zoom + focus + drift + pointer_offset;
+	if (fixed_camera) {
+		uv = (UV - vec2(0.5)) / camera_zoom + camera_focus;
+	}
 	vec4 painting = texture(TEXTURE, uv);
 	// Illuminate the blue core; the painted brass frame stays rigid.
 	vec2 orb = (uv - vec2(0.8897, 0.503)) * vec2(1.6, 1.0);

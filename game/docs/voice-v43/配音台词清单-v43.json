@@ -1,0 +1,1043 @@
+{
+	"bureau": "世界观察局",
+	"game": "世界不按说明书",
+	"id_rule": "vo_角色_角色与精确文本的SHA256前16位；文字修改生成新ID，排序变化不变",
+	"lines": [
+		{
+			"audio_file": "vo_tesla_bdd15e6f610ebdf5.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_bdd15e6f610ebdf5",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "衍月，欢迎来到世界观察局。我是特斯拉，今天由我带你熟悉工作。",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_7b55ffd1090a6a9e.wav",
+			"category": "主线",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_7b55ffd1090a6a9e",
+			"role": "衍月",
+			"scene": "接待大厅",
+			"speaker": "yanyue",
+			"text": "外面的楼梯通向两片天空……也是设计的一部分？",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_41b7600cac6ea020.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_41b7600cac6ea020",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "至少不在设计图上。有些平行世界靠得太近，规则就混在一起了。",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_bbde5395e98ff610.wav",
+			"category": "主线",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_bbde5395e98ff610",
+			"role": "衍月",
+			"scene": "接待大厅",
+			"speaker": "yanyue",
+			"text": "那该怎么修？",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_f39018006ace85ba.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_f39018006ace85ba",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "先用这个——镇纸，把它们压稳。",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_191556a4d2f6132c.wav",
+			"category": "主线",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_191556a4d2f6132c",
+			"role": "衍月",
+			"scene": "接待大厅",
+			"speaker": "yanyue",
+			"text": "压纸的镇纸？",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_664401590f40cd16.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_664401590f40cd16",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "对，只不过这里压稳的是世界。",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_c4f3c83649a2b9aa.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_c4f3c83649a2b9aa",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "去星系仪选01号校准室。我会通过通讯带你。",
+			"triggers": [
+				"首次靠近/点击特斯拉，或点击桌前光标后抵达"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_5e09a88cb3ca7a97.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_5e09a88cb3ca7a97",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "欢迎回来。第一份观测记录已经归档。",
+			"triggers": [
+				"首次完成第一关归档并抵达大厅"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_99a6851010c02fd4.wav",
+			"category": "主线",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_99a6851010c02fd4",
+			"role": "衍月",
+			"scene": "接待大厅",
+			"speaker": "yanyue",
+			"text": "一块镇纸，三个不讲道理的世界。原来还能这么用。",
+			"triggers": [
+				"首次完成第一关归档并抵达大厅"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_2b92423bc78b73e5.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_2b92423bc78b73e5",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "世界各有各的道理。你学会让它们配合了。",
+			"triggers": [
+				"首次完成第一关归档并抵达大厅"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_820578a7286491cf.wav",
+			"category": "主线",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_820578a7286491cf",
+			"role": "衍月",
+			"scene": "接待大厅",
+			"speaker": "yanyue",
+			"text": "看来这份工作，确实不能只看说明书。",
+			"triggers": [
+				"首次完成第一关归档并抵达大厅"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_ecb0bb85080f62ed.wav",
+			"category": "主线",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_ecb0bb85080f62ed",
+			"role": "特斯拉",
+			"scene": "接待大厅",
+			"speaker": "tesla",
+			"text": "可以带着。记得抬头看看世界。",
+			"triggers": [
+				"首次完成第一关归档并抵达大厅"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_c9d770e01fbbb167.wav",
+			"category": "选关",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_c9d770e01fbbb167",
+			"role": "衍月",
+			"scene": "星系仪选关",
+			"speaker": "yanyue",
+			"text": "要去的地方，就在这块水晶里面？",
+			"triggers": [
+				"打开星系仪"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_ef4dcb5c8afe6a11.wav",
+			"category": "选关",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_ef4dcb5c8afe6a11",
+			"role": "特斯拉",
+			"scene": "星系仪选关",
+			"speaker": "tesla",
+			"text": "轻触水晶，让坐标展开。",
+			"triggers": [
+				"打开星系仪"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_ab7ce0d727c982c4.wav",
+			"category": "选关",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_ab7ce0d727c982c4",
+			"role": "特斯拉",
+			"scene": "星系仪选关",
+			"speaker": "tesla",
+			"text": "找到了。01号，新手校准室。",
+			"triggers": [
+				"水晶展开"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_92bf5c059d952212.wav",
+			"category": "选关",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_92bf5c059d952212",
+			"role": "衍月",
+			"scene": "星系仪选关",
+			"speaker": "yanyue",
+			"text": "第一次上班，从修补世界开始。",
+			"triggers": [
+				"水晶展开"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_366fb56661cd2e4e.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_366fb56661cd2e4e",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "先试试导轨上的镇纸。靠近它，右键或按E推一下；冰晶导轨摩擦很小。",
+			"triggers": [
+				"阶段0，世界0，初次"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_13e1e573f87f3b51.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_13e1e573f87f3b51",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "1、2、3切换世界规则。镇纸的位置会保留。",
+			"triggers": [
+				"阶段0，世界0，初次",
+				"阶段0，世界0，重玩/续玩",
+				"阶段0，世界1，初次",
+				"阶段0，世界1，重玩/续玩",
+				"阶段0，世界2，初次",
+				"阶段0，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_d2d793ca3e83c859.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_d2d793ca3e83c859",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "先定星位，再压月痕，最后封界缝。",
+			"triggers": [
+				"阶段0，世界0，初次",
+				"阶段0，世界0，重玩/续玩",
+				"阶段0，世界1，初次",
+				"阶段0，世界1，重玩/续玩",
+				"阶段0，世界2，初次",
+				"阶段0，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_fb91c102b616429c.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_fb91c102b616429c",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "还是这三个步骤。右键或E互动，试着自己完成，我在这里看着。",
+			"triggers": [
+				"阶段0，世界0，重玩/续玩",
+				"阶段0，世界1，重玩/续玩",
+				"阶段0，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_f89fbbdde6b02691.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_f89fbbdde6b02691",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "先试试冰晶世界。靠近导轨上的镇纸，右键或按E推一下。",
+			"triggers": [
+				"阶段0，世界1，初次",
+				"阶段0，世界2，初次"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_ab1701ccd0cabf49.wav",
+			"category": "默认教学",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_ab1701ccd0cabf49",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "到地方了。星位怎么没亮？",
+			"triggers": [
+				"阶段1，世界0，初次",
+				"阶段1，世界0，重玩/续玩",
+				"阶段1，世界1，初次",
+				"阶段1，世界1，重玩/续玩",
+				"阶段1，世界2，初次",
+				"阶段1，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_72691fa4ea973a20.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_72691fa4ea973a20",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "位置对了，重量还不够。",
+			"triggers": [
+				"阶段1，世界0，初次",
+				"阶段1，世界0，重玩/续玩",
+				"阶段1，世界1，初次",
+				"阶段1，世界1，重玩/续玩",
+				"阶段1，世界2，初次",
+				"阶段1，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_43c0032e075c1b37.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_43c0032e075c1b37",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "切到重力世界。同一块镇纸会变重，压下踏板；位置会保留。",
+			"triggers": [
+				"阶段1，世界0，初次",
+				"阶段1，世界0，重玩/续玩",
+				"阶段1，世界1，初次",
+				"阶段1，世界1，重玩/续玩",
+				"阶段1，世界2，初次",
+				"阶段1，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_adc8cb3bb305cb80.wav",
+			"category": "默认教学",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_adc8cb3bb305cb80",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "星位亮了，挡块也打开了。",
+			"triggers": [
+				"阶段2，世界0，初次",
+				"阶段2，世界0，重玩/续玩",
+				"阶段2，世界1，初次",
+				"阶段2，世界1，重玩/续玩",
+				"阶段2，世界2，初次",
+				"阶段2，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_5de2b38e9b2a7d4f.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_5de2b38e9b2a7d4f",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "星位已经锁定。下一个目标是月痕印座，在导轨尽头的上方。",
+			"triggers": [
+				"阶段2，世界0，初次",
+				"阶段2，世界0，重玩/续玩",
+				"阶段2，世界1，初次",
+				"阶段2，世界1，重玩/续玩",
+				"阶段2，世界2，初次",
+				"阶段2，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_8f887d6c21a7ec54.wav",
+			"category": "默认教学",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_8f887d6c21a7ec54",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "月痕在上面，镇纸却还在下面。",
+			"triggers": [
+				"阶段3，世界0，初次",
+				"阶段3，世界0，重玩/续玩",
+				"阶段3，世界1，初次",
+				"阶段3，世界1，重玩/续玩",
+				"阶段3，世界2，初次",
+				"阶段3，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_7a5a17370480936f.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_7a5a17370480936f",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "看看现有的规则，有没有办法让镇纸接近它。",
+			"triggers": [
+				"阶段3，世界0，初次",
+				"阶段3，世界0，重玩/续玩",
+				"阶段3，世界1，初次",
+				"阶段3，世界1，重玩/续玩",
+				"阶段3，世界2，初次",
+				"阶段3，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_c8825a70fb6dba3f.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_c8825a70fb6dba3f",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "月痕稳了。现在看它下方的封界踏板。",
+			"triggers": [
+				"阶段4，世界0，初次",
+				"阶段4，世界0，重玩/续玩",
+				"阶段4，世界1，初次",
+				"阶段4，世界1，重玩/续玩",
+				"阶段4，世界2，初次",
+				"阶段4，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_b705dac0ac469b67.wav",
+			"category": "默认教学",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_b705dac0ac469b67",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "踏板和界缝刻着同样的纹路……它们连在一起。",
+			"triggers": [
+				"阶段4，世界0，初次",
+				"阶段4，世界0，重玩/续玩",
+				"阶段4，世界1，初次",
+				"阶段4，世界1，重玩/续玩",
+				"阶段4，世界2，初次",
+				"阶段4，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_444c9f0e7ee666b1.wav",
+			"category": "默认教学",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_444c9f0e7ee666b1",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "裂缝合上了。",
+			"triggers": [
+				"阶段5，世界0，初次",
+				"阶段5，世界0，重玩/续玩",
+				"阶段5，世界1，初次",
+				"阶段5，世界1，重玩/续玩",
+				"阶段5，世界2，初次",
+				"阶段5，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_0c36aa6770026797.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_0c36aa6770026797",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "读数稳定，三处校准全部完成。",
+			"triggers": [
+				"阶段5，世界0，初次",
+				"阶段5，世界0，重玩/续玩",
+				"阶段5，世界1，初次",
+				"阶段5，世界1，重玩/续玩",
+				"阶段5，世界2，初次",
+				"阶段5，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_30bd0bd1f44e9d98.wav",
+			"category": "默认教学",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_30bd0bd1f44e9d98",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "保持锚定，通过归位门回来。后续由世界观察局接手。",
+			"triggers": [
+				"阶段5，世界0，初次",
+				"阶段5，世界0，重玩/续玩",
+				"阶段5，世界1，初次",
+				"阶段5，世界1，重玩/续玩",
+				"阶段5，世界2，初次",
+				"阶段5，世界2，重玩/续玩"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_21a2d803d7e5c362.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_21a2d803d7e5c362",
+			"role": "特斯拉",
+			"scene": "大厅",
+			"speaker": "tesla",
+			"text": "准备好了，就到星系仪旁边来。",
+			"triggers": [
+				"after-skip"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b647922cef56e495.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b647922cef56e495",
+			"role": "特斯拉",
+			"scene": "大厅",
+			"speaker": "tesla",
+			"text": "先到星系仪旁边，找出那片区域。",
+			"triggers": [
+				"reminder"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_aa92e4c2cd3e25e6.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_aa92e4c2cd3e25e6",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "现场已复位。右键或E互动镇纸，从冰晶导轨开始。",
+			"triggers": [
+				"reset"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_894528003945dd59.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_894528003945dd59",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "现场校准完成。开始归档。",
+			"triggers": [
+				"archive"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_6495b47588a96306.wav",
+			"category": "事件回应",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_6495b47588a96306",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "门又关了。",
+			"triggers": [
+				"gate-lost"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_f3d68751de0d3f0e.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_f3d68751de0d3f0e",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "封界踏板需要持续受压。观察镇纸现在的状态。",
+			"triggers": [
+				"gate-lost"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b58fdd4734d65a5f.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b58fdd4734d65a5f",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "归位门已经稳定。保持锚定，通过归位门回来。",
+			"triggers": [
+				"gate-restored"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_3bc2d1bfae9fb79b.wav",
+			"category": "事件回应",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_3bc2d1bfae9fb79b",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "真的只推了一下……它自己滑过去了。",
+			"triggers": [
+				"first-push"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_798fd098146c1851.wav",
+			"category": "事件回应",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_798fd098146c1851",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "纸片也飘起来了……我怎么还站在地上？",
+			"triggers": [
+				"first-float"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_4b404d3ba88eeb51.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_4b404d3ba88eeb51",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "观察员的靴子有固定装置。工作时，你得先站得稳。",
+			"triggers": [
+				"first-float"
+			]
+		},
+		{
+			"audio_file": "vo_yanyue_d2234b1b5e51a162.wav",
+			"category": "事件回应",
+			"emotion": "好奇、冷静，轻微吐槽；保持自然交流。",
+			"id": "vo_yanyue_d2234b1b5e51a162",
+			"role": "衍月",
+			"scene": "第一关",
+			"speaker": "yanyue",
+			"text": "升起来了，可这里没有印座。",
+			"triggers": [
+				"early-float"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_bb887cd5f190c46c.wav",
+			"category": "事件回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_bb887cd5f190c46c",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "月痕在导轨尽头的上方。先观察位置。",
+			"triggers": [
+				"early-float"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_6f22a9eeeaf8cdbb.wav",
+			"category": "自动求助入口",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_6f22a9eeeaf8cdbb",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "需要帮助时，按 H 联系特斯拉。",
+			"triggers": [
+				"idle"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b827446fe121306d.wav",
+			"category": "操作回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b827446fe121306d",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "出口还不稳定。先完成当前的校准，我会在这里等你。",
+			"triggers": [
+				"点击未稳定出口，或在太重/悬空状态尝试推动"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b6f73a844b9aca36.wav",
+			"category": "操作回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b6f73a844b9aca36",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "它现在太重，无法推动。看看现有的规则。",
+			"triggers": [
+				"点击未稳定出口，或在太重/悬空状态尝试推动"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_4c137356dc8c1c57.wav",
+			"category": "操作回应",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_4c137356dc8c1c57",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "先让它接触导轨，才能推动。",
+			"triggers": [
+				"点击未稳定出口，或在太重/悬空状态尝试推动"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b87b751dbbda43d5.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b87b751dbbda43d5",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "星位在带五角星的踏板上。",
+			"triggers": [
+				"阶段0，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_d4941777754d7fda.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_d4941777754d7fda",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "冰晶世界摩擦很小，挡块会接住滑来的镇纸。",
+			"triggers": [
+				"阶段0，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_d6c5cf1addfc110a.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_d6c5cf1addfc110a",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按1切到冰晶世界，靠近镇纸，右键或按E推动。",
+			"triggers": [
+				"阶段0，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_d24ca070d4363b80.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_d24ca070d4363b80",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "镇纸到达了星位，但锚座还没稳定。",
+			"triggers": [
+				"阶段1，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_0b3d735a0a6fd39e.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_0b3d735a0a6fd39e",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "这里需要更大的重量；切换世界不会重置镇纸位置。",
+			"triggers": [
+				"阶段1，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_6fd560028ce95492.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_6fd560028ce95492",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按 2 切到重力世界，让镇纸压稳星位。",
+			"triggers": [
+				"阶段1，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_02ca977c41302308.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_02ca977c41302308",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "星位已定，下一个目标是高处的月痕。",
+			"triggers": [
+				"阶段2，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_0f068d80cb011634.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_0f068d80cb011634",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "月痕印座下方有导轨；重力世界里的镇纸太重，无法运送。",
+			"triggers": [
+				"阶段2，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_566b84a2455e1a5a.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_566b84a2455e1a5a",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按 1 回冰晶世界，再次右键推动镇纸到导轨末端。",
+			"triggers": [
+				"阶段2，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_263f5cb274422cd8.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_263f5cb274422cd8",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "印座在镇纸上方，需要让它向上接近。",
+			"triggers": [
+				"阶段3，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_02836ae9dce4acb8.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_02836ae9dce4acb8",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "倒悬世界会改变重力方向。",
+			"triggers": [
+				"阶段3，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_af31984df33bdd06.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_af31984df33bdd06",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按3切到倒悬世界，等待镇纸升到印座。",
+			"triggers": [
+				"阶段3，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_a179349c9be44336.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_a179349c9be44336",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "月痕已压稳，还需要让界缝封印持续运作。",
+			"triggers": [
+				"阶段4，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_e5348803a9a00564.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_e5348803a9a00564",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "界缝与末端压板相连；普通重力下的重量还不够。",
+			"triggers": [
+				"阶段4，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_e0404b04dc804f9d.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_e0404b04dc804f9d",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按 2 回重力世界，等镇纸落回末端压板，为封界缝供能。",
+			"triggers": [
+				"阶段4，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_9b2dcd35e462a385.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_9b2dcd35e462a385",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "界缝已封，修复后的门可通往机构。",
+			"triggers": [
+				"阶段5，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b7256dda35847adf.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b7256dda35847adf",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "保持重力世界，镇纸才能持续维持封印。",
+			"triggers": [
+				"阶段5，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_2ab83a696307b438.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_2ab83a696307b438",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "左键点击修复后的归位门，衍月会走过去。",
+			"triggers": [
+				"阶段5，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_c3ad7b1ed0ee2074.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_c3ad7b1ed0ee2074",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "镇纸离开了导轨，暂时无法运送。",
+			"triggers": [
+				"early-airborne，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_b934e5d61e5fd9af.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_b934e5d61e5fd9af",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "先让它重新接触导轨，再考虑目标的位置。",
+			"triggers": [
+				"early-airborne，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_2dd27b42c74422ef.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_2dd27b42c74422ef",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按1切到冰晶世界，等待镇纸落回导轨，再靠近按E或右键推动。",
+			"triggers": [
+				"early-airborne，玩家主动按H第3层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_747d6687d393dde8.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_747d6687d393dde8",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "月痕已经锁定，但镇纸离开了封界踏板。",
+			"triggers": [
+				"moon-away，玩家主动按H第1层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_4f8793d36199e841.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_4f8793d36199e841",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "先把镇纸运回导轨末端；封界踏板需要足够的压力。",
+			"triggers": [
+				"moon-away，玩家主动按H第2层"
+			]
+		},
+		{
+			"audio_file": "vo_tesla_e42f3458f416cd09.wav",
+			"category": "主动H提示",
+			"emotion": "沉稳、熟悉工作，带一点幽默；提示不催促。",
+			"id": "vo_tesla_e42f3458f416cd09",
+			"role": "特斯拉",
+			"scene": "第一关",
+			"speaker": "tesla",
+			"text": "按1切回冰晶，等镇纸落稳后推向末端，再按2让它压住封界踏板。",
+			"triggers": [
+				"moon-away，玩家主动按H第3层"
+			]
+		}
+	],
+	"scope": "主界面至第一关归档及复盘；不包含第二关独立对白"
+}

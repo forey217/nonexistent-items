@@ -8,6 +8,10 @@ var anchor_history: Array[int]=[]
 var law_world := -1
 var label_rect := Rect2()
 var font := SystemFont.new()
+var speech: Node
+var speech_id := ""
+var speech_cues: Dictionary={}
+var speech_end := 0.0
 const COLORS = [Color("8cdef0"),Color("efc579"),Color("c9b3f4")]
 
 func _ready() -> void:
@@ -21,20 +25,33 @@ func start(visual: String) -> void:
 	show();set_process(true);_sync_anchor();queue_redraw()
 
 func stop() -> void:
+	speech=null;speech_id="";speech_cues={};speech_end=0
 	mode="";anchor_index=-1;law_world=-1
 	if is_instance_valid(view):view.landmarks.teaching_index=-1
 	hide();set_process(false);queue_redraw()
 
 func _sync_anchor() -> void:
 	if mode!="anchors":view.landmarks.teaching_index=-1;return
-	anchor_index=mini(int(age/1.30),2)
+	if is_instance_valid(speech) and speech.current_id==speech_id:
+		var time: float=speech.position_seconds()
+		anchor_index=2 if time>=float(speech_cues.get("界缝",999.0)) else (1 if time>=float(speech_cues.get("月痕",999.0)) else (0 if time>=float(speech_cues.get("星位",0.0)) else -1))
+	else:anchor_index=mini(int(age/1.30),2)
 	view.landmarks.teaching_index=anchor_index
-	if not anchor_history.has(anchor_index):anchor_history.append(anchor_index)
+	if anchor_index>=0 and not anchor_history.has(anchor_index):anchor_history.append(anchor_index)
 
 func _process(delta: float) -> void:
 	age+=delta
-	if mode=="anchors" and age>=4.15:stop();return
+	if mode=="anchors":
+		if is_instance_valid(speech):
+			if speech.current_id!=speech_id or age>=speech_end:stop();return
+		elif age>=4.15:stop();return
 	_sync_anchor();queue_redraw()
+
+func sync_speech(source: Node,cues: Dictionary,end: float) -> void:
+	if mode!="anchors" or not cues.has("月痕") or not cues.has("界缝"):return
+	speech=source;speech_id=source.current_id;speech_cues=cues;speech_end=end
+	anchor_history.clear()
+	_sync_anchor()
 
 func target_position() -> Vector2:
 	return view.logic_to_screen(view.room.block_ground_position(),0.22+view.room.state.elevation/view.HEIGHT_PIXELS)
@@ -64,16 +81,15 @@ func safe_label_rect(at: Vector2) -> Rect2:
 		if occupied.all(func(area):return not rect.intersects(area)):return rect
 	return Rect2(501,132,278,36)
 
-func badge(at: Vector2,text: String,color: Color) -> void:
+func badge(at: Vector2,text: String,_color: Color) -> void:
 	label_rect=safe_label_rect(at)
-	var style:=StyleBoxFlat.new();style.bg_color=Color(0.08,0.17,0.22,0.92)
-	style.border_color=Color(color,0.75);style.set_border_width_all(1);style.set_corner_radius_all(4)
-	draw_style_box(style,label_rect)
+	draw_style_box(preload("res://scripts/instrument_theme.gd").style(false,.90),label_rect)
 	draw_string(font,label_rect.position+Vector2(11,24),text,HORIZONTAL_ALIGNMENT_LEFT,-1,17,Color("fcf5e5"))
 
 func _draw() -> void:
 	if mode.is_empty():return
 	if mode=="anchors":
+		if anchor_index<0:return
 		var target: Vector2=view.camera.unproject_position(view.landmarks.anchor_position(anchor_index))
 		var pulse:=fposmod(age,1.30)/1.30
 		draw_arc(target,24+pulse*19,0,TAU,64,Color(1.0,0.83,0.43,0.7*(1.0-pulse)),2,true)

@@ -1,0 +1,25 @@
+{
+  "kind": "Generated Mandarin dialogue",
+  "engine": "edge-tts 7.3.1, Microsoft online voices",
+  "voice_profiles": {
+    "yanyue": {
+      "gender": "Female",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz"
+    },
+    "tesla": {
+      "gender": "Male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz"
+    }
+  },
+  "scope": "74 approved unique lines: opening, selection, first tutorial, hints and debrief. No second-level dialogue.",
+  "reference": "https://github.com/forey217/nonexistent-items/tree/249a531d237045bf1a50b2532ddf86771fb45fb5/showcase/voice-trial",
+  "processing": "Native MP3 decoded for silence trimming and gain matching; mono 24kHz MP3 delivery. No claim of lossless source.",
+  "timing": "Service WordBoundary timestamps adjusted to processed audio; visual cues use the containing word's start.",
+  "license_note": "Generated voices are not declared CC0 and do not inherit the code license of edge-tts. Preserve the original trial's provenance note.",
+  "review": "Automated identity, text, decoding and timing checks. Human listening review pending.",
+  "voice_revision": "tesla-yunyang-v02; selected preview 01-yunyang.mp3"
+}

@@ -4,8 +4,10 @@ var room: Node2D
 var clock:=0.0
 var font:=SystemFont.new()
 var backgrounds: Array[Texture2D]=[]
+var live_rendering:=true
 
 func _ready() -> void:
+	if not live_rendering:set_process(false);return
 	font.font_names=PackedStringArray(["Microsoft YaHei","Arial"])
 	for i in range(3): backgrounds.append(load("res://assets/calibration_v03/room-%d.png"%i))
 
