@@ -192,10 +192,6 @@ func _ready() -> void:
 		var suite=load("res://tests/paper_direction_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
 
-	if "--paper-scroll-gate-check" in args:
-		var suite=load("res://tests/paper_archive_gate_checks.gd").new();add_child(suite)
-		suite.run.call_deferred(self)
-
 func start_paper_demo() -> void:
 	if is_instance_valid(paper_demo) or not is_instance_valid(current) or current.get("level_id")!="paper_mill" or returning:return
 	paper_demo=preload("res://scripts/paper_demo.gd").new();paper_demo.flow=self;add_child(paper_demo);paper_demo.begin(current)

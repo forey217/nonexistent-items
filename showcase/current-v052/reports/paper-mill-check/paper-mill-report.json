@@ -501,7 +501,7 @@
       "test": "completed_level_restarts_cleanly"
     }
   ],
-  "elapsed_seconds": 12.854,
+  "elapsed_seconds": 16.719,
   "failures": 0,
   "native_render": false,
   "stages": [

@@ -71,7 +71,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 2.550089,
+      "seconds": 3.06139,
       "title": "纸山叠影 · 完整演示",
       "worlds": [
         0,
@@ -81,7 +81,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 3.350353,
+      "seconds": 3.828939,
       "title": "显影旧廊，寻找留影夹",
       "worlds": [
         3,
@@ -91,7 +91,7 @@
     {
       "mountain_layer": 0,
       "op": "interact",
-      "seconds": 4.651158,
+      "seconds": 5.129984,
       "title": "取得留影夹",
       "worlds": [
         3,
@@ -101,7 +101,7 @@
     {
       "mountain_layer": 0,
       "op": "stairs",
-      "seconds": 7.083365,
+      "seconds": 7.557545,
       "title": "前往下层水碓坊",
       "worlds": [
         3,
@@ -111,7 +111,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 7.883406,
+      "seconds": 8.356506,
       "title": "倒悬解开封存架",
       "worlds": [
         3,
@@ -121,7 +121,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 8.283356,
+      "seconds": 8.756463,
       "title": "水纹触碰顶部锁扣",
       "worlds": [
         3,
@@ -131,7 +131,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 9.083333,
+      "seconds": 9.556828,
       "title": "冰晶规则，水纹回到导轨",
       "worlds": [
         3,
@@ -141,7 +141,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 9.28334,
+      "seconds": 9.758414,
       "title": "水纹落稳后开始运输",
       "worlds": [
         3,
@@ -151,7 +151,7 @@
     {
       "mountain_layer": 0,
       "op": "push",
-      "seconds": 12.083581,
+      "seconds": 12.556488,
       "title": "将水纹送至接物踏板",
       "worlds": [
         3,
@@ -161,7 +161,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 12.85031,
+      "seconds": 13.323208,
       "title": "重压踏板，升起接物台",
       "worlds": [
         3,
@@ -171,7 +171,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 13.050719,
+      "seconds": 13.523432,
       "title": "接物台升到安全高度",
       "worlds": [
         3,
@@ -181,7 +181,7 @@
     {
       "mountain_layer": 0,
       "op": "interact",
-      "seconds": 18.350116,
+      "seconds": 18.823995,
       "title": "固定接物台",
       "worlds": [
         3,
@@ -191,7 +191,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 19.728106,
+      "seconds": 20.347363,
       "title": "接物台保持固定",
       "worlds": [
         3,
@@ -201,7 +201,7 @@
     {
       "mountain_layer": 0,
       "op": "stairs",
-      "seconds": 22.961459,
+      "seconds": 23.580955,
       "title": "回上层解除检修撑",
       "worlds": [
         3,
@@ -211,7 +211,7 @@
     {
       "mountain_layer": 0,
       "op": "interact",
-      "seconds": 23.96158,
+      "seconds": 24.613946,
       "title": "解除落料板检修撑",
       "worlds": [
         3,
@@ -221,7 +221,7 @@
     {
       "mountain_layer": 1,
       "op": "world",
-      "seconds": 24.728327,
+      "seconds": 25.382025,
       "title": "重力压开落料板",
       "worlds": [
         1,
@@ -231,7 +231,7 @@
     {
       "mountain_layer": 1,
       "op": "wait",
-      "seconds": 27.528034,
+      "seconds": 28.181175,
       "title": "接住山纹镇纸",
       "worlds": [
         1,
@@ -241,7 +241,7 @@
     {
       "mountain_layer": 1,
       "op": "stairs",
-      "seconds": 30.431297,
+      "seconds": 31.498746,
       "title": "前往下层接物区",
       "worlds": [
         1,
@@ -251,7 +251,7 @@
     {
       "mountain_layer": 1,
       "op": "push",
-      "seconds": 33.564677,
+      "seconds": 34.632491,
       "title": "将山纹送入停靠吊台",
       "worlds": [
         1,
@@ -261,7 +261,7 @@
     {
       "mountain_layer": 1,
       "op": "push",
-      "seconds": 35.364638,
+      "seconds": 36.43174,
       "title": "水纹经过分岔",
       "worlds": [
         1,
@@ -271,7 +271,7 @@
     {
       "mountain_layer": 1,
       "op": "push",
-      "seconds": 37.831434,
+      "seconds": 38.8981720000001,
       "title": "将水纹送至水闸踏板",
       "worlds": [
         1,
@@ -281,7 +281,7 @@
     {
       "mountain_layer": 1,
       "op": "world",
-      "seconds": 38.598375,
+      "seconds": 39.6645290000001,
       "title": "水车驱动吊台",
       "worlds": [
         1,
@@ -291,7 +291,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 43.865153,
+      "seconds": 44.9308350000001,
       "title": "山纹随吊台回到上层",
       "worlds": [
         1,
@@ -301,7 +301,7 @@
     {
       "mountain_layer": 0,
       "op": "stairs",
-      "seconds": 47.423502,
+      "seconds": 48.485074,
       "title": "返回上层晒纸院",
       "worlds": [
         1,
@@ -311,7 +311,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 48.223338,
+      "seconds": 49.285131,
       "title": "沿上层冰晶导轨运输",
       "worlds": [
         0,
@@ -321,7 +321,7 @@
     {
       "mountain_layer": 0,
       "op": "push",
-      "seconds": 50.824652,
+      "seconds": 51.886059,
       "title": "山纹到达木桥前止挡",
       "worlds": [
         0,
@@ -331,7 +331,7 @@
     {
       "mountain_layer": 0,
       "op": "recall",
-      "seconds": 51.024251,
+      "seconds": 52.117867,
       "title": "收回留影夹",
       "worlds": [
         0,
@@ -341,7 +341,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 51.757448,
+      "seconds": 52.850798,
       "title": "显影跨渠木桥",
       "worlds": [
         3,
@@ -351,7 +351,7 @@
     {
       "mountain_layer": 0,
       "op": "interact",
-      "seconds": 53.590614,
+      "seconds": 54.685491,
       "title": "固定木桥",
       "worlds": [
         3,
@@ -361,7 +361,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 54.357918,
+      "seconds": 55.4858,
       "title": "木桥保留，继续运输",
       "worlds": [
         0,
@@ -371,7 +371,7 @@
     {
       "mountain_layer": 0,
       "op": "push",
-      "seconds": 56.157188,
+      "seconds": 57.284886,
       "title": "山纹通过木桥抵达锚座",
       "worlds": [
         0,
@@ -381,7 +381,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 56.923658,
+      "seconds": 58.05091,
       "title": "重力稳定上层锚点",
       "worlds": [
         1,
@@ -391,7 +391,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 57.691508,
+      "seconds": 58.818157,
       "title": "上层锚定，下层保护罩打开",
       "worlds": [
         1,
@@ -401,7 +401,7 @@
     {
       "mountain_layer": 0,
       "op": "stairs",
-      "seconds": 62.0495860000001,
+      "seconds": 63.046689,
       "title": "前往下层完成另一处锚点",
       "worlds": [
         1,
@@ -411,7 +411,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 62.8495810000001,
+      "seconds": 63.846292,
       "title": "解除水闸重压，让吊台归底",
       "worlds": [
         1,
@@ -421,7 +421,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 64.3494620000001,
+      "seconds": 65.347842,
       "title": "吊台归底，低位通道开放",
       "worlds": [
         1,
@@ -431,7 +431,7 @@
     {
       "mountain_layer": 0,
       "op": "push",
-      "seconds": 67.9494060000001,
+      "seconds": 68.9465059999999,
       "title": "水纹返回真实分岔",
       "worlds": [
         1,
@@ -441,7 +441,7 @@
     {
       "mountain_layer": 0,
       "op": "push",
-      "seconds": 70.4160540000001,
+      "seconds": 71.4133039999999,
       "title": "将水纹送入导向井",
       "worlds": [
         1,
@@ -451,7 +451,7 @@
     {
       "mountain_layer": 0,
       "op": "world",
-      "seconds": 71.1831000000001,
+      "seconds": 72.179887,
       "title": "倒悬稳定高处锚位",
       "worlds": [
         1,
@@ -461,7 +461,7 @@
     {
       "mountain_layer": 0,
       "op": "wait",
-      "seconds": 76.515891,
+      "seconds": 77.512517,
       "title": "上下双锚共同稳定",
       "worlds": [
         1,
@@ -471,7 +471,7 @@
     {
       "mountain_layer": 0,
       "op": "stairs",
-      "seconds": 80.086173,
+      "seconds": 81.09317,
       "title": "返回上层归位门",
       "worlds": [
         1,
@@ -480,9 +480,9 @@
     },
     {
       "op": "exit",
-      "seconds": 82.9861779999999,
+      "seconds": 83.993145,
       "title": "走入归位门"
     }
   ],
-  "wall_seconds": 86.3810289999999
+  "wall_seconds": 87.456872
 }

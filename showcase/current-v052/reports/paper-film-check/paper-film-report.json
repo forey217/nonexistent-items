@@ -26,14 +26,14 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1354
+        "samples": 1357
       },
       "passed": true,
       "test": "0_0_1_actor_pixels_match_main"
     },
     {
       "details": {
-        "changed": 14745,
+        "changed": 14687,
         "samples": 23762
       },
       "passed": true,
@@ -62,14 +62,14 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1354
+        "samples": 1357
       },
       "passed": true,
       "test": "0_0_2_actor_pixels_match_main"
     },
     {
       "details": {
-        "changed": 13800,
+        "changed": 13315,
         "samples": 23762
       },
       "passed": true,
@@ -98,14 +98,14 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1357
+        "samples": 1354
       },
       "passed": true,
       "test": "0_0_3_actor_pixels_match_main"
     },
     {
       "details": {
-        "changed": 13623,
+        "changed": 13838,
         "samples": 23762
       },
       "passed": true,
@@ -314,14 +314,14 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1360
+        "samples": 1348
       },
       "passed": true,
       "test": "1_0_1_actor_pixels_match_main"
     },
     {
       "details": {
-        "changed": 10763,
+        "changed": 10465,
         "samples": 23762
       },
       "passed": true,
@@ -357,7 +357,7 @@
     },
     {
       "details": {
-        "changed": 12020,
+        "changed": 12022,
         "samples": 23762
       },
       "passed": true,
@@ -386,14 +386,14 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1357
+        "samples": 1354
       },
       "passed": true,
       "test": "1_0_3_actor_pixels_match_main"
     },
     {
       "details": {
-        "changed": 11898,
+        "changed": 12222,
         "samples": 23762
       },
       "passed": true,
@@ -587,7 +587,7 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1339
+        "samples": 1334
       },
       "passed": true,
       "test": "actor_crisp_when_rotating_0_-45"
@@ -603,7 +603,7 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1347
+        "samples": 1357
       },
       "passed": true,
       "test": "actor_crisp_when_rotating_0_0"
@@ -667,7 +667,7 @@
     {
       "details": {
         "errors": 0,
-        "samples": 1342
+        "samples": 1347
       },
       "passed": true,
       "test": "actor_crisp_when_rotating_1_45"
@@ -683,7 +683,7 @@
     {
       "details": {
         "errors": 0,
-        "samples": 401
+        "samples": 406
       },
       "passed": true,
       "test": "actor_mask_matches_zoom_0.55"
@@ -773,7 +773,7 @@
     },
     {
       "details": {
-        "seconds": 0.590641
+        "seconds": 0.548599
       },
       "passed": true,
       "test": "visual_duration_independent_of_demo_speed"

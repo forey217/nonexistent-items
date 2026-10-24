@@ -1,0 +1,7 @@
+{
+  "excluded": "The two ongoing local features and their implementations are not included.",
+  "cleanup": "Removed unused --paper-scroll-gate-check registration referencing absent unfinished script.",
+  "runtime_changes": "No puzzle, timing, movement, physics or art changes versus the accepted v0.52.0 snapshot.",
+  "reexported": true,
+  "all_621_checks_rerun": true
+}
