@@ -1,0 +1,330 @@
+{
+  "checks": 55,
+  "failures": 0,
+  "measurements": {
+    "120": {
+      "stop_distance": 7.5037841796875,
+      "straight_distance": 73.9495849609375
+    },
+    "30": {
+      "stop_distance": 5.219970703125,
+      "straight_distance": 76.5602416992188
+    },
+    "60": {
+      "stop_distance": 6.6700439453125,
+      "straight_distance": 74.8196411132813
+    }
+  },
+  "results": [
+    {
+      "details": {
+        "distance": 6.96002197265625
+      },
+      "passed": true,
+      "test": "first_input_moves_promptly_30"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reaches_configured_top_speed_30"
+    },
+    {
+      "details": {
+        "distance": 5.219970703125
+      },
+      "passed": true,
+      "test": "release_stops_within_100ms_and_short_distance_30"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "idle_keeps_gait_phase_and_settles_feet_30"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reverse_immediately_moves_in_new_direction_30"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "diagonal_speed_is_normalized_30"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "equal_duration_diagonal_and_straight_match_30"
+    },
+    {
+      "details": {
+        "distance": 1.739990234375
+      },
+      "passed": true,
+      "test": "first_input_moves_promptly_60"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reaches_configured_top_speed_60"
+    },
+    {
+      "details": {
+        "distance": 6.6700439453125
+      },
+      "passed": true,
+      "test": "release_stops_within_100ms_and_short_distance_60"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "idle_keeps_gait_phase_and_settles_feet_60"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reverse_immediately_moves_in_new_direction_60"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "diagonal_speed_is_normalized_60"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "equal_duration_diagonal_and_straight_match_60"
+    },
+    {
+      "details": {
+        "distance": 0.43499755859375
+      },
+      "passed": true,
+      "test": "first_input_moves_promptly_120"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reaches_configured_top_speed_120"
+    },
+    {
+      "details": {
+        "distance": 7.5037841796875
+      },
+      "passed": true,
+      "test": "release_stops_within_100ms_and_short_distance_120"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "idle_keeps_gait_phase_and_settles_feet_120"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reverse_immediately_moves_in_new_direction_120"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "diagonal_speed_is_normalized_120"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "equal_duration_diagonal_and_straight_match_120"
+    },
+    {
+      "details": {
+        "samples": {
+          "120": {
+            "stop_distance": 7.5037841796875,
+            "straight_distance": 73.9495849609375
+          },
+          "30": {
+            "stop_distance": 5.219970703125,
+            "straight_distance": 76.5602416992188
+          },
+          "60": {
+            "stop_distance": 6.6700439453125,
+            "straight_distance": 74.8196411132813
+          }
+        }
+      },
+      "passed": true,
+      "test": "physics_rates_keep_travel_consistent"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "short_taps_allow_precise_positioning"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "restart_continues_previous_step_instead_of_resetting"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "click_arrival_is_accurate_and_emits_once"
+    },
+    {
+      "details": {
+        "speeds": [
+          208.800003051758,
+          204.293853759766,
+          160.793853759766,
+          117.293853759766,
+          0.0
+        ]
+      },
+      "passed": true,
+      "test": "click_arrival_brakes_before_target"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "arrival_does_not_oscillate_or_repeat"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "keyboard_takes_over_route_without_zero_speed_frame"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "new_destination_replaces_route_safely"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "rounded_route_around_desk_preserves_full_collision"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "invalid_destination_stops_and_reports_failure"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "control_lock_stops_immediately"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "unlock_has_no_old_route_or_residual_motion"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "focus_loss_releases_keys_and_stops_without_coast"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "small_direction_jitter_cannot_flip_facing"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "clear_reverse_direction_changes_facing_immediately"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "teleport_resets_display_position_and_phase"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "display_position_stays_between_physics_samples"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_uses_same_acceleration_and_full_speed"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_pause_clears_motion_and_route"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_unpause_does_not_resume_old_motion"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_actor_shadow_share_position_-45"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_facing_matches_rotated_camera_-45"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_actor_shadow_share_position_0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_facing_matches_rotated_camera_0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_actor_shadow_share_position_45"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "tutorial_facing_matches_rotated_camera_45"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_route_accepted_0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_approach_remains_safe_0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_exit_has_no_residual_velocity_0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_exit_never_retriggers_0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_route_accepted_1"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_approach_remains_safe_1"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_exit_has_no_residual_velocity_1"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "mill_stair_exit_never_retriggers_1"
+    }
+  ]
+}

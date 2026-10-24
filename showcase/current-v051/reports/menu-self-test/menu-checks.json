@@ -1,0 +1,322 @@
+{
+  "checks": 79,
+  "failures": 0,
+  "results": [
+    {
+      "passed": true,
+      "test": "normal_boot_opens_contributed_title"
+    },
+    {
+      "passed": true,
+      "test": "start_has_keyboard_focus"
+    },
+    {
+      "passed": true,
+      "test": "title_stays_still_with_fixed_menu_hitboxes"
+    },
+    {
+      "passed": true,
+      "test": "background_and_title_sheen_clocks_advance"
+    },
+    {
+      "passed": true,
+      "test": "down_selects_options"
+    },
+    {
+      "passed": true,
+      "test": "up_selects_start"
+    },
+    {
+      "passed": true,
+      "test": "quit_uses_shared_audio_cleanup"
+    },
+    {
+      "passed": true,
+      "test": "options_opens_and_blocks_main_menu"
+    },
+    {
+      "passed": true,
+      "test": "options_has_four_sliders_manual_and_return"
+    },
+    {
+      "passed": true,
+      "test": "options_matches_archive_fonts"
+    },
+    {
+      "passed": true,
+      "test": "opening_animation_finishes_in_place"
+    },
+    {
+      "passed": true,
+      "test": "options_prevents_starting_game_behind_overlay"
+    },
+    {
+      "passed": true,
+      "test": "clicking_slider_track_changes_shared_volume"
+    },
+    {
+      "passed": true,
+      "test": "slider_controls_master_music_and_effects"
+    },
+    {
+      "passed": true,
+      "test": "slider_supports_keyboard_arrows"
+    },
+    {
+      "passed": true,
+      "test": "dragging_slider_updates_sound_and_percentage"
+    },
+    {
+      "passed": true,
+      "test": "zero_volume_is_completely_muted"
+    },
+    {
+      "passed": true,
+      "test": "raising_volume_from_zero_unmutes"
+    },
+    {
+      "passed": true,
+      "test": "slider_independently_controls_music"
+    },
+    {
+      "passed": true,
+      "test": "other_channels_unaffected_by_music"
+    },
+    {
+      "passed": true,
+      "test": "keyboard_adjusts_music"
+    },
+    {
+      "passed": true,
+      "test": "channel_zero_mutes_only_music"
+    },
+    {
+      "passed": true,
+      "test": "channel_raises_from_zero_music"
+    },
+    {
+      "passed": true,
+      "test": "slider_independently_controls_sfx"
+    },
+    {
+      "passed": true,
+      "test": "other_channels_unaffected_by_sfx"
+    },
+    {
+      "passed": true,
+      "test": "keyboard_adjusts_sfx"
+    },
+    {
+      "passed": true,
+      "test": "channel_zero_mutes_only_sfx"
+    },
+    {
+      "passed": true,
+      "test": "channel_raises_from_zero_sfx"
+    },
+    {
+      "passed": true,
+      "test": "slider_independently_controls_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "other_channels_unaffected_by_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "keyboard_adjusts_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "channel_zero_mutes_only_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "channel_raises_from_zero_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "master_and_channel_gains_combine"
+    },
+    {
+      "passed": true,
+      "test": "keyboard_focus_reaches_background_slider"
+    },
+    {
+      "passed": true,
+      "test": "manual_replaces_options_on_same_sheet"
+    },
+    {
+      "passed": true,
+      "test": "manual_matches_current_controls"
+    },
+    {
+      "passed": true,
+      "test": "manual_blocks_hidden_slider_world_keys_and_start"
+    },
+    {
+      "passed": true,
+      "test": "escape_closes_manual_and_returns_to_options"
+    },
+    {
+      "passed": true,
+      "test": "M_mutes_and_synchronizes_slider"
+    },
+    {
+      "passed": true,
+      "test": "M_restores_previous_audible_volume"
+    },
+    {
+      "passed": true,
+      "test": "M_preserves_all_channel_levels"
+    },
+    {
+      "passed": true,
+      "test": "options_close_keeps_input_shield_during_fade"
+    },
+    {
+      "passed": true,
+      "test": "escape_closes_options_and_restores_main_focus"
+    },
+    {
+      "passed": true,
+      "test": "reopening_options_preserves_volume"
+    },
+    {
+      "passed": true,
+      "test": "return_button_closes_options"
+    },
+    {
+      "passed": true,
+      "test": "start_blocks_repeated_requests"
+    },
+    {
+      "passed": true,
+      "test": "entry_approaches_illustrated_globe_without_blue_cover"
+    },
+    {
+      "passed": true,
+      "test": "dialogue_waits_for_entry_camera"
+    },
+    {
+      "passed": true,
+      "test": "start_enters_latest_hub_not_old_direct_tutorial"
+    },
+    {
+      "passed": true,
+      "test": "arrival_camera_matches_live_globe"
+    },
+    {
+      "passed": true,
+      "test": "entry_blocks_movement_and_selection"
+    },
+    {
+      "passed": true,
+      "test": "mute_shortcut_works_during_entry"
+    },
+    {
+      "passed": true,
+      "test": "F10_cannot_interrupt_title_reveal"
+    },
+    {
+      "passed": true,
+      "test": "return_button_hidden_during_title_reveal"
+    },
+    {
+      "passed": true,
+      "test": "hall_has_visible_return_button"
+    },
+    {
+      "passed": true,
+      "test": "hub_keeps_latest_NPC_and_removed_chest"
+    },
+    {
+      "passed": true,
+      "test": "title_to_hub_keeps_music_instance"
+    },
+    {
+      "passed": true,
+      "test": "entry_restores_camera_and_releases_its_layer"
+    },
+    {
+      "passed": true,
+      "test": "actor_entry_keeps_room_visible"
+    },
+    {
+      "passed": true,
+      "test": "return_button_blocks_repeated_requests"
+    },
+    {
+      "passed": true,
+      "test": "hall_button_returns_to_fresh_title"
+    },
+    {
+      "passed": true,
+      "test": "motion_off_uses_still_crossfade"
+    },
+    {
+      "passed": true,
+      "test": "motion_off_fades_illustration_without_radial_motion"
+    },
+    {
+      "passed": true,
+      "test": "mute_survives_title_and_scene_switch"
+    },
+    {
+      "passed": true,
+      "test": "hub_globe_opens_current_crystal_map"
+    },
+    {
+      "passed": true,
+      "test": "return_button_hidden_during_level_selection"
+    },
+    {
+      "passed": true,
+      "test": "F10_does_not_discard_open_level_map"
+    },
+    {
+      "passed": true,
+      "test": "whole_crystal_opens_fragments_before_selection"
+    },
+    {
+      "passed": true,
+      "test": "crystal_selection_runs_existing_convergence"
+    },
+    {
+      "passed": true,
+      "test": "title_hub_crystal_enters_tutorial_in_default_world"
+    },
+    {
+      "passed": true,
+      "test": "level_return_is_in_pause_menu_without_legacy_button"
+    },
+    {
+      "passed": true,
+      "test": "pause_menu_returns_without_orphan_menu"
+    },
+    {
+      "passed": true,
+      "test": "music_survives_round_trip"
+    },
+    {
+      "passed": true,
+      "test": "F10_shortcut_still_returns_to_title"
+    },
+    {
+      "passed": true,
+      "test": "volume_saved_without_applying_or_confirming"
+    },
+    {
+      "passed": true,
+      "test": "audio_preferences_survive_reloading_from_disk"
+    },
+    {
+      "passed": true,
+      "test": "all_channel_settings_saved"
+    },
+    {
+      "passed": true,
+      "test": "old_single_slider_settings_migrate_without_changing_loudness"
+    }
+  ]
+}

@@ -93,7 +93,7 @@ func run(flow:Node) -> void:
 	if DisplayServer.get_name()!="headless":DisplayServer.window_set_size(Vector2i(1280,800))
 	room.observe(0);room.view.angle=0;room.view.zoom=1;room.view.target_zoom=1;room.view.return_to_actor();await frames(40)
 	ui.toggle_record();await frames(45);await shot("mill-observation-record");ui.toggle_record();await frames(30)
-	room.focus_target("w0");await frames(35);ui.show_destinations(0);await frames(35);await shot("mill-stopper-list");ui.destination_panel.hide()
+	room.focus_target("w0");await frames(35);ui.show_destinations(0);await frames(35);await shot("mill-direction-picker");ui.push_picker.close()
 	var text:="上下两层规则独立。观察水闸与吊台，寻找镇纸的通路。长通讯应分页完整展示，结尾也要读得到。最后沿楼梯走回上层，继续寻找旧廊。"
 	room.talk("tesla",text);await frames(4)
 	check("mill_caption_preserves_every_character","".join(ui.subtitle_pages)==text)

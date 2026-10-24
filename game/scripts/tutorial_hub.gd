@@ -144,7 +144,7 @@ func face_tesla() -> void:
 	player.face_toward(npc.global_position)
 
 func _tick_camera(delta: float) -> void:
-	var screen:=world_to_screen(player.position)
+	var screen:=world_to_screen(player.display_position())
 	var shift:=Vector2(clampf(screen.x,240,1040)-screen.x,clampf(screen.y,230,640)-screen.y)
 	var desired:=hall_camera.position-shift
 	desired.x=clampf(desired.x,290,990);desired.y=clampf(desired.y,160,820)

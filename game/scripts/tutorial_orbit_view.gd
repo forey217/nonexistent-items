@@ -338,21 +338,20 @@ func _sync_state(delta: float) -> void:
 	landmarks.sync(room.state,delta)
 	feedback.sync(delta)
 	atmosphere.sync(delta)
-	var over_ui:=get_viewport().gui_get_hovered_control()!=null
+	var over_ui:bool=get_viewport().gui_get_hovered_control()!=null or room.hud.blocks_map(pointer_position)
 	weight_hovered=hit_weight(pointer_position) and not over_ui and not room.casting and not room.seal_active and not room.interacting and not dragging and not left_alt and not room.finished
 	hover_strength=move_toward(hover_strength,1.0 if weight_hovered else 0.0,delta*9.0)
 	hover_age=hover_age+delta if weight_hovered else 0.0
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND if weight_hovered else Input.CURSOR_ARROW)
-	actor.position=to_world(room.player.position,ACTOR_GROUND_HEIGHT)
+	var rendered: Vector2=room.player.display_position()
+	actor.position=to_world(rendered,ACTOR_GROUND_HEIGHT)
 	head_guard.sync_position(room.player.position,room.debug_visible)
-	actor_shadow.position=to_world(room.player.position,0.032)
+	actor_shadow.position=to_world(rendered,0.032)
 	var direction: Vector2=logic_to_screen(room.player.position+room.player._last_direction)-logic_to_screen(room.player.position)
-	if absf(direction.x)>0.05:screen_direction.x=signf(direction.x)
-	if absf(direction.y)>0.05:screen_direction.y=signf(direction.y)
-	var facing: int=(0 if screen_direction.x>=0 else 1) if screen_direction.y>=0 else (2 if screen_direction.x>=0 else 3)
+	var facing: int=preload("res://scripts/yanyue_facing.gd").row(direction,paper.facing_row,room.player.controls_locked)
 	paper.cast_amount=room.player._art.cast_amount
 	paper.push_amount=room.player._art.push_amount
-	paper.pose(room.player._walk_time,room.player.walking,facing,direction.normalized(),delta)
+	paper.pose(room.player.display_distance(),room.player.walking,facing,direction.normalized(),delta,room.player.movement_ratio)
 	display_fx.position=logic_to_screen(room.switch_fx.position)
 	display_fx.active=room.switch_fx.active
 	display_fx.progress=room.switch_fx.progress

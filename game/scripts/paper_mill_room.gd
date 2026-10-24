@@ -3,8 +3,10 @@ signal completed
 signal hub_requested
 const State=preload("res://scripts/paper_mill_state.gd")
 const SCALE:=55.0
+const Yard=preload("res://scripts/paper_mill_yard.gd")
 const StairGuards=preload("res://scripts/paper_mill_stair_guards.gd")
 var stair_bodies:Array[StaticBody2D]=[]
+var presentation_mode:=false
 var level_id:="paper_mill"
 var state=State.new()
 var player=preload("res://scripts/yanyue_mover.gd").new()
@@ -43,16 +45,24 @@ var footstep_age:=0.0
 var water_audio:AudioStreamPlayer
 var stairs_armed:=true
 var stairs_notice:=false
+var lift_riding:=false
+var task_feedback=preload("res://scripts/task_resonance.gd").new()
+var mission_guide:CanvasLayer
 
 func _ready() -> void:
 	player.position=Vector2(6,4)*SCALE;add_child(player);player.hide()
 	player.motion_guard=Callable(self,"guard_motion")
+	player.route_guard=func(a:Vector2,b:Vector2)->bool:
+		var avoid_stairs:bool=not player.route.is_empty() and (player.route[-1]/SCALE).distance_to(stairs_position(player_layer))>.6
+		return segment_clear(a/SCALE,b/SCALE,avoid_stairs)
 	player.movement_notice.connect(func(_text):pending.clear();interacting=false)
 	view=preload("res://scripts/paper_mill_view.gd").new();view.room=self;add_child(view)
 	_build_stair_collisions()
 	hud=preload("res://scripts/paper_mill_hud.gd").new();hud.room=self;add_child(hud)
 	add_child(sound);add_child(story)
 	communications.room=self;add_child(communications)
+	mission_guide=preload("res://scripts/paper_mission_guide.gd").new();mission_guide.room=self;add_child(mission_guide)
+	task_feedback.room=self;task_feedback.paper=true;add_child(task_feedback)
 	_setup_water_audio()
 	state.event.connect(_state_event)
 	_rebuild_navigation();last_stable=snapshot()
@@ -61,6 +71,7 @@ func player_plan() -> Vector2:return player.position/SCALE
 func arrival_busy() -> bool:return arrival_age>0 or transition_age>0
 func stairs_position(layer:int) -> Vector2:return State.STAIRS if layer==0 else State.LOWER_STAIRS
 func actor_height() -> float:
+	if lift_riding:return state.lift_height+.16
 	if transition_age>0:
 		var t:=clampf((1.0-transition_age/2.0-.1)/.8,0.0,1.0)
 		return lerpf(State.HEIGHT if transition_from==0 else 0.0,State.HEIGHT if transition_to==0 else 0.0,t)
@@ -105,45 +116,52 @@ func _state_event(kind:String) -> void:
 	if kind=="seal_begin":view.link_time=3.0;view.focus=State.DROP;view.auto_follow=false
 
 func observe(layer:int) -> void:
+	cancel_push_command()
 	view_layer=clampi(layer,0,1);view.cancel_drag();hud.destination_panel.hide()
 	view.set_focus(player_plan() if player_layer==view_layer else Vector2(12,9),player_layer==view_layer)
 
 func change_world(next:int,layer:int=-1) -> bool:
 	if layer<0:layer=view_layer
 	if finished or arrival_busy() or interacting or world_cooldown>0:return false
+	if state.has_sliding_weight():
+		hud.message("镇纸正在滑轨上运送，停稳后才能切换世界。");return false
+	if layer==0 and next!=3 and player_layer==0 and on_old_corridor(player_plan()):
+		hud.message("先走回旧廊桥头，再切换世界。旧廊不能用留影夹固定。");return false
 	if layer==0 and next!=3 and not state.bridge_solid() and on_bridge(player_plan()) and player_layer==0:return false
 	if layer==0 and next!=3 and state.clip_target!="bridge" and not state.upper_anchored and on_bridge(player_plan()) and player_layer==0:
 		hud.message("先夹住木桥，或站回桥头再切换世界。");return false
 	if not state.switch_world(layer,next):return false
+	hud.push_picker.close()
 	world_cooldown=1.5;world_cast_time=.5;communications.notify_attempt();pending.clear();player.cancel_navigation()
 	_rebuild_navigation();hud.message(("上层" if layer==0 else "下层")+"已切到"+state.WORLD_NAMES[next]+"世界。")
 	return true
 
 func on_bridge(at:Vector2) -> bool:return at.x>17.1 and at.x<18.9 and at.y>10.45 and at.y<12.0
 
+func on_old_corridor(at:Vector2) -> bool:
+	return State.OLD_CORRIDOR_GAP.grow(player.FOOT_RADIUS/SCALE).has_point(at)
+
 func is_walkable(at:Vector2,layer:int=-1,ignore_weights:=false) -> bool:
 	if layer<0:layer=player_layer
 	if at.x<.65 or at.x>23.35 or at.y<.65 or at.y>17.35:return false
 	if StairGuards.OPENING.has_point(at):return false
 	if StairGuards.blocks(at,layer,player.FOOT_RADIUS/SCALE):return false
+	if layer==0 and state.old_corridor_blocks(at,player.FOOT_RADIUS/SCALE):return false
 	if layer==1 and not state.lowpass_open and Rect2(11.2,11.3,1.6,2.0).has_point(at):return false
-	for hole in [Rect2(9.8,8.8,2.4,2.4),Rect2(16.8,5.8,2.4,2.4)]:
-		if hole.has_point(at):return false
+	if Rect2(9.8,8.8,2.4,2.4).has_point(at):return false
+	if State.LIFT_OPENING.has_point(at) and not state.lift_docked(layer):return false
 	if at.x>12.8 and at.x<22.2 and at.y>10.8 and at.y<12.2:
 		if not (at.x>17.4 and at.x<18.6 and (layer==1 or state.bridge_solid())):return false
-	if at.x>2.8 and at.x<7.2 and at.y>9.8 and at.y<11.2:
-		if not (at.x>4.4 and at.x<5.6 and (layer==1 or state.worlds[0]==3 or state.clip_owned)):return false
-	# Rear and side walls match the rendered open-front paper workshops.
-	for rect in [Rect2(2.25,12,0.5,4.3),Rect2(7.25,12,.5,4.3),Rect2(2.25,15.8,5.5,.5),Rect2(7.5,16.35,5,.5),Rect2(7.5,13.8,.4,2.7),Rect2(12.0,13.8,.5,2.7)]:
-		if rect.grow(.18).has_point(at):return false
-	for vat in [Vector2(8,15),Vector2(12,16),Vector2(2,9),Vector2(21,16)]:
-		if Rect2(vat-Vector2(.83,.62),Vector2(1.66,1.24)).has_point(at):return false
+	if layer==1 and at.x>2.8 and at.x<7.2 and at.y>9.8 and at.y<11.2:
+		if not (at.x>4.4 and at.x<5.6):return false
+	if Yard.blocks_tool_edge(at,layer,player.FOOT_RADIUS/SCALE):return false
 	if not ignore_weights:
 		for w in state.weights:
 			if int(w.layer)==layer and w.mode!="fall" and at.distance_to(w.pos)<.63:return false
 	return true
 
 func guard_motion(from:Vector2,motion:Vector2) -> Vector2:
+	if lift_riding and state.lift_in_transit():return Vector2.ZERO
 	var start:=from/SCALE;var step:=motion/SCALE
 	var result:=start
 	var samples:=maxi(1,ceili(step.length()/.12))
@@ -164,6 +182,17 @@ func segment_clear(a:Vector2,b:Vector2,avoid_stairs:=false) -> bool:
 	return true
 
 func _rebuild_navigation() -> void:
+	# Topology can change through rules, mechanisms or restore. Cached routes and
+	# pending interactions cannot survive an invalidated support connection.
+	var route_clear:=true;var origin:=player_plan()
+	for i in range(player.route_index,player.route.size()):
+		var next:Vector2=player.route[i]/SCALE
+		if not segment_clear(origin,next):route_clear=false;break
+		origin=next
+	if not route_clear:player.cancel_navigation();pending.clear()
+	if player_layer==0 and state.old_corridor_blocks(player_plan(),player.FOOT_RADIUS/SCALE):
+		player.cancel_navigation();pending.clear()
+		player.teleport_for_reset(_safe_player_position(player_plan())*SCALE)
 	for layer in range(stair_bodies.size()):stair_bodies[layer].collision_layer=1 if player_layer==layer and transition_age<=0 else 0
 	nav_signature=_navigation_signature()
 	navigation=AStarGrid2D.new();navigation.region=Rect2i(0,0,49,37);navigation.cell_size=Vector2(.5,.5)
@@ -180,9 +209,10 @@ func _build_stair_collisions() -> void:
 			var collision:=CollisionShape2D.new();collision.shape=shape;collision.position=rect.get_center()*SCALE;body.add_child(collision)
 
 func _navigation_signature() -> String:
-	return JSON.stringify([state.bridge_solid(),state.lowpass_open,state.clip_owned,state.cage_open,state.weights[0].layer,state.weights[0].station,state.weights[1].layer,state.weights[1].station])
+	return JSON.stringify([player_layer,state.lift_docked(0),state.lift_docked(1),state.old_corridor_solid(),state.bridge_solid(),state.lowpass_open,state.cage_open,state.weights[0].layer,state.weights[0].station,state.weights[1].layer,state.weights[1].station])
 
 func path_to(at:Vector2) -> PackedVector2Array:
+	if nav_signature!=_navigation_signature():_rebuild_navigation()
 	if not is_walkable(at):return PackedVector2Array()
 	var a:=_near_cell(player_plan());var b:=_near_cell(at)
 	if not navigation.is_in_boundsv(a) or not navigation.is_in_boundsv(b):return PackedVector2Array()
@@ -220,6 +250,7 @@ func _near_cell(at:Vector2) -> Vector2i:
 	return best
 
 func walk_to(at:Vector2) -> bool:
+	if lift_riding and state.lift_in_transit():return false
 	var route:=path_to(at)
 	if route.is_empty():return false
 	communications.notify_attempt()
@@ -235,8 +266,66 @@ func target_by_id(id:String) -> Dictionary:
 		if target.id==id:return target
 	return {}
 
-func request_interaction(id:String,destination:="") -> bool:
-	if arrival_busy() or finished or interacting:return false
+func _push_contact_clear(index:int,at:Vector2,direction:Vector2) -> bool:
+	var w:Dictionary=state.weights[index];var end:Vector2=w.pos-direction*.99
+	for i in range(13):
+		var point:=at.lerp(end,float(i)/12)
+		if is_walkable(point):continue
+		# The supported receiving tray has a non-walkable opening. Reach its
+		# near edge from the bank; never require the actor to walk into the hole.
+		if index==0 and w.layer==1 and w.station=="catch" and state.catch_height>=.98 and Rect2(9.8,8.8,2.4,2.4).has_point(point) and point.distance_to(w.pos)<1.23:continue
+		return false
+	return true
+
+func push_preview(index:int,direction:=Vector2.ZERO) -> Dictionary:
+	var w:Dictionary=state.weights[index]
+	var plan:Dictionary=state.push_route(index,direction)
+	plan["destination"]=plan.target;plan["operation"]=Vector2.ZERO
+	if w.layer!=player_layer or view_layer!=player_layer:plan.error="人物在另一层，请先经楼梯前往。"
+	if plan.error.is_empty():
+		var dir:Vector2=plan.direction;var offset:Vector2=w.pos-player_plan()
+		var found:=false
+		if offset.dot(dir)>=.85 and offset.length()<=1.85 and absf(offset.cross(dir))<=.7 and _push_contact_clear(index,player_plan(),dir):
+			plan.operation=player_plan();found=true
+		else:
+			var candidates:Array[Vector2]=[]
+			for radius in [1.15,1.4,1.65]:
+				for lateral in [0.0,.25,-.25,.5,-.5]:candidates.append(w.pos-dir*radius+Vector2(-dir.y,dir.x)*lateral)
+			candidates.sort_custom(func(a,b):return player_plan().distance_squared_to(a)<player_plan().distance_squared_to(b))
+			for at in candidates:
+				if is_walkable(at) and _push_contact_clear(index,at,dir) and not path_to(at).is_empty():
+					plan.operation=at;found=true;break
+		if not found:plan.error="推动位置不可达，先检查人物所在层和通路。"
+	plan["valid"]=plan.error.is_empty()
+	return plan
+
+func cancel_push_command() -> void:
+	if is_instance_valid(hud) and is_instance_valid(hud.push_picker):hud.push_picker.close()
+	if not pending.is_empty() and pending.get("id","") in ["w0","w1"]:
+		pending.clear();player.cancel_navigation()
+		if interacting:interacting=false;player.controls_locked=arrival_busy() or hud.menu.visible
+
+func request_push(index:int,direction:Vector2) -> bool:
+	if arrival_busy() or finished or interacting or not pending.is_empty() or state.has_sliding_weight():return false
+	var preview:=push_preview(index,direction)
+	if not preview.valid:hud.message(preview.error);return false
+	var w:Dictionary=state.weights[index]
+	pending={"id":"w%d"%index,"direction":preview.direction,"approach":preview.operation,"route_target":preview.destination,
+		"origin":w.pos,"station":w.station,"layer":w.layer,"worlds":state.worlds.duplicate(),"clip":state.clip_target}
+	communications.notify_attempt()
+	if player_plan().distance_to(preview.operation)<.15:_begin_interaction()
+	elif not walk_to(preview.operation):pending.clear();hud.message("推动位置不可达。");return false
+	return true
+
+func _pending_push_valid() -> bool:
+	if not pending.has("direction"):return true
+	var index:=int(pending.id.trim_prefix("w"));var w:Dictionary=state.weights[index]
+	if w.layer!=pending.layer or player_layer!=w.layer or view_layer!=player_layer or w.station!=pending.station or w.pos.distance_to(pending.origin)>.01 or state.worlds!=pending.worlds or state.clip_target!=pending.clip:return false
+	var plan:Dictionary=state.push_route(index,pending.direction)
+	return plan.error.is_empty() and plan.target==pending.route_target
+
+func request_interaction(id:String) -> bool:
+	if arrival_busy() or finished or interacting or (lift_riding and state.lift_in_transit()):return false
 	communications.notify_attempt()
 	if id=="stairs":
 		hud.message("走入楼梯即可自动上下楼。");return false
@@ -245,10 +334,7 @@ func request_interaction(id:String,destination:="") -> bool:
 		hud.message("人物还在另一层，请经检修楼梯前往。");return false
 	if id.begins_with("w"):
 		var index:=int(id.trim_prefix("w"));selected_weight=index
-		if destination.is_empty():
-			var choices:Array[String]=state.destinations(index)
-			if choices.is_empty():hud.message("先观察镇纸上方的机关与当前规则。");return false
-			hud.show_destinations(index);return true
+		return hud.push_picker.open(index)
 	var best:=Vector2.ZERO;var distance:=INF
 	if id in ["stairs","exit"]:
 		best=target.pos;distance=0.0
@@ -259,13 +345,17 @@ func request_interaction(id:String,destination:="") -> bool:
 		var d:=player_plan().distance_squared_to(at)
 		if d<distance and not path_to(at).is_empty():best=at;distance=d
 	if distance==INF:hud.message("这里的操作侧暂时不可达，先检查通路和世界。");return false
-	pending={"id":id,"destination":destination}
+	pending={"id":id}
 	if player_plan().distance_to(target.pos)<=(.18 if id in ["stairs","exit"] else 1.9):_begin_interaction()
 	else:walk_to(best)
 	return true
 
 func _begin_interaction() -> void:
-	player.cancel_navigation();player.face_toward(target_by_id(pending.id).pos*SCALE)
+	player.cancel_navigation()
+	if pending.has("direction"):
+		if not _pending_push_valid():hud.message("运输条件已变化，请重新选择方向。");pending.clear();return
+		player.face_toward(player.position+pending.direction*SCALE)
+	else:player.face_toward(target_by_id(pending.id).pos*SCALE)
 	interacting=true;push_age=0.0;player.controls_locked=true
 
 func _commit_interaction() -> void:
@@ -279,7 +369,9 @@ func _commit_interaction() -> void:
 		"exit":
 			if state.lower_anchored:finished=true;completed.emit()
 			else:result="纸页仍不完整，先稳定上下两处锚点。"
-		"w0","w1":result=state.push(int(id.trim_prefix("w")),pending.destination)
+		"w0","w1":
+			var index:=int(id.trim_prefix("w"))
+			result=state.push_direction(index,pending.direction) if _pending_push_valid() else "运输条件已变化，请重新选择方向。"
 	result=result.replace("已固定接物台。下层现在可以切回冰晶。","接物台已固定在当前高度。").replace("旧桥已留影，切回冰晶也能运送镇纸。","木桥已留影，当前姿态已保留。")
 	pending.clear();hud.message(result);_rebuild_navigation()
 
@@ -297,29 +389,39 @@ func focus_target(id:String) -> void:
 	if target.is_empty():return
 	view_layer=target.layer;view.set_focus(target.pos);hud.hover_target=id
 	view.focused_target=id
+	if is_instance_valid(mission_guide):mission_guide.inspect(id)
 
 func show_hint() -> void:
 	communications.request_hint()
 
 func snapshot() -> Dictionary:
-	return {"state":state.snapshot(),"player_layer":player_layer,"player":[player_plan().x,player_plan().y],"communications":communications.snapshot()}
+	return {"state":state.snapshot(),"player_layer":player_layer,"player":[player_plan().x,player_plan().y],"communications":communications.snapshot(),"task_feedback":task_feedback.snapshot()}
 
 func stable_snapshot() -> Dictionary:
-	if state.is_busy() or interacting or arrival_busy():
-		var stable:=last_stable.duplicate(true);stable["communications"]=communications.snapshot();return stable
+	if state.is_busy() or interacting or arrival_busy() or (lift_riding and state.lift_in_transit()):
+		var stable:=last_stable.duplicate(true);stable["communications"]=communications.snapshot();stable["task_feedback"]=task_feedback.snapshot();return stable
 	last_stable=snapshot();return last_stable.duplicate(true)
 
 func restore(data:Dictionary) -> void:
+	cancel_push_command()
+	lift_riding=false
 	state.restore(data.get("state",{}));player_layer=int(data.get("player_layer",0));view_layer=player_layer
 	var at:Array=data.get("player",[3,4]);var destination:=Vector2(at[0],at[1])
 	player.teleport_for_reset(_safe_player_position(destination)*SCALE)
 	player.controls_locked=false;interacting=false;pending.clear();world_cooldown=0;story.clear();story_time=0
 	transition_age=0;stairs_armed=player_plan().distance_to(stairs_position(player_layer))>.9;stairs_notice=false
 	communications.restore(data.get("communications",{}),not data.has("communications"))
+	hud.refresh(0);task_feedback.baseline(data.get("task_feedback",[]))
 	_rebuild_navigation();view.return_to_actor();last_stable=snapshot();last_checkpoint=state.checkpoint
 
 func _safe_player_position(at:Vector2) -> Vector2:
 	if is_walkable(at):return at
+	if player_layer==0 and state.old_corridor_blocks(at,player.FOOT_RADIUS/SCALE):
+		# Repair old saves on vanished support on the nearest same-floor bank.
+		# Do not search across the channel or relocate to the other floor.
+		var gap:=State.OLD_CORRIDOR_GAP;var margin:float=player.FOOT_RADIUS/SCALE+.06
+		var bank:=Vector2(clampf(at.x,4.5,5.5),gap.position.y-margin if at.y<=gap.get_center().y else gap.end.y+margin)
+		if is_walkable(bank):return bank
 	# Older saves may stand on the newly protected edge. Relocate only to the
 	# nearest legal spot on that same floor, away from the automatic stair trigger.
 	var nearest:=stairs_position(player_layer)+Vector2(0,.7 if player_layer==0 else -.7)
@@ -338,18 +440,23 @@ func restore_checkpoint() -> void:
 
 func restart() -> void:
 	if finished or arrival_busy():return
+	cancel_push_command()
+	lift_riding=false
 	state=State.new();state.event.connect(_state_event);player_layer=0;view_layer=0;finished=false
 	player.teleport_for_reset(Vector2(6,4)*SCALE);pending.clear();interacting=false;player.controls_locked=false
 	stairs_armed=true;stairs_notice=false;transition_age=0;hud.record.hide();hud.help_panel.hide()
-	communications.restore({});last_stable=snapshot();last_checkpoint=-1;world_cooldown=0;_rebuild_navigation();view.return_to_actor();hud.message("本关已完整重新开始。")
+	communications.restore({});hud.refresh(0);task_feedback.baseline([],true);sound.stop_effects();last_stable=snapshot();last_checkpoint=-1;world_cooldown=0;_rebuild_navigation();view.return_to_actor();hud.message("本关已完整重新开始。")
 
 func _physics_process(delta:float) -> void:
 	communications.set_paused(hud.menu.visible)
-	if hud.menu.visible:return
+	for audio_voice in sound.voices:audio_voice.stream_paused=hud.menu.visible
+	if hud.menu.visible:sound.footstep_voice.stop();return
+	if pending.has("direction") and not _pending_push_valid():cancel_push_command();hud.message("运输条件已变化，已取消原推动指令。")
 	elapsed+=delta;world_cooldown=maxf(0,world_cooldown-delta)
 	world_cast_time=maxf(0,world_cast_time-delta)
 	footstep_age+=delta
-	if player.walking and footstep_age>.36:footstep_age=0;sound.play_event("land",1.6)
+	if player.walking and not player.controls_locked and footstep_age>.36:
+		footstep_age=0;sound.play_footstep(communications.voice.player.playing or story_time>0)
 	if is_instance_valid(water_audio):water_audio.volume_db=-31 if state.pressure("sluice") or state.lower_anchored else -36
 	if arrival_age>0:
 		arrival_age=maxf(0,arrival_age-delta)
@@ -383,9 +490,12 @@ func _physics_process(delta:float) -> void:
 			interacting=false;player.controls_locked=false;_commit_interaction()
 	elif not pending.is_empty() and not arrival_busy():
 		var target:=target_by_id(pending.id)
-		if not target.is_empty() and player_plan().distance_to(target.pos)<=(.18 if pending.id in ["stairs","exit"] else 1.95):_begin_interaction()
+		var ready:bool=player_plan().distance_to(pending.approach)<.15 if pending.has("approach") else not target.is_empty() and player_plan().distance_to(target.pos)<=(.18 if pending.id in ["stairs","exit"] else 1.95)
+		if ready:_begin_interaction()
 		elif not player.is_navigating():pending.clear()
+	_update_lift_boarding()
 	state.step(delta)
+	_update_lift_passenger()
 	if state.lower_anchored and player_layer==0 and not arrival_busy() and not finished and player_plan().distance_to(State.EXIT)<.35:
 		finished=true;pending.clear();player.cancel_navigation();completed.emit()
 	if nav_signature!=_navigation_signature():_rebuild_navigation()
@@ -396,9 +506,32 @@ func _physics_process(delta:float) -> void:
 	if not communications.enabled:story_time=maxf(0,story_time-delta)
 	if story_time==0 and story.mode!="":story.clear()
 	hud.refresh(delta)
+	if finished:task_feedback.clear()
+	else:task_feedback.tick(delta)
+
+func _update_lift_boarding() -> void:
+	var on_deck:=State.LIFT_OPENING.has_point(player_plan())
+	if lift_riding:
+		if not on_deck and not state.lift_in_transit():lift_riding=false
+	elif on_deck and state.lift_docked(player_layer) and not arrival_busy():
+		lift_riding=true
+
+func _update_lift_passenger() -> void:
+	if not lift_riding:return
+	if state.lift_in_transit():
+		player.cancel_navigation();pending.clear();player.cinematic_motion=Vector2.ZERO
+		view.link_time=maxf(view.link_time,.25)
+		if not player.controls_locked:view.resume_actor_follow()
+	elif state.lift_docked(0) and player_layer!=0:
+		player_layer=0;view_layer=0;stairs_armed=false
+		view.resume_actor_follow();_rebuild_navigation()
+	elif state.lift_docked(1) and player_layer!=1:
+		player_layer=1;view_layer=1;stairs_armed=false
+		view.resume_actor_follow();_rebuild_navigation()
+	player.controls_locked=hud.menu.visible or arrival_busy() or interacting or state.lift_in_transit()
 
 func _update_stairs() -> void:
-	if arrival_busy() or finished or interacting:return
+	if arrival_busy() or finished or interacting or lift_riding:return
 	var distance:=player_plan().distance_to(stairs_position(player_layer))
 	if distance>.95:stairs_armed=true;stairs_notice=false
 	if distance<1.6 and not stairs_notice:
@@ -439,7 +572,13 @@ func _unhandled_input(event:InputEvent) -> void:
 		elif key==KEY_ESCAPE:pending.clear();player.cancel_navigation();hud.destination_panel.hide()
 		elif key==KEY_E:
 			var best:="";var distance:=2.6
+			# E opens the same picker regardless of the actor's current heading.
+			for i in range(2):
+				var w:Dictionary=state.weights[i];var offset:Vector2=w.pos-player_plan()
+				if w.layer==player_layer and offset.length()<distance:
+					best="w%d"%i;distance=offset.length()
 			for target in targets():
+				if best.begins_with("w"):break
 				if target.layer!=player_layer:continue
 				if target.id=="stairs":continue
 				if target.id=="tool" and state.clip_owned:continue
@@ -455,13 +594,25 @@ func _input(event:InputEvent) -> void:
 	# Route map clicks explicitly after the HUD's input phase. Empty canvas space
 	# remains playable even after a popup has held GUI focus; real HUD regions win.
 	if finished or arrival_busy() or hud.menu.visible:return
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.physical_keycode==KEY_ESCAPE and (hud.push_picker.visible or pending.has("direction")):
+			cancel_push_command();get_viewport().set_input_as_handled();return
+		if event.physical_keycode in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_UP,KEY_DOWN,KEY_LEFT,KEY_RIGHT]:cancel_push_command()
 	if not event is InputEventMouseButton or not event.pressed or event.alt_pressed or view.rotating:return
 	if hud.blocks_map(event.position):return
 	if event.button_index==MOUSE_BUTTON_RIGHT:
 		var target:=hit_target(event.position)
-		if not target.is_empty():request_interaction(target)
+		if not interacting:
+			if not pending.is_empty():cancel_push_command()
+			if target in ["w0","w1"]:request_interaction(target)
+			else:
+				hud.push_picker.close()
+				if not target.is_empty():request_interaction(target)
 		get_viewport().set_input_as_handled()
 	elif event.button_index==MOUSE_BUTTON_LEFT:
+		if hud.push_picker.visible:
+			cancel_push_command();get_viewport().set_input_as_handled();return
+		if interacting:get_viewport().set_input_as_handled();return
 		pending.clear();hud.destination_panel.hide()
 		if view_layer==player_layer:
 			var destination:Vector2=stairs_position(player_layer) if view.over_stairs(event.position) else view.ground(event.position)

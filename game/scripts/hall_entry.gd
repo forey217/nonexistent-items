@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	if not rift_started and age>=(0.0 if room_revealed else (0.7 if first_visit else 0.15)):
 		rift_started=true
 		room.start_return_arrival()
-		get_parent().ambience.play_world_gate("fold")
+		get_parent().ambience.play_entry()
 	room.player.controls_locked=true
 	if age>=duration and not room.arrival.busy():
 		room.player.cinematic_motion=Vector2.ZERO

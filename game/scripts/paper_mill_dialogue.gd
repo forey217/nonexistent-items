@@ -4,6 +4,7 @@ const Lines=preload("res://scripts/paper_mill_lines.gd")
 var room:Node
 var voice=preload("res://scripts/dialogue_voice.gd").new()
 var enabled:=true
+var presentation_mode:=false
 var seen:Dictionary={}
 var done:Dictionary={}
 var pending:Array[Dictionary]=[]
@@ -20,6 +21,8 @@ var context:=""
 var gap_age:=0.0
 var bridge_age:=0.0
 var history:Array[Dictionary]=[]
+const CONFIRMATIONS:=["P2-04-catch","P2-04-bridge","P2-05","P2-06","P2-07","P2-08"]
+var acknowledged:Dictionary={}
 
 func _ready() -> void:
 	voice.library_root="res://assets/audio/paper_dialogue_v01/";add_child(voice)
@@ -39,24 +42,25 @@ func valid(key:String) -> bool:
 		"P2-01":return not s.clip_owned
 		"P2-02":return not s.clip_owned and room.player_layer==0 and int(s.worlds[0])!=3
 		"P2-03":return s.clip_owned and not s.hatch_broken
-		"P2-04-catch":return first_target=="catch" and s.clip_target=="catch" and not s.hatch_broken
+		"P2-04-catch":return first_target=="catch" and s.clip_target=="catch" and s.catch_height>=.98 and not s.hatch_broken
 		"P2-04-bridge":return first_target=="bridge" and s.clip_target=="bridge" and not s.upper_anchored
 		"P2-04-confirm":return confirmed and s.clip_target==first_target and not s.upper_anchored
 		"clip-limit":return s.clip_owned and not s.lower_anchored
-		"P2-05":return s.hatch_broken and int(m.layer)==1 and m.mode=="rest" and not s.lifted_once
-		"P2-06":return s.lifted_once and int(m.layer)==0 and not s.upper_anchored
+		"P2-05":return s.hatch_broken and int(m.layer)==1 and m.mode=="rest" and m.station=="catch" and not s.lifted_once
+		"P2-06":return s.lifted_once and int(m.layer)==0 and m.mode=="rest" and s.lift_docked(0) and not s.upper_anchored
 		"P2-06-bridge":return s.lifted_once and not s.upper_anchored and not s.bridge_solid() and room.player_layer==0
 		"P2-07":return s.upper_anchored and not s.lower_anchored
-		"P2-08":return s.lower_anchored
+		"P2-08":return s.upper_anchored and s.lower_anchored
 		"idle":return active.get("context",context)==context
 	if key.begins_with("hint:"):return key.split(":")[1]==Lines.hint_key(s)
 	return false
 
 func _schedule(key:String,delay:float,priority:int) -> void:
-	if done.has(key) or active.get("key","")==key:return
+	if presentation_mode and key not in ["P2-04-catch","P2-05","P2-06","P2-08"]:return
+	if done.has(key) or active.get("key","")==key or acknowledged.has(key):return
 	for item in pending:
 		if item.key==key:return
-	pending.append({"key":key,"delay":delay,"priority":priority})
+	pending.append({"key":key,"delay":delay,"priority":priority,"expires":8.0})
 	# Only current observations survive. Bound even malformed or repeated calls.
 	pending=pending.filter(func(item):return valid(item.key))
 	if pending.size()>4:pending.pop_front()
@@ -70,6 +74,7 @@ func set_paused(paused:bool) -> void:
 	voice.player.stream_paused=paused
 
 func tick(delta:float) -> void:
+	if presentation_mode:delta/=maxf(Engine.time_scale,.01)
 	if not enabled:return
 	set_paused(room.hud.menu.visible)
 	if room.hud.menu.visible:return
@@ -100,15 +105,18 @@ func tick(delta:float) -> void:
 	if not active.is_empty() and not valid(active.key):_cancel()
 	var blocked:=_blocked() or moving
 	for item in pending:
+		if CONFIRMATIONS.has(item.key):item.expires=float(item.get("expires",8))-delta
 		if not blocked and not (item.key=="P2-08" and room.view.paper_unfold<.999):item.delay=maxf(0,item.delay-delta)
 	if not active.is_empty():
 		remaining=maxf(0,remaining-delta);room.story_time=remaining
 		if remaining<=0:_finish_line()
+	# A short observation must never become an old objective announcement.
+	pending=pending.filter(func(item):return not CONFIRMATIONS.has(item.key) or float(item.get("expires",8))>0)
 	var best:Dictionary={}
 	if not blocked:
 		for item in pending:
 			if item.delay<=0 and (best.is_empty() or item.priority>best.priority):best=item
-	if not best.is_empty() and (active.is_empty() or (best.priority>=70 and best.priority>int(active.get("priority",0)))):
+	if not best.is_empty() and (active.is_empty() or (not CONFIRMATIONS.has(best.key) and best.priority>=70 and best.priority>int(active.get("priority",0)))):
 		if not active.is_empty():
 			var resume:=active.key as String;var priority:=int(active.priority);_cancel();_schedule(resume,.4,priority)
 		pending.erase(best);_begin(best)
@@ -129,25 +137,31 @@ func tick(delta:float) -> void:
 
 func _begin(item:Dictionary) -> void:
 	var lines:Array=item.get("lines",Lines.sequence(item.key))
+	if presentation_mode:lines=lines.filter(func(line):return line.speaker=="yanyue")
 	if not str(item.key).begins_with("hint:"):lines=lines.filter(func(line):return not seen.has(line.id))
 	if lines.is_empty():done[item.key]=true;return
-	active={"key":item.key,"priority":item.priority,"lines":lines,"context":context}
+	active={"key":item.key,"priority":item.priority,"lines":lines,"context":context,"index":0}
 	_start_line()
 
 func _start_line() -> void:
 	var line:Dictionary=active.lines[0]
+	if CONFIRMATIONS.has(active.key) and line.speaker=="yanyue":
+		acknowledged[active.key]=true;seen[line.id]=true
 	var duration:=voice.start_line(line)
 	total=duration+.25 if duration>0 else maxf(2.0,str(line.text).length()*.145+1)
 	remaining=total;room.story_time=remaining
 	room.hud.communicate(line.speaker,line.text,total)
 	total=room.hud.subtitle_duration;remaining=total;room.story_time=remaining
-	history.append({"node":active.key,"id":line.id,"text":line.text,"duration":total})
+	if is_instance_valid(room.mission_guide):room.mission_guide.begin_line(line,active.key,int(active.get("index",0)),context,total,voice.entries.get(line.id,{}))
+	history.append({"node":active.key,"id":line.id,"text":line.text,"duration":total,"pitch_scale":voice.player.pitch_scale})
 	if history.size()>160:history.pop_front()
 
 func _finish_line() -> void:
 	var key:String=active.key
 	if not key.begins_with("hint:") and key!="idle":seen[active.lines[0].id]=true
 	active.lines.pop_front();voice.stop()
+	if is_instance_valid(room.mission_guide):room.mission_guide.cancel_line()
+	active["index"]=int(active.get("index",0))+1
 	if active.lines.is_empty():
 		if key!="idle" and not key.begins_with("hint:"):done[key]=true
 		active.clear();remaining=0;room.story_time=0
@@ -155,6 +169,7 @@ func _finish_line() -> void:
 
 func _cancel() -> void:
 	voice.stop();active.clear();remaining=0;room.story_time=0
+	if is_instance_valid(room.mission_guide):room.mission_guide.cancel_line()
 
 func request_hint() -> void:
 	notify_attempt()
@@ -178,10 +193,21 @@ func snapshot() -> Dictionary:
 	for item in pending:
 		if item.key!="idle" and not str(item.key).begins_with("hint:"):keys.append(item.key)
 	if not active.is_empty() and active.key!="idle" and not str(active.key).begins_with("hint:"):keys.append(active.key)
-	return {"version":1,"seen":seen.keys(),"done":done.keys(),"pending":keys,"first_target":first_target,"first_world":first_world,"confirmed":confirmed,"idle_notified":idle_notified.keys()}
+	return {"version":2,"acknowledged":acknowledged.keys(),"seen":seen.keys(),"done":done.keys(),"pending":keys,"first_target":first_target,"first_world":first_world,"confirmed":confirmed,"idle_notified":idle_notified.keys()}
 
 func restore(data:Dictionary,legacy:=false) -> void:
-	stop();seen.clear();done.clear();idle_notified.clear();first_target="";first_world=-1;confirmed=false;idle=0;context="";gap_age=0;bridge_age=0
+	var session_ack:=acknowledged.duplicate() if not data.is_empty() or legacy else {}
+	stop();acknowledged=session_ack;seen.clear();done.clear();idle_notified.clear();first_target="";first_world=-1;confirmed=false;idle=0;context="";gap_age=0;bridge_age=0
+	for id in data.get("acknowledged",[]):acknowledged[str(id)]=true
+	# Restored mechanics are a baseline, not newly completed actions.
+	var s=room.state
+	if not data.is_empty() or legacy:
+		if s.clip_target=="catch" or s.hatch_broken:acknowledged["P2-04-catch"]=true
+		if s.clip_target=="bridge":acknowledged["P2-04-bridge"]=true
+		if s.hatch_broken and (int(s.weights[0].layer)==1 or s.lifted_once):acknowledged["P2-05"]=true
+		if s.lifted_once:acknowledged["P2-06"]=true
+		if s.upper_anchored:acknowledged["P2-07"]=true
+		if s.lower_anchored:acknowledged["P2-08"]=true
 	for id in data.get("seen",[]):seen[str(id)]=true
 	for id in data.get("done",[]):done[str(id)]=true
 	for id in data.get("idle_notified",[]):idle_notified[str(id)]=true
@@ -190,7 +216,6 @@ func restore(data:Dictionary,legacy:=false) -> void:
 	if legacy:
 		# Missing communications metadata is an older save, not permission to replay the opening.
 		done["P2-01"]=true
-		var s=room.state
 		if s.clip_owned:
 			done["P2-02"]=true;done["P2-03"]=true
 		if not s.clip_target.is_empty() or s.hatch_broken:

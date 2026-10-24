@@ -71,7 +71,7 @@ func valid_paper(payload:Variant) -> bool:
 		for value in w.pos:
 			if not finite_number(value,0,24):return false
 		if not finite_number(w.get("elevation"),0,4.801):return false
-		if w.get("station",null) not in (["hatch","catch","junction","lift","dock","bridge","anchor"] if i==0 else ["cage","catch","junction","sluice","guide"]):return false
+		if w.get("station",null) not in (["hatch","catch","junction","lift_turn","lift","dock","bridge","anchor_turn","anchor"] if i==0 else ["cage","cage_turn","catch","junction","guide_turn","sluice_turn","sluice","guide_bend","guide"]):return false
 	if s.upper_anchored and (int(s.worlds[0])!=1 or s.weights[0].station!="anchor" or int(s.weights[0].layer)!=0):return false
 	if s.lower_anchored and (not s.upper_anchored or int(s.worlds[1])!=2 or s.weights[1].station!="guide"):return false
 	return true

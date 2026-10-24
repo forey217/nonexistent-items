@@ -1,0 +1,235 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "no_voice_during_rift"
+    },
+    {
+      "passed": true,
+      "test": "entry_waits_after_unlock"
+    },
+    {
+      "passed": true,
+      "test": "entry_opens_with_real_voice"
+    },
+    {
+      "passed": true,
+      "test": "subtitle_matches_mp3_duration"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_subtitle_and_voice"
+    },
+    {
+      "passed": true,
+      "test": "resume_unpauses_voice"
+    },
+    {
+      "passed": true,
+      "test": "unheard_line_not_marked_read"
+    },
+    {
+      "passed": true,
+      "test": "interrupted_valid_line_resumes"
+    },
+    {
+      "passed": true,
+      "test": "finished_line_marked_read"
+    },
+    {
+      "passed": true,
+      "test": "reload_skips_finished_line"
+    },
+    {
+      "passed": true,
+      "test": "opening_has_only_three_lines"
+    },
+    {
+      "passed": true,
+      "test": "missing_corridor_observation_delayed"
+    },
+    {
+      "passed": true,
+      "test": "missing_corridor_observation_local"
+    },
+    {
+      "passed": true,
+      "test": "manifest_cancels_missing_corridor"
+    },
+    {
+      "passed": true,
+      "test": "acquisition_waits_for_feedback"
+    },
+    {
+      "passed": true,
+      "test": "real_pickup_plays_tool_rule"
+    },
+    {
+      "passed": true,
+      "test": "failed_clip_does_not_say_success"
+    },
+    {
+      "passed": true,
+      "test": "first_bridge_is_valid_first_use"
+    },
+    {
+      "passed": true,
+      "test": "confirm_only_after_retained_world_switch"
+    },
+    {
+      "passed": true,
+      "test": "first_target_change_explains_limit"
+    },
+    {
+      "passed": true,
+      "test": "first_catch_plays_matching_line"
+    },
+    {
+      "passed": true,
+      "test": "falling_is_not_landing"
+    },
+    {
+      "passed": true,
+      "test": "actual_cross_layer_rest_plays_landing"
+    },
+    {
+      "passed": true,
+      "test": "landing_goal_does_not_spoil_waterwheel"
+    },
+    {
+      "passed": true,
+      "test": "landing_not_repeated"
+    },
+    {
+      "passed": true,
+      "test": "upper_return_goal_reaffirmed"
+    },
+    {
+      "passed": true,
+      "test": "upper_anchor_moves_goal_to_lower"
+    },
+    {
+      "passed": true,
+      "test": "fast_completion_cancels_old_goal"
+    },
+    {
+      "passed": true,
+      "test": "paper_unfold_does_not_count_as_stagnation"
+    },
+    {
+      "passed": true,
+      "test": "final_waits_after_paper_unfold"
+    },
+    {
+      "passed": true,
+      "test": "dual_anchor_closes_story"
+    },
+    {
+      "passed": true,
+      "test": "no_unbuilt_third_level_forecast"
+    },
+    {
+      "passed": true,
+      "test": "no_early_automatic_solution"
+    },
+    {
+      "passed": true,
+      "test": "idle_35s_only_invites_H"
+    },
+    {
+      "passed": true,
+      "test": "idle_once_per_context"
+    },
+    {
+      "passed": true,
+      "test": "stairs_do_not_count_as_idle"
+    },
+    {
+      "passed": true,
+      "test": "world_cast_does_not_count_as_idle"
+    },
+    {
+      "passed": true,
+      "test": "real_attempt_grants_new_observation_time"
+    },
+    {
+      "passed": true,
+      "test": "H_works_without_waiting"
+    },
+    {
+      "passed": true,
+      "test": "repeated_H_replaces_clamps_three"
+    },
+    {
+      "passed": true,
+      "test": "phase_change_cancels_old_hint"
+    },
+    {
+      "passed": true,
+      "test": "fixed_bridge_hints_transport_instead_of_reclamp"
+    },
+    {
+      "passed": true,
+      "test": "observing_other_layer_keeps_valid_speech"
+    },
+    {
+      "passed": true,
+      "test": "normal_world_change_keeps_valid_goal"
+    },
+    {
+      "passed": true,
+      "test": "busy_physical_snapshot_keeps_latest_read_progress"
+    },
+    {
+      "passed": true,
+      "test": "legacy_save_does_not_replay_opening"
+    },
+    {
+      "passed": true,
+      "test": "legacy_save_keeps_future_nodes_available"
+    },
+    {
+      "passed": true,
+      "test": "legacy_save_can_play_new_future_progress"
+    },
+    {
+      "passed": true,
+      "test": "moving_mechanism_resets_stagnation"
+    },
+    {
+      "passed": true,
+      "test": "low_priority_toast_waits_behind_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "deferred_valid_toast_returns_after_dialogue"
+    },
+    {
+      "passed": true,
+      "test": "read_progress_writes_without_physics_change"
+    },
+    {
+      "passed": true,
+      "test": "original_80_clips_and_updated_instructions_present"
+    },
+    {
+      "passed": true,
+      "test": "every_current_line_has_matching_exact_text_audio"
+    },
+    {
+      "passed": true,
+      "test": "all_clips_decode_and_match_approved_voices"
+    },
+    {
+      "passed": true,
+      "test": "all_subtitles_fit_two_lines_without_shrinking"
+    },
+    {
+      "passed": true,
+      "test": "no_dialogue_hides_entire_panel"
+    }
+  ],
+  "failures": 0,
+  "native_render": true,
+  "suite": "paper_story"
+}

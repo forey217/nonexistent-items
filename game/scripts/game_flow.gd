@@ -23,6 +23,7 @@ var saved_signature:=""
 var save_error:=""
 var save_retry_age:=0.0
 var paper_runs:=0
+var paper_demo:Node
 var save_feedback: CanvasLayer
 
 func _ready() -> void:
@@ -46,13 +47,27 @@ func _ready() -> void:
 	# dialogue suite keeps the real presentation and input routing enabled.
 	dialogue.enabled="--dialogue-check" in args or "--globe-guide-check" in args or "--onboarding-check" in args or not Array(args).any(func(arg):return arg.ends_with("-check") or arg.ends_with("-self-test") or arg.ends_with("-demo") or arg.contains("capture"))
 	add_child(dialogue)
-	if "--paper-mill" in args or "--paper-mill-check" in args or "--paper-mill-demo" in args or "--paper-mill-visual-check" in args or "--paper-mill-v02-check" in args or "--paper-mill-camera-check" in args or "--paper-mill-v04-check" in args or "--paper-story-check" in args or "--paper-guardrail-check" in args:show_paper_mill()
+	if "--paper-mill" in args or "--paper-mill-check" in args or "--paper-mill-demo" in args or "--paper-mill-visual-check" in args or "--paper-mill-v02-check" in args or "--paper-mill-camera-check" in args or "--paper-mill-v04-check" in args or "--paper-story-check" in args or "--paper-guardrail-check" in args or "--paper-corridor-check" in args or "--paper-yard-check" in args or "--paper-mission-check" in args:show_paper_mill()
 	elif "--hub" in args or "--hub-check" in args or "--paperweight-preview" in args or "--teaching-preview" in args:show_hub(false)
 	elif Array(args).any(func(arg):return arg in ["--tutorial","--tutorial-capture","--skill-capture","--tutorial-self-test","--orbit-self-test","--tutorial-demo","--hud-check","--instrument-hud-check","--glass-ui-check","--task-check","--pad-guide-check","--film-check","--polish-check","--archive-check","--interaction-check","--wall-self-test"]):show_tutorial()
 	else:show_menu()
+	if "--paper-demo-check" in args:
+		var suite=load("res://tests/paper_demo_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
+	if "--resonance-check" in args:
+		var suite=load("res://tests/task_resonance_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+	if "--footstep-check" in args:
+		var suite=load("res://tests/quiet_footstep_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+	if "--paper-rail-check" in args:
+		var suite=load("res://tests/paper_rail_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
 	if "--menu-self-test" in args:
 		var suite=load("res://tests/menu_tests.gd").new()
 		add_child(suite)
+		suite.run.call_deferred(self)
+	if "--movement-smooth-check" in args or "--movement-smooth-demo" in args:
+		var suite=load("res://tests/movement_smooth_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
 	if "--observatory-check" in args:
 		var suite=load("res://tests/observatory_checks.gd").new();add_child(suite)
@@ -142,10 +157,42 @@ func _ready() -> void:
 	if "--paper-guardrail-check" in args:
 		var suite=load("res://tests/paper_mill_guardrail_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
+	if "--paper-corridor-check" in args:
+		var suite=load("res://tests/paper_corridor_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
 
+	if "--paper-lift-check" in args:
+		var suite=load("res://tests/paper_lift_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
 	if "--paper-story-check" in args:
 		var suite=load("res://tests/paper_mill_story_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
+	if "--paper-mission-check" in args:
+		var suite=load("res://tests/paper_mission_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+	if "--paper-memory-check" in args:
+		if current.get("level_id")!="paper_mill":show_paper_mill()
+		var suite=load("res://tests/paper_memory_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+	if "--warm-gate-check" in args:
+		var suite=load("res://tests/warm_gate_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+
+	if "--paper-yard-check" in args:
+		var suite=load("res://tests/paper_mill_yard_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+
+	if "--paper-push-check" in args:
+		if current.get("level_id")!="paper_mill":show_paper_mill()
+		var suite=load("res://tests/paper_mill_push_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+	if "--paper-direction-check" in args:
+		var suite=load("res://tests/paper_direction_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+
+func start_paper_demo() -> void:
+	if is_instance_valid(paper_demo) or not is_instance_valid(current) or current.get("level_id")!="paper_mill" or returning:return
+	paper_demo=preload("res://scripts/paper_demo.gd").new();paper_demo.flow=self;add_child(paper_demo);paper_demo.begin(current)
 
 func shutdown_audio() -> void:
 	if is_instance_valid(dialogue) and is_instance_valid(dialogue.voice):dialogue.voice.stop()
@@ -163,6 +210,7 @@ func _notification(what: int) -> void:
 
 func quit_game() -> void:
 	if closing:return
+	if is_instance_valid(paper_demo):paper_demo.stop()
 	_save_progress(true)
 	closing=true
 	process_mode=Node.PROCESS_MODE_DISABLED
@@ -195,6 +243,7 @@ func _build_title_navigation() -> void:
 	return_menu_button.hide()
 
 func _process(_delta: float) -> void:
+	if is_instance_valid(paper_demo) and paper_demo.active:return
 	save_retry_age=maxf(0.0,save_retry_age-_delta)
 	if active_slot>0 and is_instance_valid(current) and not current.has_signal("start_requested") and not menu_revealing and level_menu==null and not returning:
 		play_seconds+=_delta
@@ -221,6 +270,7 @@ func _process(_delta: float) -> void:
 		save_feedback.ink.position=Vector2(get_viewport().get_visible_rect().size.x-280,78 if full_hall or paper_level else 184)
 
 func request_title_return() -> bool:
+	if is_instance_valid(paper_demo):paper_demo.stop()
 	if closing or returning or menu_revealing or title_return_pending or level_menu != null: return false
 	if not is_instance_valid(current) or current.has_signal("start_requested"): return false
 	if current.has_method("arrival_busy") and current.arrival_busy(): return false
@@ -297,6 +347,8 @@ func _start_with_save_picker() -> void:
 		checkpoint_codec.restore(current,int(active_record.checkpoint))
 		dialogue.tutorial_runs=maxi(2,int(active_record.story.get("tutorial_runs",1)))
 		dialogue.clear();dialogue.seen.clear();dialogue.phase=-1
+		current.task_feedback.baseline(active_record.story.get("task_feedback",[]))
+		dialogue.suppress_restored_confirmations()
 		current.start_rift_arrival()
 	else:
 		show_hub(completed_runs>0)
@@ -318,6 +370,7 @@ func _on_record_deleted(slot: int) -> void:
 	dialogue.globe_awakened=false;dialogue.globe_guided=false
 
 func _record_snapshot(force: bool) -> Dictionary:
+	if is_instance_valid(paper_demo) and paper_demo.active:return {}
 	if active_slot==0 or not is_instance_valid(current) or current.has_signal("start_requested"):return {}
 	var data:=active_record.duplicate(true)
 	data.saved_at=int(Time.get_unix_time_from_system());data.play_seconds=play_seconds;data.completed_runs=completed_runs
@@ -336,11 +389,13 @@ func _record_snapshot(force: bool) -> Dictionary:
 			if not force:return {}
 			checkpoint=int(active_record.checkpoint) if active_record.scene=="tutorial" else 0
 		data.scene="tutorial";data.checkpoint=checkpoint
+		data.story.task_feedback=current.task_feedback.snapshot()
 	else:data.scene="hub";data.checkpoint=0
 	if data.scene!="paper_mill":data.erase("paper_state")
 	return data
 
 func _save_progress(force:=false) -> bool:
+	if is_instance_valid(paper_demo) and paper_demo.active:return false
 	if not saving_enabled or active_slot==0:return false
 	if not force and save_retry_age>0:return false
 	if not force and (menu_revealing or level_menu!=null or returning or dialogue.modal):return false
@@ -371,6 +426,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if request_title_return(): get_viewport().set_input_as_handled()
 
 func clear_scene() -> void:
+	if is_instance_valid(paper_demo):paper_demo.stop()
 	if is_instance_valid(dialogue):dialogue.clear()
 	if is_instance_valid(current):
 		if current.get("communications")!=null:current.communications.stop()
@@ -464,6 +520,7 @@ func _begin_paper_archive(room:Node) -> void:
 		snapshot=room.archive_texture()
 	room.process_mode=Node.PROCESS_MODE_DISABLED
 	return_effect=preload("res://scripts/archive_return.gd").new()
+	return_effect.anchor_count=2
 	return_effect.record_title="纸山叠影 · 双锚观测归档"
 	return_effect.record_scene="纸山叠影 · 温州泽雅"
 	add_child(return_effect)
@@ -483,7 +540,7 @@ func _end_archive_return() -> void:
 	returning=false
 	current.process_mode=Node.PROCESS_MODE_INHERIT
 	current.start_return_arrival()
-	ambience.play_world_gate("fold")
+	ambience.play_entry()
 	ambience.toggle_button.show()
 
 func show_hub(cleared: bool) -> void:
@@ -502,7 +559,7 @@ func open_level_menu() -> void:
 	current.player.cancel_navigation()
 	current.process_mode=Node.PROCESS_MODE_DISABLED
 	ambience.toggle_button.hide()
-	ambience.play_ui()
+	ambience.play_world_gate("fold")
 	level_menu=preload("res://scripts/fractured_level_select.gd").new()
 	level_menu.paper_unlocked=completed_runs>0
 	add_child(level_menu)

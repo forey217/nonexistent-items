@@ -54,8 +54,8 @@ func layout_checks() -> void:
 	room.focus_target("w0");await frames(30);ui.show_destinations(0);await frames(45)
 	var weight:Dictionary=room.state.weights[0]
 	var weight_at:Vector2=view.screen(weight.pos,weight.layer,.4)
-	check("destination_choices_fit_count_and_miss_weight",ui.destination_buttons.filter(func(b):return b.visible).size()==room.state.destinations(0).size() and not ui.destination_panel.get_global_rect().has_point(weight_at))
-	await shot("destinations-safe-framing");ui.destination_panel.hide()
+	check("direction_picker_has_four_projected_choices",ui.push_picker.visible and ui.push_picker.arrows.size()==4 and ui.push_picker.arrows.all(func(b):return not b.get_global_rect().has_point(weight_at)))
+	await shot("destinations-safe-framing");ui.push_picker.close()
 	ui.message("那里没有可达的道路。");await frames(12);var remaining:float=ui.message_time
 	ui.message("那里没有可达的道路。")
 	check("repeated_error_does_not_restart_toast",is_equal_approx(ui.message_time,remaining))

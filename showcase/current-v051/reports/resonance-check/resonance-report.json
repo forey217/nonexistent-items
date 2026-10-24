@@ -1,0 +1,162 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "fresh_tutorial_is_quiet"
+    },
+    {
+      "passed": true,
+      "test": "actual_star_latch_confirms_once"
+    },
+    {
+      "passed": true,
+      "test": "latest_goal_updates_during_receipt"
+    },
+    {
+      "passed": true,
+      "test": "open_task_list_stays_open"
+    },
+    {
+      "passed": true,
+      "test": "held_latch_does_not_repeat"
+    },
+    {
+      "passed": true,
+      "test": "moon_only_after_real_contact"
+    },
+    {
+      "passed": true,
+      "test": "both_progress_updates_keep_latest_goal"
+    },
+    {
+      "passed": true,
+      "test": "finished_effects_release_render_nodes"
+    },
+    {
+      "passed": true,
+      "test": "restored_tutorial_does_not_replay"
+    },
+    {
+      "passed": true,
+      "test": "restored_tutorial_does_not_reconfirm_speech"
+    },
+    {
+      "passed": true,
+      "test": "full_tutorial_restart_resets_first_records"
+    },
+    {
+      "passed": true,
+      "test": "fresh_paper_is_quiet"
+    },
+    {
+      "passed": true,
+      "test": "waterwheel_is_mechanical_only"
+    },
+    {
+      "passed": true,
+      "test": "empty_lift_arrives_without_cargo_completion"
+    },
+    {
+      "passed": true,
+      "test": "running_waterwheel_does_not_loop_completion"
+    },
+    {
+      "passed": true,
+      "test": "fixed_raised_catch_has_one_completion"
+    },
+    {
+      "passed": true,
+      "test": "falling_is_not_received"
+    },
+    {
+      "passed": true,
+      "test": "falling_task_does_not_claim_arrival"
+    },
+    {
+      "passed": true,
+      "test": "received_only_at_lower_rest"
+    },
+    {
+      "passed": true,
+      "test": "load_clears_effects_and_historical_receipt"
+    },
+    {
+      "passed": true,
+      "test": "event_ids_are_saved"
+    },
+    {
+      "passed": true,
+      "test": "load_suppresses_unheard_historical_confirmations"
+    },
+    {
+      "passed": true,
+      "test": "refixed_catch_has_no_repeat_task_completion"
+    },
+    {
+      "passed": true,
+      "test": "upper_dock_with_lower_cargo_is_not_arrival"
+    },
+    {
+      "passed": true,
+      "test": "aligned_upper_cargo_confirms_once"
+    },
+    {
+      "passed": true,
+      "test": "confirmation_does_not_interrupt_H"
+    },
+    {
+      "passed": true,
+      "test": "stale_confirmation_is_discarded"
+    },
+    {
+      "passed": true,
+      "test": "return_confirmation_uses_exact_new_voice"
+    },
+    {
+      "passed": true,
+      "test": "interrupted_confirm_is_not_replayed"
+    },
+    {
+      "passed": true,
+      "test": "upper_does_not_light_final_exit"
+    },
+    {
+      "passed": true,
+      "test": "dual_anchor_responds_only_with_both_locked"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_completion_effects"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_material_audio"
+    },
+    {
+      "passed": true,
+      "test": "rapid_updates_never_restore_old_target"
+    },
+    {
+      "passed": true,
+      "test": "quiet_render_after_completion"
+    },
+    {
+      "passed": true,
+      "test": "stable_final_restore_stays_quiet"
+    },
+    {
+      "passed": true,
+      "test": "full_paper_restart_resets_completion_records"
+    },
+    {
+      "passed": true,
+      "test": "task_animation_does_not_block_mouse"
+    },
+    {
+      "passed": true,
+      "test": "material_and_voice_use_separate_existing_buses"
+    }
+  ],
+  "failures": 0,
+  "native": true
+}

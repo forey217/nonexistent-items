@@ -38,6 +38,7 @@ var observed_world:=-1
 var observed_rail:=-1.0
 var observed_height:=-1.0
 var caption_duration:=0.0
+var deferred_stage:Dictionary={}
 
 func _ready() -> void:
 	voice=preload("res://scripts/dialogue_voice.gd").new()
@@ -50,7 +51,7 @@ func _ready() -> void:
 	view.advanced.connect(advance);view.skipped.connect(skip)
 
 func bind(next_room: Node,kind: String) -> void:
-	clear();room=next_room;context=kind;seen.clear();phase=-1;idle=0;elapsed=0
+	clear();deferred_stage.clear();room=next_room;context=kind;seen.clear();phase=-1;idle=0;elapsed=0
 	first_push=false;first_float=false;hub_wait=kind=="hub"
 	hub_near_age=0.0
 	observed_position=room.player.position;observed_world=-1;observed_rail=-1;observed_height=-1
@@ -156,8 +157,17 @@ func hint(text: String) -> void:
 	play("hint",[Lines.line("tesla",text,"light","H  再看一层提示","",visual)],false)
 
 func reset_tutorial() -> void:
-	clear();seen.clear();phase=0;first_push=false;first_float=false;idle=0
+	clear();deferred_stage.clear();seen.clear();phase=0;first_push=false;first_float=false;idle=0
 	play("reset",Lines.event("reset"))
+
+func suppress_restored_confirmations() -> void:
+	deferred_stage.clear()
+	phase=room.state.stage()
+	if phase==5 and not room.gate_ready:phase=4
+	for step in range(phase+1):seen["stage-%d"%step]=true
+	for id in room.task_feedback.seen:
+		var step:int={"star":2,"moon":4,"seal":5}.get(id,-1)
+		if step>=0:seen["stage-%d"%step]=true
 
 func notice(text: String) -> void:
 	if elapsed-notice_time<6.0:return
@@ -168,7 +178,7 @@ func begin_selection() -> void:
 	clear();hub_wait=false;menu_phase=-1
 
 func archive() -> void:
-	clear();play("archive",Lines.event("archive"),false)
+	deferred_stage.clear();clear();play("archive",Lines.event("archive"),false)
 
 func _process(delta: float) -> void:
 	if is_instance_valid(room) and room.get("hud")!=null and room.hud.get("menu")!=null and room.hud.menu.visible:return
@@ -211,11 +221,23 @@ func _tick_tutorial(delta: float) -> void:
 	if step==5 and not room.gate_ready:step=4
 	if step!=phase:
 		var old:=phase;phase=step;idle=0
-		clear()
+		deferred_stage.clear()
 		if old==5 and step==4:
 			play("gate-lost",Lines.event("gate-lost"),false)
-		elif not seen.has("stage-%d"%step):play("stage-%d"%step,Lines.tutorial(step,state.world,tutorial_runs>1))
+		elif not seen.has("stage-%d"%step):
+			if step in [2,4,5]:
+				# Let the latch sound speak first. H and story speech keep priority.
+				deferred_stage={"step":step,"delay":.45,"expires":4.0}
+				if segment!="hint":clear()
+			else:play("stage-%d"%step,Lines.tutorial(step,state.world,tutorial_runs>1))
 		elif step==5:play("gate-restored",Lines.event("gate-restored"),false)
+	if not deferred_stage.is_empty():
+		deferred_stage.delay-=delta;deferred_stage.expires-=delta
+		var scheduled:int=deferred_stage.step
+		if scheduled!=step or deferred_stage.expires<=0:
+			seen["stage-%d"%scheduled]=true;deferred_stage.clear()
+		elif deferred_stage.delay<=0 and active.is_empty():
+			deferred_stage.clear();play("stage-%d"%scheduled,Lines.tutorial(scheduled,state.world,tutorial_runs>1))
 	if not first_push and absf(state.rail_speed)>0.1:
 		first_push=true
 		play("first-push",Lines.event("first-push"))

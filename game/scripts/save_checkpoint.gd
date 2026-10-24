@@ -9,6 +9,7 @@ func stable(room: Node) -> int:
 
 func restore(room: Node,checkpoint: int) -> void:
 	var stage:=clampi(checkpoint,0,5)
+	var prior_feedback:Array=room.task_feedback.snapshot()
 	room.reset_tutorial()
 	var state=room.state
 	state.first_latched=stage>=2
@@ -25,4 +26,5 @@ func restore(room: Node,checkpoint: int) -> void:
 	room._last_stage=-1;room._last_goal=-1
 	room.weight_art.position=room.block_ground_position()
 	room.hud.refresh(state);room.orbit_view._sync_state(0.0)
+	room.task_feedback.baseline(prior_feedback)
 	room.hud.message("已恢复观测记录："+["准备校准","镇纸已到星位","星位已定","镇纸已到末端","月痕已稳","界缝已封"][stage])

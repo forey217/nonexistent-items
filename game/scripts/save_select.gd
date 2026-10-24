@@ -117,7 +117,7 @@ func enter() -> void:
 	if not ready_for_input():return
 	if cards[selected-1].record.status=="damaged":retry("这份记录暂时无法读取，原文件已保留。请选择其他档位。");return
 	busy=true;back_button.disabled=true
-	get_parent().ambience.play_world_gate("fold")
+	get_parent().ambience.play_entry()
 	var tween:=create_tween().set_parallel(true)
 	for i in range(3):
 		if i+1==selected and motion_enabled:

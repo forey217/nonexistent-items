@@ -1,5 +1,5 @@
 {
-  "scope": "纸山叠影 P2-01 至 P2-08、状态回应与三级主动提示",
+  "scope": "纸山叠影：原有配音保留；方向箭头与连续运输教学补录 v01",
   "profiles": {
     "yanyue": {
       "character": "衍月",
@@ -6999,6 +6999,1188 @@
       "trim_start_seconds": 0.23,
       "human_listening_review": "pending",
       "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "display_text": "在下层切到冰晶，右键选择水纹镇纸，再左键点向接物踏板的方向箭头。普通转角会连续通过。",
+      "file": "vo_tesla_0ce4d31f528fabd4.mp3",
+      "id": "vo_tesla_0ce4d31f528fabd4",
+      "nodes": [
+        "H-water-to-catch-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层切到冰晶，右键选择水纹镇纸，再左键点向接物踏板的方向箭头。普通转角会连续通过。",
+      "status": "generated",
+      "duration_seconds": 10.296,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "9d18d626bcfb18f757cd854ade3c5fecb8d06974435c1a6449d4320131a17831",
+      "words": [
+        {
+          "text": "在",
+          "start": 0.1043,
+          "duration": 0.3125
+        },
+        {
+          "text": "下层",
+          "start": 0.4304,
+          "duration": 0.5299
+        },
+        {
+          "text": "切",
+          "start": 0.9875,
+          "duration": 0.1359
+        },
+        {
+          "text": "到",
+          "start": 1.1234,
+          "duration": 0.1495
+        },
+        {
+          "text": "冰晶",
+          "start": 1.2864,
+          "duration": 0.4484
+        },
+        {
+          "text": "右键",
+          "start": 1.8978,
+          "duration": 0.462
+        },
+        {
+          "text": "选择",
+          "start": 2.3734,
+          "duration": 0.3804
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.781,
+          "duration": 0.8968
+        },
+        {
+          "text": "再",
+          "start": 3.8407,
+          "duration": 0.2853
+        },
+        {
+          "text": "左",
+          "start": 4.1397,
+          "duration": 0.1902
+        },
+        {
+          "text": "键点",
+          "start": 4.3299,
+          "duration": 0.4891
+        },
+        {
+          "text": "向",
+          "start": 4.9141,
+          "duration": 0.2717
+        },
+        {
+          "text": "接物",
+          "start": 5.1995,
+          "duration": 0.3668
+        },
+        {
+          "text": "踏板",
+          "start": 5.5799,
+          "duration": 0.394
+        },
+        {
+          "text": "的",
+          "start": 5.9739,
+          "duration": 0.1223
+        },
+        {
+          "text": "方向",
+          "start": 6.1234,
+          "duration": 0.3261
+        },
+        {
+          "text": "箭头",
+          "start": 6.463,
+          "duration": 0.5027
+        },
+        {
+          "text": "普通",
+          "start": 7.5951,
+          "duration": 0.394
+        },
+        {
+          "text": "转角",
+          "start": 8.0027,
+          "duration": 0.4891
+        },
+        {
+          "text": "会",
+          "start": 8.519,
+          "duration": 0.2174
+        },
+        {
+          "text": "连续",
+          "start": 8.75,
+          "duration": 0.4212
+        },
+        {
+          "text": "通过",
+          "start": 9.1848,
+          "duration": 0.4212
+        }
+      ]
+    },
+    {
+      "display_text": "下层导轨连接着接物区和吊台，普通连接点会连续通过。",
+      "file": "vo_tesla_e7304eefb1133efc.mp3",
+      "id": "vo_tesla_e7304eefb1133efc",
+      "nodes": [
+        "H-mountain-to-lift-2"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "下层导轨连接着接物区和吊台，普通连接点会连续通过。",
+      "status": "generated",
+      "duration_seconds": 5.928,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "1eec8a9f04e01a87c5c3270000c2d10bf510f4971548f6acb87833fb54caac45",
+      "words": [
+        {
+          "text": "下层",
+          "start": 0.1043,
+          "duration": 0.4484
+        },
+        {
+          "text": "导轨",
+          "start": 0.5663,
+          "duration": 0.5163
+        },
+        {
+          "text": "连接",
+          "start": 1.1777,
+          "duration": 0.2717
+        },
+        {
+          "text": "着",
+          "start": 1.4495,
+          "duration": 0.1766
+        },
+        {
+          "text": "接",
+          "start": 1.6533,
+          "duration": 0.163
+        },
+        {
+          "text": "物区",
+          "start": 1.8163,
+          "duration": 0.3397
+        },
+        {
+          "text": "和",
+          "start": 2.1832,
+          "duration": 0.1359
+        },
+        {
+          "text": "吊台",
+          "start": 2.3326,
+          "duration": 0.5707
+        },
+        {
+          "text": "普通",
+          "start": 3.0527,
+          "duration": 0.4348
+        },
+        {
+          "text": "连接点",
+          "start": 3.5011,
+          "duration": 0.5571
+        },
+        {
+          "text": "会",
+          "start": 4.0853,
+          "duration": 0.2582
+        },
+        {
+          "text": "连续",
+          "start": 4.3571,
+          "duration": 0.4348
+        },
+        {
+          "text": "通过",
+          "start": 4.8054,
+          "duration": 0.4484
+        }
+      ]
+    },
+    {
+      "display_text": "在下层冰晶规则中，右键选择山纹镇纸，再左键点通向吊台的方向箭头，沿导轨送入吊台。",
+      "file": "vo_tesla_d8acd2605c8930be.mp3",
+      "id": "vo_tesla_d8acd2605c8930be",
+      "nodes": [
+        "H-mountain-to-lift-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层冰晶规则中，右键选择山纹镇纸，再左键点通向吊台的方向箭头，沿导轨送入吊台。",
+      "status": "generated",
+      "duration_seconds": 9.12,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "3682945792ed68e8b61af424b12d1cc311be83a88c4c82759fa1d9c1bacaf011",
+      "words": [
+        {
+          "text": "在",
+          "start": 0.1043,
+          "duration": 0.3125
+        },
+        {
+          "text": "下层",
+          "start": 0.4304,
+          "duration": 0.4755
+        },
+        {
+          "text": "冰晶",
+          "start": 0.9332,
+          "duration": 0.3261
+        },
+        {
+          "text": "规则",
+          "start": 1.2728,
+          "duration": 0.3533
+        },
+        {
+          "text": "中",
+          "start": 1.6261,
+          "duration": 0.2717
+        },
+        {
+          "text": "右键",
+          "start": 2.0609,
+          "duration": 0.462
+        },
+        {
+          "text": "选择",
+          "start": 2.5364,
+          "duration": 0.394
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 2.9576,
+          "duration": 0.8424
+        },
+        {
+          "text": "再",
+          "start": 3.9766,
+          "duration": 0.3125
+        },
+        {
+          "text": "左",
+          "start": 4.3027,
+          "duration": 0.163
+        },
+        {
+          "text": "键点",
+          "start": 4.4657,
+          "duration": 0.462
+        },
+        {
+          "text": "通向",
+          "start": 4.9549,
+          "duration": 0.3533
+        },
+        {
+          "text": "吊台",
+          "start": 5.3217,
+          "duration": 0.3533
+        },
+        {
+          "text": "的",
+          "start": 5.675,
+          "duration": 0.1087
+        },
+        {
+          "text": "方向",
+          "start": 5.8109,
+          "duration": 0.2989
+        },
+        {
+          "text": "箭头",
+          "start": 6.1234,
+          "duration": 0.5163
+        },
+        {
+          "text": "沿",
+          "start": 6.8299,
+          "duration": 0.2446
+        },
+        {
+          "text": "导轨",
+          "start": 7.088,
+          "duration": 0.5299
+        },
+        {
+          "text": "送入",
+          "start": 7.6451,
+          "duration": 0.2582
+        },
+        {
+          "text": "吊台",
+          "start": 7.9168,
+          "duration": 0.5435
+        }
+      ]
+    },
+    {
+      "display_text": "在下层冰晶规则中，右键选择水纹镇纸，左键选方向；到导轨分岔后，再选通向水闸踏板的方向。",
+      "file": "vo_tesla_aca7add3bab08520.mp3",
+      "id": "vo_tesla_aca7add3bab08520",
+      "nodes": [
+        "H-water-to-sluice-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层冰晶规则中，右键选择水纹镇纸，左键选方向；到导轨分岔后，再选通向水闸踏板的方向。",
+      "status": "generated",
+      "duration_seconds": 9.912,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "1e7328e1477acdb046f234f02d37c9667995021cfad7e7ff22645b412bd3a9a7",
+      "words": [
+        {
+          "text": "在",
+          "start": 0.1043,
+          "duration": 0.3125
+        },
+        {
+          "text": "下层",
+          "start": 0.4304,
+          "duration": 0.4755
+        },
+        {
+          "text": "冰晶",
+          "start": 0.9332,
+          "duration": 0.3125
+        },
+        {
+          "text": "规则",
+          "start": 1.2592,
+          "duration": 0.3533
+        },
+        {
+          "text": "中",
+          "start": 1.6125,
+          "duration": 0.2717
+        },
+        {
+          "text": "右键",
+          "start": 2.0337,
+          "duration": 0.462
+        },
+        {
+          "text": "选择",
+          "start": 2.5093,
+          "duration": 0.3804
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.9168,
+          "duration": 0.9239
+        },
+        {
+          "text": "左键",
+          "start": 4.0038,
+          "duration": 0.4484
+        },
+        {
+          "text": "选",
+          "start": 4.4793,
+          "duration": 0.231
+        },
+        {
+          "text": "方向",
+          "start": 4.7103,
+          "duration": 0.462
+        },
+        {
+          "text": "到",
+          "start": 5.4304,
+          "duration": 0.3261
+        },
+        {
+          "text": "导轨",
+          "start": 5.7701,
+          "duration": 0.3668
+        },
+        {
+          "text": "分岔",
+          "start": 6.1505,
+          "duration": 0.3397
+        },
+        {
+          "text": "后",
+          "start": 6.4902,
+          "duration": 0.2717
+        },
+        {
+          "text": "再",
+          "start": 6.9114,
+          "duration": 0.2717
+        },
+        {
+          "text": "选通",
+          "start": 7.1967,
+          "duration": 0.4212
+        },
+        {
+          "text": "向",
+          "start": 7.6179,
+          "duration": 0.2446
+        },
+        {
+          "text": "水闸",
+          "start": 7.8897,
+          "duration": 0.462
+        },
+        {
+          "text": "踏板",
+          "start": 8.3652,
+          "duration": 0.3804
+        },
+        {
+          "text": "的",
+          "start": 8.7457,
+          "duration": 0.0679
+        },
+        {
+          "text": "方向",
+          "start": 8.8272,
+          "duration": 0.4076
+        }
+      ]
+    },
+    {
+      "display_text": "山纹镇纸到了上层，可以沿导轨运向锚座。",
+      "file": "vo_tesla_7d3d03ffcdfbfcf9.mp3",
+      "id": "vo_tesla_7d3d03ffcdfbfcf9",
+      "nodes": [
+        "H-leave-lift-1"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "山纹镇纸到了上层，可以沿导轨运向锚座。",
+      "status": "generated",
+      "duration_seconds": 4.44,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "f734e8664aab0fc082e00060e6739a466e1d8b7dd07ff1b8184889a58d39aeaf",
+      "words": [
+        {
+          "text": "山纹镇纸",
+          "start": 0.1043,
+          "duration": 0.8424
+        },
+        {
+          "text": "到",
+          "start": 0.9739,
+          "duration": 0.1359
+        },
+        {
+          "text": "了",
+          "start": 1.1098,
+          "duration": 0.0679
+        },
+        {
+          "text": "上层",
+          "start": 1.1913,
+          "duration": 0.5978
+        },
+        {
+          "text": "可以",
+          "start": 1.9386,
+          "duration": 0.4076
+        },
+        {
+          "text": "沿导",
+          "start": 2.3598,
+          "duration": 0.462
+        },
+        {
+          "text": "轨",
+          "start": 2.8218,
+          "duration": 0.1766
+        },
+        {
+          "text": "运向",
+          "start": 2.9984,
+          "duration": 0.3125
+        },
+        {
+          "text": "锚座",
+          "start": 3.3245,
+          "duration": 0.4212
+        }
+      ]
+    },
+    {
+      "display_text": "在上层切到冰晶，右键选择山纹镇纸，左键点离开吊台的方向；木桥未保留时会停在中转台。",
+      "file": "vo_tesla_2cf05e683b029216.mp3",
+      "id": "vo_tesla_2cf05e683b029216",
+      "nodes": [
+        "H-leave-lift-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到冰晶，右键选择山纹镇纸，左键点离开吊台的方向；木桥未保留时会停在中转台。",
+      "status": "generated",
+      "duration_seconds": 9.576,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "4eaa9eba8aea128298d5da64ecfaa37cdd02ecc28bb2e388cb8cd0f56451ef43",
+      "words": [
+        {
+          "text": "在",
+          "start": 0.1043,
+          "duration": 0.2989
+        },
+        {
+          "text": "上层",
+          "start": 0.4168,
+          "duration": 0.5299
+        },
+        {
+          "text": "切",
+          "start": 0.9739,
+          "duration": 0.1359
+        },
+        {
+          "text": "到",
+          "start": 1.1098,
+          "duration": 0.163
+        },
+        {
+          "text": "冰晶",
+          "start": 1.2864,
+          "duration": 0.4484
+        },
+        {
+          "text": "右键",
+          "start": 1.8842,
+          "duration": 0.4348
+        },
+        {
+          "text": "选择",
+          "start": 2.3326,
+          "duration": 0.3804
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 2.7402,
+          "duration": 0.856
+        },
+        {
+          "text": "左",
+          "start": 3.7864,
+          "duration": 0.2582
+        },
+        {
+          "text": "键点",
+          "start": 4.0446,
+          "duration": 0.4348
+        },
+        {
+          "text": "离开",
+          "start": 4.5065,
+          "duration": 0.2989
+        },
+        {
+          "text": "吊台",
+          "start": 4.819,
+          "duration": 0.3125
+        },
+        {
+          "text": "的",
+          "start": 5.1315,
+          "duration": 0.0815
+        },
+        {
+          "text": "方向",
+          "start": 5.2266,
+          "duration": 0.4755
+        },
+        {
+          "text": "木桥",
+          "start": 5.9739,
+          "duration": 0.5299
+        },
+        {
+          "text": "未",
+          "start": 6.5174,
+          "duration": 0.1766
+        },
+        {
+          "text": "保留",
+          "start": 6.694,
+          "duration": 0.394
+        },
+        {
+          "text": "时",
+          "start": 7.088,
+          "duration": 0.3125
+        },
+        {
+          "text": "会",
+          "start": 7.4957,
+          "duration": 0.2446
+        },
+        {
+          "text": "停",
+          "start": 7.7538,
+          "duration": 0.1902
+        },
+        {
+          "text": "在",
+          "start": 7.944,
+          "duration": 0.2174
+        },
+        {
+          "text": "中转台",
+          "start": 8.1886,
+          "duration": 0.7065
+        }
+      ]
+    },
+    {
+      "display_text": "在上层切到冰晶，右键选择山纹镇纸，左键点通向锚座的方向，沿已保留的木桥连续运送。",
+      "file": "vo_tesla_7b9223351958ca99.mp3",
+      "id": "vo_tesla_7b9223351958ca99",
+      "nodes": [
+        "H-transport-upper-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在上层切到冰晶，右键选择山纹镇纸，左键点通向锚座的方向，沿已保留的木桥连续运送。",
+      "status": "generated",
+      "duration_seconds": 8.928,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "bdc35d6290079c8efda46b91ac61aedfcc31a5fca33caef51f69bfb275797bcc",
+      "words": [
+        {
+          "text": "在",
+          "start": 0.1043,
+          "duration": 0.2989
+        },
+        {
+          "text": "上层",
+          "start": 0.4168,
+          "duration": 0.5299
+        },
+        {
+          "text": "切",
+          "start": 0.9739,
+          "duration": 0.1359
+        },
+        {
+          "text": "到",
+          "start": 1.1098,
+          "duration": 0.1495
+        },
+        {
+          "text": "冰晶",
+          "start": 1.2728,
+          "duration": 0.4484
+        },
+        {
+          "text": "右键",
+          "start": 1.8842,
+          "duration": 0.4348
+        },
+        {
+          "text": "选择",
+          "start": 2.3326,
+          "duration": 0.3804
+        },
+        {
+          "text": "山纹镇纸",
+          "start": 2.7402,
+          "duration": 0.856
+        },
+        {
+          "text": "左",
+          "start": 3.7864,
+          "duration": 0.2582
+        },
+        {
+          "text": "键点",
+          "start": 4.0446,
+          "duration": 0.4484
+        },
+        {
+          "text": "通向",
+          "start": 4.5201,
+          "duration": 0.3533
+        },
+        {
+          "text": "锚座",
+          "start": 4.9005,
+          "duration": 0.3397
+        },
+        {
+          "text": "的",
+          "start": 5.2402,
+          "duration": 0.0815
+        },
+        {
+          "text": "方向",
+          "start": 5.3353,
+          "duration": 0.4484
+        },
+        {
+          "text": "沿",
+          "start": 5.9875,
+          "duration": 0.231
+        },
+        {
+          "text": "已",
+          "start": 6.2321,
+          "duration": 0.1495
+        },
+        {
+          "text": "保留",
+          "start": 6.3951,
+          "duration": 0.3261
+        },
+        {
+          "text": "的",
+          "start": 6.7212,
+          "duration": 0.0815
+        },
+        {
+          "text": "木桥",
+          "start": 6.8163,
+          "duration": 0.5299
+        },
+        {
+          "text": "连续",
+          "start": 7.3734,
+          "duration": 0.462
+        },
+        {
+          "text": "运送",
+          "start": 7.8489,
+          "duration": 0.394
+        }
+      ]
+    },
+    {
+      "display_text": "在下层冰晶规则中，右键选择水纹镇纸，左键选方向；在导轨分岔处选通向导向井的支路。",
+      "file": "vo_tesla_32c9f8f559cf4108.mp3",
+      "id": "vo_tesla_32c9f8f559cf4108",
+      "nodes": [
+        "H-water-to-guide-3"
+      ],
+      "speaker": "tesla",
+      "character": "特斯拉",
+      "gender": "male",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "direction": "沉稳明确，保留思考空间",
+      "synthesis_text": "在下层冰晶规则中，右键选择水纹镇纸，左键选方向；在导轨分岔处选通向导向井的支路。",
+      "status": "generated",
+      "duration_seconds": 9.288,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "1799a130b26224fc054b347bf7284e325a479539615a427cdfa871b86dc0bf35",
+      "words": [
+        {
+          "text": "在",
+          "start": 0.1043,
+          "duration": 0.3261
+        },
+        {
+          "text": "下层",
+          "start": 0.444,
+          "duration": 0.4755
+        },
+        {
+          "text": "冰晶",
+          "start": 0.9467,
+          "duration": 0.3125
+        },
+        {
+          "text": "规则",
+          "start": 1.2728,
+          "duration": 0.3533
+        },
+        {
+          "text": "中",
+          "start": 1.6261,
+          "duration": 0.2853
+        },
+        {
+          "text": "右键",
+          "start": 2.0745,
+          "duration": 0.462
+        },
+        {
+          "text": "选择",
+          "start": 2.55,
+          "duration": 0.3804
+        },
+        {
+          "text": "水纹镇纸",
+          "start": 2.9576,
+          "duration": 0.9375
+        },
+        {
+          "text": "左键",
+          "start": 4.0582,
+          "duration": 0.4484
+        },
+        {
+          "text": "选",
+          "start": 4.5337,
+          "duration": 0.2174
+        },
+        {
+          "text": "方向",
+          "start": 4.7511,
+          "duration": 0.462
+        },
+        {
+          "text": "在",
+          "start": 5.4304,
+          "duration": 0.3397
+        },
+        {
+          "text": "导轨",
+          "start": 5.7837,
+          "duration": 0.3804
+        },
+        {
+          "text": "分岔",
+          "start": 6.1777,
+          "duration": 0.3533
+        },
+        {
+          "text": "处选",
+          "start": 6.5446,
+          "duration": 0.4755
+        },
+        {
+          "text": "通向",
+          "start": 7.1152,
+          "duration": 0.4484
+        },
+        {
+          "text": "导向",
+          "start": 7.5772,
+          "duration": 0.4212
+        },
+        {
+          "text": "井",
+          "start": 7.9984,
+          "duration": 0.1766
+        },
+        {
+          "text": "的",
+          "start": 8.175,
+          "duration": 0.0815
+        },
+        {
+          "text": "支路",
+          "start": 8.2701,
+          "duration": 0.3533
+        }
+      ]
+    },
+    {
+      "id": "vo_yanyue_3e33c827f9c8d069",
+      "speaker": "yanyue",
+      "display_text": "这样，它就不会落下去了。",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "file": "3e33c827f9c8d069.mp3",
+      "synthesis_text": "这样，它就不会落下去了。",
+      "status": "generated",
+      "duration_seconds": 2.112,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "df8c904f372084ed75078f423c7e8f3976ce37cefedc418b6662c7f734966f18",
+      "words": [
+        {
+          "text": "这样",
+          "start": 0.0085,
+          "duration": 0.4369
+        },
+        {
+          "text": "它",
+          "start": 0.6518,
+          "duration": 0.1335
+        },
+        {
+          "text": "就",
+          "start": 0.7853,
+          "duration": 0.1335
+        },
+        {
+          "text": "不会",
+          "start": 0.9309,
+          "duration": 0.267
+        },
+        {
+          "text": "落",
+          "start": 1.21,
+          "duration": 0.1335
+        },
+        {
+          "text": "下去",
+          "start": 1.3435,
+          "duration": 0.3155
+        },
+        {
+          "text": "了",
+          "start": 1.659,
+          "duration": 0.182
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -6.8,
+      "normalization_gain_db": 0.97,
+      "trim_start_seconds": 0.15,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice",
+      "gender": "female",
+      "use": "task-confirmation"
+    },
+    {
+      "id": "vo_yanyue_e55cb848d7613461",
+      "speaker": "yanyue",
+      "display_text": "接住了。还好。",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "file": "e55cb848d7613461.mp3",
+      "synthesis_text": "接住了。还好。",
+      "status": "generated",
+      "duration_seconds": 1.896,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "0dcc3d11f0f182624c087fcbbcc35b88e707698e2e47bd5588f282d550f64821",
+      "words": [
+        {
+          "text": "接住",
+          "start": 0.0185,
+          "duration": 0.3762
+        },
+        {
+          "text": "了",
+          "start": 0.3947,
+          "duration": 0.182
+        },
+        {
+          "text": "还好",
+          "start": 1.1215,
+          "duration": 0.4733
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -5.76,
+      "normalization_gain_db": 4.67,
+      "trim_start_seconds": 0.14,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice",
+      "gender": "female",
+      "use": "task-confirmation"
+    },
+    {
+      "id": "vo_yanyue_06792a5042533fbe",
+      "speaker": "yanyue",
+      "display_text": "回来了，这次没走错地方。",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "file": "06792a5042533fbe.mp3",
+      "synthesis_text": "回来了，这次没走错地方。",
+      "status": "generated",
+      "duration_seconds": 2.208,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "30ba0c8eda5333a4327e539b01bf828e2689b6abcc5a8460735a4045cf09a3e7",
+      "words": [
+        {
+          "text": "回来",
+          "start": 0,
+          "duration": 0.4005
+        },
+        {
+          "text": "了",
+          "start": 0.319,
+          "duration": 0.1578
+        },
+        {
+          "text": "这次",
+          "start": 0.7317,
+          "duration": 0.3641
+        },
+        {
+          "text": "没",
+          "start": 1.1079,
+          "duration": 0.1456
+        },
+        {
+          "text": "走错",
+          "start": 1.2535,
+          "duration": 0.2913
+        },
+        {
+          "text": "地方",
+          "start": 1.5569,
+          "duration": 0.3762
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -3.95,
+      "normalization_gain_db": 0.42,
+      "trim_start_seconds": 0.24,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice",
+      "gender": "female",
+      "use": "task-confirmation"
+    },
+    {
+      "id": "vo_yanyue_109dd878e394fb09",
+      "speaker": "yanyue",
+      "display_text": "上面稳住了。",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "file": "109dd878e394fb09.mp3",
+      "synthesis_text": "上面稳住了。",
+      "status": "generated",
+      "duration_seconds": 1.152,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "0c2dca57b5422f2b4392facb8f0fd5db81c8035147ea664eedba9cbf6616f866",
+      "words": [
+        {
+          "text": "上面",
+          "start": 0.0185,
+          "duration": 0.3398
+        },
+        {
+          "text": "稳住",
+          "start": 0.3705,
+          "duration": 0.3519
+        },
+        {
+          "text": "了",
+          "start": 0.7224,
+          "duration": 0.1578
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -5.56,
+      "normalization_gain_db": 1.81,
+      "trim_start_seconds": 0.14,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice",
+      "gender": "female",
+      "use": "task-confirmation"
+    },
+    {
+      "id": "vo_yanyue_d6d6dd729fc8751f",
+      "speaker": "yanyue",
+      "display_text": "两边终于对上了。",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "file": "d6d6dd729fc8751f.mp3",
+      "synthesis_text": "两边终于对上了。",
+      "status": "generated",
+      "duration_seconds": 1.56,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "6fdff2a80bfd3ecaf3255ebfa20e333c39a456d9eea89f49d007cfb74970d68c",
+      "words": [
+        {
+          "text": "两边",
+          "start": 0,
+          "duration": 0.4854
+        },
+        {
+          "text": "终于",
+          "start": 0.4961,
+          "duration": 0.3155
+        },
+        {
+          "text": "对上",
+          "start": 0.8238,
+          "duration": 0.3155
+        },
+        {
+          "text": "了",
+          "start": 1.1393,
+          "duration": 0.1456
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -7.49,
+      "normalization_gain_db": 0.08,
+      "trim_start_seconds": 0.16,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice",
+      "gender": "female",
+      "use": "task-confirmation"
     }
   ],
   "voice_metadata": {

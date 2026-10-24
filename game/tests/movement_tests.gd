@@ -51,7 +51,8 @@ func _hold(direction: Vector2, frames: int, expected_prop: Node = null) -> Dicti
 				touched = true
 	var moving_at_end: bool = room.player.walking
 	_release()
-	await _settle()
+	# Ordinary release now brakes in 80ms, then settles the feet over 140ms.
+	for i in range(15):await get_tree().physics_frame
 	return {"clear":clear,"contact":touched,"frames":animation_frames,"moving_at_end":moving_at_end}
 
 func _wait_for_arrival(limit: int = 900) -> Dictionary:
@@ -119,7 +120,7 @@ func run(test_room: Node2D) -> void:
 	_record("no_folded_mesh_gaps_during_knee_bends",all_leg_quads_renderable,{"quads":checked_leg_quads,"phases_per_direction":32})
 	_record("back_hands_do_not_swing_through_spine",back_hands_stay_on_sides)
 	var steps_per_second: float = room.player.DEFAULT_SPEED/room.player._art.STRIDE_DISTANCE*2.0
-	_record("walking_cadence_after_speed_increase",steps_per_second>=1.7 and steps_per_second<=2.1,{"steps_per_second":steps_per_second,"speed":room.player.DEFAULT_SPEED})
+	_record("walking_cadence_after_speed_increase",steps_per_second>=2.2 and steps_per_second<=2.4,{"steps_per_second":steps_per_second,"speed":room.player.DEFAULT_SPEED})
 	_record("shared_depth_sort",room.sort_layer.y_sort_enabled and room.player.get_parent()==room.props[0].get_parent())
 	for action in ACTIONS:
 		_record("input_binding_"+action,InputMap.action_get_events(action).size()==2)
@@ -128,7 +129,7 @@ func run(test_room: Node2D) -> void:
 	await _place(free_start)
 	var walk := await _hold(Vector2.RIGHT,10)
 	var straight_distance: float = room.player.position.distance_to(free_start)
-	_record("manual_move_and_walk_frames",absf(straight_distance-room.player.DEFAULT_SPEED/60.0*10.0)<1.0 and walk["clear"] and walk["frames"].size()>=2,{"distance":straight_distance,"animation_frames":walk["frames"]})
+	_record("manual_move_and_walk_frames",straight_distance>room.player.DEFAULT_SPEED*.12 and straight_distance<room.player.DEFAULT_SPEED*.18 and walk["clear"] and walk["frames"].size()>=2,{"distance":straight_distance,"animation_frames":walk["frames"]})
 	await _place(free_start)
 	var diagonal := await _hold(Vector2(1,1),10)
 	var diagonal_distance: float = room.player.position.distance_to(free_start)
@@ -154,17 +155,19 @@ func run(test_room: Node2D) -> void:
 	room.player.speed = 120
 	for i in range(16): room.player._physics_process(1.0/60.0)
 	var slow_phase: float = room.player._walk_time
+	var slow_distance:float=room.player.position.distance_to(Vector2(400,450))
 	_release()
 	await _place(Vector2(400,450))
 	Input.action_press("walk_right")
 	room.player.speed = 240
 	for i in range(8): room.player._physics_process(1.0/60.0)
 	var fast_phase: float = room.player._walk_time
+	var fast_distance:float=room.player.position.distance_to(Vector2(400,450))
 	_release()
 	room.player.speed = room.player.DEFAULT_SPEED
 	room.player.set_physics_process(true)
 	await _settle()
-	_record("gait_tracks_distance_not_clock",absf(slow_phase-fast_phase)<0.1,{"slow_distance":slow_phase,"fast_distance":fast_phase})
+	_record("gait_tracks_distance_not_clock",absf(slow_phase-slow_distance)<0.1 and absf(fast_phase-fast_distance)<0.1,{"slow_distance":slow_distance,"fast_distance":fast_distance,"slow_gait":slow_phase,"fast_gait":fast_phase})
 
 	for edge in range(room.floor_polygon.size()):
 		var a: Vector2 = room.floor_polygon[edge]

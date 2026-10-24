@@ -47,13 +47,13 @@ static func tutorial(stage: int,world: int=0,replay: bool=false) -> Array:
 			line("tesla","切到重力世界。同一块镇纸会变重，压下踏板；位置会保留。","light","2 重力","","law-heavy")]
 		2:return [
 			line("yanyue","星位亮了，挡块也打开了。","aside","","","law-heavy"),
-			line("tesla","星位已经锁定。下一个目标是月痕印座，在导轨尽头的上方。")]
+			line("tesla","下一个目标是月痕印座，在导轨尽头的上方。")]
 		3:return [
 			line("yanyue","月痕在上面，镇纸却还在下面。"),
 			line("tesla","看看现有的规则，有没有办法让镇纸接近它。","subtitle")]
 		4:return [
-			line("tesla","月痕稳了。现在看它下方的封界踏板。"),
-			line("yanyue","踏板和界缝刻着同样的纹路……它们连在一起。")]
+			line("yanyue","月痕稳住了。"),
+			line("tesla","现在看它下方的封界踏板。")]
 		5:return [
 			line("yanyue","裂缝合上了。"),
 			line("tesla","读数稳定，三处校准全部完成。","aside"),

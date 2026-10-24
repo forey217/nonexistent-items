@@ -9,6 +9,8 @@ const THROW_START := 1.00
 const THROW_END := 1.51
 const ARC_HEIGHT := 112.0
 const TITLE_FONT=preload("res://assets/fonts/zcool_xiaowei/ZCOOLXiaoWei-Regular.ttf")
+var external_controls:=false
+var anchor_count:=3
 var image: Texture2D
 var age := 0.0
 var active := false
@@ -36,6 +38,7 @@ func begin(snapshot: Texture2D,run_number: int) -> void:
 	canvas.queue_redraw()
 
 func _input(event: InputEvent) -> void:
+	if external_controls:return
 	# Input is consumed before either room can receive clicks or reset commands.
 	if event is InputEventKey and event.physical_keycode==KEY_M:return
 	get_viewport().set_input_as_handled()
@@ -117,7 +120,7 @@ func _draw_frame() -> void:
 			_text("NO. %03d"%number,Vector2(192,-174),14,Color(gold,detail))
 			_text(record_scene,Vector2(-280,-149),13,Color(ink,detail*0.8))
 			canvas.draw_line(Vector2(-280,-141),Vector2(279,-141),Color(gold,detail*0.55),1.0,true)
-			_text("稳定锚点  03 / 03",Vector2(-280,187),13,Color(ink,detail*0.8))
+			_text("稳定锚点  %02d / %02d"%[anchor_count,anchor_count],Vector2(-280,187),13,Color(ink,detail*0.8))
 			_text("空间关系：已恢复",Vector2(135,187),13,Color(ink,detail*0.8))
 			if age>=0.60:_draw_stamp(age,Vector2(scale_x,scale_y),center,rotation)
 		canvas.draw_set_transform(Vector2.ZERO)

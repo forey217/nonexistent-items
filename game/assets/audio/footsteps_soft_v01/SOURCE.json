@@ -1,0 +1,19 @@
+{
+  "selected_audition": 2,
+  "name": "轻柔软底",
+  "origin": "Original local procedural foley synthesis; no third-party samples.",
+  "sample_rate": 44100,
+  "runtime_gain_db": -32,
+  "dialogue_duck_db": 6,
+  "variants": 8,
+  "files": {
+    "step-01.wav": "9a6ed769c29c188b9a0169b4da0f34ac5330d76f43749e9cc528fe9bda0897dc",
+    "step-02.wav": "0d1576abad09c8910c88e576d97e81ddc2af50e8d9ea7d942f2ad62dd065883e",
+    "step-03.wav": "a8d058dc296991d4452aac32d609888d01987e767a86e366145d7cee0401c424",
+    "step-04.wav": "fab411a4c8c465de98f575073162cfefd2d0148ba7a616376bb2f9c9628bd1e2",
+    "step-05.wav": "cc386a494c56d91f06863f36c02cca082e7be73efae5baf8e5a3e9eeb517d021",
+    "step-06.wav": "351bea2a5f3027218be0129f046abe825412e16330a0407415a87d263ff04a21",
+    "step-07.wav": "64b600e68b92cbb445d8dd7830d8aca562d8b78d1b5892a9e02717ee660d2fc0",
+    "step-08.wav": "65dc446a0333304ae621e7105d48a7242f9c7e2a0adcd062834d220cb607ca4d"
+  }
+}

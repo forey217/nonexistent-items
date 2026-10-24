@@ -98,6 +98,7 @@ func run(app: Node2D) -> void:
 	record("final_pressure_starts_completion",await until(func():return room.seal_active))
 	record("door_still_blocks_during_completion",not room.gate_ready and not room.gate_collision.disabled and room.player.controls_locked and not room.navigation.is_safe(room.portal_position))
 	var start_age: float=room.seal_age
+	var sequence_start:float=room.task_feedback.clock-start_age
 	record("world_switch_cannot_interrupt_seal",not room.change_world(0) and room.state.world==1)
 	var locked := true
 	var count := 0
@@ -107,11 +108,11 @@ func run(app: Node2D) -> void:
 		if room.seal_active:locked=locked and not room.gate_ready and room.player.controls_locked
 		if count%2==0:await snapshot("seal-%02d"%count)
 	await frames(4)
-	record("one_second_completion_then_opens_gate",room.gate_ready and room.seal_completed and room.gate_collision.disabled and locked and count>=55 and count<=62,{"frames":count,"start_age":start_age})
+	record("one_second_completion_then_opens_gate",room.gate_ready and room.seal_completed and room.gate_collision.disabled and locked and absf(float(room.task_feedback.history.filter(func(item):return item.id=="seal")[0].at)-sequence_start-room.SEAL_DURATION)<.035,{"frames":count,"start_age":start_age})
 	record("finished_seal_visual_and_navigation_match",view.landmarks.seal.visible and not view.landmarks.crack.visible and room.navigation.is_safe(room.portal_position) and not room.player.controls_locked)
 	var events: Array=room.sound.events.duplicate()
 	var index: int=events.find("seal_begin")
-	record("completion_sound_order_and_no_duplicates",index>=0 and events.slice(index)==["seal_begin","star","moon","success"],{"events":events})
+	record("completion_sound_order_and_no_duplicates",index>=0 and events.slice(index)==["seal_begin","star","moon","success","resonance:anchor"],{"events":events})
 	await snapshot("gate-stable")
 	var successes: int=events.count("success")
 	room.state.switch_world(0);await frames(4)
@@ -127,7 +128,7 @@ func run(app: Node2D) -> void:
 	app.show_hub(false);await frames(4)
 	record("music_survives_return_to_hub",audio.music.get_instance_id()==id and audio.music.playing)
 	app.show_tutorial();room=app.current;await frames(4)
-	record("one_music_player_survives_reentry",app.ambience.music.get_instance_id()==id and audio.music.playing and audio.get_child_count()==3)
+	record("one_music_player_survives_reentry",app.ambience.music.get_instance_id()==id and audio.music.playing and audio.get_children().filter(func(child):return child is AudioStreamPlayer and child.bus=="Music").size()==1)
 	var file:=FileAccess.open(directory.path_join("polish-test-report.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify({"checks":checks.size(),"failures":failures,"results":checks},"\t"));file.close()
 	print("POLISH_TEST_REPORT ",JSON.stringify({"checks":checks.size(),"failures":failures}))

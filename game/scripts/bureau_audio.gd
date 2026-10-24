@@ -3,11 +3,14 @@ extends Node
 signal volume_changed(percent: float)
 signal channel_volume_changed(channel: String,percent: float)
 const CHANNEL_BUSES={"music":"Music","sfx":"SFX","dialogue":"Dialogue"}
+const GATE_ENTRY=preload("res://assets/audio/gate_warm_v01/enter.wav")
+const GATE_SELECT=preload("res://assets/audio/gate_warm_v01/select.wav")
 var preferences=preload("res://scripts/audio_preferences.gd").new()
 var save_age := -1.0
 var settings_error := OK
 var music := AudioStreamPlayer.new()
 var ui_voice := AudioStreamPlayer.new()
+var gate_voice := AudioStreamPlayer.new()
 var muted := false
 var toggle_button: Button
 var target_db := -24.0
@@ -39,6 +42,7 @@ func _ready() -> void:
 	ui_voice.bus="SFX"
 	ui_voice.volume_db=-18.0
 	add_child(ui_voice)
+	gate_voice.bus="SFX";gate_voice.volume_db=-3.0;add_child(gate_voice)
 	var layer:=CanvasLayer.new()
 	layer.layer=2
 	add_child(layer)
@@ -105,11 +109,13 @@ func play_globe_awaken() -> void:
 	ui_voice.stream=preload("res://assets/audio/sfx/star.ogg")
 	ui_voice.pitch_scale=0.94;ui_voice.volume_db=-25.0;ui_voice.play()
 
+func play_entry() -> void:
+	if gate_voice.playing and gate_voice.stream==GATE_ENTRY:return
+	gate_voice.stream=GATE_ENTRY;gate_voice.pitch_scale=1.0;gate_voice.play()
+
 func play_world_gate(cue: String) -> void:
-	ui_voice.stream=preload("res://assets/audio/sfx/fold.ogg") if cue=="fold" else preload("res://assets/audio/sfx/world_set.ogg")
-	ui_voice.pitch_scale=0.85 if cue=="fold" else 1.15
-	ui_voice.volume_db=-16.0
-	ui_voice.play()
+	if cue!="fold":return
+	gate_voice.stream=GATE_SELECT;gate_voice.pitch_scale=1.0;gate_voice.play()
 
 func play_archive(cue: String) -> void:
 	archive_events.append(cue)
@@ -131,6 +137,7 @@ func stop_all() -> void:
 	set_process(false)
 	music.stop();music.stream=null
 	ui_voice.stop();ui_voice.stream=null
+	gate_voice.stop();gate_voice.stream=null
 
 func _exit_tree() -> void:
 	stop_all()

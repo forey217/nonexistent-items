@@ -1,9 +1,18 @@
 extends Node2D
 ## Real geometry; image concepts are never used as flattened gameplay backgrounds.
 const S=preload("res://scripts/paper_mill_state.gd")
+const MissionModel=preload("res://scripts/paper_mission_model.gd")
+var mission_models:Dictionary={}
+var lift_arrival_materials:Dictionary={}
+var tool_model:Node3D
+var catch_ring:Node3D
+var bridge_ring:Node3D
+var yard=preload("res://scripts/paper_mill_yard.gd").new()
 const Rig=preload("res://scripts/yanyue_walk_rig.gd")
 const StairGuards=preload("res://scripts/paper_mill_stair_guards.gd")
 var stair_guards:Array[Dictionary]=[]
+var push_arrow:Node3D
+var push_arrow_material:StandardMaterial3D
 var room:Node
 var viewport:=SubViewport.new()
 var world_root:=Node3D.new()
@@ -13,6 +22,10 @@ var roots:Array[Node3D]=[]
 var roofs:Array[Node3D]=[]
 var weight_nodes:Array[Node3D]=[]
 var rails:Array[StandardMaterial3D]=[]
+const RailNetwork=preload("res://scripts/paper_rail_network.gd")
+var rail_networks:Array=[]
+var lift_rail_material:StandardMaterial3D
+var lift_rail_tongues:Node3D
 var world_lights:Array[StandardMaterial3D]=[]
 var bridge:Node3D
 var side_bridge:Node3D
@@ -82,6 +95,7 @@ var zoom_ground_anchor:=Vector2.ZERO
 var pointer_zoom:=false
 var follow_recovery:=0.0
 var framing_height:=S.HEIGHT
+var memory_props:Node3D
 
 func _ready() -> void:
 	viewport.size=Vector2i(1280,800);viewport.own_world_3d=true
@@ -93,8 +107,11 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_update_resolution)
 	_materials();_lights();_landscape()
 	for layer in range(2):_build_layer(layer)
+	memory_props=preload("res://scripts/paper_mill_memory_props.gd").new()
+	world_root.add_child(memory_props);memory_props.build(self)
 	stair_guards=StairGuards.build(self)
 	_build_mechanisms();_actor();_highlight()
+	_build_push_guides()
 	set_focus(room.player_plan(),true)
 	_sync(0.0)
 
@@ -195,16 +212,10 @@ func _landscape() -> void:
 		world_root.add_child(bamboo)
 	# Back terraces join the playable courtyard to a continuous inhabited hillside.
 	var hillside:=mat("8d9980",load("res://assets/paper_mill/stone.png"))
-	for spec in [[Vector3(-8,0,8),Vector3(15,13,34)],[Vector3(12,0,-7),Vector3(50,15,12)]]:
+	for spec in [[Vector3(-18,-3,8),Vector3(9,10,34)],[Vector3(12,-3,-16),Vector3(45,11,9)]]:
 		var rock_mesh:=SphereMesh.new();rock_mesh.radial_segments=32;rock_mesh.rings=16
 		var hill:=MeshInstance3D.new();hill.mesh=rock_mesh;hill.material_override=hillside;hill.position=spec[0];hill.scale=spec[1];world_root.add_child(hill)
-	var outskirts:=group(world_root,Vector3(0,S.HEIGHT,0));var roofs_out:=group(outskirts)
-	box(outskirts,Vector3(-3,-.3,9),Vector3(6,.6,20),stone)
-	box(outskirts,Vector3(12,-.3,-2),Vector3(30,.6,4),stone)
-	building(outskirts,roofs_out,Vector2(-3,5),Vector2(4,4),false)
-	building(outskirts,roofs_out,Vector2(10,-2.4),Vector2(5,3),false)
-	for x in [-4.5,-1.0,4.0,13.0,20.0]:paper_rack(outskirts,Vector2(x,-.7),2.1)
-	preload("res://scripts/static_mesh_batch.gd").compact(outskirts)
+	yard.exterior(self)
 
 func floor_mesh(parent:Node3D,layer:int) -> void:
 	var surfaces:Array[SurfaceTool]=[]
@@ -216,7 +227,8 @@ func floor_mesh(parent:Node3D,layer:int) -> void:
 			if layer==0 and fx>=2.5 and fx<4.5 and fz>=3 and fz<8.5:continue
 			if (fx>=10 and fx<12 and fz>=9 and fz<11) or (fx>=17 and fx<19 and fz>=6 and fz<8):continue
 			if fx>=13 and fx<22 and fz>=11 and fz<12:continue
-			if fx>=3 and fx<7 and fz>=10 and fz<11:continue
+			if layer==0 and S.OLD_CORRIDOR_GAP.has_point(Vector2(fx+.25,fz+.25)):continue
+			if layer==1 and fx>=3 and fx<7 and fz>=10 and fz<11:continue
 			var index:=1 if fx>=11 or fz>=10 else 0
 			if layer==0 and fx>=2.5 and fx<9 and fz>=1.5 and fz<10:index=2
 			var st:SurfaceTool=surfaces[index]
@@ -248,35 +260,27 @@ func _build_layer(layer:int) -> void:
 	var root:=group(world_root,Vector3(0,S.HEIGHT if layer==0 else 0.0,0));roots.append(root)
 	floor_mesh(root,layer)
 	box(root,Vector3(17.5,-.32,11.5),Vector3(9,.15,.85),water_mat)
-	box(root,Vector3(4.5,-.32,10.5),Vector3(4,.15,.85),water_mat)
+	if layer==0:
+		var gap:=S.OLD_CORRIDOR_GAP
+		box(root,point(gap.get_center(),-.32),Vector3(gap.size.x,.15,gap.size.y-.08),water_mat)
+	else:box(root,Vector3(4.5,-.32,10.5),Vector3(4,.15,.85),water_mat)
 	box(root,Vector3(22,-.32,8),Vector3(1.8,.15,18),water_mat)
 	for edge in [0.2,23.8]:
 		box(root,Vector3(edge,.34,9),Vector3(.35,.68,18),stone)
-		for z in range(1,18,3):cylinder(root,Vector3(edge,.75,z),.10,1.25,wood)
+		for z in range(1,18,3):cylinder(root,Vector3(edge,.38,z),.07,.20,wood)
 	for z in [0.2,17.8]:box(root,Vector3(12,.34,z),Vector3(24,.68,.35),stone)
 	var roof_group:=group(root);roofs.append(roof_group)
-	building(root,roof_group,Vector2(5,14),Vector2(5,4),layer==0)
-	building(root,roof_group,Vector2(10,15.2),Vector2(4.5,2.8),false)
-	# Open timber canopies give the work areas detail without hiding their paths.
-	for at in [Vector2(16,16),Vector2(20,1.2)]:
-		for x in [-1.0,1.0]:
-			for z in [-.55,.55]:box(root,point(at)+Vector3(x,.85,z),Vector3(.08,1.7,.08),wood)
-		box(root,point(at)+Vector3(0,1.75,0),Vector3(2.3,.08,1.5),roof_mat)
-		for i in range(3):
-			for j in range(5):box(root,point(at)+Vector3(-.7+i*.65,.15+j*.045,0),Vector3(.5,.04,.6),paper_mat)
-	for x in [2.0,9.0,15.0]:paper_rack(root,Vector2(x,16.7),2.5)
-	for z in [2.0,4.5,7.0]:paper_rack(root,Vector2(1.1,z),2.0,PI*.5)
-	for at in [Vector2(8,15),Vector2(12,16),Vector2(2,9),Vector2(21,16)]:vat(root,at)
-	# Rail assemblies are low and leave space for the character on both sides.
-	var railmat:=mat("8a8f88");rails.append(railmat)
+	yard.workyard(self,root,layer)
+	# Only simulation edges create track; intersecting routes are separate networks.
+	var railmat:=mat("8a8f88");railmat.cull_mode=BaseMaterial3D.CULL_DISABLED;rails.append(railmat)
 	if layer==0:
-		rail(root,Vector2(18,7),Vector2(18,10.8),railmat)
-		rail(root,Vector2(18,12.2),Vector2(18,14),railmat);rail(root,Vector2(18,14),S.UPPER_ANCHOR,railmat)
 		bridge=walkway(root,S.BRIDGE+Vector2(0,.5),Vector2(1.6,1.5))
-		side_bridge=walkway(root,Vector2(5,10.5),Vector2(1.6,1.3))
+		side_bridge=walkway(root,S.OLD_CORRIDOR_DECK.get_center(),S.OLD_CORRIDOR_DECK.size)
 		bridge.name="MovableBridge";side_bridge.name="SideBridge"
+		var network=RailNetwork.new(self);network.build(root,S.MOUNTAIN_STOPS,S.UPPER_EDGES,railmat,bridge);rail_networks.append(network)
 	else:
-		for seg in [[Vector2(5,12),Vector2(7,12)],[Vector2(7,12),S.CATCH_PLATE],[S.CATCH_PLATE,Vector2(11,8)],[Vector2(11,8),S.DROP],[S.DROP,Vector2(18,10)],[Vector2(18,10),S.LIFT],[Vector2(11,8),Vector2(18,8)],[Vector2(18,8),S.SLUICE],[Vector2(12,8),Vector2(12,13)],[Vector2(12,13),S.LOWER_ANCHOR]]:rail(root,seg[0],seg[1],railmat)
+		var water=RailNetwork.new(self);water.build(root,S.WATER_STOPS,S.WATER_EDGES,railmat);rail_networks.append(water)
+		var mountain=RailNetwork.new(self);mountain.crossings.append(Vector2(12,10));mountain.build(root,S.MOUNTAIN_STOPS,S.LOWER_EDGES,railmat);rail_networks.append(mountain)
 		walkway(root,Vector2(5,10.5),Vector2(1.6,1.3));walkway(root,Vector2(18,11.5),Vector2(1.6,1.5))
 	for at in [S.DROP,S.LIFT]:
 		for x in [-1.25,1.25]:box(root,point(at)+Vector3(x,.2,0),Vector3(.16,.4,2.4),wood)
@@ -292,7 +296,7 @@ func _build_layer(layer:int) -> void:
 	stair_sign.modulate=Color("e2c380");stair_sign.outline_modulate=Color("273c35");root.add_child(stair_sign)
 	roof_group.name="Roofs"
 	# Keep switchable groups distinct while batching their static mesh leaves.
-	preload("res://scripts/static_mesh_batch.gd").compact(root,[&"Roofs",&"MovableBridge",&"SideBridge",&"FrontFloor",&"StairCutaway"])
+	preload("res://scripts/static_mesh_batch.gd").compact(root,[&"Roofs",&"MovableBridge",&"SideBridge",&"FrontFloor",&"StairCutaway",&"LowPapermakingDetails"])
 	var particles:=CPUParticles3D.new();particles.amount=24;particles.lifetime=7.0
 	particles.emission_shape=CPUParticles3D.EMISSION_SHAPE_BOX;particles.emission_box_extents=Vector3(9,.1,6)
 	particles.position=Vector3(12,.4,9);particles.direction=Vector3.UP;particles.gravity=Vector3(0,.1,0)
@@ -339,20 +343,10 @@ func vat(parent:Node3D,at:Vector2) -> void:
 	box(parent,point(at)+Vector3(0,.42,0),Vector3(1.12,.03,.74),paper_mat)
 	for z in [-.42,.42]:box(parent,point(at)+Vector3(0,.45,z),Vector3(1.4,.08,.06),wood)
 
-func rail(parent:Node3D,a:Vector2,b:Vector2,material:Material) -> void:
-	var dir:=(b-a).normalized();var side:=Vector2(-dir.y,dir.x)*.27
-	for offset in [-side,side]:beam(parent,point(a+offset,.065),point(b+offset,.065),.065,material)
-	for i in range(int(a.distance_to(b)*2.5)+1):
-		var at:=a.lerp(b,float(i)/maxf(1,int(a.distance_to(b)*2.5)))
-		beam(parent,point(at-side*1.4,.03),point(at+side*1.4,.03),.08,wood)
-
 func pad(parent:Node3D,at:Vector2,symbol:String) -> MeshInstance3D:
-	box(parent,point(at,.10),Vector3(1.2,.2,1.2),dark)
-	var face:=box(parent,point(at,.23),Vector3(1.05,.06,1.05),brass)
-	for x in [-.48,.48]:
-		for z in [-.48,.48]:cylinder(parent,point(at)+Vector3(x,.28,z),.035,.035,dark)
-	var label:=Label3D.new();label.text=symbol;label.font_size=70;label.pixel_size=.005;label.rotation_degrees.x=-90;label.position=point(at,.27);parent.add_child(label)
-	return face
+	var id:String={"接":"catch_pad","闸":"sluice_pad","山":"upper_anchor"}.get(symbol,"lower_anchor")
+	var model=MissionModel.new(id);parent.add_child(model);model.position=point(at);mission_models[id]=model
+	return model.face
 
 func _build_mechanisms() -> void:
 	var u:=roots[0];var l:=roots[1]
@@ -363,8 +357,26 @@ func _build_mechanisms() -> void:
 		for x in [-1.1,1.1]:
 			box(world_root,point(at)+Vector3(x,S.HEIGHT*.5,0),Vector3(.18,S.HEIGHT+.7,.18),wood)
 			for y in [.3,S.HEIGHT]:box(world_root,point(at)+Vector3(x,y,0),Vector3(.25,.25,.25),brass)
-	lift=walkway(world_root,S.LIFT,Vector2(1.9,1.9))
+	lift=MissionModel.new("lift");world_root.add_child(lift);lift.position=point(S.LIFT);mission_models["lift"]=lift
+	# Platform track travels with the lift. Only short docking tongues extend
+	# across the lip when aligned, leaving the empty shaft visibly open.
+	lift_rail_material=rails[1].duplicate()
+	var track=RailNetwork.new(self)
+	for x in [-RailNetwork.GAUGE,RailNetwork.GAUGE]:
+		track.prism(lift,[Vector2(x-.0325,0),Vector2(x+.0325,0),Vector2(x+.0325,1.1),Vector2(x-.0325,1.1)],lift_rail_material)
+	lift_rail_tongues=group(lift)
+	for x in [-RailNetwork.GAUGE,RailNetwork.GAUGE]:
+		track.prism(lift_rail_tongues,[Vector2(x-.0325,1.1),Vector2(x+.0325,1.1),Vector2(x+.0325,RailNetwork.DOCK_LIP),Vector2(x-.0325,RailNetwork.DOCK_LIP)],lift_rail_material)
+	for z in [.20,.58,.96]:track.sleeper(lift,Vector2(0,z),Vector2.DOWN)
+
 	for x in [-1.0,1.0]:cylinder(world_root,point(S.LIFT)+Vector3(x,S.HEIGHT*.5+.6,0),.025,S.HEIGHT+1.1,brass)
+	for x in [-1.18,1.18]:
+		for y in [.16,S.HEIGHT+.16]:
+			var dock_layer:=0 if y>S.HEIGHT*.5 else 1
+			if not lift_arrival_materials.has(dock_layer):lift_arrival_materials[dock_layer]=brass.duplicate()
+			var dock_material:StandardMaterial3D=lift_arrival_materials[dock_layer]
+			box(world_root,point(S.LIFT)+Vector3(x,y,0),Vector3(.08,.035,.65),dock_material)
+			for i in range(4):box(world_root,point(S.LIFT)+Vector3(x,y+i*.065,-.29),Vector3(.10,.015,.045),dock_material)
 	pressure_faces.append(pad(l,S.CATCH_PLATE,"接"));pressure_faces.append(pad(l,S.SLUICE,"闸"))
 	for segment in [[Vector2(7,8),Vector2(9,8)],[Vector2(9,8),Vector2(9,10)],[Vector2(9,10),S.DROP]]:
 		beam(l,point(segment[0],.08),point(segment[1],.08),.045,brass)
@@ -372,7 +384,7 @@ func _build_mechanisms() -> void:
 	for at in [Vector2(5,12),S.LOWER_ANCHOR]:
 		for x in [-.7,.7]:box(l,point(at)+Vector3(x,1.35,0),Vector3(.12,2.7,.18),wood)
 		box(l,point(at,2.7),Vector3(1.6,.2,.5),dark)
-	lower_light=box(l,point(S.LOWER_ANCHOR,2.57),Vector3(1.15,.07,.9),brass)
+	var lower_model=MissionModel.new("lower_anchor");l.add_child(lower_model);lower_model.position=point(S.LOWER_ANCHOR,2.34);mission_models["lower_anchor"]=lower_model;lower_light=lower_model.face
 	cover=group(l,point(S.LOWER_ANCHOR,2.45));box(cover,Vector3.ZERO,Vector3(1.3,.12,1),wood)
 	lowpass_gate=group(l,Vector3(12,.75,12.3))
 	for x in [-.6,-.3,0.0,.3,.6]:box(lowpass_gate,Vector3(x,0,0),Vector3(.06,1.5,.06),brass)
@@ -389,9 +401,10 @@ func _build_mechanisms() -> void:
 	beam(l,Vector3(22,.9,4),Vector3(19,.9,4),.15,brass)
 	beam(l,Vector3(19,.9,4),Vector3(19,1.2,7),.10,dark)
 	sluice_gate=group(l,Vector3(21,.4,4));box(sluice_gate,Vector3.ZERO,Vector3(1.6,.7,.15),wood)
-	clamp=group(world_root)
-	for x in [-.12,.12]:box(clamp,Vector3(x,0,0),Vector3(.07,.3,.35),brass)
-	cylinder(clamp,Vector3.ZERO,.08,.42,wood).rotation.z=PI*.5
+	tool_model=MissionModel.new("clip");roots[0].add_child(tool_model);tool_model.position=point(S.TOOL,.45)+Vector3(0,0,.36);tool_model.scale=Vector3.ONE*1.45;mission_models["tool"]=tool_model
+	catch_ring=MissionModel.new("ring");roots[1].add_child(catch_ring);catch_ring.position=point(S.DROP+Vector2(1.4,0),.25);mission_models["catch"]=catch_ring
+	bridge_ring=MissionModel.new("ring");roots[0].add_child(bridge_ring);bridge_ring.position=point(S.BRIDGE+Vector2(.9,-.5),.10);mission_models["bridge"]=bridge_ring
+	clamp=MissionModel.new("clip");world_root.add_child(clamp);clamp.scale=Vector3.ONE*1.15;mission_models["held_clip"]=clamp
 	portal=group(u,point(S.EXIT))
 	for x in [-.8,.8]:box(portal,Vector3(x,1.2,0),Vector3(.18,2.5,.25),wood)
 	box(portal,Vector3(0,2.45,0),Vector3(1.9,.22,.32),wood)
@@ -401,12 +414,7 @@ func _build_mechanisms() -> void:
 	box(completion_paper,Vector3.ZERO,Vector3(2.3,1.5,.025),paper_mat)
 	var drawing:=Label3D.new();drawing.text="水路既通 · 纸山重明\n潮纹所向：瓯江孤屿";drawing.font_size=32;drawing.pixel_size=.008;drawing.position.z=.02;drawing.modulate=Color("365b52");drawing.outline_size=0;completion_paper.add_child(drawing)
 	for i in range(2):
-		var n:=group(world_root);weight_nodes.append(n)
-		box(n,Vector3(0,.27,0),Vector3(.64,.5,.64),dark)
-		for x in [-.31,.31]:
-			for z in [-.31,.31]:box(n,Vector3(x,.28,z),Vector3(.07,.53,.07),brass)
-		cylinder(n,Vector3(0,.55,0),.19,.025,brass)
-		var symbol:=Label3D.new();symbol.text="山" if i==0 else "水";symbol.font_size=64;symbol.pixel_size=.006;symbol.position=Vector3(0,.57,0);symbol.rotation_degrees.x=-90;n.add_child(symbol)
+		var n=MissionModel.new("mountain" if i==0 else "water");world_root.add_child(n);weight_nodes.append(n);mission_models["w%d"%i]=n
 		readability_mark(n,"山" if i==0 else "水",Vector3(0,.95,0))
 	readability_mark(roots[0],"夹",point(S.TOOL,1.15))
 	readability_mark(clamp,"夹",Vector3(0,.8,0))
@@ -503,6 +511,21 @@ func _camera() -> void:
 
 func _process(delta:float) -> void:_sync(delta)
 
+func _build_push_guides() -> void:
+	push_arrow=group(world_root);push_arrow_material=mat("c6db91")
+	push_arrow_material.shading_mode=BaseMaterial3D.SHADING_MODE_UNSHADED
+	beam(push_arrow,Vector3(.72,.03,0),Vector3(1.48,.03,0),.075,push_arrow_material)
+	for sign_value in [-1,1]:beam(push_arrow,Vector3(1.48,.03,0),Vector3(1.2,.03,sign_value*.22),.075,push_arrow_material)
+
+func _update_push_guide() -> void:
+	push_arrow.hide()
+	if room.hud==null or room.hud.menu.visible or not room.pending.has("direction"):return
+	var index:=int(room.pending.id.trim_prefix("w"));var w:Dictionary=room.state.weights[index]
+	if w.mode!="rest" or w.layer!=room.view_layer:return
+	var direction:Vector2=room.pending.direction
+	push_arrow.position=point(w.pos,room.state.weight_height(index)+.1)
+	push_arrow.rotation.y=-atan2(direction.y,direction.x);push_arrow.show()
+
 func _fade_stair_guards(delta:float) -> void:
 	var excluded:Array[RID]=[]
 	for section in stair_guards:
@@ -534,7 +557,7 @@ func _sync(delta:float) -> void:
 		if safe_center.distance_to(desired)<.02:safe_center=desired
 	var following:bool=auto_follow and room.player_layer==room.view_layer
 	var desired_height:float=S.HEIGHT if room.view_layer==0 else 0.0
-	if room.transition_age>0:desired_height=room.actor_height()
+	if room.transition_age>0 or room.lift_riding and following:desired_height=room.actor_height()
 	elif link_time>0 and not following:desired_height=S.HEIGHT*.45
 	framing_height=move_toward(framing_height,lerpf(framing_height,desired_height,1.0-exp(-delta*18.0)),delta*12.0)
 	if absf(framing_height-desired_height)<.0001:framing_height=desired_height
@@ -549,7 +572,7 @@ func _sync(delta:float) -> void:
 		mark.visible=zoom<.85 and (i!=2 or not room.state.clip_owned)
 	zoom_age=maxf(0,zoom_age-delta)
 	if following and not dragging and not rotating:
-		var destination:Vector2=room.player_plan()
+		var destination:Vector2=room.player.display_position()/room.SCALE
 		var response:=lerpf(12.0,20.0,clampf((zoom-1.0)/.6,0,1))
 		# A world-space bound derived from screen pixels also protects close views
 		# at low frame rates. Manual-to-follow recovery is allowed to ease in first.
@@ -571,30 +594,10 @@ func _sync(delta:float) -> void:
 		if zoom_age<=0 and zoom==target_zoom:pointer_zoom=false
 	_fade_stair_guards(delta)
 	var s=room.state
-	var actor_screen:=to_ui(camera.unproject_position(point(room.player_plan(),room.actor_height()+1.6)))
-	var actor_foot:=to_ui(camera.unproject_position(point(room.player_plan(),room.actor_height())))
-	var actor_bounds:=Rect2(Vector2(actor_screen.x-22*zoom,actor_screen.y-10*zoom),Vector2(44*zoom,absf(actor_foot.y-actor_screen.y)+25*zoom))
-	var target_bounds:=Rect2()
-	var inspected:Dictionary=room.target_by_id(focused_target)
-	if not inspected.is_empty() and inspected.layer==room.view_layer:
-		var at:Vector2=screen(inspected.pos,inspected.layer,.7)
-		target_bounds=Rect2(at-Vector2(25,45)*zoom,Vector2(50,70)*zoom)
-	var near_workshop:bool=Rect2(1,10,13,8).has_point(room.player_plan())
-	wall_mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA if near_workshop and room.view_layer==room.player_layer else BaseMaterial3D.TRANSPARENCY_DISABLED
-	wall_mat.albedo_color.a=.24 if near_workshop and room.view_layer==room.player_layer else 1.0
+	memory_props.sync(delta,s.worlds)
 	for i in range(2):
-		roots[i].visible=i==room.view_layer or link_time>0
-		roofs[i].visible=link_time<=0 and (room.player_plan().y<11.5 or room.player_layer!=i)
-		if roofs[i].visible and (i==room.player_layer or i==room.view_layer and target_bounds.has_area()):
-			for mesh in roofs[i].get_children():
-				if not mesh is MeshInstance3D:continue
-				var bounds:AABB=mesh.get_aabb();var projected:=Rect2()
-				for corner in range(8):
-					var vertex:Vector3=mesh.global_transform*bounds.get_endpoint(corner)
-					var pixel:=to_ui(camera.unproject_position(vertex))
-					if corner==0:projected=Rect2(pixel,Vector2.ZERO)
-					else:projected=projected.expand(pixel)
-				if i==room.player_layer and projected.intersects(actor_bounds) or i==room.view_layer and target_bounds.has_area() and projected.intersects(target_bounds):roofs[i].visible=false;break
+		roots[i].visible=(i==room.view_layer or link_time>0) and not (i==0 and room.lift_riding and s.lift_in_transit())
+		roofs[i].visible=false # No roofs or furniture remain over the active courts.
 		rails[i].albedo_color=[Color("b3e1e3"),Color("b39d76"),Color("a398b7"),Color("a8c2a7")][s.worlds[i]]
 		layer_stone[i].albedo_color=[Color("d2dbd7"),Color("ded0b5"),Color("d4cddd"),Color("d5d7c0")][s.worlds[i]]
 		floating_paper[i].emitting=s.worlds[i]==2
@@ -613,31 +616,37 @@ func _sync(delta:float) -> void:
 			piece.rotation=Vector3(t*(i+1),t*2,t*i*.3)
 	floor_front.visible=link_time<=0 or room.transition_age>0
 	stair_floor.visible=room.transition_age<=0
-	bridge.visible=s.bridge_solid();side_bridge.visible=s.worlds[0]==3 or s.clip_owned
+	bridge.visible=s.bridge_solid();side_bridge.visible=s.old_corridor_solid()
+	tool_model.visible=not s.clip_owned
+	catch_ring.set_fixed(s.clip_target=="catch");bridge_ring.set_fixed(s.clip_target=="bridge")
+	catch_ring.position.y=.25+s.catch_height*.15
 	catch_tray.position.y=s.catch_height*.15
 	lift.position.y=s.lift_height
+	lift_rail_tongues.visible=s.lift_docked(0) or s.lift_docked(1)
+	lift_rail_material.albedo_color=rails[0 if s.lift_height>S.HEIGHT*.5 else 1].albedo_color
 	cage_door.rotation.x=PI*.48 if s.cage_open else 0.0
 	cover.position.x=S.LOWER_ANCHOR.x+(1.5 if s.upper_anchored else 0.0)
 	lowpass_gate.position.y=-1.0 if s.lowpass_open else .75
-	sluice_gate.position.y=.9 if s.pressure("sluice") or s.lower_anchored else .4
+	sluice_gate.position.y=.9 if s.waterwheel_running() else .4
 	for i in range(2):pressure_faces[i].position.y=.12 if s.pressure("catch" if i==0 else "sluice") else .23
 	completion_paper.visible=s.lower_anchored
 	paper_unfold=move_toward(paper_unfold,1.0 if s.lower_anchored else 0.0,delta*.8)
 	completion_paper.scale.y=maxf(.02,smoothstep(0.0,1.0,paper_unfold))
-	if s.pressure("sluice") or s.lower_anchored:wheel.rotation.x+=delta*1.7
+	if s.waterwheel_running():wheel.rotation.x+=delta*1.7
 	clamp.visible=s.clip_target!=""
-	if clamp.visible:clamp.position=point(S.DROP+Vector2(1.0,0),.4) if s.clip_target=="catch" else point(S.BRIDGE+Vector2(.8,0),S.HEIGHT+.3)
+	if clamp.visible:clamp.position=(catch_ring.global_position if s.clip_target=="catch" else bridge_ring.global_position)+Vector3(0,.36,0)
 	portal.visible=room.view_layer==0
 	portal_mat.albedo_color.a=.45 if s.lower_anchored else .05
 	actor.visible=room.player_layer==room.view_layer or link_time>0
-	actor.position=point(room.player_plan(),room.actor_height()+.04)
+	actor.position=point(room.player.display_position()/room.SCALE,room.actor_height()+.04)
 	shadow.position=actor.position;shadow.visible=actor.visible
 	var dir:Vector2=room.player._last_direction
 	var a:=camera.unproject_position(actor.position);var b:=camera.unproject_position(actor.position+Vector3(dir.x,0,dir.y))
 	var screen_dir:Vector2=(b-a).normalized()
-	var row:int=(0 if screen_dir.x>=0 else 1) if screen_dir.y>=0 else (2 if screen_dir.x>=0 else 3)
-	paper.pose(room.player._walk_time if room.transition_age<=0 else room.elapsed*100,room.player.walking or room.transition_age>0,row,screen_dir,delta)
+	var row:int=preload("res://scripts/yanyue_facing.gd").row(screen_dir,paper.facing_row,room.player.controls_locked or room.transition_age>0)
+	paper.pose(room.player.display_distance() if room.transition_age<=0 else room.elapsed*100,room.player.walking or room.transition_age>0,row,screen_dir,delta,room.player.movement_ratio if room.transition_age<=0 else 1.0)
 	paper.push_amount=room.push_age/.45 if room.interacting else 0.0
+	_update_push_guide()
 	paper.cast_amount=sin((.5-room.world_cast_time)/.5*PI) if room.world_cast_time>0 else 0.0
 	var target_id:String=room.hud.hover_target if room.hud!=null and not room.hud.hover_target.is_empty() else room.hit_target(get_viewport().get_mouse_position())
 	var target:Dictionary=room.target_by_id(target_id)
@@ -645,6 +654,8 @@ func _sync(delta:float) -> void:
 	if highlight.visible:
 		highlight.position=point(target.pos,(S.HEIGHT if target.layer==0 else 0.0)+.14)
 		highlight_label.text=("走入楼梯 · "+("下楼" if room.player_layer==0 else "上楼")) if target.id=="stairs" else target.name+" · E / 右键"
+		if target.id in ["w0","w1"]:
+			highlight_label.text="右键 / E · 选择方向"
 
 func _unhandled_input(event:InputEvent) -> void:
 	if room.hud!=null and room.hud.menu.visible:return

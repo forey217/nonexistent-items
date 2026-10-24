@@ -67,6 +67,7 @@ var interacting := false
 var push_age := 0.0
 var push_committed := false
 var push_stand := Vector2.ZERO
+var task_feedback=preload("res://scripts/task_resonance.gd").new()
 var arrival: Node
 
 func arrival_busy() -> bool:
@@ -146,6 +147,7 @@ func _ready() -> void:
 	switch_fx.hide()
 	hud.view_reset_requested.connect(orbit_view.reset_view)
 	hud.task_tracker.anchor_hovered.connect(orbit_view.set_anchor_highlight)
+	task_feedback.room=self;add_child(task_feedback)
 	_rebuild_navigation()
 	hud.refresh(state)
 	hud.update_skill(0.0,false)
@@ -229,6 +231,7 @@ func _hit_block(at: Vector2) -> bool:
 
 func _input(event: InputEvent) -> void:
 	if hud.menu.visible:return
+	if orbit_view!=null and event is InputEventMouse:orbit_view.pointer_position=event.position
 	if event is InputEventMouse and hud.blocks_map(event.position):
 		if event is InputEventMouseButton and not event.pressed and orbit_view!=null:orbit_view.handle_input(event)
 		return
@@ -447,6 +450,7 @@ func reset_tutorial() -> void:
 	hud.update_skill(0,false)
 	hud.update_completion(false,false,0.0)
 	_gate_open=not gate_ready
+	task_feedback.baseline([],true)
 	dialogue_reset.emit()
 
 func cancel_orders() -> void:
@@ -462,6 +466,7 @@ func show_hint() -> void:
 	dialogue_hint.emit(state.hint(_hint_level))
 
 func _physics_process(delta: float) -> void:
+	for audio_voice in sound.voices:audio_voice.stream_paused=hud.menu.visible
 	if hud.menu.visible:return
 	_elapsed+=delta
 	if finished: return
@@ -516,6 +521,7 @@ func _physics_process(delta: float) -> void:
 	hud.refresh(state)
 	hud.update_skill(world_cooldown,casting,pending_world)
 	hud.update_completion(seal_active,seal_completed,seal_age)
+	task_feedback.tick(delta)
 	if gate_ready and player.position.distance_to(portal_position)<EXIT_RADIUS: _finish()
 	_marker_time=maxf(0,_marker_time-delta)
 	queue_redraw()
@@ -557,6 +563,7 @@ func _draw() -> void:
 
 func _finish() -> void:
 	if finished: return
+	task_feedback.clear();hud.task_tracker.get_meta("task_transition").cancel()
 	_clear_push()
 	orbit_view.film.cancel()
 	finished=true

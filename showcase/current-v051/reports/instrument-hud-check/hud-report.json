@@ -1,0 +1,131 @@
+{
+  "checks": 31,
+  "failures": 0,
+  "native_render": true,
+  "results": [
+    {
+      "passed": true,
+      "test": "tutorial_only_three_compact_groups_at_rest"
+    },
+    {
+      "passed": true,
+      "test": "legacy_audio_and_title_buttons_hidden"
+    },
+    {
+      "passed": true,
+      "test": "world_buttons_centered_and_within_bottom_safe_margin"
+    },
+    {
+      "passed": true,
+      "test": "entry_hint_finishes_fade_after_first_input"
+    },
+    {
+      "passed": true,
+      "test": "task_expands_without_revealing_solution"
+    },
+    {
+      "passed": true,
+      "test": "task_details_release_map_when_closed"
+    },
+    {
+      "passed": true,
+      "test": "real_world_button_changes_world_without_map_click"
+    },
+    {
+      "passed": true,
+      "test": "all_three_instrument_rings_share_real_cooldown"
+    },
+    {
+      "passed": true,
+      "test": "menu_pauses_mechanisms_and_blocks_walking"
+    },
+    {
+      "passed": true,
+      "test": "shared_archive_options_have_four_channels"
+    },
+    {
+      "passed": true,
+      "test": "in_game_audio_settings_use_existing_buses"
+    },
+    {
+      "passed": true,
+      "test": "manual_opens_inside_existing_paper_page"
+    },
+    {
+      "passed": true,
+      "test": "manual_escape_restores_options_focus"
+    },
+    {
+      "passed": true,
+      "test": "options_escape_returns_to_compact_menu"
+    },
+    {
+      "passed": true,
+      "test": "menu_escape_restores_prior_control_lock_and_focus"
+    },
+    {
+      "passed": true,
+      "test": "reset_shortcut_requires_confirmation"
+    },
+    {
+      "passed": true,
+      "test": "confirmed_reset_executes_existing_reset"
+    },
+    {
+      "passed": true,
+      "test": "subtitle_uses_reserved_region_above_world_controls"
+    },
+    {
+      "passed": true,
+      "test": "menu_pauses_voice_and_caption_together"
+    },
+    {
+      "passed": true,
+      "test": "closing_menu_resumes_current_voice"
+    },
+    {
+      "passed": true,
+      "test": "task_uses_real_puzzle_progress"
+    },
+    {
+      "passed": true,
+      "test": "wide_window_hud_keeps_safe_edges"
+    },
+    {
+      "passed": true,
+      "test": "paper_mill_retains_four_worlds_and_two_layers"
+    },
+    {
+      "passed": true,
+      "test": "paper_mill_inventory_and_helpers_use_edge_strips"
+    },
+    {
+      "passed": true,
+      "test": "layer_button_observes_without_teleport_or_route"
+    },
+    {
+      "passed": true,
+      "test": "paper_mill_fourth_world_uses_actual_rule"
+    },
+    {
+      "passed": true,
+      "test": "paper_mill_menu_preserves_existing_pause"
+    },
+    {
+      "passed": true,
+      "test": "paper_mill_manual_describes_its_actual_controls"
+    },
+    {
+      "passed": true,
+      "test": "paper_mill_task_click_locates_real_target_without_moving"
+    },
+    {
+      "passed": true,
+      "test": "expanded_records_clear_subtitle_slot_and_object_badge"
+    },
+    {
+      "passed": true,
+      "test": "closed_records_do_not_block_map"
+    }
+  ]
+}

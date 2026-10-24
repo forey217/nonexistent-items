@@ -72,7 +72,7 @@ func _ready() -> void:
 		main_buttons[i].focus_neighbor_top = main_buttons[(i + 2) % 3].get_path()
 		main_buttons[i].focus_neighbor_bottom = main_buttons[(i + 1) % 3].get_path()
 	_center_label("同一件东西，换个世界，就有另一种解法。", Rect2(200, 710, 880, 30), 16, Color("d2d6cd"))
-	_label("世界观察局  ·  本地试玩", Vector2(34, 757), 11, Color("a8b7b8"))
+	_label(preload("res://scripts/build_info.gd").LABEL, Vector2(34, 757), 13, Color("c7d2cd"))
 	_label("↑ ↓ 选择    Enter 确认    M 声音    F11 全屏", Vector2(917, 757), 11, Color("a8b7b8"))
 	_build_options()
 	fade = ColorRect.new()
@@ -202,7 +202,7 @@ func begin() -> void:
 	starting = true
 	start_button.disabled = true
 	fade.mouse_filter = Control.MOUSE_FILTER_STOP
-	sound.tone(440, 0.25)
+	get_parent().ambience.play_entry()
 	start_requested.emit()
 
 func set_entry_progress(value: float) -> void:

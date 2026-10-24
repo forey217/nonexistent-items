@@ -1,0 +1,10 @@
+{
+  "selection": "用户选择试听 B 温暖共鸣，2026-10-23 接入",
+  "method": "Original local procedural synthesis: additive oscillators, filtered seeded noise, stereo placement and short delay diffusion. No external samples.",
+  "preview": "showcase/sound-preview-v01/B-preview.wav",
+  "playback": {"bus": "SFX", "volume_db": -3.0, "pitch_scale": 1.0, "loop": false},
+  "files": [
+    {"file": "enter.wav", "original": "showcase/sound-preview-v01/B-enter.wav", "seconds": 3.6, "sha256": "3dd90b29767e3b44a33d6a855c0eb420d76cf14ab5203dd3070ea59baeffb754"},
+    {"file": "select.wav", "original": "showcase/sound-preview-v01/B-select.wav", "seconds": 2.9, "sha256": "af34da35195b0fc7c73cd31c6f561a57a6c68ae4d429f7706f5dd3027bc48422"}
+  ]
+}

@@ -1,0 +1,370 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "rail_0_0_lift_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_dock_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_dock_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_bridge_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_bridge_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_anchor_turn_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_anchor_turn_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_0_anchor_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_1_catch_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_1_junction_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_1_junction_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_1_lift_turn_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_1_lift_turn_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_0_1_lift_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_cage_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_cage_turn_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_cage_turn_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_catch_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_catch_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_junction_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_junction_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_guide_turn_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_guide_turn_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_guide_turn_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_sluice_turn_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_sluice_turn_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_sluice_(0.0, 1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_guide_bend_(1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_guide_bend_(0.0, -1.0)"
+    },
+    {
+      "passed": true,
+      "test": "rail_1_1_guide_(-1.0, 0.0)"
+    },
+    {
+      "passed": true,
+      "test": "cage_elbow_passes_without_another_command"
+    },
+    {
+      "passed": true,
+      "test": "water_plain_junction_passes_but_real_fork_stops"
+    },
+    {
+      "passed": true,
+      "test": "water_sluice_elbow_passes"
+    },
+    {
+      "passed": true,
+      "test": "water_guide_elbow_passes"
+    },
+    {
+      "passed": true,
+      "test": "mountain_lower_plain_and_elbow_pass"
+    },
+    {
+      "passed": true,
+      "test": "fixed_bridge_and_anchor_elbow_pass"
+    },
+    {
+      "passed": true,
+      "test": "missing_bridge_stops_safely_at_dock"
+    },
+    {
+      "passed": true,
+      "test": "absent_lift_stops_at_last_supported_elbow"
+    },
+    {
+      "passed": true,
+      "test": "locked_lowpass_is_not_previewed_as_available"
+    },
+    {
+      "passed": true,
+      "test": "worlds_and_bridge_clip_locked_during_transport"
+    },
+    {
+      "passed": true,
+      "test": "legacy_intermediate_save_cage_turn"
+    },
+    {
+      "passed": true,
+      "test": "legacy_intermediate_save_junction"
+    },
+    {
+      "passed": true,
+      "test": "legacy_intermediate_save_sluice_turn"
+    },
+    {
+      "passed": true,
+      "test": "legacy_intermediate_save_guide_bend"
+    },
+    {
+      "passed": true,
+      "test": "right_click_opens_four_directions_without_moving_actor"
+    },
+    {
+      "passed": true,
+      "test": "invalid_rails_are_disabled_and_real_rail_available"
+    },
+    {
+      "passed": true,
+      "test": "picker_buttons_and_text_block_map"
+    },
+    {
+      "passed": true,
+      "test": "picker_transparent_center_does_not_block_map"
+    },
+    {
+      "passed": true,
+      "test": "continuous_bend_uses_actual_rail_centerline"
+    },
+    {
+      "passed": true,
+      "test": "arrow_buttons_avoid_actor_body"
+    },
+    {
+      "passed": true,
+      "test": "preview_includes_bend_and_actual_functional_stop"
+    },
+    {
+      "passed": true,
+      "test": "escape_closes_picker_without_opening_pause"
+    },
+    {
+      "passed": true,
+      "test": "disabled_arrow_does_not_move_actor_or_weight"
+    },
+    {
+      "passed": true,
+      "test": "right_same_weight_toggles_closed"
+    },
+    {
+      "passed": true,
+      "test": "right_blank_closes_picker"
+    },
+    {
+      "passed": true,
+      "test": "closing_picker_does_not_leak_same_click_to_movement"
+    },
+    {
+      "passed": true,
+      "test": "next_ground_click_walks_normally"
+    },
+    {
+      "passed": true,
+      "test": "left_arrow_starts_real_approach_without_instant_weight_move"
+    },
+    {
+      "passed": true,
+      "test": "manual_move_cancels_deferred_push"
+    },
+    {
+      "passed": true,
+      "test": "cancelled_command_never_executes_later"
+    },
+    {
+      "passed": true,
+      "test": "pause_clears_approach_and_picker"
+    },
+    {
+      "passed": true,
+      "test": "observing_other_floor_cancels_deferred_push"
+    },
+    {
+      "passed": true,
+      "test": "changed_rule_invalidates_pending_command"
+    },
+    {
+      "passed": true,
+      "test": "wrong_initial_facing_is_automatically_corrected"
+    },
+    {
+      "passed": true,
+      "test": "repeat_click_during_slide_cannot_queue"
+    },
+    {
+      "passed": true,
+      "test": "actual_slide_finishes_at_plate_after_one_command"
+    },
+    {
+      "passed": true,
+      "test": "actor_control_and_old_path_restored"
+    },
+    {
+      "passed": true,
+      "test": "real_pressure_plate_still_raises_catch"
+    },
+    {
+      "passed": true,
+      "test": "receiving_opening_uses_reachable_bank_not_walk_inside_hole"
+    },
+    {
+      "passed": true,
+      "test": "missing_bridge_disabled_with_actual_reason"
+    },
+    {
+      "passed": true,
+      "test": "cannot_push_observed_other_floor"
+    },
+    {
+      "passed": true,
+      "test": "unrevealed_corridor_is_still_blocked"
+    },
+    {
+      "passed": true,
+      "test": "e_opens_same_picker_without_facing_requirement"
+    },
+    {
+      "passed": true,
+      "test": "restore_clears_all_temporary_picker_and_command_state"
+    },
+    {
+      "passed": true,
+      "test": "right_other_weight_switches_single_picker"
+    },
+    {
+      "passed": true,
+      "test": "keyboard_focus_activates_same_direction_action"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_0.55_-45"
+    },
+    {
+      "passed": true,
+      "test": "actual_click_at_rotation_boundary_0.55_-45"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_0.55_0"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_0.55_45"
+    },
+    {
+      "passed": true,
+      "test": "actual_click_at_rotation_boundary_0.55_45"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_1.00_-45"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_1.00_0"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_1.00_45"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_1.60_-45"
+    },
+    {
+      "passed": true,
+      "test": "actual_click_at_rotation_boundary_1.60_-45"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_1.60_0"
+    },
+    {
+      "passed": true,
+      "test": "picker_projection_and_hit_size_1.60_45"
+    },
+    {
+      "passed": true,
+      "test": "actual_click_at_rotation_boundary_1.60_45"
+    },
+    {
+      "passed": true,
+      "test": "wide_picker_inside_actual_canvas"
+    },
+    {
+      "passed": true,
+      "test": "fullscreen_picker_inside_actual_canvas"
+    }
+  ],
+  "failures": 0,
+  "native_render": true
+}

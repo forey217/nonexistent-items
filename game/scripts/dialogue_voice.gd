@@ -3,6 +3,7 @@ extends Node
 const ROOT := "res://assets/audio/dialogue_v01/"
 var library_root:=ROOT
 var enabled := true
+var unscaled_clock:=false
 var player := AudioStreamPlayer.new()
 var entries: Dictionary={}
 var current: Dictionary={}
@@ -52,7 +53,7 @@ func stop() -> void:
 
 func _process(delta: float) -> void:
 	if current_id.is_empty() or player.stream_paused:return
-	age+=delta
+	age+=delta/maxf(Engine.time_scale,.01) if unscaled_clock else delta
 	if DisplayServer.get_name()=="headless" and age>=duration:completed=true
 
 func position_seconds() -> float:

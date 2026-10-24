@@ -6042,6 +6042,193 @@
       "trim_start_seconds": 0.22,
       "human_listening_review": "pending",
       "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "id": "vo_yanyue_2d4e09bbcfb9f871",
+      "speaker": "yanyue",
+      "display_text": "月痕稳住了。",
+      "voice": "zh-CN-XiaoyiNeural",
+      "rate": "+3%",
+      "pitch": "+2Hz",
+      "file": "2d4e09bbcfb9f871.mp3",
+      "synthesis_text": "月痕稳住了。",
+      "status": "generated",
+      "duration_seconds": 1.176,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "f8322275f4cc4d1a6d9dba65506e82e7a86a0df4022985152c38fe08ec0bb662",
+      "words": [
+        {
+          "text": "月痕",
+          "start": 0,
+          "duration": 0.3398
+        },
+        {
+          "text": "稳住",
+          "start": 0.3505,
+          "duration": 0.3762
+        },
+        {
+          "text": "了",
+          "start": 0.7267,
+          "duration": 0.1699
+        }
+      ],
+      "cue_seconds": {
+        "月痕": 0
+      },
+      "peak_dbfs": -7.53,
+      "normalization_gain_db": 0.8,
+      "trim_start_seconds": 0.16,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice",
+      "gender": "female",
+      "use": "task-confirmation"
+    },
+    {
+      "id": "vo_tesla_3a788d640a585ba4",
+      "speaker": "tesla",
+      "gender": "male",
+      "display_text": "下一个目标是月痕印座，在导轨尽头的上方。",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "file": "vo_tesla_3a788d640a585ba4.mp3",
+      "use": "task-followup",
+      "synthesis_text": "下一个目标是月痕印座，在导轨尽头的上方。",
+      "status": "generated",
+      "duration_seconds": 4.248,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "7e4af35223f0fd79cdbc70304dac1f647961bab01a9402ef974eb9a2279e752a",
+      "words": [
+        {
+          "text": "下",
+          "start": 0,
+          "duration": 0.2853
+        },
+        {
+          "text": "一个",
+          "start": 0.2597,
+          "duration": 0.2038
+        },
+        {
+          "text": "目标",
+          "start": 0.4771,
+          "duration": 0.3397
+        },
+        {
+          "text": "是",
+          "start": 0.8168,
+          "duration": 0.2853
+        },
+        {
+          "text": "月痕",
+          "start": 1.1972,
+          "duration": 0.462
+        },
+        {
+          "text": "印座",
+          "start": 1.6591,
+          "duration": 0.4484
+        },
+        {
+          "text": "在",
+          "start": 2.257,
+          "duration": 0.3261
+        },
+        {
+          "text": "导轨",
+          "start": 2.5966,
+          "duration": 0.4348
+        },
+        {
+          "text": "尽头",
+          "start": 3.045,
+          "duration": 0.394
+        },
+        {
+          "text": "的",
+          "start": 3.439,
+          "duration": 0.0679
+        },
+        {
+          "text": "上方",
+          "start": 3.5205,
+          "duration": 0.462
+        }
+      ],
+      "cue_seconds": {
+        "月痕": 1.1972
+      },
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": 0.14,
+      "trim_start_seconds": 0.19,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
+    },
+    {
+      "id": "vo_tesla_38b784452b198901",
+      "speaker": "tesla",
+      "gender": "male",
+      "display_text": "现在看它下方的封界踏板。",
+      "voice": "zh-CN-YunyangNeural",
+      "rate": "-8%",
+      "pitch": "-4Hz",
+      "file": "vo_tesla_38b784452b198901.mp3",
+      "use": "task-followup",
+      "synthesis_text": "现在看它下方的封界踏板。",
+      "status": "generated",
+      "duration_seconds": 2.568,
+      "sample_rate": 24000,
+      "channels": 1,
+      "format": "MP3",
+      "sha256": "7d20897c4afaa8ebaf963a121d9e966fcbb55571ed22d12da10320b8f68796c5",
+      "words": [
+        {
+          "text": "现在",
+          "start": 0,
+          "duration": 0.4076
+        },
+        {
+          "text": "看",
+          "start": 0.4055,
+          "duration": 0.1766
+        },
+        {
+          "text": "它",
+          "start": 0.5822,
+          "duration": 0.1495
+        },
+        {
+          "text": "下方",
+          "start": 0.7452,
+          "duration": 0.4484
+        },
+        {
+          "text": "的",
+          "start": 1.1936,
+          "duration": 0.1495
+        },
+        {
+          "text": "封界",
+          "start": 1.3702,
+          "duration": 0.4076
+        },
+        {
+          "text": "踏板",
+          "start": 1.7914,
+          "duration": 0.5027
+        }
+      ],
+      "cue_seconds": {},
+      "peak_dbfs": -2.16,
+      "normalization_gain_db": -0.12,
+      "trim_start_seconds": 0.18,
+      "human_listening_review": "pending",
+      "engine": "edge-tts 7.3.1 / Microsoft online voice"
     }
   ],
   "voice_metadata": {

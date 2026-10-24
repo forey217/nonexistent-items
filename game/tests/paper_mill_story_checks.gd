@@ -86,7 +86,7 @@ func run(flow:Node) -> void:
 	check("actual_cross_layer_rest_plays_landing",comm.active.get("key")=="P2-05")
 	check("landing_goal_does_not_spoil_waterwheel",room.state.objective()=="将山纹镇纸送回上层锚座")
 	finish_current();tick(2);check("landing_not_repeated",comm.active.is_empty())
-	room.state.weights[0].layer=0;room.state.weights[0].station="lift";room.state.lifted_once=true;tick(1.01)
+	room.state.weights[0].layer=0;room.state.weights[0].station="lift";room.state.lifted_once=true;room.state.lift_height=room.State.HEIGHT;tick(.01);tick(1.01)
 	check("upper_return_goal_reaffirmed",comm.active.get("key")=="P2-06")
 	finish_current();room.state.upper_anchored=true;tick(.81)
 	check("upper_anchor_moves_goal_to_lower",comm.active.get("key")=="P2-07")
@@ -136,7 +136,12 @@ func run(flow:Node) -> void:
 	check("read_progress_writes_without_physics_change",persisted.get("paper_state",{}).get("communications",{}).get("seen",[]).has(spoken_id))
 	app.saving_enabled=false
 	var manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/audio/paper_dialogue_v01/manifest.json"))
-	check("all_80_clips_present",manifest.items.size()==80 and comm.voice.entries.size()==80)
+	check("original_80_clips_and_updated_instructions_present",manifest.items.size()>=80 and comm.voice.entries.size()==manifest.items.size())
+	var approved:Array=[]
+	for node in Lines.NODES:approved.append_array(Lines.sequence(node))
+	for hints in Lines.hint_cases().values():
+		for text:String in hints:approved.append(Lines.line("tesla",text))
+	check("every_current_line_has_matching_exact_text_audio",approved.all(func(line):return comm.voice.entries.has(line.id) and comm.voice.entries[line.id].display_text==line.text))
 	var valid_audio:=true;var fit:=true
 	for record in manifest.items:
 		var stream:AudioStream=load("res://assets/audio/paper_dialogue_v01/"+record.file)

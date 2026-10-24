@@ -68,6 +68,7 @@ var record_pinned:=false
 var record_timer:=Timer.new()
 var task_flash:=0.0
 var styled_world:=-1
+var push_picker=preload("res://scripts/paper_push_picker.gd").new()
 
 func style(active:=false) -> StyleBox:
 	return Instruments.style(active,.88,true)
@@ -101,6 +102,7 @@ func _ready() -> void:
 	objective_heading=label(objective,"",Vector2(14,7),Vector2(292,25),17,GOLD)
 	objective_body=label(objective,"",Vector2(14,31),Vector2(272,58),20)
 	objective_body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;objective_body.max_lines_visible=2
+	var transition=preload("res://scripts/task_transition.gd").new();transition.label=objective_body;objective.add_child(transition)
 	objective.tooltip_text="点击定位当前任务对象；H 打开完整观测记录"
 	objective.mouse_entered.connect(func():hover_target=room.goal_target())
 	objective.mouse_exited.connect(func():hover_target="")
@@ -143,7 +145,8 @@ func _ready() -> void:
 	root.move_child(menu,root.get_child_count()-1)
 	footer=panel(root);footer.size=Vector2(520,46);footer.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	status=label(footer,"",Vector2(12,5),Vector2(496,38),18);status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	entry_hint=preload("res://scripts/level_entry_hint.gd").new();entry_hint.text="WASD / 左键移动　·　走入楼梯换层　·　Tab 观察　·　H 提示";root.add_child(entry_hint)
+	entry_hint=preload("res://scripts/level_entry_hint.gd").new();entry_hint.text="右键镇纸 → 左键方向　·　WASD / 左键移动　·　走入楼梯换层";root.add_child(entry_hint)
+	push_picker.room=room;root.add_child(push_picker)
 	tools.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	record_timer.one_shot=true;record_timer.wait_time=.22;add_child(record_timer)
 	record_timer.timeout.connect(func():
@@ -153,7 +156,8 @@ func _ready() -> void:
 
 func _build_record() -> void:
 	record=panel(root);record.size=Vector2(350,490);record.hide()
-	label(record,"观测记录",Vector2(16,10),Vector2(240,30),23,GOLD).add_theme_font_override("font",Instruments.TITLE)
+	label(record,"观测记录",Vector2(16,10),Vector2(190,30),23,GOLD).add_theme_font_override("font",Instruments.TITLE)
+	button(record,"物件图鉴",Vector2(205,9),Vector2(90,32),func():room.mission_guide.inspect("tool"))
 	button(record,"×",Vector2(300,8),Vector2(36,34),func():record.hide();record_pinned=false)
 	record_task=label(record,"",Vector2(16,54),Vector2(318,65),18);record_task.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	inventory=label(record,"",Vector2(16,125),Vector2(318,106),17,MUTED)
@@ -169,10 +173,8 @@ func _build_record() -> void:
 	record.mouse_exited.connect(func():record_timer.start())
 
 func _build_destinations() -> void:
-	destination_panel=panel(root);destination_panel.size=Vector2(280,230);destination_panel.hide()
-	selection=label(destination_panel,"",Vector2(14,12),Vector2(196,50),18);selection.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	for i in range(3):destination_buttons.append(button(destination_panel,"",Vector2(12,70+i*48),Vector2(256,41),Callable()))
-	button(destination_panel,"×",Vector2(230,12),Vector2(36,34),func():destination_panel.hide())
+	# Kept hidden for old UI callers; there are no choices, controls or map hit area.
+	destination_panel=Panel.new();root.add_child(destination_panel);destination_panel.hide()
 
 func _build_subtitle() -> void:
 	subtitle_panel=panel(root);subtitle_panel.size=Vector2(720,90);subtitle_panel.mouse_filter=Control.MOUSE_FILTER_IGNORE;subtitle_panel.hide()
@@ -189,6 +191,7 @@ func _build_menu() -> void:
 		room.player.controls_locked=opened or room.arrival_busy() or room.interacting
 		room.player.cancel_navigation();room.view.cancel_drag()
 		if opened:
+			room.cancel_push_command()
 			record.hide();record_pinned=false;destination_panel.hide();subtitle_panel.hide();footer.hide();entry_hint.hide();entry_hint.obscured=true
 		refresh(0))
 
@@ -206,13 +209,20 @@ func _layout() -> void:
 func safe_rect() -> Rect2:
 	var dimensions:=get_viewport().get_visible_rect().size
 	var left:=398.0 if is_instance_valid(record) and record.visible else 35.0
-	var right:=dimensions.x-324.0 if is_instance_valid(destination_panel) and destination_panel.visible else dimensions.x-35
+	var right:=dimensions.x-35
+	if is_instance_valid(room.mission_guide):
+		var occupied:Rect2=room.mission_guide.occupied_rect()
+		if occupied.has_area():
+			if occupied.get_center().x>dimensions.x*.5:right=minf(right,occupied.position.x-18)
+			else:left=maxf(left,occupied.end.x+18)
 	var bottom:=dimensions.y-(174.0 if room.story_time>0 else 132.0 if message_time>0 else 78.0)
 	return Rect2(Vector2(left,122),Vector2(maxf(300,right-left),maxf(260,bottom-122)))
 
 func blocks_map(at:Vector2) -> bool:
 	if menu.visible or layer_selector.get_popup().visible:return true
-	for control in [worlds,badges,objective,menu_button,record,destination_panel,bag,tools]:
+	if is_instance_valid(push_picker) and push_picker.blocks_map(at):return true
+	if is_instance_valid(room.mission_guide) and room.mission_guide.blocks_map(at):return true
+	for control in [worlds,badges,objective,menu_button,record,bag,tools]:
 		if control.is_visible_in_tree() and control.get_global_rect().has_point(at):return true
 	return false
 
@@ -241,6 +251,7 @@ func _menu_action(action:String) -> void:
 		"reset":room.restore_checkpoint()
 		"restart":room.restart()
 		"hint":record_pinned=true;room.show_hint()
+		"demo":room.get_parent().start_paper_demo()
 		"title":room.get_parent().request_title_return()
 		"mute":audio.toggle_mute()
 		"fullscreen":DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode()==DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -267,26 +278,13 @@ func communicate(speaker:String,text:String,duration:=6.0) -> void:
 	portrait.texture=load("res://assets/dialogue_chibi_v37/"+speaker+".png")
 
 func show_destinations(index:int) -> void:
-	var choices:Array[String]=room.state.destinations(index)
-	destination_panel.visible=not choices.is_empty();destination_panel.size.y=82+choices.size()*48
-	selection.text=("山纹镇纸" if index==0 else "水纹镇纸")+"\n选择下一止挡"
-	var names:={"catch":"接物踏板 / 接物区","junction":"中央转运止挡","cage":"封存架","sluice":"水闸重压踏板","guide":"下层上浮导向井","lift":"运纸吊台","dock":"上层固定中转台","bridge":"跨渠桥后止挡","anchor":"山纹锚座"}
-	for i in range(3):
-		var b:=destination_buttons[i]
-		for connection in b.pressed.get_connections():b.pressed.disconnect(connection.callable)
-		b.visible=i<choices.size()
-		if b.visible:
-			var target:String=choices[i];b.text=names.get(target,target)
-			b.pressed.connect(func():room.request_interaction("w%d"%index,target);destination_panel.hide())
-	room.view.frame_to_ui=true
-	var target:Dictionary=room.state.weights[index]
-	room.view.set_focus((target.pos+room.player_plan())*.5 if target.layer==room.player_layer and target.pos.distance_to(room.player_plan())<5 else target.pos)
-	room.view.focused_target="w%d"%index
+	destination_panel.hide();push_picker.open(index)
 
 func station_name(station:String) -> String:
-	return {"hatch":"落料板","start":"起始止挡","catch":"接物踏板","junction":"中央转运止挡","cage":"封存架","sluice":"水闸踏板","guide":"上浮导向井","lift":"运纸吊台","dock":"上层中转台","bridge":"跨渠桥后","anchor":"山纹锚座"}.get(station,station)
+	return {"hatch":"落料板","start":"起始止挡","catch":"接物踏板","junction":"导轨连接段","cage":"封存架","sluice":"水闸踏板","guide":"上浮导向井","lift":"运纸吊台","dock":"上层中转台","bridge":"跨渠桥后","anchor":"山纹锚座","cage_turn":"封存架转角","guide_turn":"导轨分岔","sluice_turn":"水闸转角","guide_bend":"导向井转角","lift_turn":"吊台转角","anchor_turn":"锚座转角"}.get(station,station)
 
 func refresh(delta:float) -> void:
+	if room.presentation_mode:delta/=maxf(Engine.time_scale,.01)
 	if room.story_time<=0 and not deferred_notice.is_empty():
 		var notice:=deferred_notice;deferred_notice={}
 		if notice.goal==room.state.objective():message(notice.text)
@@ -295,7 +293,7 @@ func refresh(delta:float) -> void:
 	if world!=last_world or last_layer!=room.view_layer:law_time=3;last_world=world;last_layer=room.view_layer
 	objective_body.text=s.objective();record_task.text=s.objective()
 	task_flash=maxf(0,task_flash-delta)
-	if last_checkpoint>=0 and s.checkpoint>last_checkpoint:task_flash=.75
+	# Completion receipts are driven by settled mechanism events, never by save restoration.
 	objective_heading.text=("✓ " if task_flash>0 else "")+"纸山叠影　%d / 7"%[clampi(s.checkpoint+1,1,7)]
 	var clip_name:String={"":"未固定","catch":"接物台","bridge":"木桥"}.get(s.clip_target,"未固定")
 	for i in range(2):
@@ -316,8 +314,8 @@ func refresh(delta:float) -> void:
 		if styled_world!=world:
 			for state_name in ["normal","disabled"]:rule_buttons[i].add_theme_stylebox_override(state_name,Instruments.state_style(true) if world==i else StyleBoxEmpty.new())
 			rule_buttons[i].add_theme_color_override("font_disabled_color",TEXT if world==i else Color("8d9a90"))
-		rule_buttons[i].disabled=locked or room.world_cooldown>0 or world==i
-		rule_buttons[i].tooltip_text="本层锚点已固定" if locked else ("当前世界" if world==i else "切换到%s"%s.WORLD_NAMES[i])
+		rule_buttons[i].disabled=locked or room.world_cooldown>0 or s.has_sliding_weight() or world==i
+		rule_buttons[i].tooltip_text="镇纸滑行中，停稳后可切换" if s.has_sliding_weight() else ("本层锚点已固定" if locked else ("当前世界" if world==i else "切换到%s"%s.WORLD_NAMES[i]))
 	styled_world=world
 	footer.visible=message_time>0 and room.story_time<=0 and not menu.visible
 	subtitle_panel.visible=room.story_time>0 and not menu.visible
@@ -337,7 +335,7 @@ func refresh(delta:float) -> void:
 
 func _update_object() -> void:
 	object_panel.hide()
-	if menu.visible or record.visible or room.story_time>0 or room.arrival_busy():return
+	if menu.visible or record.visible or push_picker.visible or room.story_time>0 or room.arrival_busy():return
 	var pointer:=get_viewport().get_mouse_position()
 	if blocks_map(pointer):return
 	var index:=-1;var closest:=2.1
@@ -350,7 +348,7 @@ func _update_object() -> void:
 	if hovered in ["w0","w1"]:index=int(hovered.trim_prefix("w"))
 	if index<0:return
 	var w:Dictionary=room.state.weights[index];var world:int=room.state.worlds[w.layer]
-	object_label.text=("山纹镇纸" if index==0 else "水纹镇纸")+"\n"+("正在运送" if w.mode!="rest" else ["冰晶 · 可沿导轨运送","重压 · 当前不可推动","倒悬 · 向上浮起","显影 · 观察旧物"][world])
+	object_label.text=("山纹镇纸" if index==0 else "水纹镇纸")+"\n"+("正在运送" if w.mode!="rest" else ["右键 / E · 选择方向","重压 · 当前不可推动","倒悬 · 向上浮起","显影 · 观察旧物"][world])
 	var h:float=room.state.weight_height(index)-(room.State.HEIGHT if w.layer==0 else 0.0)+.5
 	var target:Vector2=room.view.screen(w.pos,w.layer,h);var at:=target+Vector2(42,-35)
 	var actor:Vector2=room.view.screen(room.player_plan(),room.player_layer,1.0)
@@ -363,7 +361,8 @@ func _input(event:InputEvent) -> void:
 	if menu.visible:return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.physical_keycode==KEY_ESCAPE:
-			if destination_panel.visible:destination_panel.hide()
+			if push_picker.visible or room.pending.has("direction"):room.cancel_push_command()
+			elif destination_panel.visible:destination_panel.hide()
 			elif record.visible:record.hide();record_pinned=false
 			else:toggle_menu()
 			get_viewport().set_input_as_handled()

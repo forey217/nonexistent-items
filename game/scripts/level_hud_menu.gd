@@ -6,6 +6,9 @@ var audio:Node
 var paper_level:=false
 var shade:=ColorRect.new()
 var panel:=Panel.new()
+var menu_scroll:=ScrollContainer.new()
+var menu_contents:=Control.new()
+var content_height:=0.0
 var buttons:Dictionary={}
 var options:Control
 var confirmation:=Panel.new()
@@ -27,16 +30,27 @@ func _ready() -> void:
 	var rows:Array=[["view","复位视角"],["hub","返回机构"],["reset","恢复稳定记录   R" if paper_level else "重置关卡   R"],["hint","请求提示   H"],["manual","操作说明"],["options","声音设置"],["title","返回主界面   F10"]]
 	if paper_level:rows.insert(3,["restart","完整重开本关"])
 	if paper_level:rows.append_array([["mute","声音开关   M"],["fullscreen","全屏   F11"],["quit","退出游戏"]])
-	panel.size=Vector2(280,56+rows.size()*43)
-	for i in range(rows.size()):
-		var action:String=rows[i][0];var b:=_button(panel,rows[i][1],Rect2(12,49+i*43,256,37))
+	if paper_level:
+		var at:=rows.find(["manual","操作说明"])
+		rows.insert(at,["demo_heading","演示"]);rows.insert(at+1,["demo","第二关完整演示"])
+	menu_scroll.position=Vector2(12,49);menu_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	menu_scroll.follow_focus=true;panel.add_child(menu_scroll);menu_scroll.add_child(menu_contents)
+	for row in rows:
+		var action:String=row[0]
+		if action=="demo_heading":
+			Instruments.label(menu_contents,"演示",Vector2(8,content_height+2),Vector2(240,25),17,Instruments.COPPER_TEXT);content_height+=30
+			continue
+		var b:=_button(menu_contents,row[1],Rect2(0,content_height,240,37));content_height+=43
+		b.focus_entered.connect(func():menu_scroll.ensure_control_visible.call_deferred(b))
 		buttons[action]=b;b.pressed.connect(func():request_action(action))
+	menu_contents.custom_minimum_size=Vector2(240,content_height);menu_contents.size=menu_contents.custom_minimum_size
+	panel.size=Vector2(280,56+content_height)
 	options=preload("res://scripts/archive_options.gd").new();options.audio=audio
 	options.instrument_mode=true;options.mill_material=paper_level
 	if paper_level:
 		options.manual_groups=[
 			["移动",[["WASD / 方向键","移动"],["左键地面 / 楼梯","寻路 / 自动上下楼"]]],
-			["互动",[["右键 / E","操作机关"],["任务记录","查看镇纸 / 留影夹"]]],
+			["互动",[["右键镇纸 / E","打开方向箭头"],["左键箭头","走位并推动"],["任务记录","查看镇纸 / 留影夹"]]],
 			["世界切换",[["1 / 2 / 3 / 4","切当前观察层规则"],["Tab","切观察层，人物不传送"]]],
 			["其他操作",[["滚轮 / 中键","缩放 / 平移"],["左Alt + 左键","旋转视角"],["F / H / R","回人物 / 提示 / 稳定记录"],["M / F11 / F10","静音 / 全屏 / 主界面"]]]]
 	add_child(options)
@@ -56,7 +70,8 @@ func _button(parent:Node,text:String,rect:Rect2) -> Button:
 
 func _layout() -> void:
 	var dimensions:=get_viewport().get_visible_rect().size
-	size=dimensions;shade.size=dimensions;panel.position=Vector2(dimensions.x-panel.size.x-24,78)
+	size=dimensions;shade.size=dimensions;panel.size.y=minf(56+content_height,maxf(180,dimensions.y-102));panel.position=Vector2(dimensions.x-panel.size.x-24,78)
+	menu_scroll.size=Vector2(256,panel.size.y-56)
 	confirmation.position=(dimensions-confirmation.size)*.5
 	if is_instance_valid(options):
 		options.size=dimensions;options.shade.size=dimensions;options.home=(dimensions-options.sheet.size)*.5

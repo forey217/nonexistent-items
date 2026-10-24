@@ -26,7 +26,7 @@ func run(flow: Node) -> void:
 	await frames(3)
 	var d=app.dialogue
 	var voice=d.voice
-	check("manifest_has_all_74_exact_lines",voice.enabled and voice.entries.size()==74)
+	check("manifest_has_all_77_exact_lines",voice.enabled and voice.entries.size()==77)
 	var all_load:=true;var identity:=true;var female:=0;var male:=0
 	for record: Dictionary in voice.entries.values():
 		var item: Dictionary=d.Lines.line(record.speaker,record.display_text)
@@ -36,8 +36,8 @@ func run(flow: Node) -> void:
 		if record.speaker=="yanyue":female+=1;identity=identity and record.voice=="zh-CN-XiaoyiNeural" and record.gender=="female"
 		else:male+=1;identity=identity and record.voice=="zh-CN-YunyangNeural" and record.gender=="male" and record.rate=="-8%" and record.pitch=="-4Hz"
 	voice.stop()
-	check("all_74_mp3_resources_decode_and_match_duration",all_load)
-	check("16_female_and_58_male_have_correct_voice_and_stable_ids",identity and female==16 and male==58)
+	check("all_77_mp3_resources_decode_and_match_duration",all_load)
+	check("17_female_and_60_male_have_correct_voice_and_stable_ids",identity and female==17 and male==60)
 	check("voice_routes_to_existing_dialogue_bus",voice.player.bus=="Dialogue" and AudioServer.get_bus_index("Dialogue")>=0)
 	var swapped: Dictionary=d.Lines.opening()[0].duplicate(true);swapped.speaker="yanyue"
 	check("speaker_mismatch_cannot_play_male_clip_as_female",voice.start_line(swapped)==0.0 and voice.current_id.is_empty())

@@ -95,15 +95,15 @@ func _select_view(view: int) -> void:
 		arm.offset = -anchors[arm_index]
 		arm_index += 1
 
-func pose(distance: float, is_moving: bool, row: int, direction: Vector2, delta: float) -> void:
+func pose(distance: float, is_moving: bool, row: int, direction: Vector2, delta: float, speed_ratio: float=1.0) -> void:
 	moving = is_moving
 	facing_row = row
 	if moving:
 		gait_phase = fposmod(distance/STRIDE_DISTANCE,1.0)
-	_locomotion_weight = move_toward(_locomotion_weight,1.0 if moving else 0.0,delta*10.0)
+	_locomotion_weight=move_toward(_locomotion_weight,clampf(speed_ratio,0.0,1.0) if moving else 0.0,delta/(0.10 if moving else 0.14))
 	_select_view(0 if row < 2 else 1)
 	scale.x = 1.0 if row % 2 == 0 else -1.0
-	var target_lean := 0.009 if moving else 0.0
+	var target_lean:=0.009*_locomotion_weight
 	_lean = move_toward(_lean,target_lean,delta*0.3)
 	# Horizontal travel has a shallow ground axis, vertical travel a steeper one.
 	var ground_y := (0.10 if absf(direction.y)<0.2 else 0.22)*(1.0 if row<2 else -1.0)

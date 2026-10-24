@@ -99,7 +99,7 @@ func _layout() -> void:
 
 func refresh(state:RefCounted) -> void:
 	if current_world!=state.world:law_time=3
-	current_world=state.world;task_tracker.refresh(state)
+	current_world=state.world;task_tracker.refresh_step(state.goal_stage() if room.gate_ready else mini(state.goal_stage(),2))
 	world_heading.text=["冰晶 · 低摩擦","重力 · 四倍重量","倒悬 · 向上受力"][state.world]
 	law_label.text=["推动后持续滑行，碰到挡块才停。","重量增至四倍，可以压板，人物无法推动。","未固定物体向上浮起，可触碰高处装置。"][state.world]
 	object_label.text=["镇纸 · 可推动\n重量 ×1","镇纸 · 当前无法推动\n重量 ×4，适合重压","镇纸 · 向上浮起\n磁力靴保持人物贴地"][state.world]
@@ -129,7 +129,7 @@ func set_dialogue_occupied(occupied:bool,modal:=false) -> void:
 	footer.visible=not occupied and message_time>0 and not menu.visible
 	skill_panel.visible=not modal
 	entry_hint.obscured=occupied or menu.visible
-	if occupied:entry_hint.hide();object_panel.hide();law_popup.hide();task_tracker.collapse()
+	if occupied:entry_hint.hide();object_panel.hide();law_popup.hide()
 
 func _process(delta:float) -> void:
 	clock+=delta

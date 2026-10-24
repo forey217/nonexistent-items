@@ -26,7 +26,6 @@ var hovered_anchor:=-1
 var _follow_current:=false
 var _current_hover:=false
 var pinned:=false
-var pulse:Tween
 var mark:Label
 
 func _ready() -> void:
@@ -66,14 +65,16 @@ func _ready() -> void:
 	hover_bridge.mouse_entered.connect(func():hide_timer.stop());hover_bridge.mouse_exited.connect(_schedule_hide)
 	main_area.mouse_entered.connect(_show_steps);main_area.mouse_exited.connect(_schedule_hide)
 	popup.mouse_entered.connect(func():hide_timer.stop());popup.mouse_exited.connect(_schedule_hide)
+	var transition=preload("res://scripts/task_transition.gd").new();transition.label=current_label;transition.idle_mark=mark;add_child(transition)
 	refresh_step(0)
 
 func refresh(state:RefCounted) -> void:refresh_step(state.goal_stage())
 
 func refresh_step(index:int) -> void:
 	var next_step:=clampi(index,0,STEPS.size())
-	if next_step==current_step:return
-	var advanced:=current_step>=0 and next_step>current_step
+	if next_step==current_step:
+		current_label.text="返回机构" if current_step==STEPS.size() else STEPS[current_step]
+		return
 	current_step=next_step
 	var done:=current_step==STEPS.size()
 	current_heading.text="观测校准　✓ 已完成" if done else "观测校准　%s / Ⅲ"%["Ⅰ","Ⅱ","Ⅲ"][current_step]
@@ -84,10 +85,6 @@ func refresh_step(index:int) -> void:
 		step_labels[i].text="%s  %02d　%s"%["✓" if completed else ("›" if active else "·"),i+1,STEPS[i]]
 		step_labels[i].add_theme_color_override("font_color",DONE_COLOR if completed else (CURRENT_COLOR if active else FUTURE_COLOR))
 		step_bands[i].add_theme_stylebox_override("panel",Instruments.state_style(true) if active else StyleBoxEmpty.new())
-	if advanced:
-		if is_instance_valid(pulse):pulse.kill()
-		mark.text="✓";mark.modulate.a=1
-		pulse=create_tween();pulse.tween_interval(.45);pulse.tween_property(mark,"modulate:a",.5,.5);pulse.tween_callback(func():mark.text="◇";mark.modulate.a=1)
 	if _follow_current:_set_hovered_anchor(mini(current_step,STEPS.size()-1))
 
 func _show_steps() -> void:
