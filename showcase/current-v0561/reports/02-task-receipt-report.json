@@ -1,0 +1,135 @@
+{
+  "checks": 32,
+  "failures": 0,
+  "native": true,
+  "results": [
+    {
+      "passed": true,
+      "test": "loaded_current_task_is_quiet"
+    },
+    {
+      "passed": true,
+      "test": "loaded_checkpoint_keeps_existing_number"
+    },
+    {
+      "passed": true,
+      "test": "checkpoint_increment_is_not_completion"
+    },
+    {
+      "passed": true,
+      "test": "world_camera_observation_never_stamp"
+    },
+    {
+      "passed": true,
+      "test": "falling_cannot_claim_arrival"
+    },
+    {
+      "passed": true,
+      "test": "real_landing_starts_one_receipt"
+    },
+    {
+      "passed": true,
+      "test": "completed_text_and_old_number_are_retained"
+    },
+    {
+      "passed": true,
+      "test": "stamp_is_readable_and_panel_expands"
+    },
+    {
+      "passed": true,
+      "test": "stamp_fits_under_wrapped_body"
+    },
+    {
+      "passed": true,
+      "test": "holds_complete_state_for_full_1p2_seconds"
+    },
+    {
+      "passed": true,
+      "test": "old_page_fades_before_next"
+    },
+    {
+      "passed": true,
+      "test": "next_text_and_number_change_together"
+    },
+    {
+      "passed": true,
+      "test": "next_tag_appears_without_old_stamp"
+    },
+    {
+      "passed": true,
+      "test": "next_tag_fades_after_one_second"
+    },
+    {
+      "passed": true,
+      "test": "panel_origin_stays_fixed"
+    },
+    {
+      "passed": true,
+      "test": "refreshes_do_not_repeat"
+    },
+    {
+      "passed": true,
+      "test": "panel_and_all_feedback_pass_mouse"
+    },
+    {
+      "passed": true,
+      "test": "task_panel_removed_from_map_blocking"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_exact_phase_and_age"
+    },
+    {
+      "passed": true,
+      "test": "resume_continues_from_same_phase"
+    },
+    {
+      "passed": true,
+      "test": "restore_discards_receipt_and_queue"
+    },
+    {
+      "passed": true,
+      "test": "restore_shows_current_task_immediately"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_no_new_fields"
+    },
+    {
+      "passed": true,
+      "test": "reduced_motion_keeps_stamp_without_scaling_or_shift"
+    },
+    {
+      "passed": true,
+      "test": "consecutive_real_facts_are_queued_in_order"
+    },
+    {
+      "passed": true,
+      "test": "queue_reaches_latest_task_without_repeats"
+    },
+    {
+      "passed": true,
+      "test": "long_task_is_not_truncated"
+    },
+    {
+      "passed": true,
+      "test": "long_completed_task_reserves_separate_stamp_row"
+    },
+    {
+      "passed": true,
+      "test": "last_task_keeps_completed_receipt"
+    },
+    {
+      "passed": true,
+      "test": "restart_clears_all_prior_receipts"
+    },
+    {
+      "passed": true,
+      "test": "layout_safe_960x540"
+    },
+    {
+      "passed": true,
+      "test": "layout_safe_1920x1080"
+    }
+  ]
+}

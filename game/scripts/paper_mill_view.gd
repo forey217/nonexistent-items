@@ -14,6 +14,7 @@ var bridge_ring:Node3D
 var yard=preload("res://scripts/paper_mill_yard.gd").new()
 const Rig=preload("res://scripts/yanyue_walk_rig.gd")
 const StairGuards=preload("res://scripts/paper_mill_stair_guards.gd")
+const GuardFade=preload("res://scripts/paper_guard_fade.gd")
 var stair_guards:Array[Dictionary]=[]
 var waterbank_guards=preload("res://scripts/paper_waterbank_guards.gd").new()
 var push_arrow:Node3D
@@ -266,8 +267,28 @@ func floor_mesh(parent:Node3D,layer:int) -> void:
 	for at in [Vector3(0,-0.65,9),Vector3(24,-0.65,9)]:box(parent,at,Vector3(0.5,1.3,18),stone)
 	for at in [Vector3(12,-0.65,0),Vector3(12,-0.65,18)]:box(parent,at,Vector3(24,1.3,0.5),stone)
 	for center in [S.DROP,S.LIFT]:
-		for dx in [-1.12,1.12]:box(parent,point(center)+Vector3(dx,-0.5,0),Vector3(.22,1.0,2.3),stone)
-		for dz in [-1.12,1.12]:box(parent,point(center)+Vector3(0,-0.5,dz),Vector3(2.3,1.0,.22),stone)
+		shaft_lining(parent,center)
+
+func shaft_lining(parent:Node3D,center:Vector2) -> void:
+	# The courtyard already owns the horizontal surface at y=0. Closed boxes
+	# put a second, differently tinted cap there, fighting it as the camera moves.
+	# Keep every side/bottom at its original position and omit only buried caps.
+	var surface:=SurfaceTool.new();surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for axis in [0,2]:
+		for offset in [-1.12,1.12]:
+			var at:=point(center)+Vector3(0,-.5,0);at[axis]+=offset
+			var mesh:=BoxMesh.new();mesh.size=Vector3(.22,1.0,2.3) if axis==0 else Vector3(2.3,1.0,.22)
+			var arrays:=mesh.get_mesh_arrays()
+			var vertices:PackedVector3Array=arrays[Mesh.ARRAY_VERTEX]
+			var normals:PackedVector3Array=arrays[Mesh.ARRAY_NORMAL]
+			var uvs:PackedVector2Array=arrays[Mesh.ARRAY_TEX_UV]
+			var indices:PackedInt32Array=arrays[Mesh.ARRAY_INDEX]
+			for i in range(0,indices.size(),3):
+				if normals[indices[i]].y>.5:continue
+				for j in range(3):
+					var index:=indices[i+j]
+					surface.set_normal(normals[index]);surface.set_uv(uvs[index]);surface.add_vertex(vertices[index]+at)
+	var lining:=MeshInstance3D.new();lining.name="ShaftLining%d_%d"%[center.x,center.y];lining.mesh=surface.commit();lining.material_override=stone;parent.add_child(lining)
 
 func walkway(parent:Node3D,at:Vector2,size:Vector2) -> Node3D:
 	var n:=group(parent,point(at))
@@ -559,12 +580,7 @@ func _fade_stair_guards(delta:float) -> void:
 			if not hit.is_empty():covered[int(hit.collider.get_meta("stair_guard"))]=true
 	for i in range(stair_guards.size()):
 		var section:Dictionary=stair_guards[i]
-		section.fade=lerpf(section.fade,.7 if covered.has(i) else 0.0,1.0-exp(-delta*12.0))
-		if absf(section.fade-(.7 if covered.has(i) else 0.0))<.001:section.fade=.7 if covered.has(i) else 0.0
-		for mesh in section.meshes:
-			var material:StandardMaterial3D=mesh.material_override
-			material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA if section.fade>0 else BaseMaterial3D.TRANSPARENCY_DISABLED
-			material.albedo_color.a=1.0-section.fade
+		GuardFade.sync(section,covered.has(i),delta)
 
 func _build_weight_shadows() -> void:
 	var shader:=Shader.new()

@@ -1,0 +1,81 @@
+{
+  "checks": [
+    {
+      "details": {},
+      "passed": true,
+      "test": "both_shafts_have_lining_floor0"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "shaft0_floor0_has_walls_without_coplanar_caps"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "shaft1_floor0_has_walls_without_coplanar_caps"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "both_shafts_have_lining_floor1"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "shaft0_floor1_has_walls_without_coplanar_caps"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "shaft1_floor1_has_walls_without_coplanar_caps"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "stairs_edge_misses_do_not_restore_guard"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "stairs_pause_freezes_alpha"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "stairs_clear_view_restores_opaque"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "stairs_fade_preserves_puzzle_state"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "waterbank_edge_misses_do_not_restore_guard"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "waterbank_pause_freezes_alpha"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "waterbank_clear_view_restores_opaque"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "waterbank_fade_preserves_puzzle_state"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "lighting_and_depth_still_enabled"
+    }
+  ],
+  "failures": 0,
+  "native_render": true
+}

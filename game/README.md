@@ -1,3 +1,7 @@
+# 当前整合版 v0.56.1 · 20261024-08
+
+[下载Windows试玩](https://github.com/forey217/nonexistent-items/releases/download/v0.56.1/world-without-manual-v0.56.1-windows-x86_64.exe) · [发布页与完整工程](https://github.com/forey217/nonexistent-items/releases/tag/v0.56.1) · [本版说明](docs/最新整合-v0.56.1.md)。整合任务完成盖章、移动防闪及此前全部已发布功能，本版6组386项通过。下文为历史制作记录。
+
 **独立试玩：卷轴归档整合 v0.53.0（20261024-03）。** 第二关木铜卷轴门、山水纸幕与双锚开启；保留封存时的世界胶片和水渠护栏。运行 `builds/启动卷轴归档版.cmd`，独立程序与录像在 `builds/卷轴归档整合-v0.53.0/`，旧版及其他整合入口保留。
 
 # 本地最新验收：世界胶片整合 v0.52.0 · 20261024-02

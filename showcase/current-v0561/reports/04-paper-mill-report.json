@@ -1,0 +1,556 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "title_opens_save_picker"
+    },
+    {
+      "passed": true,
+      "test": "saved_slot_enters_hall"
+    },
+    {
+      "passed": true,
+      "test": "second_shard_unlocked_after_tutorial"
+    },
+    {
+      "passed": true,
+      "test": "selection_routes_to_paper_mill"
+    },
+    {
+      "passed": true,
+      "test": "distinct_layers_initially_independent"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_01-entry"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_01-entry"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_01-entry"
+    },
+    {
+      "passed": true,
+      "test": "observe_does_not_teleport_player"
+    },
+    {
+      "passed": true,
+      "test": "real_click_moves_character"
+    },
+    {
+      "passed": true,
+      "test": "wheel_event_zoom_in"
+    },
+    {
+      "passed": true,
+      "test": "zoom_preserves_pointer_ground"
+    },
+    {
+      "passed": true,
+      "test": "zoom_does_not_change_world_rules"
+    },
+    {
+      "passed": true,
+      "test": "middle_drag_pans_only_view"
+    },
+    {
+      "passed": true,
+      "test": "alt_drag_rotates_with_limit"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_-45.0_0.55"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_-45.0_1.0"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_-45.0_1.6"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_0.0_0.55"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_0.0_1.0"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_0.0_1.6"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_45.0_0.55"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_45.0_1.0"
+    },
+    {
+      "passed": true,
+      "test": "projection_roundtrip_45.0_1.6"
+    },
+    {
+      "passed": true,
+      "test": "switch_0_3"
+    },
+    {
+      "passed": true,
+      "test": "remote_rule_preserves_other_layer"
+    },
+    {
+      "passed": true,
+      "test": "reachable_action_tool_"
+    },
+    {
+      "passed": true,
+      "test": "completed_action_tool_"
+    },
+    {
+      "passed": true,
+      "test": "clip_collected_from_real_location"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_02-clip-acquired"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_02-clip-acquired"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_02-clip-acquired"
+    },
+    {
+      "passed": true,
+      "test": "walk_into_stairs_0"
+    },
+    {
+      "passed": true,
+      "test": "stair_exit_stays_on_arrival_layer"
+    },
+    {
+      "passed": true,
+      "test": "stairs_change_player_layer"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_2"
+    },
+    {
+      "passed": true,
+      "test": "ceiling_contact_unlocks_cage"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_0"
+    },
+    {
+      "passed": true,
+      "test": "right_click_arrow_starts_real_transport"
+    },
+    {
+      "passed": true,
+      "test": "right_click_transport_reaches_real_sliding"
+    },
+    {
+      "passed": true,
+      "test": "moving_weight_rejects_rule_switch"
+    },
+    {
+      "passed": true,
+      "test": "transport_recovers_after_switch_back"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_1"
+    },
+    {
+      "passed": true,
+      "test": "heavy_plate_raises_catch"
+    },
+    {
+      "passed": true,
+      "test": "reachable_action_catch_"
+    },
+    {
+      "passed": true,
+      "test": "completed_action_catch_"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_0"
+    },
+    {
+      "passed": true,
+      "test": "clip_preserves_platform_after_rule_switch"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_03-catch-fixed"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_03-catch-fixed"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_03-catch-fixed"
+    },
+    {
+      "passed": true,
+      "test": "walk_into_stairs_1"
+    },
+    {
+      "passed": true,
+      "test": "stair_exit_stays_on_arrival_layer"
+    },
+    {
+      "passed": true,
+      "test": "reachable_action_support_"
+    },
+    {
+      "passed": true,
+      "test": "completed_action_support_"
+    },
+    {
+      "passed": true,
+      "test": "switch_0_1"
+    },
+    {
+      "passed": true,
+      "test": "hatch_breaks_by_actual_weight"
+    },
+    {
+      "passed": true,
+      "test": "paperweight_lands_in_other_layer"
+    },
+    {
+      "passed": true,
+      "test": "paperweights_remain_unique"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_05-lower-received"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_05-lower-received"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_05-lower-received"
+    },
+    {
+      "passed": true,
+      "test": "second_level_can_return_to_title"
+    },
+    {
+      "passed": true,
+      "test": "save_card_names_second_level"
+    },
+    {
+      "passed": true,
+      "test": "continue_routes_to_second_level"
+    },
+    {
+      "passed": true,
+      "test": "continue_preserves_physical_progress"
+    },
+    {
+      "passed": true,
+      "test": "continue_restores_legal_player_position"
+    },
+    {
+      "passed": true,
+      "test": "walk_into_stairs_0"
+    },
+    {
+      "passed": true,
+      "test": "stair_exit_stays_on_arrival_layer"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_lift"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_guide_turn"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_sluice"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_1"
+    },
+    {
+      "passed": true,
+      "test": "waterwheel_drives_loaded_lift"
+    },
+    {
+      "passed": true,
+      "test": "walk_into_stairs_1"
+    },
+    {
+      "passed": true,
+      "test": "stair_exit_stays_on_arrival_layer"
+    },
+    {
+      "passed": true,
+      "test": "switch_0_0"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_dock"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_07-upper-dock"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_07-upper-dock"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_07-upper-dock"
+    },
+    {
+      "passed": true,
+      "test": "switch_0_3"
+    },
+    {
+      "passed": true,
+      "test": "reachable_action_bridge_"
+    },
+    {
+      "passed": true,
+      "test": "completed_action_bridge_"
+    },
+    {
+      "passed": true,
+      "test": "switch_0_0"
+    },
+    {
+      "passed": true,
+      "test": "clamped_bridge_keeps_walkable_geometry"
+    },
+    {
+      "passed": true,
+      "test": "bridge_is_reachable_by_real_navigation"
+    },
+    {
+      "passed": true,
+      "test": "occupied_bridge_cannot_lose_its_support"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_anchor"
+    },
+    {
+      "passed": true,
+      "test": "switch_0_1"
+    },
+    {
+      "passed": true,
+      "test": "upper_anchor_opens_lower_cover"
+    },
+    {
+      "passed": true,
+      "test": "anchored_upper_cannot_be_switched"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_08-upper-anchored"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_08-upper-anchored"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_08-upper-anchored"
+    },
+    {
+      "passed": true,
+      "test": "walk_into_stairs_0"
+    },
+    {
+      "passed": true,
+      "test": "stair_exit_stays_on_arrival_layer"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_0"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_guide_turn"
+    },
+    {
+      "passed": true,
+      "test": "transport_by_direction_arrow_to_guide"
+    },
+    {
+      "passed": true,
+      "test": "switch_1_2"
+    },
+    {
+      "passed": true,
+      "test": "opposite_gravity_completes_dual_anchor"
+    },
+    {
+      "passed": true,
+      "test": "final_rules_are_simultaneous"
+    },
+    {
+      "passed": true,
+      "test": "valid_save_09-dual-anchor"
+    },
+    {
+      "passed": true,
+      "test": "snapshot_has_current_checkpoint_09-dual-anchor"
+    },
+    {
+      "passed": true,
+      "test": "disk_save_09-dual-anchor"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_0"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_1"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_2"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_3"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_4"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_5"
+    },
+    {
+      "passed": true,
+      "test": "milestone_roundtrip_6"
+    },
+    {
+      "passed": true,
+      "test": "legacy_v1_records_remain_valid"
+    },
+    {
+      "passed": true,
+      "test": "invalid_paper_payload_rejected"
+    },
+    {
+      "passed": true,
+      "test": "walk_into_stairs_1"
+    },
+    {
+      "passed": true,
+      "test": "stair_exit_stays_on_arrival_layer"
+    },
+    {
+      "passed": true,
+      "test": "can_walk_into_unlocked_door"
+    },
+    {
+      "passed": true,
+      "test": "door_crossing_triggers_archive"
+    },
+    {
+      "passed": true,
+      "test": "archive_returns_to_hall"
+    },
+    {
+      "passed": true,
+      "test": "completion_is_separate_from_tutorial"
+    },
+    {
+      "passed": true,
+      "test": "completed_record_persists"
+    },
+    {
+      "passed": true,
+      "test": "completion_archives_dual_anchor_snapshot"
+    },
+    {
+      "passed": true,
+      "test": "completed_level_can_be_entered_again"
+    },
+    {
+      "passed": true,
+      "test": "completed_level_restarts_cleanly"
+    }
+  ],
+  "elapsed_seconds": 16.559,
+  "failures": 0,
+  "native_render": false,
+  "stages": [
+    {
+      "checkpoint": 0,
+      "demo_seconds": 9.8,
+      "game_seconds": 2.31666666666666,
+      "name": "01-entry"
+    },
+    {
+      "checkpoint": 1,
+      "demo_seconds": 13.7166666666667,
+      "game_seconds": 6.23333333333332,
+      "name": "02-clip-acquired"
+    },
+    {
+      "checkpoint": 2,
+      "demo_seconds": 28.2166666666667,
+      "game_seconds": 20.7333333333334,
+      "name": "03-catch-fixed"
+    },
+    {
+      "checkpoint": 3,
+      "demo_seconds": 35.2666666666667,
+      "game_seconds": 27.783333333333,
+      "name": "05-lower-received"
+    },
+    {
+      "checkpoint": 4,
+      "demo_seconds": 71.55,
+      "game_seconds": 34.0999999999993,
+      "name": "07-upper-dock"
+    },
+    {
+      "checkpoint": 5,
+      "demo_seconds": 78.3833333333333,
+      "game_seconds": 40.9333333333323,
+      "name": "08-upper-anchored"
+    },
+    {
+      "checkpoint": 6,
+      "demo_seconds": 101.483333333333,
+      "game_seconds": 64.033333333331,
+      "name": "09-dual-anchor"
+    },
+    {
+      "demo_seconds": 113.833333333333,
+      "name": "10-returned-hall"
+    }
+  ],
+  "suite": "paper_mill"
+}

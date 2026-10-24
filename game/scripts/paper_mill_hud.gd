@@ -8,7 +8,8 @@ const MUTED=Instruments.MUTED
 var room:Node
 var root:=Control.new()
 var font:=Instruments.body()
-var objective:Button
+var objective:Panel
+var objective_feedback=preload("res://scripts/paper_task_receipt.gd").new()
 var objective_heading:Label
 var objective_body:Label
 var law:Label
@@ -96,16 +97,10 @@ func _ready() -> void:
 	layer=5
 	if room.get_parent().get("ambience")!=null:audio=room.get_parent().ambience
 	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT);root.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(root)
-	objective=button(root,"",Vector2(24,20),Vector2(300,92),func():room.focus_target(room.goal_target()))
-	objective.add_theme_stylebox_override("normal",style())
-	objective.alignment=HORIZONTAL_ALIGNMENT_LEFT;objective.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;objective.add_theme_font_size_override("font_size",22)
-	objective_heading=label(objective,"",Vector2(14,7),Vector2(292,25),17,GOLD)
-	objective_body=label(objective,"",Vector2(14,31),Vector2(272,58),20)
-	objective_body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;objective_body.max_lines_visible=2
-	var transition=preload("res://scripts/task_transition.gd").new();transition.label=objective_body;objective.add_child(transition)
-	objective.tooltip_text="点击定位当前任务对象；H 打开完整观测记录"
-	objective.mouse_entered.connect(func():hover_target=room.goal_target())
-	objective.mouse_exited.connect(func():hover_target="")
+	objective=panel(root);objective.position=Vector2(24,20);objective.size=Vector2(300,92)
+	objective.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	objective_feedback.hud=self;objective.add_child(objective_feedback)
+	objective_heading=objective_feedback.heading;objective_body=objective_feedback.body
 	worlds=panel(root);worlds.size=Vector2(572,46)
 	var row:=HBoxContainer.new();row.position=Vector2(6,3);row.size=worlds.size-Vector2(12,6);row.add_theme_constant_override("separation",4);worlds.add_child(row)
 	layer_selector.custom_minimum_size=Vector2(164,40);Instruments.apply_button(layer_selector,18,true,true);quiet_button(layer_selector);row.add_child(layer_selector)
@@ -222,7 +217,7 @@ func blocks_map(at:Vector2) -> bool:
 	if menu.visible or layer_selector.get_popup().visible:return true
 	if is_instance_valid(push_picker) and push_picker.blocks_map(at):return true
 	if is_instance_valid(room.mission_guide) and room.mission_guide.blocks_map(at):return true
-	for control in [worlds,badges,objective,menu_button,record,bag,tools]:
+	for control in [worlds,badges,menu_button,record,bag,tools]:
 		if control.is_visible_in_tree() and control.get_global_rect().has_point(at):return true
 	return false
 
@@ -291,10 +286,7 @@ func refresh(delta:float) -> void:
 	clock+=delta;message_time=maxf(0,message_time-delta);saved_time=maxf(0,saved_time-delta);law_time=maxf(0,law_time-delta)
 	var s=room.state;var world:int=s.worlds[room.view_layer]
 	if world!=last_world or last_layer!=room.view_layer:law_time=3;last_world=world;last_layer=room.view_layer
-	objective_body.text=s.objective();record_task.text=s.objective()
-	task_flash=maxf(0,task_flash-delta)
-	# Completion receipts are driven by settled mechanism events, never by save restoration.
-	objective_heading.text=("✓ " if task_flash>0 else "")+"纸山叠影　%d / 7"%[clampi(s.checkpoint+1,1,7)]
+	objective_feedback.observe();record_task.text=s.objective()
 	var clip_name:String={"":"未固定","catch":"接物台","bridge":"木桥"}.get(s.clip_target,"未固定")
 	for i in range(2):
 		var w:Dictionary=s.weights[i];var moving:String=" · 运送" if w.mode!="rest" else " · 上浮" if w.elevation>.05 else ""

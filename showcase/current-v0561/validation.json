@@ -1,0 +1,52 @@
+{
+  "version": "0.56.1",
+  "snapshot": "20261024-08",
+  "executable": "world-without-manual-v0.56.1-windows-x86_64.exe",
+  "sha256": "0e1bb3ac0629e793a1580fbfa8c02fca4c5f221c685b179c55e41dcd7e13ceb9",
+  "checks": 386,
+  "failed_suites": 0,
+  "suites": [
+    {
+      "suite": "防闪实机专项",
+      "checks": 15,
+      "failures": 0,
+      "report": "showcase/current-v0561/reports/01-flicker-report.json"
+    },
+    {
+      "suite": "任务完成盖章实机",
+      "checks": 32,
+      "failures": 0,
+      "report": "showcase/current-v0561/reports/02-task-receipt-report.json"
+    },
+    {
+      "suite": "世界胶片实机",
+      "checks": 143,
+      "failures": 0,
+      "report": "showcase/current-v0561/reports/03-paper-film-report.json"
+    },
+    {
+      "suite": "导出程序完整通关",
+      "checks": 125,
+      "failures": 0,
+      "report": "showcase/current-v0561/reports/04-paper-mill-report.json"
+    },
+    {
+      "suite": "导出程序重启读档",
+      "checks": 4,
+      "failures": 0,
+      "report": "showcase/current-v0561/reports/05-paper-mill-report.json"
+    },
+    {
+      "suite": "导出程序第一关",
+      "checks": 67,
+      "failures": 0,
+      "report": "showcase/current-v0561/reports/06-tutorial-test-report.json"
+    }
+  ],
+  "source_files": 1033,
+  "base_versions": [
+    "0.55.0",
+    "0.56.0",
+    "0.55.1"
+  ]
+}

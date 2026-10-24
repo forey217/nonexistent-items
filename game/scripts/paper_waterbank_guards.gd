@@ -83,10 +83,4 @@ func sync(delta:float) -> void:
 			if not hit.is_empty():covered[int(hit.collider.get_meta("waterbank_guard"))]=true
 	for i in range(sections.size()):
 		var item:Dictionary=sections[i]
-		var target:=.70 if covered.has(i) else 0.0
-		item.fade=lerpf(item.fade,target,1.0-exp(-delta*12.0))
-		if absf(item.fade-target)<.001:item.fade=target
-		for mesh:GeometryInstance3D in item.meshes:
-			var material:StandardMaterial3D=mesh.material_override
-			material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA if item.fade>0 else BaseMaterial3D.TRANSPARENCY_DISABLED
-			material.albedo_color.a=1.0-item.fade
+		preload("res://scripts/paper_guard_fade.gd").sync(item,covered.has(i),delta)

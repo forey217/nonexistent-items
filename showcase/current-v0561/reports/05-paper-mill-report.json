@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "fresh_process_opens_picker"
+    },
+    {
+      "passed": true,
+      "test": "fresh_process_restores_paper_scene"
+    },
+    {
+      "passed": true,
+      "test": "fresh_process_preserves_complete_checkpoint"
+    },
+    {
+      "passed": true,
+      "test": "fresh_process_rebuilds_navigation"
+    }
+  ],
+  "elapsed_seconds": 1.639,
+  "failures": 0,
+  "native_render": false,
+  "stages": [],
+  "suite": "paper_mill"
+}

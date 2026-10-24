@@ -57,6 +57,8 @@ func _ready() -> void:
 		var suite=load("res://tests/paper_waterbank_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
 	if "--paper-film-check" in args:
 		var suite=load("res://tests/paper_film_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
+	if "--task-receipt-check" in args or "--task-receipt-video-check" in args:
+		var suite=load("res://tests/paper_task_receipt_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
 	if "--rail-frost-check" in args or "--rail-frost-video-check" in args:
 		var suite=load("res://tests/paper_rail_frost_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
 	if "--resonance-check" in args:
