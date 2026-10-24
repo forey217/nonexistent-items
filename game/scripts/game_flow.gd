@@ -53,8 +53,12 @@ func _ready() -> void:
 	else:show_menu()
 	if "--paper-demo-check" in args:
 		var suite=load("res://tests/paper_demo_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
+	if "--waterbank-check" in args:
+		var suite=load("res://tests/paper_waterbank_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
 	if "--paper-film-check" in args:
 		var suite=load("res://tests/paper_film_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
+	if "--rail-frost-check" in args or "--rail-frost-video-check" in args:
+		var suite=load("res://tests/paper_rail_frost_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
 	if "--resonance-check" in args:
 		var suite=load("res://tests/task_resonance_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
@@ -166,6 +170,9 @@ func _ready() -> void:
 	if "--paper-lift-check" in args:
 		var suite=load("res://tests/paper_lift_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
+	if "--paper-inverted-check" in args:
+		var suite=load("res://tests/paper_inverted_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
 	if "--paper-story-check" in args:
 		var suite=load("res://tests/paper_mill_story_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
@@ -190,6 +197,10 @@ func _ready() -> void:
 		suite.run.call_deferred(self)
 	if "--paper-direction-check" in args:
 		var suite=load("res://tests/paper_direction_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+
+	if "--paper-scroll-gate-check" in args:
+		var suite=load("res://tests/paper_archive_gate_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
 
 func start_paper_demo() -> void:

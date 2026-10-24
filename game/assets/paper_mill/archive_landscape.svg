@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1280" viewBox="0 0 1024 1280">
+ <defs>
+  <linearGradient id="mount" x2="1" y2="1"><stop stop-color="#536358" stop-opacity=".82"/><stop offset="1" stop-color="#829080" stop-opacity=".18"/></linearGradient>
+  <linearGradient id="far" x2="0" y2="1"><stop stop-color="#879687" stop-opacity=".45"/><stop offset="1" stop-color="#bac0a5" stop-opacity=".08"/></linearGradient>
+ </defs>
+ <path d="M30 770L82 515 143 624 232 300 336 531 409 384 527 650 590 527 712 766 813 491 1000 812V1110H30Z" fill="url(#far)"/>
+ <path d="M25 1090L48 790 93 843 131 603 186 740 225 465 278 636 319 586 381 862 453 764 510 939 604 862 719 1053Z" fill="url(#mount)"/>
+ <g fill="none" stroke="#455b50" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M36 1052L61 846 88 878 131 603 164 764 187 742 225 465 252 668 279 636 310 753 329 708 381 862 410 832 452 767 485 906" stroke-width="5" opacity=".9"/>
+  <path d="M225 465L211 780 241 756 225 921M131 603L117 909 153 843M319 592L302 834 328 813 343 940" stroke-width="3" opacity=".5"/>
+  <path d="M65 980L182 939 270 951 363 906 451 932 535 892" stroke-width="4" opacity=".65"/>
+  <path d="M46 1143Q263 1086 412 1053T679 929Q819 881 995 978M35 1172Q281 1100 427 1091T708 969Q854 925 1006 1016M45 1205Q269 1141 438 1127T740 1010Q863 969 1001 1054" stroke-width="5" opacity=".72"/>
+  <path d="M638 1204Q779 1096 992 1109M709 1232Q826 1158 1009 1160M774 1252Q896 1202 1006 1208" stroke-width="3" opacity=".6"/>
+  <path d="M937 285Q891 468 935 615M936 382L883 342M928 437L976 402M929 501L880 467M934 550L982 511" stroke-width="7" opacity=".7"/>
+ </g>
+ <g fill="#596d5b" opacity=".72">
+  <path d="M885 342Q849 294 842 324Q849 351 885 342M883 342Q877 291 861 298Q857 323 883 342M976 402Q1017 364 1017 390Q1004 413 976 402M879 467Q839 427 840 452Q849 475 879 467M983 512Q1014 471 1019 495Q1010 519 983 512"/>
+  <path d="M86 1128L90 1026 97 1016 101 1122M78 1048L45 1037 54 1063 83 1064M98 1060L127 1037 128 1058 101 1079"/>
+ </g>
+ <g fill="none" stroke="#a18b5e" stroke-width="3" opacity=".85">
+  <path d="M20 49H1004M20 63H1004M20 1229H1004M20 1243H1004M30 80V1206M994 80V1206"/>
+  <path d="M50 96H87V130M974 96H937V130M50 1192H87V1157M974 1192H937V1157"/>
+ </g>
+ <path d="M762 206a44 44 0 1 0 1 0" fill="none" stroke="#9b926d" stroke-width="3" opacity=".55"/>
+</svg>

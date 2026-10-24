@@ -4,6 +4,7 @@ const TOOL_EDGES:=[Rect2(2.28,12.25,.34,4.15),Rect2(7.38,12.25,.34,4.15),Rect2(2
 var buildings:Array[Dictionary]=[]
 var low_details:Array[Dictionary]=[]
 var tool_station:Node3D
+var loose_sheets:Array[Dictionary]=[]
 
 static func blocks_tool_edge(at:Vector2,layer:int,clearance:float) -> bool:
 	if layer!=0:return false
@@ -48,6 +49,9 @@ func workyard(v:Node,parent:Node3D,layer:int) -> void:
 			v.box(n,Vector3(-size.x*.5+i*.09,.025,0),Vector3(.018,.014,size.y),v.wood)
 		for z in [-size.y*.46,size.y*.46]:v.box(n,Vector3(0,.033,z),Vector3(size.x,.018,.018),v.wood)
 		for i in range(3):
+			if i==2:
+				loose_sheets.append({"layer":layer,"at":Vector3(at.x+size.x*.22,.073,at.y),"size":Vector2(size.x*.2,size.y*.62),"turn":.035})
+				continue # Built once as a moving leaf after static batching/film capture.
 			var sheet=v.box(n,Vector3(-size.x*.24+i*size.x*.23,.048,0),Vector3(size.x*.2,.008,size.y*.62),v.paper_mat)
 			sheet.rotation.y=(i-1)*.035
 		low_details.append({"at":at,"height":.09,"layer":layer,"kind":"drying_mat"})

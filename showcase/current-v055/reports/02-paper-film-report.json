@@ -1,0 +1,802 @@
+{
+  "checks": 143,
+  "failures": 0,
+  "native": true,
+  "results": [
+    {
+      "details": {},
+      "passed": true,
+      "test": "idle_has_no_composite_or_extra_rendering"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_1_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_1_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_1_mechanisms_are_live_common"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1317
+      },
+      "passed": true,
+      "test": "0_0_1_actor_pixels_match_main"
+    },
+    {
+      "details": {
+        "changed": 15026,
+        "samples": 23762
+      },
+      "passed": true,
+      "test": "0_0_1_two_real_environment_films_differ"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_1_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_2_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_2_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_2_mechanisms_are_live_common"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1357
+      },
+      "passed": true,
+      "test": "0_0_2_actor_pixels_match_main"
+    },
+    {
+      "details": {
+        "changed": 13972,
+        "samples": 23762
+      },
+      "passed": true,
+      "test": "0_0_2_two_real_environment_films_differ"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_2_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_3_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_3_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_3_mechanisms_are_live_common"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1357
+      },
+      "passed": true,
+      "test": "0_0_3_actor_pixels_match_main"
+    },
+    {
+      "details": {
+        "changed": 14249,
+        "samples": 23762
+      },
+      "passed": true,
+      "test": "0_0_3_two_real_environment_films_differ"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_0_3_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_0_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_0_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_0_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_0_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_2_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_2_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_2_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_2_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_3_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_3_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_3_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_1_3_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_0_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_0_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_0_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_0_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_1_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_1_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_1_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_1_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_3_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_3_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_3_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_2_3_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_0_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_0_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_0_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_0_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_1_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_1_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_1_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_1_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_2_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_2_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_2_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "0_3_2_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_1_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_1_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_1_mechanisms_are_live_common"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1348
+      },
+      "passed": true,
+      "test": "1_0_1_actor_pixels_match_main"
+    },
+    {
+      "details": {
+        "changed": 10250,
+        "samples": 23762
+      },
+      "passed": true,
+      "test": "1_0_1_two_real_environment_films_differ"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_1_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_2_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_2_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_2_mechanisms_are_live_common"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1354
+      },
+      "passed": true,
+      "test": "1_0_2_actor_pixels_match_main"
+    },
+    {
+      "details": {
+        "changed": 12199,
+        "samples": 23762
+      },
+      "passed": true,
+      "test": "1_0_2_two_real_environment_films_differ"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_2_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_3_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_3_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_3_mechanisms_are_live_common"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1357
+      },
+      "passed": true,
+      "test": "1_0_3_actor_pixels_match_main"
+    },
+    {
+      "details": {
+        "changed": 12360,
+        "samples": 23762
+      },
+      "passed": true,
+      "test": "1_0_3_two_real_environment_films_differ"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_0_3_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_0_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_0_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_0_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_0_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_2_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_2_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_2_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_2_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_3_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_3_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_3_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_1_3_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_0_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_0_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_0_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_0_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_1_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_1_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_1_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_1_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_3_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_3_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_3_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_2_3_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_0_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_0_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_0_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_0_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_1_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_1_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_1_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_1_ends_and_releases_resources"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_2_success_commits_once_at_original_time"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_2_only_target_environment_changes"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_2_mechanisms_are_live_common"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "1_3_2_ends_and_releases_resources"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1332
+      },
+      "passed": true,
+      "test": "actor_crisp_when_rotating_0_-45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 5
+      },
+      "passed": true,
+      "test": "unaffected_floor_live_pixels_0_-45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1357
+      },
+      "passed": true,
+      "test": "actor_crisp_when_rotating_0_0"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 5
+      },
+      "passed": true,
+      "test": "unaffected_floor_live_pixels_0_0"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1365
+      },
+      "passed": true,
+      "test": "actor_crisp_when_rotating_0_45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 5
+      },
+      "passed": true,
+      "test": "unaffected_floor_live_pixels_0_45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1345
+      },
+      "passed": true,
+      "test": "actor_crisp_when_rotating_1_-45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 5
+      },
+      "passed": true,
+      "test": "unaffected_floor_live_pixels_1_-45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1363
+      },
+      "passed": true,
+      "test": "actor_crisp_when_rotating_1_0"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 5
+      },
+      "passed": true,
+      "test": "unaffected_floor_live_pixels_1_0"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 1347
+      },
+      "passed": true,
+      "test": "actor_crisp_when_rotating_1_45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 5
+      },
+      "passed": true,
+      "test": "unaffected_floor_live_pixels_1_45"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 406
+      },
+      "passed": true,
+      "test": "actor_mask_matches_zoom_0.55"
+    },
+    {
+      "details": {
+        "errors": 0,
+        "samples": 3440
+      },
+      "passed": true,
+      "test": "actor_mask_matches_zoom_1.60"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "resized_films_follow_actual_pixels_(960, 540)"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "resized_films_follow_actual_pixels_(1920, 1080)"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "fullscreen_films_match_actual_view"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "menu_pause_freezes_transition"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "resume_finishes_transition"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "camera_and_render_dimensions_follow_main"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "restore_clears_active_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "restart_clears_active_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reuses_environment_geometry"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "sliding_rejects_cast_and_visual"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "fixed_bridge_remains_in_both_films"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "old_corridor_tracks_each_visual_world"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "unfixed_bridge_disappears_only_in_new_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "other_floor_lift_keeps_one_real_simulation"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "accelerated_demo_keeps_visible_real_time"
+    },
+    {
+      "details": {
+        "seconds": 0.553616
+      },
+      "passed": true,
+      "test": "visual_duration_independent_of_demo_speed"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "demo_uses_same_formal_film_effect"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "demo_pause_freezes_film_and_render_targets"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "demo_exit_restores_original_active_transition"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "restored_original_transition_finishes_normally"
+    }
+  ]
+}

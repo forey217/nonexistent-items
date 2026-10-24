@@ -39,16 +39,18 @@ func drag_slider(slider: HSlider,from: float,to: float) -> void:
 	var start:=slider_point(slider,from)
 	var press:=InputEventMouseButton.new()
 	press.position=start;press.global_position=start;press.button_index=MOUSE_BUTTON_LEFT;press.pressed=true
-	get_viewport().push_input(press,true)
+	Input.parse_input_event(press);await frames(1)
+	var previous:=start
 	for i in range(1,6):
 		var move:=InputEventMouseMotion.new()
 		move.position=start.lerp(slider_point(slider,to),i/5.0);move.global_position=move.position
+		move.relative=move.position-previous;previous=move.position
 		move.button_mask=MOUSE_BUTTON_MASK_LEFT
-		get_viewport().push_input(move,true);await frames(1)
+		Input.parse_input_event(move);await frames(1)
 	var release:=InputEventMouseButton.new()
 	release.position=slider_point(slider,to);release.global_position=release.position
 	release.button_index=MOUSE_BUTTON_LEFT;release.pressed=false
-	get_viewport().push_input(release,true)
+	Input.parse_input_event(release)
 
 func finish(filename: String) -> void:
 	var file:=FileAccess.open(directory.path_join(filename),FileAccess.WRITE)
@@ -98,7 +100,7 @@ func run(flow:Node2D) -> void:
 	click(menu.options_button.get_global_rect().get_center());await frames(20)
 	var page=menu.options_page
 	check("options_opens_and_blocks_main_menu",menu.options_shade.visible and menu.start_button.focus_mode==Control.FOCUS_NONE)
-	check("options_has_four_sliders_manual_and_return",page.options_content.get_children().filter(func(node):return node is Button or node is Range).size()==6 and page.channel_sliders.size()==4)
+	check("options_has_four_sliders_motion_manual_and_return",page.options_content.get_children().filter(func(node):return node is Button or node is Range).size()==7 and page.channel_sliders.size()==4 and is_instance_valid(page.motion_button))
 	check("options_matches_archive_fonts",page.heading.get_theme_font("font").resource_path.ends_with("ZCOOLXiaoWei-Regular.ttf") and page.manual_button.get_theme_font("font").base_font.resource_path.ends_with("SourceHanSerifCN-Regular.otf"))
 	check("opening_animation_finishes_in_place",page.modulate.a>0.99 and page.sheet.position==page.home and page.slider.has_focus())
 	menu.begin();await frames(1)
@@ -110,7 +112,8 @@ func run(flow:Node2D) -> void:
 	var before_key: float=page.slider.value
 	key(KEY_RIGHT);await frames(2)
 	check("slider_supports_keyboard_arrows",page.slider.value==before_key+1 and app.ambience.preferences.volume==page.slider.value)
-	await drag_slider(page.slider,25,72);await frames(2)
+	await drag_slider(page.slider,page.slider.value,72);await frames(2)
+	print("MENU_DRAG_VALUE ",page.slider.value," preferences=",app.ambience.preferences.volume)
 	check("dragging_slider_updates_sound_and_percentage",absf(page.slider.value-72)<=1 and app.ambience.preferences.volume==page.slider.value)
 	click(slider_point(page.slider,0));await frames(2)
 	check("zero_volume_is_completely_muted",page.slider.value==0 and app.ambience.muted and AudioServer.is_bus_mute(0))

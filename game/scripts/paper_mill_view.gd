@@ -15,6 +15,7 @@ var yard=preload("res://scripts/paper_mill_yard.gd").new()
 const Rig=preload("res://scripts/yanyue_walk_rig.gd")
 const StairGuards=preload("res://scripts/paper_mill_stair_guards.gd")
 var stair_guards:Array[Dictionary]=[]
+var waterbank_guards=preload("res://scripts/paper_waterbank_guards.gd").new()
 var push_arrow:Node3D
 var push_arrow_material:StandardMaterial3D
 var room:Node
@@ -25,9 +26,12 @@ var output:=Sprite2D.new()
 var roots:Array[Node3D]=[]
 var roofs:Array[Node3D]=[]
 var weight_nodes:Array[Node3D]=[]
+var weight_shadows:Array[MeshInstance3D]=[]
+var rule_details=preload("res://scripts/paper_rule_details.gd").new()
 var rails:Array[StandardMaterial3D]=[]
 const RailNetwork=preload("res://scripts/paper_rail_network.gd")
 var rail_networks:Array=[]
+var rail_frost=preload("res://scripts/paper_rail_frost.gd").new()
 var lift_rail_material:StandardMaterial3D
 var lift_rail_tongues:Node3D
 var world_lights:Array[StandardMaterial3D]=[]
@@ -44,7 +48,6 @@ var cage_door:Node3D
 var support:Node3D
 var clamp:Node3D
 var portal:Node3D
-var portal_mat:StandardMaterial3D
 var paper_viewport:=SubViewport.new()
 var paper:=Rig.new()
 var actor:=Sprite3D.new()
@@ -114,10 +117,16 @@ func _ready() -> void:
 	memory_props=preload("res://scripts/paper_mill_memory_props.gd").new()
 	world_root.add_child(memory_props);memory_props.build(self)
 	stair_guards=StairGuards.build(self)
+	waterbank_guards.build(self)
+	add_child(rail_frost);rail_frost.build(self)
 	# Capture environment leaves before mechanisms/labels are added to the floors.
 	film.view=self;add_child(film)
 	for layer in range(2):film.register_environment(roots[layer],layer)
+	# Live details are common to both films: one pose, no stale static duplicate.
+	world_root.add_child(rule_details);rule_details.build(self)
 	_build_mechanisms();_actor();_highlight()
+	rail_frost.build_lift()
+	_build_weight_shadows()
 	_build_push_guides()
 	add_child(switch_fx);switch_fx.z_index=30;switch_fx.modulate.a=.55
 	var foot_material:=ShaderMaterial.new();foot_material.shader=preload("res://shaders/paper_switch_fx.gdshader")
@@ -415,11 +424,9 @@ func _build_mechanisms() -> void:
 	catch_ring=MissionModel.new("ring");roots[1].add_child(catch_ring);catch_ring.position=point(S.DROP+Vector2(1.4,0),.25);mission_models["catch"]=catch_ring
 	bridge_ring=MissionModel.new("ring");roots[0].add_child(bridge_ring);bridge_ring.position=point(S.BRIDGE+Vector2(.9,-.5),.10);mission_models["bridge"]=bridge_ring
 	clamp=MissionModel.new("clip");world_root.add_child(clamp);clamp.scale=Vector3.ONE*1.15;mission_models["held_clip"]=clamp
-	portal=group(u,point(S.EXIT))
-	for x in [-.8,.8]:box(portal,Vector3(x,1.2,0),Vector3(.18,2.5,.25),wood)
-	box(portal,Vector3(0,2.45,0),Vector3(1.9,.22,.32),wood)
-	portal_mat=mat("86c2b4");portal_mat.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;portal_mat.albedo_color.a=.16;portal_mat.emission_enabled=true;portal_mat.emission=Color("64c5af")
-	box(portal,Vector3(0,1.15,0),Vector3(1.4,2.2,.04),portal_mat)
+	portal=preload("res://scripts/paper_archive_gate.gd").new();u.add_child(portal);portal.position=point(S.EXIT)
+	# A slight turn keeps a readable opening at both limits of the orbit camera.
+	portal.rotation.y=PI*.125;portal.build(self)
 	completion_paper=group(u,point(S.UPPER_ANCHOR)+Vector3(0,1.6,.7))
 	box(completion_paper,Vector3.ZERO,Vector3(2.3,1.5,.025),paper_mat)
 	var drawing:=Label3D.new();drawing.text="水路既通 · 纸山重明\n潮纹所向：瓯江孤屿";drawing.font_size=32;drawing.pixel_size=.008;drawing.position.z=.02;drawing.modulate=Color("365b52");drawing.outline_size=0;completion_paper.add_child(drawing)
@@ -559,6 +566,19 @@ func _fade_stair_guards(delta:float) -> void:
 			material.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA if section.fade>0 else BaseMaterial3D.TRANSPARENCY_DISABLED
 			material.albedo_color.a=1.0-section.fade
 
+func _build_weight_shadows() -> void:
+	var shader:=Shader.new()
+	shader.code="""shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never;
+uniform float strength=0.16;
+void fragment(){float r=length((UV-vec2(.5))*2.0);ALBEDO=vec3(.12,.16,.13);ALPHA=(1.0-smoothstep(.24,1.0,r))*strength;}
+"""
+	for i in range(2):
+		var n:=MeshInstance3D.new();var mesh:=QuadMesh.new();mesh.size=Vector2(1.1,1.1)
+		var material:=ShaderMaterial.new();material.shader=shader;n.mesh=mesh;n.material_override=material
+		n.rotation.x=-PI*.5;n.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		world_root.add_child(n);weight_shadows.append(n)
+
 func _sync(delta:float) -> void:
 	age+=delta;link_time=maxf(0,link_time-delta)
 	if frame_to_ui and room.hud!=null:
@@ -605,15 +625,26 @@ func _sync(delta:float) -> void:
 	_fade_stair_guards(delta)
 	var s=room.state
 	memory_props.sync(delta,s.worlds)
+	rule_details.sync(delta,s.worlds,room.hud==null or room.hud.audio.preferences.motion_enabled)
 	for i in range(2):
 		roots[i].visible=(i==room.view_layer or link_time>0) and not (i==0 and room.lift_riding and s.lift_in_transit())
 		roofs[i].visible=false # No roofs or furniture remain over the active courts.
 		rails[i].albedo_color=RAIL_COLORS[s.worlds[i]]
 		layer_stone[i].albedo_color=STONE_COLORS[s.worlds[i]]
-		floating_paper[i].emitting=s.worlds[i]==2
+		floating_paper[i].emitting=false
 		var w:Dictionary=s.weights[i]
 		weight_nodes[i].position=point(w.pos,s.weight_height(i))
 		weight_nodes[i].visible=w.layer==room.view_layer or w.mode=="fall" or link_time>0
+		var support_height:float=s.weight_support_height(i)
+		var surface_height:=support_height+.023
+		if w.station=="hatch" and not s.hatch_broken:surface_height=support_height+.17
+		elif w.station=="catch" and i==0:surface_height=support_height+.17+s.catch_height*.15
+		elif w.station=="lift":surface_height=support_height+.16
+		weight_shadows[i].position=point(w.pos,surface_height)
+		weight_shadows[i].visible=weight_nodes[i].visible and w.mode!="fall"
+		var gap:float=maxf(0.0,s.weight_height(i)-support_height-.18)
+		weight_shadows[i].material_override.set_shader_parameter("strength",.17/(1.0+gap*.9))
+		weight_shadows[i].scale=Vector3.ONE*(1.0+gap*.14)
 	hatch.visible=not s.hatch_broken;support.visible=not s.support_released
 	if s.hatch_broken and not seen_broken:break_age=0.0
 	seen_broken=s.hatch_broken
@@ -627,6 +658,7 @@ func _sync(delta:float) -> void:
 	floor_front.visible=link_time<=0 or room.transition_age>0
 	stair_floor.visible=room.transition_age<=0
 	bridge.visible=s.bridge_solid();side_bridge.visible=s.old_corridor_solid()
+	waterbank_guards.sync(delta)
 	tool_model.visible=not s.clip_owned
 	catch_ring.set_fixed(s.clip_target=="catch");bridge_ring.set_fixed(s.clip_target=="bridge")
 	catch_ring.position.y=.25+s.catch_height*.15
@@ -634,19 +666,23 @@ func _sync(delta:float) -> void:
 	lift.position.y=s.lift_height
 	lift_rail_tongues.visible=s.lift_docked(0) or s.lift_docked(1)
 	lift_rail_material.albedo_color=rails[0 if s.lift_height>S.HEIGHT*.5 else 1].albedo_color
+	rail_frost.sync(delta,s.worlds,room.hud==null or room.hud.audio.preferences.motion_enabled)
 	cage_door.rotation.x=PI*.48 if s.cage_open else 0.0
 	cover.position.x=S.LOWER_ANCHOR.x+(1.5 if s.upper_anchored else 0.0)
 	lowpass_gate.position.y=-1.0 if s.lowpass_open else .75
 	sluice_gate.position.y=.9 if s.waterwheel_running() else .4
 	for i in range(2):pressure_faces[i].position.y=.12 if s.pressure("catch" if i==0 else "sluice") else .23
+	# The completed poem is now a small colophon by the anchor, not a second large scroll.
 	completion_paper.visible=s.lower_anchored
+	completion_paper.scale.x=.45;completion_paper.scale.z=.45
+	completion_paper.position=point(S.UPPER_ANCHOR)+Vector3(1.15,.70,-.25)
 	paper_unfold=move_toward(paper_unfold,1.0 if s.lower_anchored else 0.0,delta*.8)
-	completion_paper.scale.y=maxf(.02,smoothstep(0.0,1.0,paper_unfold))
+	completion_paper.scale.y=maxf(.02,smoothstep(0.0,1.0,paper_unfold))*.40
 	if s.waterwheel_running():wheel.rotation.x+=delta*1.7
 	clamp.visible=s.clip_target!=""
 	if clamp.visible:clamp.position=(catch_ring.global_position if s.clip_target=="catch" else bridge_ring.global_position)+Vector3(0,.36,0)
 	portal.visible=room.view_layer==0
-	portal_mat.albedo_color.a=.45 if s.lower_anchored else .05
+	portal.tick(delta,s)
 	actor.visible=room.player_layer==room.view_layer or link_time>0
 	actor.position=point(room.player.display_position()/room.SCALE,room.actor_height()+.04)
 	shadow.position=actor.position;shadow.visible=actor.visible
@@ -668,9 +704,13 @@ func _sync(delta:float) -> void:
 	highlight.visible=not target.is_empty() and int(target.layer)==room.view_layer
 	if highlight.visible:
 		highlight.position=point(target.pos,(S.HEIGHT if target.layer==0 else 0.0)+.14)
+		if target.id in ["w0","w1"]:highlight.position.y=s.weight_height(int(target.id.trim_prefix("w")))+.08
 		highlight_label.text=("走入楼梯 · "+("下楼" if room.player_layer==0 else "上楼")) if target.id=="stairs" else target.name+" · E / 右键"
 		if target.id in ["w0","w1"]:
 			highlight_label.text="右键 / E · 选择方向"
+		elif target.id=="exit":
+			highlight_label.text="走入归位门，返回观察局" if s.upper_anchored and s.lower_anchored else "归位门 · 等待双锚稳定"
+	portal.hovered=target_id=="exit" and room.view_layer==0
 
 func _unhandled_input(event:InputEvent) -> void:
 	if room.hud!=null and room.hud.menu.visible:return

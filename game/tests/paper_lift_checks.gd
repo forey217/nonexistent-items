@@ -56,7 +56,8 @@ func state_checks() -> void:
 	s.weights[0]=s.make_weight("mountain",1,s.LIFT,"lift");s.worlds[0]=2;s.switch_world(1,1)
 	simulate(s,5)
 	check("loaded_lift_arrival_assigns_upper_rail_even_if_upper_is_inverted",s.weights[0].layer==0 and s.lifted_once and s.destinations(0)==["dock"])
-	s.switch_world(0,0);s.push_direction(0,Vector2.DOWN);s.step(.1)
+	s.switch_world(0,0);simulate(s,1.0) # Cargo must physically settle after inverted arrival.
+	s.push_direction(0,Vector2.DOWN);s.step(.1)
 	var height:float=s.weight_height(0)
 	check("departing_cargo_uses_upper_height_and_locks_early_inverted",not s.switch_world(0,2) and s.weights[0].mode=="slide" and absf(height-State.HEIGHT-.18)<.001)
 	simulate(s,1)

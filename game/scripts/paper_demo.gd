@@ -154,7 +154,9 @@ func _tick_step(dt:float) -> void:
 		"wait":
 			if stage.condition=="mountain_landed":_scene_focus(s.DROP,1,dt,true)
 			elif stage.condition=="lift_top":_scene_focus(s.LIFT,0,dt,true)
-			elif stage.condition=="dual":_scene_focus(s.LOWER_ANCHOR,1,dt,false)
+			elif stage.condition=="dual":
+				_scene_focus(s.EXIT if s.lower_anchored else s.LOWER_ANCHOR,0 if s.lower_anchored else 1,dt,false)
+				if s.lower_anchored:room.view.torso_offset=lerpf(room.view.torso_offset,1.35,1.0-exp(-dt*8.0))
 			if _condition(stage.condition):stage.finished=true
 		"world":
 			if not stage.started:
@@ -197,7 +199,7 @@ func _condition(id:String) -> bool:
 		"lift_top":return s.lifted_once and m.layer==0 and m.mode=="rest" and s.lift_docked(0)
 		"upper":return s.upper_anchored
 		"lowpass":return s.lowpass_open and s.lift_docked(1)
-		"dual":return s.upper_anchored and s.lower_anchored and room.view.paper_unfold>=.999
+		"dual":return s.upper_anchored and s.lower_anchored and room.view.paper_unfold>=.999 and room.view.portal.ready_for_entry()
 	return false
 
 func _stairs() -> void:

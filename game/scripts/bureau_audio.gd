@@ -2,6 +2,7 @@ extends Node
 ## Persistent music and independent Music/SFX/Dialogue gains under Master.
 signal volume_changed(percent: float)
 signal channel_volume_changed(channel: String,percent: float)
+signal motion_changed(enabled:bool)
 const CHANNEL_BUSES={"music":"Music","sfx":"SFX","dialogue":"Dialogue"}
 const GATE_ENTRY=preload("res://assets/audio/gate_warm_v01/enter.wav")
 const GATE_SELECT=preload("res://assets/audio/gate_warm_v01/select.wav")
@@ -66,6 +67,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func toggle_mute() -> void:
 	set_volume(preferences.audible_volume if muted else 0.0)
 	if not muted:play_ui()
+
+func set_motion_enabled(value:bool) -> void:
+	preferences.motion_enabled=value;save_age=.25;motion_changed.emit(value)
 
 func set_volume(percent: float) -> void:
 	if not is_finite(percent):return

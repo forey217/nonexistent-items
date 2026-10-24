@@ -5,7 +5,7 @@ signal movement_notice(message: String)
 
 const FOOT_RADIUS := 13.0
 const WalkRig = preload("res://scripts/yanyue_walk_rig.gd")
-const DEFAULT_SPEED := 208.8
+const DEFAULT_SPEED := 271.44
 const ACCEL_SECONDS:=0.10
 const BRAKE_SECONDS:=0.08
 const ARRIVAL_RADIUS:=0.45
@@ -142,7 +142,9 @@ func _route_aim() -> Vector2:
 		route_index+=1;return next
 	var lead:=clampf(lookahead-position.distance_to(target),0.0,lookahead)
 	var candidate:=target.move_toward(next,lead)
-	return candidate if lead>0 and _safe_segment(position,candidate) else target
+	# A locally clear shortcut can still circle an inside obstacle forever.
+	# Round a corner only when its remaining segment is also safely reachable.
+	return candidate if lead>0 and _safe_segment(position,next) and _safe_segment(position,candidate) else target
 
 func _physics_process(delta: float) -> void:
 	if position.distance_squared_to(_current_position)>pow(speed*delta*3.0+1.0,2):_reset_display()

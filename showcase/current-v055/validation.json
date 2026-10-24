@@ -1,0 +1,59 @@
+{
+  "version": "0.55.0",
+  "snapshot": "20261024-06",
+  "exe": "冰晶导轨整合-v0.55.0/世界不按说明书.exe",
+  "sha256": "61a457f56f7a53583a40b751bef77d348b783df17a2ef7879146254e4db1f452",
+  "source_snapshot": ".artifact_work/rail-frost-v0550/game",
+  "base": "当前含 v0.54.0 倒悬响应的整合工作区",
+  "movement_speed": 271.44,
+  "frost_growth_seconds": 0.9,
+  "frost_exit_seconds": 0.24,
+  "checks": 470,
+  "failed_suites": 0,
+  "suites": [
+    {
+      "suite": "专项动画与状态",
+      "checks": 36,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/01-rail-frost-report.json"
+    },
+    {
+      "suite": "世界胶片",
+      "checks": 143,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/02-paper-film-report.json"
+    },
+    {
+      "suite": "圆角轨道",
+      "checks": 53,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/03-rail-report.json"
+    },
+    {
+      "suite": "倒悬实物",
+      "checks": 42,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/04-inverted-report.json"
+    },
+    {
+      "suite": "完整通关",
+      "checks": 125,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/05-paper-mill-report.json"
+    },
+    {
+      "suite": "第一关",
+      "checks": 67,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/06-tutorial-test-report.json"
+    },
+    {
+      "suite": "重启读档",
+      "checks": 4,
+      "failures": 0,
+      "report": "showcase/current-v055/reports/07-paper-mill-report.json"
+    }
+  ],
+  "executable": "world-without-manual-v0.55.0-windows-x86_64.exe",
+  "validation_note": "470 checks passed before publication. This upload preserves the accepted executable and runtime sources without gameplay changes."
+}

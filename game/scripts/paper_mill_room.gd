@@ -370,7 +370,8 @@ func _commit_interaction() -> void:
 		"support":result=state.release_support()
 		"catch","bridge":result=state.set_clip(id)
 		"exit":
-			if state.lower_anchored:finished=true;completed.emit()
+			if state.upper_anchored and state.lower_anchored and view.portal.ready_for_entry():finished=true;completed.emit()
+			elif state.lower_anchored:result="归档卷轴正在展开。"
 			else:result="纸页仍不完整，先稳定上下两处锚点。"
 		"w0","w1":
 			var index:=int(id.trim_prefix("w"))
@@ -392,6 +393,7 @@ func focus_target(id:String) -> void:
 	if target.is_empty():return
 	view_layer=target.layer;view.set_focus(target.pos);hud.hover_target=id
 	view.focused_target=id
+	if id=="exit":view.torso_offset=1.35
 	if is_instance_valid(mission_guide):mission_guide.inspect(id)
 
 func show_hint() -> void:
@@ -415,6 +417,9 @@ func restore(data:Dictionary) -> void:
 	player.controls_locked=false;interacting=false;pending.clear();world_cooldown=0;story.clear();story_time=0
 	transition_age=0;stairs_armed=player_plan().distance_to(stairs_position(player_layer))>.9;stairs_notice=false
 	communications.restore(data.get("communications",{}),not data.has("communications"))
+	view.portal.baseline(state);view.paper_unfold=1.0 if state.lower_anchored else 0.0
+	view.rule_details.baseline(state.worlds)
+	view.rail_frost.baseline(state.worlds)
 	hud.refresh(0);task_feedback.baseline(data.get("task_feedback",[]))
 	_rebuild_navigation();view.return_to_actor();last_stable=snapshot();last_checkpoint=state.checkpoint
 
@@ -448,6 +453,9 @@ func restart() -> void:
 	cancel_push_command()
 	lift_riding=false
 	state=State.new();state.event.connect(_state_event);player_layer=0;view_layer=0;finished=false
+	view.portal.baseline(state);view.paper_unfold=0.0
+	view.rule_details.baseline(state.worlds)
+	view.rail_frost.baseline(state.worlds,true)
 	player.teleport_for_reset(Vector2(6,4)*SCALE);pending.clear();interacting=false;player.controls_locked=false
 	stairs_armed=true;stairs_notice=false;transition_age=0;hud.record.hide();hud.help_panel.hide()
 	communications.restore({});hud.refresh(0);task_feedback.baseline([],true);sound.stop_effects();last_stable=snapshot();last_checkpoint=-1;world_cooldown=0;_rebuild_navigation();view.return_to_actor();hud.message("本关已完整重新开始。")
@@ -501,7 +509,7 @@ func _physics_process(delta:float) -> void:
 	_update_lift_boarding()
 	state.step(delta)
 	_update_lift_passenger()
-	if state.lower_anchored and player_layer==0 and not arrival_busy() and not finished and player_plan().distance_to(State.EXIT)<.35:
+	if state.upper_anchored and state.lower_anchored and view.portal.ready_for_entry() and player_layer==0 and not arrival_busy() and not finished and player_plan().distance_to(State.EXIT)<.35:
 		finished=true;pending.clear();player.cancel_navigation();completed.emit()
 	if nav_signature!=_navigation_signature():_rebuild_navigation()
 	if state.checkpoint!=last_checkpoint:

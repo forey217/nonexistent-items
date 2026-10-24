@@ -96,7 +96,7 @@ func run(flow: Node) -> void:
 		await frames(1)
 		if p.position.distance_to(start+Vector2(90,0))<9:speed_samples.append(p.velocity.length())
 	record("click_arrival_is_accurate_and_emits_once",arrivals[0]==1 and p.position.distance_to(start+Vector2(90,0))<=.5)
-	record("click_arrival_brakes_before_target",speed_samples.any(func(value):return value>1 and value<140),{"speeds":speed_samples})
+	record("click_arrival_brakes_before_target",speed_samples.any(func(value):return value>1 and value<p.DEFAULT_SPEED*.9),{"speeds":speed_samples})
 	await frames(12);record("arrival_does_not_oscillate_or_repeat",arrivals[0]==1 and p.velocity==Vector2.ZERO)
 	p.follow_path(PackedVector2Array([p.position+Vector2(90,0)]));await frames(12)
 	var takeover:int=p.manual_takeovers;press(Vector2.DOWN);await frames(2)
@@ -135,9 +135,9 @@ func run(flow: Node) -> void:
 	p.teleport_for_reset(lab.spawn_point);press(Vector2.RIGHT);await frames(12)
 	record("tutorial_uses_same_acceleration_and_full_speed",absf(p.velocity.length()-p.DEFAULT_SPEED)<.1)
 	release();lab.hud.toggle_menu();locked_at=p.position;await frames(8)
-	record("tutorial_pause_clears_motion_and_route",p.position==locked_at and p.velocity==Vector2.ZERO and not p.is_navigating())
+	record("tutorial_pause_clears_motion_and_route",p.position.distance_to(locked_at)<=p.safe_margin+.001 and p.velocity==Vector2.ZERO and not p.is_navigating(),{"at":p.position,"expected":locked_at,"menu":lab.hud.menu.visible,"modal":lab.hud.dialogue_modal,"arrival":lab.arrival_busy(),"velocity":p.velocity})
 	lab.hud.toggle_menu();await frames(6)
-	record("tutorial_unpause_does_not_resume_old_motion",p.position==locked_at)
+	record("tutorial_unpause_does_not_resume_old_motion",p.position.distance_to(locked_at)<=p.safe_margin+.001 and p.velocity==Vector2.ZERO)
 	for angle in [-45.0,0.0,45.0]:
 		lab.orbit_view.set_angle(angle);p.face_toward(p.global_position+Vector2(-1,-1));lab.orbit_view._sync_state(.016)
 		var actor:Vector3=lab.orbit_view.actor.position

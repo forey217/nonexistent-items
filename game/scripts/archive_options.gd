@@ -25,6 +25,7 @@ var manual_groups: Array=[]
 var home:=Vector2(350,80)
 var instrument_mode:=false
 var mill_material:=false
+var motion_button:Button
 const Instruments=preload("res://scripts/instrument_theme.gd")
 
 func _ready() -> void:
@@ -59,11 +60,16 @@ func _ready() -> void:
 		else:control.value_changed.connect(func(value):audio.set_channel_volume(channel,value))
 	manual_button=_button(options_content,"操作说明",Rect2(76,484,428,48))
 	manual_button.pressed.connect(open_manual)
+	motion_button=_button(options_content,"",Rect2(76,535,428,25))
+	motion_button.add_theme_font_size_override("font_size",17)
+	_sync_motion(audio.preferences.motion_enabled);audio.motion_changed.connect(_sync_motion)
+	motion_button.pressed.connect(func():audio.set_motion_enabled(not audio.preferences.motion_enabled))
+	motion_button.tooltip_text="归档卷轴使用展开动画；关闭后以简短静态淡化显示。"
 	back_button=_button(options_content,"返回",Rect2(76,562,428,48))
 	_label(back_button,"Esc",Rect2(340,14,60,24),16).modulate=Color(1,1,1,0.65)
 	back_button.pressed.connect(close)
 	_build_manual()
-	var focus_order: Array=[slider,channel_sliders.music,channel_sliders.sfx,channel_sliders.dialogue,manual_button,back_button]
+	var focus_order: Array=[slider,channel_sliders.music,channel_sliders.sfx,channel_sliders.dialogue,manual_button,motion_button,back_button]
 	for i in range(focus_order.size()):
 		var control: Control=focus_order[i]
 		control.focus_neighbor_top=control.get_path_to(focus_order[(i+focus_order.size()-1)%focus_order.size()])
@@ -74,6 +80,9 @@ func _ready() -> void:
 	_sync_volume(audio.preferences.volume)
 	for channel in audio.preferences.channels:_sync_channel(channel,audio.preferences.channels[channel])
 	manual_content.hide();hide()
+
+func _sync_motion(value:bool) -> void:
+	motion_button.text="动态画面："+("开  ✓" if value else "关  —")
 
 func _label(parent: Node,text: String,rect: Rect2,points: int,title:=false) -> Label:
 	var label:=Label.new()

@@ -96,7 +96,9 @@ func run(app: Node2D) -> void:
 	await frames(4)
 	var hub=app.current
 	record("animation_finishes_in_about_two_seconds",not app.returning and elapsed>=1.90 and elapsed<2.02,{"effect_seconds":elapsed,"sampled_frames":count})
-	record("archive_releases_overlay_and_starts_spatial_arrival",app.return_effect==null and hub.process_mode==Node.PROCESS_MODE_INHERIT and hub.player.controls_locked and hub.arrival_busy() and app.ambience.toggle_button.visible)
+	# Current flow hides redundant screen buttons while arrival owns the input;
+	# M remains available through the shared audio input handler.
+	record("archive_releases_overlay_and_starts_spatial_arrival",app.return_effect==null and hub.process_mode==Node.PROCESS_MODE_INHERIT and hub.player.controls_locked and hub.arrival_busy() and not app.ambience.toggle_button.visible)
 	record("arrival_sound_follows_filing_once",app.ambience.archive_events==["stamp","file","arrived"])
 	record("music_identity_persists_through_return",app.ambience.music.get_instance_id()==music_id and (DisplayServer.get_name()=="headless" or app.ambience.music.playing) and not app.ambience.muted)
 	record("hub_title_starts_after_transition",hub.return_age>0 and hub.return_age<0.15)

@@ -1,0 +1,175 @@
+{
+  "checks": 42,
+  "failures": 0,
+  "native_render": true,
+  "results": [
+    {
+      "passed": true,
+      "test": "hatch_real_rise_smooth_and_monotonic"
+    },
+    {
+      "passed": true,
+      "test": "hatch_keeps_footprint_floor_and_puzzle"
+    },
+    {
+      "passed": true,
+      "test": "other_floor_cannot_drop_upper_weight"
+    },
+    {
+      "passed": true,
+      "test": "floating_stable_save_preserves_height"
+    },
+    {
+      "passed": true,
+      "test": "switch_back_has_no_height_reset"
+    },
+    {
+      "passed": true,
+      "test": "ice_returns_to_supported_rest"
+    },
+    {
+      "passed": true,
+      "test": "support_prevents_break_after_real_heavy_landing"
+    },
+    {
+      "passed": true,
+      "test": "released_hatch_never_breaks_below_airborne_weight"
+    },
+    {
+      "passed": true,
+      "test": "contact_break_converts_local_to_absolute_without_jump"
+    },
+    {
+      "passed": true,
+      "test": "original_drop_lands_at_lower_catch"
+    },
+    {
+      "passed": true,
+      "test": "reversed_cross_floor_fall_stays_in_hatch_column"
+    },
+    {
+      "passed": true,
+      "test": "reversed_drop_can_resume_original_landing"
+    },
+    {
+      "passed": true,
+      "test": "water_cage_retains_correct_ceiling"
+    },
+    {
+      "passed": true,
+      "test": "water_junction_retains_correct_ceiling"
+    },
+    {
+      "passed": true,
+      "test": "water_guide_retains_correct_ceiling"
+    },
+    {
+      "passed": true,
+      "test": "open_lift_cargo_responds_without_ownership_change"
+    },
+    {
+      "passed": true,
+      "test": "lift_docks_before_upper_membership_then_floats"
+    },
+    {
+      "passed": true,
+      "test": "withdrawing_lift_does_not_drag_airborne_cargo"
+    },
+    {
+      "passed": true,
+      "test": "detached_cargo_save_restores_real_height_and_owner"
+    },
+    {
+      "passed": true,
+      "test": "detached_cargo_payload_is_valid"
+    },
+    {
+      "passed": true,
+      "test": "detached_cargo_falls_back_to_actual_lower_deck"
+    },
+    {
+      "passed": true,
+      "test": "anchored_weights_do_not_restart_motion"
+    },
+    {
+      "passed": true,
+      "test": "guide_still_completes_lower_anchor"
+    },
+    {
+      "passed": true,
+      "test": "rapid_switch_continues_current_height"
+    },
+    {
+      "passed": true,
+      "test": "native_hatch_model_has_actual_height"
+    },
+    {
+      "passed": true,
+      "test": "native_shadow_remains_on_actual_wood_surface"
+    },
+    {
+      "passed": true,
+      "test": "hover_highlight_follows_elevated_model"
+    },
+    {
+      "passed": true,
+      "test": "floating_payload_remains_valid_for_save"
+    },
+    {
+      "passed": true,
+      "test": "floating_weight_still_blocks_original_footprint"
+    },
+    {
+      "passed": true,
+      "test": "local_papers_respond_only_on_owner_floor"
+    },
+    {
+      "passed": true,
+      "test": "moving_leaves_have_no_static_film_copy"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_real_height_and_paper_pose"
+    },
+    {
+      "passed": true,
+      "test": "float_picking_0.55_-45"
+    },
+    {
+      "passed": true,
+      "test": "float_picking_0.55_45"
+    },
+    {
+      "passed": true,
+      "test": "float_picking_1.0_-45"
+    },
+    {
+      "passed": true,
+      "test": "float_picking_1.0_45"
+    },
+    {
+      "passed": true,
+      "test": "float_picking_1.6_-45"
+    },
+    {
+      "passed": true,
+      "test": "float_picking_1.6_45"
+    },
+    {
+      "passed": true,
+      "test": "native_heavy_returns_without_releasing_hatch"
+    },
+    {
+      "passed": true,
+      "test": "low_motion_keeps_required_gameplay_float"
+    },
+    {
+      "passed": true,
+      "test": "large_window_render_tracks_draw_area"
+    },
+    {
+      "passed": true,
+      "test": "fullscreen_remains_renderable"
+    }
+  ]
+}

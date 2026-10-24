@@ -1,0 +1,151 @@
+{
+  "checks": 36,
+  "failures": 0,
+  "native": true,
+  "results": [
+    {
+      "passed": true,
+      "test": "fresh_entry_replays_both_initial_ice_layers"
+    },
+    {
+      "passed": true,
+      "test": "small_bounded_mesh_pool"
+    },
+    {
+      "passed": true,
+      "test": "skin_only_has_visual_leaves"
+    },
+    {
+      "passed": true,
+      "test": "all_pooled_meshes_have_real_geometry"
+    },
+    {
+      "passed": true,
+      "test": "growth_has_real_midpoint"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_all_visual_clocks"
+    },
+    {
+      "passed": true,
+      "test": "growth_finishes_with_static_ice"
+    },
+    {
+      "passed": true,
+      "test": "camera_and_observation_never_replay"
+    },
+    {
+      "passed": true,
+      "test": "leaving_ice_fades_only_owner_floor"
+    },
+    {
+      "passed": true,
+      "test": "leaving_ice_finishes_cleanly"
+    },
+    {
+      "passed": true,
+      "test": "returning_to_ice_replays_only_owner"
+    },
+    {
+      "passed": true,
+      "test": "reduced_motion_has_complete_frost_without_front"
+    },
+    {
+      "passed": true,
+      "test": "floor_0_rule_0_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_0_rule_1_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_0_rule_2_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_0_rule_3_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_1_rule_0_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_1_rule_1_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_1_rule_2_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "floor_1_rule_3_ice_only"
+    },
+    {
+      "passed": true,
+      "test": "load_restores_completed_frost"
+    },
+    {
+      "passed": true,
+      "test": "no_visual_state_added_to_save"
+    },
+    {
+      "passed": true,
+      "test": "visual_updates_do_not_step_simulation"
+    },
+    {
+      "passed": true,
+      "test": "bridge_skin_uses_actual_bridge_parent"
+    },
+    {
+      "passed": true,
+      "test": "missing_bridge_cannot_leave_floating_frost"
+    },
+    {
+      "passed": true,
+      "test": "fixed_bridge_carries_its_frost"
+    },
+    {
+      "passed": true,
+      "test": "film_hides_frost_in_all_non_ice_rules"
+    },
+    {
+      "passed": true,
+      "test": "outgoing_film_keeps_its_ice_material"
+    },
+    {
+      "passed": true,
+      "test": "outgoing_film_has_no_ice_in_new_rule"
+    },
+    {
+      "passed": true,
+      "test": "incoming_film_uses_live_progress"
+    },
+    {
+      "passed": true,
+      "test": "lift_dock_0_follows_real_floor"
+    },
+    {
+      "passed": true,
+      "test": "lift_dock_1_follows_real_floor"
+    },
+    {
+      "passed": true,
+      "test": "lift_in_transit_has_neutral_rail_and_no_tongue"
+    },
+    {
+      "passed": true,
+      "test": "progress_baked_into_real_straights_and_curves"
+    },
+    {
+      "passed": true,
+      "test": "rapid_switch_reuses_entire_pool"
+    },
+    {
+      "passed": true,
+      "test": "restart_replays_initial_frost"
+    }
+  ]
+}

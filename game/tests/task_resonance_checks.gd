@@ -117,7 +117,7 @@ func run(flow:Node) -> void:
 	check("pause_freezes_completion_effects",is_equal_approx(f.effects[0].age,age))
 	check("pause_freezes_material_audio",material_voice.stream_paused and material_voice.get_playback_position()<.05)
 	room.set_physics_process(false);room.hud.menu.hide();paper_tick(3)
-	check("rapid_updates_never_restore_old_target",room.hud.objective_body.text==s.objective() and s.objective().contains("归位门"))
+	check("rapid_updates_never_restore_old_target",room.hud.objective_body.text==s.objective() and s.upper_anchored and s.lower_anchored)
 	check("quiet_render_after_completion",f.effects.is_empty())
 	room.restore(room.snapshot());paper_tick(.1)
 	check("stable_final_restore_stays_quiet",f.effects.is_empty())

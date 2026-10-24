@@ -55,11 +55,14 @@ func _prepare(layer:int) -> void:
 
 func begin(layer:int,source_world:int,destination:int) -> void:
 	cancel();layer_index=layer;from_world=source_world;to_world=destination;age=0;progress=0;alignment=0
+	view.rail_frost.transition(layer,source_world,destination)
 	_prepare(layer);active=true;containers[layer].show()
 	for item:Dictionary in copies[layer]:
 		for entry in [[item.old,source_world],[item.new,destination]]:
 			var source:Material=item.source.material_override
-			if source==view.layer_stone[layer] or source==view.rails[layer]:
+			if item.source.has_meta("rail_frost"):
+				entry[0].material_override=view.rail_frost.film_material(item.source,entry[1],entry[0]==item.old)
+			elif source==view.layer_stone[layer] or source==view.rails[layer]:
 				var key:=str(source.get_instance_id())+":"+str(entry[1])
 				if not variants.has(key):
 					var copy:StandardMaterial3D=source.duplicate()
@@ -74,6 +77,7 @@ func begin(layer:int,source_world:int,destination:int) -> void:
 	sync(0)
 
 func _visible(source:Node3D,world:int) -> bool:
+	if source.has_meta("rail_frost") and world!=0:return false
 	var node:Node=source
 	while node!=view.world_root:
 		if node==view.bridge:

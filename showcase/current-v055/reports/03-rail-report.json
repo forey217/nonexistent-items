@@ -1,0 +1,218 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "three_separate_real_networks"
+    },
+    {
+      "passed": true,
+      "test": "only_actual_edges_0"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_0_dock"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_0_bridge"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_0_anchor_turn"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_0_anchor_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_0_anchor_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_0_anchor_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_0_anchor_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "fixed_rail_ends_at_shaft_lip_0"
+    },
+    {
+      "passed": true,
+      "test": "only_actual_edges_1"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_1_cage_turn"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_1_catch"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_1_junction"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_1_guide_turn"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_1_sluice_turn"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_1_guide_bend"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_cage_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_cage_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_cage_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_cage_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_catch_0.18"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_catch_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_catch_0.72"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_catch_0.72"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_guide_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_guide_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_sluice_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_sluice_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_sluice_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_sluice_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_guide_bend_0.18"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_guide_bend_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_1_guide_bend_0.72"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_1_guide_bend_0.72"
+    },
+    {
+      "passed": true,
+      "test": "only_actual_edges_2"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_2_junction"
+    },
+    {
+      "passed": true,
+      "test": "both_rails_share_joint_2_lift_turn"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_2_lift_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_2_lift_turn_0.18"
+    },
+    {
+      "passed": true,
+      "test": "circular_mesh_2_lift_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "old_stop_within_double_rail_2_lift_turn_0.72"
+    },
+    {
+      "passed": true,
+      "test": "fixed_rail_ends_at_shaft_lip_2"
+    },
+    {
+      "passed": true,
+      "test": "crossing_is_not_a_false_branch"
+    },
+    {
+      "passed": true,
+      "test": "rail_top_matches_weight_base"
+    },
+    {
+      "passed": true,
+      "test": "visual_sync_does_not_change_simulation"
+    },
+    {
+      "passed": true,
+      "test": "bridge_has_own_rail_meshes"
+    },
+    {
+      "passed": true,
+      "test": "hidden_bridge_hides_its_track"
+    },
+    {
+      "passed": true,
+      "test": "revealed_bridge_has_track"
+    },
+    {
+      "passed": true,
+      "test": "clamped_bridge_retains_track"
+    },
+    {
+      "passed": true,
+      "test": "aligned_lift_track_0"
+    },
+    {
+      "passed": true,
+      "test": "aligned_lift_track_1"
+    },
+    {
+      "passed": true,
+      "test": "moving_lift_retracts_dock_tongues"
+    }
+  ],
+  "failures": 0,
+  "native_render": true
+}

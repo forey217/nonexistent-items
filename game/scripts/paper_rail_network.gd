@@ -13,6 +13,7 @@ var stops:Dictionary
 var adjacency:Dictionary={}
 var crossings:Array[Vector2]=[]
 var curves:Array[Dictionary]=[]
+var surfaces:Array[Dictionary]=[] # Exact rendered rail leaves, also used by the visual frost skin.
 
 func _init(owner_view:Node) -> void:view=owner_view
 
@@ -125,6 +126,7 @@ func arc(parent:Node3D,id:String,center:Vector2,start:Vector2,finish:Vector2,rad
 	mesh.generate_normals()
 	var instance:=MeshInstance3D.new();instance.mesh=mesh.commit();instance.material_override=material;parent.add_child(instance)
 	curves.append({"joint":id,"center":center,"radius":radius,"points":samples,"mesh":instance})
+	surfaces.append({"mesh":instance,"origin":Vector2.ZERO})
 
 func extrude(mesh:SurfaceTool,polygon:Array[Vector2],origin:=Vector2.ZERO) -> void:
 	var points:Array[Vector3]=[]
@@ -151,3 +153,4 @@ func prism(parent:Node3D,polygon:Array[Vector2],material:Material,origin:=Vector
 	extrude(mesh,polygon,origin)
 	mesh.generate_normals()
 	var instance:=MeshInstance3D.new();instance.mesh=mesh.commit();instance.material_override=material;parent.add_child(instance)
+	surfaces.append({"mesh":instance,"origin":origin})

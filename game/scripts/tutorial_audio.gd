@@ -75,6 +75,12 @@ func play_resonance(kind:String) -> void:
 		if not selected.playing:
 			selected.stream=load(path);selected.pitch_scale=1.0;selected.volume_db=-23.0;selected.play();return
 
+func play_archive_paper() -> void:
+	if not enabled:return
+	for selected in voices:
+		if not selected.playing:
+			selected.stream=STREAMS.fold;selected.pitch_scale=1.0;selected.volume_db=-29.0;selected.play();return
+
 func stop_effects() -> void:
 	footstep_voice.stop()
 	for voice in voices:

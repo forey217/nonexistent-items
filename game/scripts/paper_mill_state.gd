@@ -163,7 +163,7 @@ func _push_start_error(index:int) -> String:
 	if index==0 and upper_anchored or index==1 and lower_anchored:return "这块镇纸已稳住锚位。"
 	if worlds[w.layer]==1:return "镇纸太重了，先切回冰晶。"
 	if worlds[w.layer]!=0:return "先切回冰晶，再沿地面轨道推动。"
-	if float(w.elevation)>.03:return "镇纸还没落回轨道。"
+	if float(w.elevation)>.003 or absf(float(w.speed_y))>.01:return "镇纸尚未落回导轨，请等它停稳。"
 	if index==1 and w.station=="cage" and not cage_open:return "封存架仍锁着，先观察上方锁扣。"
 	return ""
 
@@ -253,22 +253,33 @@ func _step(dt: float) -> void:
 	var m:Dictionary=weights[0]
 	var water:Dictionary=weights[1]
 	# The waterwheel powers the platform independently of cargo and quest stage.
+	var previous_lift:=lift_height
 	lift_height=move_toward(lift_height,lift_target_height(),dt*(1.15 if waterwheel_running() else 1.5))
-	if not hatch_broken and support_released and worlds[0]==1 and m.station=="hatch":
-		hatch_broken=true;m.mode="fall";m.elevation=HEIGHT;m.speed_y=0.0;event.emit("seal_begin")
+	# Pressure is a contact event, not merely a world/station combination.
+	if not hatch_broken and support_released and worlds[0]==1 and m.station=="hatch" and m.mode=="rest" and float(m.elevation)<=0.0001:
+		hatch_broken=true;m.mode="fall";m.elevation=HEIGHT+.18;m.speed_y=0.0;event.emit("seal_begin")
 	if m.mode=="fall":
 		var law:int=worlds[0] if float(m.elevation)>HEIGHT*0.5 else worlds[1]
-		m.speed_y=float(m.speed_y)+(-8.0 if law==2 else (22.0 if law==1 else 9.0))*dt
+		if law==2:
+			var upward:=minf(3.3,sqrt(16.0*maxf(0.0,HEIGHT+1.68-float(m.elevation))))
+			m.speed_y=move_toward(float(m.speed_y),-upward,8.0*dt)
+		else:m.speed_y=float(m.speed_y)+(22.0 if law==1 else 9.0)*dt
 		m.elevation=float(m.elevation)-float(m.speed_y)*dt
-		if float(m.elevation)<HEIGHT*0.5:m.layer=1
-		if float(m.elevation)<=0.0:
+		if float(m.elevation)>=HEIGHT+1.68:m.elevation=HEIGHT+1.68;m.speed_y=0.0
+		m.layer=0 if float(m.elevation)>HEIGHT*.5 else 1
+		if float(m.elevation)<=.18:
 			m.layer=1;m.elevation=0.0;m.speed_y=0.0;m.mode="rest";m.station="catch";m.pos=DROP
 			checkpoint=maxi(checkpoint,3);event.emit("land")
 	elif m.station=="lift" and m.mode=="rest":
-		m.elevation=0.0;m.speed_y=0.0
-		if lift_docked(0) and m.layer==1:
+		# The open platform carries the rail footprint; cargo may rise locally.
+		# Only platform docking changes transport membership, never local height.
+		var cargo_height:float=previous_lift+float(m.elevation)
+		if lift_docked(0) and m.layer==1 and cargo_height>=HEIGHT-.02:
 			m.layer=0;lifted_once=true;event.emit("moon")
-		elif lift_docked(1):m.layer=1
+		elif lift_docked(1) and cargo_height<=.02:m.layer=1
+		# A withdrawn platform must not drag airborne cargo down with it.
+		# Keep world height; the open shaft remains its only horizontal footprint.
+		m.elevation=maxf(0.0,float(m.elevation)+previous_lift-lift_height)
 	if lifted_once and lift_height<.02 and not lowpass_open:
 		lowpass_open=true;event.emit("stop")
 	for i in range(2):
@@ -290,12 +301,8 @@ func _step(dt: float) -> void:
 					if not passed.is_empty():w.station=passed
 				if i==0 and w.station=="dock":checkpoint=maxi(checkpoint,4)
 			if w.path.is_empty():w.station=w.target;w.mode="rest";w.slide_speed=0.0;event.emit("stop")
-		elif w.mode=="rest" and w.station not in ["hatch","lift"] and not (i==0 and upper_anchored) and not (i==1 and lower_anchored):
-			var limit:=2.3 if i==1 and w.station in ["cage","guide"] else 1.5
-			var law:int=worlds[w.layer]
-			w.speed_y=clampf(float(w.speed_y)+(5.5 if law==2 else -10.0)*dt,-6.0,3.3)
-			w.elevation=clampf(float(w.elevation)+float(w.speed_y)*dt,0.0,limit)
-			if float(w.elevation)<=0.0 or float(w.elevation)>=limit:w.speed_y=0.0
+		elif w.mode=="rest" and not (i==0 and upper_anchored) and not (i==1 and lower_anchored):
+			_step_local_height(i,dt)
 	if water.station=="cage" and float(water.elevation)>=2.29 and not cage_open:
 		cage_open=true;event.emit("star")
 	if m.station=="anchor" and m.mode=="rest" and worlds[0]==1 and float(m.elevation)<0.02 and not upper_anchored:
@@ -304,14 +311,36 @@ func _step(dt: float) -> void:
 		water.elevation=2.3;water.speed_y=0.0
 		lower_anchored=true;checkpoint=6;event.emit("success")
 
+func float_limit(index:int) -> float:
+	# Cage/guide have existing 2.3m switches. All open stations share the
+	# existing 1.5m inverted equilibrium, including hatch and open lift deck.
+	var w:Dictionary=weights[index]
+	if index==0 and w.station=="lift":return maxf(0.0,(HEIGHT if w.layer==0 else 0.0)+1.5-lift_height)
+	return 2.3 if index==1 and w.station in ["cage","guide"] else 1.5
+
+func _step_local_height(index:int,dt:float) -> void:
+	var w:Dictionary=weights[index];var limit:=float_limit(index)
+	var law:int=worlds[w.layer]
+	if law==2:
+		# Brake using remaining distance rather than abruptly hitting the cap.
+		var desired:=minf(2.4,sqrt(11.0*maxf(0.0,limit-float(w.elevation))))
+		w.speed_y=move_toward(float(w.speed_y),desired,5.5*dt)
+	else:w.speed_y=maxf(-6.0,float(w.speed_y)-(16.0 if law==1 else 10.0)*dt)
+	w.elevation=clampf(float(w.elevation)+float(w.speed_y)*dt,0.0,limit)
+	if float(w.elevation)<=0.0 or float(w.elevation)>=limit:w.speed_y=0.0
+
+func weight_support_height(index:int) -> float:
+	var w:Dictionary=weights[index]
+	if index==0 and w.station=="lift" and w.mode=="rest":return lift_height
+	return HEIGHT if w.layer==0 else 0.0
+
 func weight_height(index: int) -> float:
 	var w:Dictionary=weights[index]
 	if index==0 and w.mode=="fall":return float(w.elevation)
-	if index==0 and w.station=="lift" and w.mode=="rest":return lift_height+0.18
-	return (HEIGHT if w.layer==0 else 0.0)+float(w.elevation)+0.18
+	return weight_support_height(index)+float(w.elevation)+0.18
 
 func objective() -> String:
-	if lower_anchored:return "双锚已定，走入上层归位门"
+	if lower_anchored:return "双锚已定，返回上层归档"
 	if upper_anchored:return "将水纹镇纸送至下层导向井，稳定高处锚位"
 	if lifted_once and int(weights[0].layer)==0:return "将山纹镇纸送至上层锚座"
 	if hatch_broken and int(weights[0].layer)==1 and weights[0].mode=="rest":return "将山纹镇纸送回上层锚座"
@@ -338,4 +367,4 @@ func restore(data: Dictionary) -> void:
 	var m:Dictionary=weights[0]
 	if m.station=="lift":
 		if lift_docked(0):m.layer=0
-		elif lift_docked(1):m.layer=1
+		elif lift_docked(1) and float(m.elevation)<=.02:m.layer=1
