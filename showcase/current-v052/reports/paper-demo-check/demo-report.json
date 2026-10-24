@@ -1,0 +1,142 @@
+{
+  "checks": [
+    {
+      "passed": true,
+      "test": "demo_entry_exists_only_in_second_level"
+    },
+    {
+      "passed": true,
+      "test": "can_enter_from_real_mid_slide"
+    },
+    {
+      "passed": true,
+      "test": "menu_panel_and_exit_fit_viewport"
+    },
+    {
+      "passed": true,
+      "test": "small_menu_scroll_reaches_exit"
+    },
+    {
+      "passed": true,
+      "test": "original_scene_is_retained"
+    },
+    {
+      "passed": true,
+      "test": "new_demonstration_is_pristine"
+    },
+    {
+      "passed": true,
+      "test": "all_manual_input_is_owned"
+    },
+    {
+      "passed": true,
+      "test": "forced_autosave_is_blocked"
+    },
+    {
+      "passed": true,
+      "test": "pause_freezes_state_schedule_and_clock"
+    },
+    {
+      "passed": true,
+      "test": "pause_preserves_scene_picture"
+    },
+    {
+      "passed": true,
+      "test": "control_bar_stays_inside_viewport"
+    },
+    {
+      "passed": true,
+      "test": "source_mid_motion_remains_exact"
+    },
+    {
+      "passed": true,
+      "test": "early_exit_restores_same_live_instance"
+    },
+    {
+      "passed": true,
+      "test": "exit_restores_time_scale"
+    },
+    {
+      "passed": true,
+      "test": "archive_can_pause_without_finishing_in_background"
+    },
+    {
+      "passed": true,
+      "test": "complete_real_route_without_error"
+    },
+    {
+      "passed": true,
+      "test": "four_short_confirmations_use_original_female_voice"
+    },
+    {
+      "passed": true,
+      "test": "final_worlds_and_both_anchors_are_real"
+    },
+    {
+      "passed": true,
+      "test": "archive_and_return_to_bureau_complete"
+    },
+    {
+      "passed": true,
+      "test": "roadshow_finishes_within_90_seconds"
+    },
+    {
+      "passed": true,
+      "test": "voice_keeps_original_pitch"
+    },
+    {
+      "passed": true,
+      "test": "no_source_state_or_record_was_changed"
+    },
+    {
+      "passed": true,
+      "test": "no_progress_counters_were_incremented"
+    },
+    {
+      "passed": true,
+      "test": "real_save_file_unchanged"
+    },
+    {
+      "passed": true,
+      "test": "repeat_starts_from_initial_state"
+    },
+    {
+      "passed": true,
+      "test": "final_exit_restores_original_motion_exactly"
+    },
+    {
+      "passed": true,
+      "test": "no_controller_or_queued_actions_survive_exit"
+    },
+    {
+      "passed": true,
+      "test": "finished_source_starts_pristine_demo"
+    },
+    {
+      "passed": true,
+      "test": "custom_simulation_speed_is_restored"
+    },
+    {
+      "passed": true,
+      "test": "unreachable_step_stops_without_forging_completion"
+    },
+    {
+      "passed": true,
+      "test": "failure_exit_preserves_original"
+    },
+    {
+      "passed": true,
+      "test": "exit_during_archive_capture_cancels_late_callbacks"
+    },
+    {
+      "passed": true,
+      "test": "title_return_cleans_demo_before_normal_navigation"
+    },
+    {
+      "passed": true,
+      "test": "first_level_has_no_second_level_demo_entry"
+    }
+  ],
+  "failures": 0,
+  "native": true
+}

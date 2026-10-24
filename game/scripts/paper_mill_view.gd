@@ -1,6 +1,10 @@
 extends Node2D
 ## Real geometry; image concepts are never used as flattened gameplay backgrounds.
 const S=preload("res://scripts/paper_mill_state.gd")
+const RAIL_COLORS:=[Color("b3e1e3"),Color("b39d76"),Color("a398b7"),Color("a8c2a7")]
+const STONE_COLORS:=[Color("d2dbd7"),Color("ded0b5"),Color("d4cddd"),Color("d5d7c0")]
+var film=preload("res://scripts/paper_world_film.gd").new()
+var switch_fx=preload("res://scripts/world_switch_fx.gd").new()
 const MissionModel=preload("res://scripts/paper_mission_model.gd")
 var mission_models:Dictionary={}
 var lift_arrival_materials:Dictionary={}
@@ -110,8 +114,14 @@ func _ready() -> void:
 	memory_props=preload("res://scripts/paper_mill_memory_props.gd").new()
 	world_root.add_child(memory_props);memory_props.build(self)
 	stair_guards=StairGuards.build(self)
+	# Capture environment leaves before mechanisms/labels are added to the floors.
+	film.view=self;add_child(film)
+	for layer in range(2):film.register_environment(roots[layer],layer)
 	_build_mechanisms();_actor();_highlight()
 	_build_push_guides()
+	add_child(switch_fx);switch_fx.z_index=30;switch_fx.modulate.a=.55
+	var foot_material:=ShaderMaterial.new();foot_material.shader=preload("res://shaders/paper_switch_fx.gdshader")
+	foot_material.set_shader_parameter("actor_mask",paper_viewport.get_texture());switch_fx.material=foot_material
 	set_focus(room.player_plan(),true)
 	_sync(0.0)
 
@@ -509,7 +519,7 @@ func _camera() -> void:
 	var right:=camera.global_basis.x;var forward:=-camera.global_basis.z;right.y=0;forward.y=0
 	room.player.input_basis=Transform2D(Vector2(right.x,right.z).normalized(),-Vector2(forward.x,forward.z).normalized(),Vector2.ZERO)
 
-func _process(delta:float) -> void:_sync(delta)
+func _process(delta:float) -> void:_sync(0 if room.hud!=null and room.hud.menu.visible else delta)
 
 func _build_push_guides() -> void:
 	push_arrow=group(world_root);push_arrow_material=mat("c6db91")
@@ -598,8 +608,8 @@ func _sync(delta:float) -> void:
 	for i in range(2):
 		roots[i].visible=(i==room.view_layer or link_time>0) and not (i==0 and room.lift_riding and s.lift_in_transit())
 		roofs[i].visible=false # No roofs or furniture remain over the active courts.
-		rails[i].albedo_color=[Color("b3e1e3"),Color("b39d76"),Color("a398b7"),Color("a8c2a7")][s.worlds[i]]
-		layer_stone[i].albedo_color=[Color("d2dbd7"),Color("ded0b5"),Color("d4cddd"),Color("d5d7c0")][s.worlds[i]]
+		rails[i].albedo_color=RAIL_COLORS[s.worlds[i]]
+		layer_stone[i].albedo_color=STONE_COLORS[s.worlds[i]]
 		floating_paper[i].emitting=s.worlds[i]==2
 		var w:Dictionary=s.weights[i]
 		weight_nodes[i].position=point(w.pos,s.weight_height(i))
@@ -648,6 +658,11 @@ func _sync(delta:float) -> void:
 	paper.push_amount=room.push_age/.45 if room.interacting else 0.0
 	_update_push_guide()
 	paper.cast_amount=sin((.5-room.world_cast_time)/.5*PI) if room.world_cast_time>0 else 0.0
+	film.sync(delta)
+	switch_fx.active=film.active and room.player_layer==film.layer_index
+	switch_fx.progress=film.progress
+	switch_fx.position=screen(room.player_plan(),room.player_layer,.03)
+	switch_fx.queue_redraw()
 	var target_id:String=room.hud.hover_target if room.hud!=null and not room.hud.hover_target.is_empty() else room.hit_target(get_viewport().get_mouse_position())
 	var target:Dictionary=room.target_by_id(target_id)
 	highlight.visible=not target.is_empty() and int(target.layer)==room.view_layer

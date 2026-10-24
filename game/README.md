@@ -1,4 +1,12 @@
-# 当前完整演示整合：v0.51.0 · 20261024-01
+# 已发布整合：v0.52.0 · 20261024-02
+
+[下载 Windows 程序](https://github.com/forey217/nonexistent-items/releases/download/v0.52.0/world-without-manual-v0.52.0-windows-x86_64.exe) · [GitHub 发布页](https://github.com/forey217/nonexistent-items/releases/tag/v0.52.0) · [完整冻结工程](https://github.com/forey217/nonexistent-items/releases/download/v0.52.0/world-without-manual-v0.52.0-godot-source.zip)。第二关世界胶片过渡、完整演示与此前优化；9 组 621 项通过，演示实测 86.38 秒。以下保留原快照与历史说明。
+
+# 本地最新验收：世界胶片整合 v0.52.0 · 20261024-02
+
+本地入口为 `builds/启动当前整合版.cmd`，程序在 `builds/世界胶片整合-v0.52.0/世界不按说明书.exe`。新增第二关双层世界胶片过渡；完整演示实测 86.38 秒，9 组 621 项通过。本次尚未发布。[版本与验收](docs/世界胶片整合-v0.52.0.md) · [过渡实现](docs/第二关世界胶片过渡-v01.md)。以下发布链接和历史工作保留。
+
+# 已发布整合记录：v0.51.0 · 20261024-01
 
 [下载 Windows 程序](https://github.com/forey217/nonexistent-items/releases/download/v0.51.0/world-without-manual-v0.51.0-windows-x86_64.exe) · [GitHub 发布页](https://github.com/forey217/nonexistent-items/releases/tag/v0.51.0)。本地统一入口为 `builds/启动当前整合版.cmd`，程序在 `builds/完整演示整合-v0.51.0/世界不按说明书.exe`。保留此前全部优化，新增第二关完整演示；最终 Windows 程序 10 组 607 项通过。详见 [版本与验收](docs/完整演示整合-v0.51.0.md) · [演示路线与实现](docs/第二关完整过关演示-v01.md)。旧包保留，下面是历史记录。
 

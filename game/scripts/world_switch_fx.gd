@@ -5,7 +5,7 @@ var color := Color("9bdce7")
 
 func play(at: Vector2,index: int) -> void:
 	position=at
-	color=[Color("9bdce7"),Color("edb875"),Color("c7b3f6")][index]
+	color=[Color("9bdce7"),Color("edb875"),Color("c7b3f6"),Color("b4c9a4")][index]
 	progress=0
 	active=true
 	queue_redraw()

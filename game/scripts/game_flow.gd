@@ -53,6 +53,8 @@ func _ready() -> void:
 	else:show_menu()
 	if "--paper-demo-check" in args:
 		var suite=load("res://tests/paper_demo_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
+	if "--paper-film-check" in args:
+		var suite=load("res://tests/paper_film_checks.gd").new();add_child(suite);suite.run.call_deferred(self)
 	if "--resonance-check" in args:
 		var suite=load("res://tests/task_resonance_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
@@ -190,11 +192,20 @@ func _ready() -> void:
 		var suite=load("res://tests/paper_direction_checks.gd").new();add_child(suite)
 		suite.run.call_deferred(self)
 
+	if "--paper-scroll-gate-check" in args:
+		var suite=load("res://tests/paper_archive_gate_checks.gd").new();add_child(suite)
+		suite.run.call_deferred(self)
+
 func start_paper_demo() -> void:
 	if is_instance_valid(paper_demo) or not is_instance_valid(current) or current.get("level_id")!="paper_mill" or returning:return
 	paper_demo=preload("res://scripts/paper_demo.gd").new();paper_demo.flow=self;add_child(paper_demo);paper_demo.begin(current)
 
 func shutdown_audio() -> void:
+	# Freeze producers before releasing their voices. Accelerated/headless
+	# simulation can otherwise finish another mechanism during the release wait.
+	if is_instance_valid(current):current.process_mode=Node.PROCESS_MODE_DISABLED
+	if is_instance_valid(current) and current.get("level_id")=="paper_mill":current.view.film.cancel()
+	if is_instance_valid(dialogue):dialogue.process_mode=Node.PROCESS_MODE_DISABLED
 	if is_instance_valid(dialogue) and is_instance_valid(dialogue.voice):dialogue.voice.stop()
 	if is_instance_valid(ambience):ambience.stop_all()
 	if is_instance_valid(current) and current.get("sound")!=null:current.sound.stop_effects()

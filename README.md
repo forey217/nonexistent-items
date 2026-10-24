@@ -2,20 +2,21 @@
 
 衍月的平行世界解谜游戏，使用 **Godot 4.7.2 标准版 / GDScript** 制作。游戏原名为《不存在的物品》，仓库地址沿用原名。
 
-**当前整合版：v0.51.0 · 20261024-01。** 包含两关完整流程、逐句配音、薄玻璃观测界面、三档存档、第二关方向推动与一键完整过关演示。
+**当前整合版：v0.52.0 · 20261024-02。** 新增第二关独立双层世界胶片过渡。 包含两关完整流程、逐句配音、薄玻璃观测界面、三档存档、第二关方向推动与一键完整过关演示。
 
 ## 下载与运行
 
-- **[下载 Windows 64 位试玩程序](https://github.com/forey217/nonexistent-items/releases/download/v0.51.0/world-without-manual-v0.51.0-windows-x86_64.exe)**：单文件程序，下载后双击运行，无需安装 Godot。
-- **[v0.51.0 发布页：完整工程、验收文件与校验值](https://github.com/forey217/nonexistent-items/releases/tag/v0.51.0)**。
-- **[下载与程序一致的完整 Godot 工程](https://github.com/forey217/nonexistent-items/releases/download/v0.51.0/world-without-manual-v0.51.0-godot-source.zip)**。
+- **[下载 Windows 64 位试玩程序](https://github.com/forey217/nonexistent-items/releases/download/v0.52.0/world-without-manual-v0.52.0-windows-x86_64.exe)**：单文件程序，下载后双击运行，无需安装 Godot。
+- **[v0.52.0 发布页：完整工程、验收文件与校验值](https://github.com/forey217/nonexistent-items/releases/tag/v0.52.0)**。
+- **[下载与程序一致的完整 Godot 工程](https://github.com/forey217/nonexistent-items/releases/download/v0.52.0/world-without-manual-v0.52.0-godot-source.zip)**。
 - 编辑源码：克隆本仓库，使用 Godot **4.7.2 标准版**导入 [`game/project.godot`](game/project.godot)，运行主场景；无需 .NET。
 - [历史发布](https://github.com/forey217/nonexistent-items/releases)保留。程序和工程压缩包放在 Releases，仓库保存可编辑源码与公开验收资料。
 
-程序主界面左下显示“整合试玩 v0.51.0 · 20261024-01”。本地固定入口仍为 `builds/启动当前整合版.cmd`；该目录不纳入 Git。Windows 导出使用 Compatibility / ANGLE，既有验收在 Windows 原生图形程序中完成，其他硬件仍待试玩。
+程序主界面左下显示“整合试玩 v0.52.0 · 20261024-02”。本地固定入口仍为 `builds/启动当前整合版.cmd`；该目录不纳入 Git。Windows 导出使用 Compatibility / ANGLE，既有验收在 Windows 原生图形程序中完成，其他硬件仍待试玩。
 
 ## 本版内容
 
+- 第二关切换规则时，目标楼层的新旧环境斜向错位、重合；人物、主要机关和 HUD 保持清晰，另一层保持其真实规则。动画约 0.55 秒，原规则提交时机及联锁保留。
 - 启动画面连续推近星系仪，进入三档观测记录；空档新建，有记录则继续稳定检查点，支持删除确认。
 - 观察局接待大厅、星系仪“世界封存室”、两关解锁、通关归档与返回大厅。
 - 第一关“新手校准室”：冰晶、重力、倒悬三世界，组合镇纸物性完成星位、月痕与界缝校准。
@@ -25,17 +26,17 @@
 - 第二关右键镇纸后左键选择方向，人物自动靠近并推动；无功能的普通轨道节点连续通过，保留真实分岔和功能停靠点，转角使用圆角轨道。
 - 柔和脚步、星仪环门声音与已有地图缩放、旋转、平移、悬停及相机避让。
 
-详见[本版整合与验收](game/docs/完整演示整合-v0.51.0.md)。此前专项迭代记录保留在 [`game/docs`](game/docs)。
+详见[本版整合与验收](game/docs/世界胶片整合-v0.52.0.md)。此前专项迭代记录保留在 [`game/docs`](game/docs)。
 
 ## 第二关完整演示
 
 进入“纸山叠影”后，打开右上角 **观测仪表 → 演示 → 第二关完整演示**。从初始状态自动执行真实寻路、楼梯、推动、规则切换、双锚与归档回程，最终返回观察局；支持暂停、继续、退出和再次演示。演示使用隔离现场，结束后可返回原进度，不覆盖玩家存档与解锁记录。
 
-既有 Windows 验收中两轮耗时约 **85.60 秒、84.52 秒**。详细路线与隔离方式见[演示说明](game/docs/第二关完整过关演示-v01.md)。
+最终 Windows 程序完整演示实测 **86.38 秒**。详细路线与隔离方式见[演示说明](game/docs/第二关完整过关演示-v01.md)。
 
 | 演示入口 | 归档回程 |
 | --- | --- |
-| ![第二关演示入口](showcase/current-v051/paper-demo-entry.png) | ![演示归档回程](showcase/current-v051/paper-demo-return.png) |
+| ![第二关演示入口](showcase/current-v052/paper-demo-entry.png) | ![演示归档回程](showcase/current-v052/paper-demo-return.png) |
 
 ## 常用操作
 
@@ -55,7 +56,7 @@
 
 本版沿用已完成的 **10 组、607 项 Windows 原生图形自动检查，全部通过，错误日志为空**，覆盖完整演示、菜单、双关 HUD、方向推动、机关共鸣、剧情、第二关通关归档、存档、人物移动和输入隔离。本次发布核对了程序 SHA-256 与封存源码逐文件哈希，未改动游戏玩法。
 
-[验收汇总](showcase/current-v051/validation.json)及[分组报告](showcase/current-v051/reports)随仓库公开。自动检查不能替代其他硬件环境的人工体验；音频检查覆盖流播放、音高与字幕同步，不表示本轮新增逐句听审。
+[验收汇总](showcase/current-v052/validation.json)及[分组报告](showcase/current-v052/reports)随仓库公开。自动检查不能替代其他硬件环境的人工体验；音频检查覆盖流播放、音高与字幕同步，不表示本轮新增逐句听审。
 
 Releases 中的完整工程 ZIP 为实际验收程序对应的冻结快照，附逐文件 SHA-256；仓库在同一快照基础上更新了发布文档和公开报告。旧版本发布保持保留。
 
@@ -80,3 +81,5 @@ showcase/           公开实机截图与检查报告
 - 代码、玩法迭代和检查通过 Codex 辅助完成。第三方许可仅适用于相应素材，不代表全部角色、美术与代码统一采用 CC0。
 
 项目作者：周书屹。
+
+本次发布以已验收的 v0.52.0 冻结快照为准，正在制作的两项工作未合入。游戏运行文件与 Release 源码附件逐文件一致；仓库仅额外更新发布文档和公开验收资料。

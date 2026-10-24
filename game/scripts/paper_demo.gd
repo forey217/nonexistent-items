@@ -146,7 +146,7 @@ func _process(_delta:float) -> void:
 	_tick_step(dt)
 
 func _idle() -> bool:
-	return not room.arrival_busy() and not room.interacting and room.pending.is_empty() and not room.state.has_sliding_weight()
+	return not room.arrival_busy() and not room.interacting and room.pending.is_empty() and not room.state.has_sliding_weight() and not room.view.film.active
 
 func _tick_step(dt:float) -> void:
 	var s=room.state
@@ -163,7 +163,7 @@ func _tick_step(dt:float) -> void:
 				if s.worlds[stage.layer]!=stage.world and not room.change_world(stage.world,stage.layer):_retry("世界暂不可切换");return
 				stage.started=true
 				_point(room.hud.rule_buttons[int(stage.world)].get_global_rect().get_center())
-			if room.world_cast_time<=0 and s.worlds[stage.layer]==stage.world:stage.finished=true
+			if room.world_cast_time<=0 and not room.view.film.active and s.worlds[stage.layer]==stage.world:stage.finished=true
 		"interact":
 			if not stage.started:
 				if not _idle():return

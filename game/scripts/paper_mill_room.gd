@@ -130,7 +130,10 @@ func change_world(next:int,layer:int=-1) -> bool:
 	if layer==0 and next!=3 and not state.bridge_solid() and on_bridge(player_plan()) and player_layer==0:return false
 	if layer==0 and next!=3 and state.clip_target!="bridge" and not state.upper_anchored and on_bridge(player_plan()) and player_layer==0:
 		hud.message("先夹住木桥，或站回桥头再切换世界。");return false
+	var previous_world:int=state.worlds[layer]
 	if not state.switch_world(layer,next):return false
+	view.film.begin(layer,previous_world,next)
+	view.switch_fx.play(view.screen(player_plan(),player_layer),next);sound.play_event("fold")
 	hud.push_picker.close()
 	world_cooldown=1.5;world_cast_time=.5;communications.notify_attempt();pending.clear();player.cancel_navigation()
 	_rebuild_navigation();hud.message(("上层" if layer==0 else "下层")+"已切到"+state.WORLD_NAMES[next]+"世界。")
@@ -403,6 +406,7 @@ func stable_snapshot() -> Dictionary:
 	last_stable=snapshot();return last_stable.duplicate(true)
 
 func restore(data:Dictionary) -> void:
+	view.film.cancel();world_cast_time=0
 	cancel_push_command()
 	lift_riding=false
 	state.restore(data.get("state",{}));player_layer=int(data.get("player_layer",0));view_layer=player_layer
@@ -440,6 +444,7 @@ func restore_checkpoint() -> void:
 
 func restart() -> void:
 	if finished or arrival_busy():return
+	view.film.cancel();world_cast_time=0
 	cancel_push_command()
 	lift_riding=false
 	state=State.new();state.event.connect(_state_event);player_layer=0;view_layer=0;finished=false

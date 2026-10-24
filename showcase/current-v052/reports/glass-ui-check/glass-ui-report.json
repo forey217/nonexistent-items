@@ -1,0 +1,211 @@
+{
+  "checks": 46,
+  "failures": 0,
+  "native_render": true,
+  "results": [
+    {
+      "passed": true,
+      "test": "lab_shared_group_has_backing"
+    },
+    {
+      "passed": true,
+      "test": "lab_task_area_reduced_without_shrinking_text"
+    },
+    {
+      "passed": true,
+      "test": "lab_repeated_error_does_not_extend"
+    },
+    {
+      "passed": true,
+      "test": "subtitle_all_text_survives_paging"
+    },
+    {
+      "passed": true,
+      "test": "subtitle_page_fits_0"
+    },
+    {
+      "passed": true,
+      "test": "subtitle_page_fits_1"
+    },
+    {
+      "passed": true,
+      "test": "subtitle_entire_caption_hides"
+    },
+    {
+      "passed": true,
+      "test": "light_all_text_survives_paging"
+    },
+    {
+      "passed": true,
+      "test": "light_page_fits_0"
+    },
+    {
+      "passed": true,
+      "test": "light_page_fits_1"
+    },
+    {
+      "passed": true,
+      "test": "light_entire_caption_hides"
+    },
+    {
+      "passed": true,
+      "test": "lab_focus_kept_1"
+    },
+    {
+      "passed": true,
+      "test": "lab_focus_kept_2"
+    },
+    {
+      "passed": true,
+      "test": "lab_menu_is_same_material"
+    },
+    {
+      "passed": true,
+      "test": "lab_in_level_settings_use_glass"
+    },
+    {
+      "passed": true,
+      "test": "lab_wide_buttons_stay_inside"
+    },
+    {
+      "passed": true,
+      "test": "mill_uses_variant_of_same_resource"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1280, 800)00.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1280, 800)00.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1280, 800)01.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1280, 800)01.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1280, 800)01.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1280, 800)01.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1280, 800)10.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1280, 800)10.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1280, 800)11.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1280, 800)11.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1280, 800)11.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1280, 800)11.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1920, 1080)00.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1920, 1080)00.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1920, 1080)01.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1920, 1080)01.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1920, 1080)01.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1920, 1080)01.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1920, 1080)10.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1920, 1080)10.55"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1920, 1080)11.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1920, 1080)11.0"
+    },
+    {
+      "passed": true,
+      "test": "mill_layout_(1920, 1080)11.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_ground_pick_(1920, 1080)11.6"
+    },
+    {
+      "passed": true,
+      "test": "mill_caption_preserves_every_character"
+    },
+    {
+      "passed": true,
+      "test": "mill_caption_two_lines_fit_0"
+    },
+    {
+      "passed": true,
+      "test": "mill_hidden_caption_leaves_no_plate"
+    },
+    {
+      "passed": true,
+      "test": "mill_settings_preserve_four_audio_channels"
+    },
+    {
+      "passed": true,
+      "test": "fullscreen_UI_rect_inside"
+    }
+  ],
+  "samples": [
+    {
+      "dpi": 144,
+      "logical": "(1280.0, 800.0)",
+      "window": [
+        1280,
+        800
+      ],
+      "world_pixels": "(1600, 1000)"
+    },
+    {
+      "dpi": 144,
+      "logical": "(1280.0, 800.0)",
+      "window": [
+        1920,
+        1080
+      ],
+      "world_pixels": "(2160, 1350)"
+    }
+  ]
+}

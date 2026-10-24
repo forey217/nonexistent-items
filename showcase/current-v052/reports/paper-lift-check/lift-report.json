@@ -1,0 +1,139 @@
+{
+  "checks": 33,
+  "failures": 0,
+  "native_render": false,
+  "results": [
+    {
+      "passed": true,
+      "test": "weight_0_slide_starts_on_real_edge"
+    },
+    {
+      "passed": true,
+      "test": "weight_0_slide_blocks_every_world_on_both_floors"
+    },
+    {
+      "passed": true,
+      "test": "weight_0_reaches_stop_and_unlocks_worlds"
+    },
+    {
+      "passed": true,
+      "test": "weight_1_slide_starts_on_real_edge"
+    },
+    {
+      "passed": true,
+      "test": "weight_1_slide_blocks_every_world_on_both_floors"
+    },
+    {
+      "passed": true,
+      "test": "weight_1_reaches_stop_and_unlocks_worlds"
+    },
+    {
+      "passed": true,
+      "test": "empty_lift_rises_before_any_quest_stage"
+    },
+    {
+      "passed": true,
+      "test": "empty_lift_returns_when_waterwheel_stops"
+    },
+    {
+      "passed": true,
+      "test": "loaded_lift_arrival_assigns_upper_rail_even_if_upper_is_inverted"
+    },
+    {
+      "passed": true,
+      "test": "departing_cargo_uses_upper_height_and_locks_early_inverted"
+    },
+    {
+      "passed": true,
+      "test": "upper_cargo_reaches_dock_before_world_can_change"
+    },
+    {
+      "passed": true,
+      "test": "lower_rail_cannot_load_an_absent_platform"
+    },
+    {
+      "passed": true,
+      "test": "legacy_raised_lift_restores_upper_cargo_membership"
+    },
+    {
+      "passed": true,
+      "test": "lower_platform_can_be_boarded_while_upper_opening_stays_blocked"
+    },
+    {
+      "passed": true,
+      "test": "actual_navigation_boards_empty_platform"
+    },
+    {
+      "passed": true,
+      "test": "waterwheel_can_start_before_cargo_arrives"
+    },
+    {
+      "passed": true,
+      "test": "passenger_height_follows_moving_platform"
+    },
+    {
+      "passed": true,
+      "test": "lift_passenger_visible_through_upper_floor_cutaway"
+    },
+    {
+      "passed": true,
+      "test": "passenger_cannot_walk_out_into_open_shaft_midflight"
+    },
+    {
+      "passed": true,
+      "test": "autosave_keeps_previous_safe_floor_during_lift"
+    },
+    {
+      "passed": true,
+      "test": "passenger_arrives_on_upper_floor_without_quest_progress"
+    },
+    {
+      "passed": true,
+      "test": "upper_arrival_navigation_can_disembark"
+    },
+    {
+      "passed": true,
+      "test": "return_to_platform_uses_upper_floor"
+    },
+    {
+      "passed": true,
+      "test": "stopping_waterwheel_can_lower_passenger"
+    },
+    {
+      "passed": true,
+      "test": "passenger_returns_to_lower_floor_with_same_plan_position"
+    },
+    {
+      "passed": true,
+      "test": "waterwheel_raises_loaded_platform"
+    },
+    {
+      "passed": true,
+      "test": "raised_mountain_has_only_upper_route"
+    },
+    {
+      "passed": true,
+      "test": "keyboard_inverted_is_rejected_mid_slide_without_cooldown"
+    },
+    {
+      "passed": true,
+      "test": "all_world_buttons_disabled_while_cargo_slides"
+    },
+    {
+      "passed": true,
+      "test": "api_cannot_switch_remote_floor_during_slide"
+    },
+    {
+      "passed": true,
+      "test": "departing_mountain_reaches_upper_dock"
+    },
+    {
+      "passed": true,
+      "test": "world_buttons_reenable_after_real_stop"
+    },
+    {
+      "passed": true,
+      "test": "menu_pauses_waterwheel_platform_and_passenger"
+    }
+  ]
+}

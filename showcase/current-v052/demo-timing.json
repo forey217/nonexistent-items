@@ -1,0 +1,488 @@
+{
+  "final_state": {
+    "cage_open": true,
+    "catch_height": 0.0,
+    "checkpoint": 6,
+    "clip_owned": true,
+    "clip_target": "bridge",
+    "hatch_broken": true,
+    "lift_height": 4.8,
+    "lifted_once": true,
+    "lower_anchored": true,
+    "lowpass_open": true,
+    "support_released": true,
+    "upper_anchored": true,
+    "weights": [
+      {
+        "elevation": 0.0,
+        "layer": 0,
+        "pos": [
+          20.0,
+          14.0
+        ],
+        "station": "anchor"
+      },
+      {
+        "elevation": 2.3,
+        "layer": 1,
+        "pos": [
+          15.0,
+          13.0
+        ],
+        "station": "guide"
+      }
+    ],
+    "worlds": [
+      1,
+      2
+    ]
+  },
+  "speech": [
+    {
+      "duration": 2.4,
+      "id": "vo_yanyue_3e33c827f9c8d069",
+      "node": "P2-04-catch",
+      "pitch_scale": 1.0,
+      "text": "这样，它就不会落下去了。"
+    },
+    {
+      "duration": 2.4,
+      "id": "vo_yanyue_e55cb848d7613461",
+      "node": "P2-05",
+      "pitch_scale": 1.0,
+      "text": "接住了。还好。"
+    },
+    {
+      "duration": 2.41000008583069,
+      "id": "vo_yanyue_06792a5042533fbe",
+      "node": "P2-06",
+      "pitch_scale": 1.0,
+      "text": "回来了，这次没走错地方。"
+    },
+    {
+      "duration": 2.4,
+      "id": "vo_yanyue_d6d6dd729fc8751f",
+      "node": "P2-08",
+      "pitch_scale": 1.0,
+      "text": "两边终于对上了。"
+    }
+  ],
+  "steps": [
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 2.550089,
+      "title": "纸山叠影 · 完整演示",
+      "worlds": [
+        0,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 3.350353,
+      "title": "显影旧廊，寻找留影夹",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "interact",
+      "seconds": 4.651158,
+      "title": "取得留影夹",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "stairs",
+      "seconds": 7.083365,
+      "title": "前往下层水碓坊",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 7.883406,
+      "title": "倒悬解开封存架",
+      "worlds": [
+        3,
+        2
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 8.283356,
+      "title": "水纹触碰顶部锁扣",
+      "worlds": [
+        3,
+        2
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 9.083333,
+      "title": "冰晶规则，水纹回到导轨",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 9.28334,
+      "title": "水纹落稳后开始运输",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "push",
+      "seconds": 12.083581,
+      "title": "将水纹送至接物踏板",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 12.85031,
+      "title": "重压踏板，升起接物台",
+      "worlds": [
+        3,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 13.050719,
+      "title": "接物台升到安全高度",
+      "worlds": [
+        3,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "interact",
+      "seconds": 18.350116,
+      "title": "固定接物台",
+      "worlds": [
+        3,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 19.728106,
+      "title": "接物台保持固定",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "stairs",
+      "seconds": 22.961459,
+      "title": "回上层解除检修撑",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "interact",
+      "seconds": 23.96158,
+      "title": "解除落料板检修撑",
+      "worlds": [
+        3,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "world",
+      "seconds": 24.728327,
+      "title": "重力压开落料板",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "wait",
+      "seconds": 27.528034,
+      "title": "接住山纹镇纸",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "stairs",
+      "seconds": 30.431297,
+      "title": "前往下层接物区",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "push",
+      "seconds": 33.564677,
+      "title": "将山纹送入停靠吊台",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "push",
+      "seconds": 35.364638,
+      "title": "水纹经过分岔",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "push",
+      "seconds": 37.831434,
+      "title": "将水纹送至水闸踏板",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 1,
+      "op": "world",
+      "seconds": 38.598375,
+      "title": "水车驱动吊台",
+      "worlds": [
+        1,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 43.865153,
+      "title": "山纹随吊台回到上层",
+      "worlds": [
+        1,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "stairs",
+      "seconds": 47.423502,
+      "title": "返回上层晒纸院",
+      "worlds": [
+        1,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 48.223338,
+      "title": "沿上层冰晶导轨运输",
+      "worlds": [
+        0,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "push",
+      "seconds": 50.824652,
+      "title": "山纹到达木桥前止挡",
+      "worlds": [
+        0,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "recall",
+      "seconds": 51.024251,
+      "title": "收回留影夹",
+      "worlds": [
+        0,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 51.757448,
+      "title": "显影跨渠木桥",
+      "worlds": [
+        3,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "interact",
+      "seconds": 53.590614,
+      "title": "固定木桥",
+      "worlds": [
+        3,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 54.357918,
+      "title": "木桥保留，继续运输",
+      "worlds": [
+        0,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "push",
+      "seconds": 56.157188,
+      "title": "山纹通过木桥抵达锚座",
+      "worlds": [
+        0,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 56.923658,
+      "title": "重力稳定上层锚点",
+      "worlds": [
+        1,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 57.691508,
+      "title": "上层锚定，下层保护罩打开",
+      "worlds": [
+        1,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "stairs",
+      "seconds": 62.0495860000001,
+      "title": "前往下层完成另一处锚点",
+      "worlds": [
+        1,
+        1
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 62.8495810000001,
+      "title": "解除水闸重压，让吊台归底",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 64.3494620000001,
+      "title": "吊台归底，低位通道开放",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "push",
+      "seconds": 67.9494060000001,
+      "title": "水纹返回真实分岔",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "push",
+      "seconds": 70.4160540000001,
+      "title": "将水纹送入导向井",
+      "worlds": [
+        1,
+        0
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "world",
+      "seconds": 71.1831000000001,
+      "title": "倒悬稳定高处锚位",
+      "worlds": [
+        1,
+        2
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "wait",
+      "seconds": 76.515891,
+      "title": "上下双锚共同稳定",
+      "worlds": [
+        1,
+        2
+      ]
+    },
+    {
+      "mountain_layer": 0,
+      "op": "stairs",
+      "seconds": 80.086173,
+      "title": "返回上层归位门",
+      "worlds": [
+        1,
+        2
+      ]
+    },
+    {
+      "op": "exit",
+      "seconds": 82.9861779999999,
+      "title": "走入归位门"
+    }
+  ],
+  "wall_seconds": 86.3810289999999
+}

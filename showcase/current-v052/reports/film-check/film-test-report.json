@@ -1,0 +1,278 @@
+{
+  "checks": 46,
+  "failures": 0,
+  "results": [
+    {
+      "details": {},
+      "passed": true,
+      "test": "idle_disables_extra_rendering"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_0_starts_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_0_old_rule_until_alignment"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_0_ghosts_exclude_actor"
+    },
+    {
+      "details": {
+        "new_pixel": "ead5afff",
+        "old_pixel": "e6e0c9ff"
+      },
+      "passed": true,
+      "test": "pair_0_both_environment_films_render_and_stay_lit"
+    },
+    {
+      "details": {
+        "max_channel_error": 0.0,
+        "mismatches": 0,
+        "samples": 2386
+      },
+      "passed": true,
+      "test": "pair_0_actor_pixels_remain_crisp"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_0_rule_changes_when_films_align"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_0_settles_and_releases_controls"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_1_starts_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_1_old_rule_until_alignment"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_1_ghosts_exclude_actor"
+    },
+    {
+      "details": {
+        "new_pixel": "e7d8d1ff",
+        "old_pixel": "edd7b0ff"
+      },
+      "passed": true,
+      "test": "pair_1_both_environment_films_render_and_stay_lit"
+    },
+    {
+      "details": {
+        "max_channel_error": 0.0,
+        "mismatches": 0,
+        "samples": 2391
+      },
+      "passed": true,
+      "test": "pair_1_actor_pixels_remain_crisp"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_1_rule_changes_when_films_align"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_1_settles_and_releases_controls"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_2_starts_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_2_old_rule_until_alignment"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_2_ghosts_exclude_actor"
+    },
+    {
+      "details": {
+        "new_pixel": "f3eed7ff",
+        "old_pixel": "f2e9daff"
+      },
+      "passed": true,
+      "test": "pair_2_both_environment_films_render_and_stay_lit"
+    },
+    {
+      "details": {
+        "max_channel_error": 0.0,
+        "mismatches": 0,
+        "samples": 2475
+      },
+      "passed": true,
+      "test": "pair_2_actor_pixels_remain_crisp"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_2_rule_changes_when_films_align"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_2_settles_and_releases_controls"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_3_starts_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_3_old_rule_until_alignment"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_3_ghosts_exclude_actor"
+    },
+    {
+      "details": {
+        "new_pixel": "e4d6cfff",
+        "old_pixel": "f2efe4ff"
+      },
+      "passed": true,
+      "test": "pair_3_both_environment_films_render_and_stay_lit"
+    },
+    {
+      "details": {
+        "max_channel_error": 0.0,
+        "mismatches": 0,
+        "samples": 2386
+      },
+      "passed": true,
+      "test": "pair_3_actor_pixels_remain_crisp"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_3_rule_changes_when_films_align"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_3_settles_and_releases_controls"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_4_starts_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_4_old_rule_until_alignment"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_4_ghosts_exclude_actor"
+    },
+    {
+      "details": {
+        "new_pixel": "edd7b0ff",
+        "old_pixel": "e7d8d1ff"
+      },
+      "passed": true,
+      "test": "pair_4_both_environment_films_render_and_stay_lit"
+    },
+    {
+      "details": {
+        "max_channel_error": 0.0,
+        "mismatches": 0,
+        "samples": 2386
+      },
+      "passed": true,
+      "test": "pair_4_actor_pixels_remain_crisp"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_4_rule_changes_when_films_align"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_4_settles_and_releases_controls"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_5_starts_film"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_5_old_rule_until_alignment"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_5_ghosts_exclude_actor"
+    },
+    {
+      "details": {
+        "new_pixel": "f3eed7ff",
+        "old_pixel": "f5e9c9ff"
+      },
+      "passed": true,
+      "test": "pair_5_both_environment_films_render_and_stay_lit"
+    },
+    {
+      "details": {
+        "max_channel_error": 0.0,
+        "mismatches": 0,
+        "samples": 2475
+      },
+      "passed": true,
+      "test": "pair_5_actor_pixels_remain_crisp"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_5_rule_changes_when_films_align"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "pair_5_settles_and_releases_controls"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "orbit_during_transition_keeps_films_registered"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reset_cancels_all_film_resources_immediately"
+    },
+    {
+      "details": {},
+      "passed": true,
+      "test": "reset_leaves_exactly_one_world_visible"
+    }
+  ]
+}

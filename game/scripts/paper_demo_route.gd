@@ -3,7 +3,7 @@ extends RefCounted
 static func steps() -> Array[Dictionary]:
 	var result:Array[Dictionary]=[]
 	var add:=func(op:String,title:String,data:Dictionary={}):
-		var item:Dictionary={"op":op,"title":title,"rate":2.2};item.merge(data,true);result.append(item)
+		var item:Dictionary={"op":op,"title":title,"rate":2.3};item.merge(data,true);result.append(item)
 	add.call("wait","纸山叠影 · 完整演示",{"condition":"arrival","rate":1.25,"hold":.4})
 	add.call("world","显影旧廊，寻找留影夹",{"layer":0,"world":3})
 	add.call("interact","取得留影夹",{"id":"tool"})

@@ -1,0 +1,120 @@
+{
+  "version": "0.52.0",
+  "snapshot": "20261024-02",
+  "suites": [
+    {
+      "suite": "paper-film-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 45.2,
+      "native_graphics": true,
+      "artifact_dir": "showcase/current-v052/reports/paper-film-check",
+      "passed": true,
+      "checks": 143,
+      "report": "showcase/current-v052/reports/paper-film-check/paper-film-report.json"
+    },
+    {
+      "suite": "paper-demo-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 97.2,
+      "native_graphics": true,
+      "artifact_dir": "showcase/current-v052/reports/paper-demo-check",
+      "passed": true,
+      "checks": 34,
+      "report": "showcase/current-v052/reports/paper-demo-check/demo-report.json"
+    },
+    {
+      "suite": "film-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 35.2,
+      "native_graphics": true,
+      "artifact_dir": "showcase/current-v052/reports/film-check",
+      "passed": true,
+      "checks": 46,
+      "report": "showcase/current-v052/reports/film-check/film-test-report.json"
+    },
+    {
+      "suite": "glass-ui-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 49.2,
+      "native_graphics": true,
+      "artifact_dir": "showcase/current-v052/reports/glass-ui-check",
+      "passed": true,
+      "checks": 46,
+      "report": "showcase/current-v052/reports/glass-ui-check/glass-ui-report.json"
+    },
+    {
+      "suite": "paper-mill-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 14.8,
+      "native_graphics": false,
+      "artifact_dir": "showcase/current-v052/reports/paper-mill-check",
+      "passed": true,
+      "checks": 125,
+      "report": "showcase/current-v052/reports/paper-mill-check/paper-mill-report.json"
+    },
+    {
+      "suite": "paper-lift-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 2.3,
+      "native_graphics": false,
+      "artifact_dir": "showcase/current-v052/reports/paper-lift-check",
+      "passed": true,
+      "checks": 33,
+      "report": "showcase/current-v052/reports/paper-lift-check/lift-report.json"
+    },
+    {
+      "suite": "save-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 5.1,
+      "native_graphics": false,
+      "artifact_dir": "showcase/current-v052/reports/save-check",
+      "passed": true,
+      "checks": 48,
+      "report": "showcase/current-v052/reports/save-check/save-test-report.json"
+    },
+    {
+      "suite": "paper-direction-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 4.2,
+      "native_graphics": false,
+      "artifact_dir": "showcase/current-v052/reports/paper-direction-check",
+      "passed": true,
+      "checks": 89,
+      "report": "showcase/current-v052/reports/paper-direction-check/direction-report.json"
+    },
+    {
+      "suite": "paper-story-check",
+      "exit_code": 0,
+      "clean_error_log": true,
+      "timed_out": false,
+      "seconds": 2.8,
+      "native_graphics": false,
+      "artifact_dir": "showcase/current-v052/reports/paper-story-check",
+      "passed": true,
+      "checks": 57,
+      "report": "showcase/current-v052/reports/paper-story-check/paper-story-report.json"
+    }
+  ],
+  "checks": 621,
+  "failures": 0,
+  "native_graphics_suites": 4,
+  "headless_mechanics_suites": 5,
+  "demo_seconds": 86.38,
+  "executable_sha256": "C1969E1A58B7D39D6E8283450768B195E48D26AB72DC605A6EA95711E12E4E8E"
+}
